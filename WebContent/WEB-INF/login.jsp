@@ -11,8 +11,7 @@
 <title>Eoulu-冲锋鹅系统登录页面</title>
 <link rel="shortcut icon" href="./image/eoulu.ico" />
 <link rel="bookmark" href="./image/eoulu.ico" />
-<link rel="stylesheet" type="text/css"
-	href="./font-awesome-4.5.0/css/font-awesome.min.css">
+<link rel="stylesheet" type="text/css" href="./font-awesome-4.5.0/css/font-awesome.min.css">
 <link rel="stylesheet" type="text/css" href="./css/login.css">
 </head>
 
@@ -45,7 +44,7 @@
 						<div class="check7">
 							<span class="checkspan"><input type="checkbox"
 								checked="checked" id="check7"><label for="check7"></label></span><span
-								class="checktxt">Rember Me（7 Days）</span>
+								class="checktxt">Rember Me（7 Days）</span><span title="上一版本号：v1.0.2" style="margin-left: 2px;cursor: pointer;">v1.1.0</span>
 						</div>
 						<div class="sub-res">
 							<input type="submit" value="登录" class="sub"> <input
@@ -57,15 +56,9 @@
 			</div>
 		</div>
 	</div>
-	<script src="./js/jquery-1.11.3.js" type="text/javascript"
-		charset="utf-8"></script>
+	<script src="./js/jquery-1.11.3.js" type="text/javascript" charset="utf-8"></script>
 	<script src="./js/common.js"></script>
 	<script src="./js/login.js"></script>
-	<script type="text/javascript">
-		
-	<%-- //    <%request.getSession().invalidate();%> --%>
-		
-	</script>
 	<script>
 		function init(){
 			var title = document.title;
@@ -79,16 +72,12 @@
 		}
 		//小眼睛
 		$("span.passeye").click(function(){
-				        if ($(".psd").attr("type") == "text") {
-				            $(".psd").attr('type',"password") ;
-				        }else{
-				          $(".psd").attr('type',"text") ;
-				        }   
-				    });
-		
-		
-		
-		
+	        if ($(".psd").attr("type") == "text") {
+	            $(".psd").attr('type',"password") ;
+	        }else{
+	          $(".psd").attr('type',"text") ;
+	        }   
+	    });
 	</script>
 </body>
 

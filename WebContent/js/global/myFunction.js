@@ -224,7 +224,67 @@
                             "mergeToParentFile": "SoftwareDocument.js"
                         }
                     }
+                },
+                // 物流统计页面
+                "Transport": {
+                    "lastModify": "Tue Sep 04 2018 17:49:45 GMT+0800 (中国标准时间)",
+                    "lastModifyTime": "1536054585000",
+                    // css
+                    "cssPrimary": {},
+                    // js
+                    "jsPrimary": {
+                        "bootstrap-grid-form-button-res-icon-list.min.js": {
+                            "referenceOrder": 0,
+                            "filePath": "js/libs/bootstrap/bootstrap-grid-form-button-res-icon-list.min.js",
+                            "mergeToParentFile": null
+                        },
+                        "msgbox.js": {
+                            "referenceOrder": 1,
+                            "filePath": "js/msgbox.js",
+                            "mergeToParentFile": "transport.js"
+                        },
+                        "responseLoading.js": {
+                            "referenceOrder": 2,
+                            "filePath": "js/global/responseLoading.js",
+                            "mergeToParentFile": "transport.js"
+                        },
+                        "transport.js": {
+                            "referenceOrder": 3,
+                            "filePath": "js/transport.js",
+                            "mergeToParentFile": "transport.js"
+                        }
+                    }
+                },
+                "GetOrderRoute": {
+                    "lastModify": "Tue Sep 04 2018 17:49:45 GMT+0800 (中国标准时间)",
+                    "lastModifyTime": "1536054585000",
+                    // css
+                    "cssPrimary": {},
+                    // js
+                    "jsPrimary": {
+                        "bootstrap-grid-form-button-res-icon-list.min.js": {
+                            "referenceOrder": 0,
+                            "filePath": "js/libs/bootstrap/bootstrap-grid-form-button-res-icon-list.min.js",
+                            "mergeToParentFile": null
+                        },
+                        "msgbox.js": {
+                            "referenceOrder": 1,
+                            "filePath": "js/msgbox.js",
+                            "mergeToParentFile": "transport.js"
+                        },
+                        "responseLoading.js": {
+                            "referenceOrder": 2,
+                            "filePath": "js/global/responseLoading.js",
+                            "mergeToParentFile": "transport.js"
+                        },
+                        "transport.js": {
+                            "referenceOrder": 3,
+                            "filePath": "js/transport.js",
+                            "mergeToParentFile": "transport.js"
+                        }
+                    }
                 }
+                // 物流统计页面结束
             },
         // pageHrefImportFileMap 结束
         // compressFilePathMap 开始
@@ -285,6 +345,12 @@
                     "outBasePath": "./cfChicken8/WebContent/js/modules/software/",
                     "gulp-rev": "SoftwareDocument-4a848ad6d1.min.js",
                     "referencePath": "js/modules/software/SoftwareDocument-4a848ad6d1.min.js"
+                },
+                "transport.js": {
+                    "originPath": ["./cfChicken8/WebContent/js/msgbox.js", "./cfChicken8/WebContent/js/global/responseLoading.js", "./cfChicken8/WebContent/js/transport.js"],
+                    "outBasePath": "./cfChicken8/WebContent/js/modules/transport/",
+                    "gulp-rev": "transport-d418d1053c.min.js",
+                    "referencePath": "js/modules/transport/transport-d418d1053c.min.js"
                 }
             }
         }

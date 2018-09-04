@@ -105,31 +105,33 @@
 	}
 
 	.gl_table_style th:nth-child(1), .gl_table_style td:nth-child(1) {
-		max-width: 50px;
-		min-width: 50px;
+		max-width: 50px !important;
+		min-width: 50px !important;
 		width: 50px;
 	}
 
 	.gl_table_style th:nth-child(2), .gl_table_style td:nth-child(2) {
-		max-width: 40px;
-		min-width: 40px;
+		max-width: 40px !important;
+		min-width: 40px !important;
 		width: 40px;
 	}
 
-	.gl_table_style th:nth-child(23), .gl_table_style td:nth-child(23) {
-		max-width: 145px;
-		min-width: 145px;
-		width: 145px;
+	.gl_table_style th:nth-child(5), .gl_table_style td:nth-child(5) {
+		max-width: 90px !important;
+		min-width: 90px !important;
+		width: 90px;
 	}
 
-	.gl_table_style th:nth-child(24), .gl_table_style td:nth-child(24), .gl_table_style th:nth-child(25), .gl_table_style td:nth-child(25), .gl_table_style th:nth-child(26), .gl_table_style td:nth-child(26) {
-		max-width: 130px;
-		min-width: 130px;
-		width: 130px;
-	}
-
-	.gl_table_style th:nth-child(23), .gl_table_style td:nth-child(23), .gl_table_style th:nth-child(24), .gl_table_style td:nth-child(24), .gl_table_style th:nth-child(25), .gl_table_style td:nth-child(25), .gl_table_style th:nth-child(26), .gl_table_style td:nth-child(26) {
+	.D3_D2_th, .D3_D4_th, .D4_D2_th, .D3_D1_th, .D3_D2, .D3_D4, .D4_D2, .D3_D1 {
+		max-width: 140px;
+		min-width: 140px;
+		width: 140px;
 		display: none;
+	}
+
+	.D3_D2, .D3_D4, .D4_D2, .D3_D1 {
+		color: #fff;
+		opacity: 0;
 	}
 
 	.hetonghuoqi_th, .shijihuoqi_th, .yujihuoqi_th {
@@ -143,6 +145,40 @@
 		min-width: 90px;
 		width: 90px;
 	}
+
+	/*loading图*/
+	.loading_div_g_div {
+		position: fixed;
+		top: 0;
+		bottom: 0;
+		left: 0;
+		right: 0;
+		z-index: 100;
+		width: 100vw;
+		height: 100vh;
+		background-color: #5bc0de;
+
+		filter:alpha(opacity=90); /* IE */  
+		-moz-opacity:0.9; /* 老版Mozilla */  
+		-khtml-opacity:0.9; /* 老版Safari */  
+		opacity: 0.9; /* 支持opacity的浏览器*/ 
+
+	    /*text-align: center;*/
+	    /*水平垂直居中，父元素设置*/
+	    display: -webkit-flex;
+	    display: flex;
+	    	/*设置弹性盒子元素在主轴（横轴）的对齐方式。*/
+	    justify-content: center;
+		/*
+		* align-items, align-self 
+	设置弹性盒子元素在垂直方向上（纵轴）的对齐方式。其中align-items属性用于弹性容器，而align-self用于弹性项目。
+		align-self 属性定义flex子项单独在侧轴（纵轴）方向上的对齐方式。
+		align-self 属性可重写灵活容器的 align-items 属性。
+		 */
+	    align-items: center;
+	}
+	/*loading图end*/
+
 </style>
 </head>
 <body>
@@ -374,10 +410,10 @@
 									<th>供应商明细</th>
 									<th>合同明细</th>
 									<th class="dontConpress">PO总额<span title="显示与隐藏" class="glyphicon glyphicon-plus" aria-hidden="true" id="fa-button3"></span></th>
-									<th>实际货期-合同货期</th>
-									<th>实际货期-预计货期</th>
-									<th>预计货期-合同货期</th>
-									<th>实际货期-<br>合同签订货期</th>
+									<th class="D3_D2_th">实际货期-合同货期</th>
+									<th class="D3_D4_th">实际货期-预计货期</th>
+									<th class="D4_D2_th">预计货期-合同货期</th>
+									<th class="D3_D1_th">实际货期-<br>合同签订日期</th>
 								</tr>
 							</thead>
 							<tbody>
@@ -410,10 +446,10 @@
 											<td>${orderInfo['SalesRepresentative']}</td>
 											<td>${orderInfo['DateOfSign']}</td>
 											<td>${orderInfo['CargoPeriod']}</td>
-											<td>${orderInfo['ActualDelivery']}</td>
+											<td class="ActualDelivery_td">${orderInfo['ActualDelivery']}</td>
 											<c:choose>
 												<c:when test="${orderInfo['ExpectedDeliveryPeriod']=='--'}">
-													<td>${orderInfo['ExpectedDeliveryPeriod']}</td>
+													<td class="ExpectedDeliveryPeriod_td" title="${orderInfo['ExpectedDeliveryPeriod']}">${orderInfo['ExpectedDeliveryPeriod']}</td>
 												</c:when>
 												<c:otherwise>
 												<fmt:formatDate value="${now}" type="both" dateStyle="long" pattern="yyyy-MM-dd" var="date2"/>
@@ -421,10 +457,10 @@
 												 <c:set var="interval" value="${ now.time - date1.time }" /> 
 													<c:choose>
 														<c:when test="${ interval < -604800000 || (orderInfo['Status']!='已备货' && orderInfo['Status']!='已通知备货' && orderInfo['Status'] !='无')}">
-															<td>${orderInfo['ExpectedDeliveryPeriod']}</td>
+															<td class="ExpectedDeliveryPeriod_td" title="${orderInfo['ExpectedDeliveryPeriod']}">${orderInfo['ExpectedDeliveryPeriod']}</td>
 														</c:when>
 														<c:otherwise>
-															<td class="change"><span>${orderInfo['ExpectedDeliveryPeriod']}</span><br/>【需要尽快发货】</td>
+															<td class="change ExpectedDeliveryPeriod_td" title="${orderInfo['ExpectedDeliveryPeriod']}"><span>${orderInfo['ExpectedDeliveryPeriod']}</span><br/>【需要尽快发货】</td>
 														</c:otherwise>
 													</c:choose>
 												</c:otherwise>
@@ -437,10 +473,10 @@
 											<td><span class="glyphicon glyphicon-eye-open supply-show" aria-hidden="true" value="${orderInfo['ID']}"></span></td>
 											<td><span class="glyphicon glyphicon-eye-open supply-detail-show" aria-hidden="true" value="${orderInfo['ID']}"></span></td>
 											<td class="dontConpress"><span class="glyphicon glyphicon-eye-open supply-po-show" aria-hidden="true" value="${orderInfo['ID']}"></span></td>
-											<td>1</td>
-											<td>2</td>
-											<td>3</td>
-											<td>4</td>
+											<td class="D3_D2" value="${orderInfo['D3_D2']}">${orderInfo['D3_D2']}</td>
+											<td class="D3_D4" value="${orderInfo['D3_D4']}">${orderInfo['D3_D4']}</td>
+											<td class="D4_D2" value="${orderInfo['D4_D2']}">${orderInfo['D4_D2']}</td>
+											<td class="D3_D1" value="${orderInfo['D3_D1']}">${orderInfo['D3_D1']}</td>
 										</tr>
 									</c:if>
 								</c:forEach>
@@ -776,10 +812,13 @@
 	    </div>
 	<!-- Transport_wrapper结束 -->
 	</div>
+	<div class="loading_div_g_div">
+	    <img src="image/loading/Spinner-1s-200px.gif" alt="loading。。。">
+	</div>
 </body>
 <script src="js/libs/bootstrap/bootstrap-grid-form-button-res-icon-list.min.js"></script>
-<script src="js/msgbox.js"></script>
-<!-- <script src="js/global/myFunction.js?iv=201809031003"></script> -->
-<script src="js/global/responseLoading.js"></script>
-<script src="js/transport.js?iv=201808241504"></script>
+<!-- delete -->
+<!-- <script src="js/msgbox.js"></script> -->
+<!-- <script src="js/global/responseLoading.js"></script> -->
+<!-- <script src="js/transport.js"></script> -->
 </html>
