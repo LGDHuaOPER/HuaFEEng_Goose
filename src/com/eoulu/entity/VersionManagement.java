@@ -10,6 +10,7 @@ public class VersionManagement {
 	private String BoardingTime;
 	private String Registrant;
 	private String UpdatedContent;
+	private String VmClassifyHref;
 	public int getID() {
 		return ID;
 	}
@@ -57,6 +58,12 @@ public class VersionManagement {
 	}
 	public void setFrom(String from) {
 		this.from = from;
+	}
+	public String getVmClassifyHref() {
+		return VmClassifyHref;
+	}
+	public void setVmClassifyHref(String vmClassifyHref) {
+		VmClassifyHref = vmClassifyHref;
 	}
 	
 	

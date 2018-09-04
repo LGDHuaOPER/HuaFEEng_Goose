@@ -46,6 +46,7 @@ public class VersionManagementServiceImpl implements VersionManagementService{
 			}
 		
 			String projectName = version.getProjectName();
+			String vmClassifyHref = version.getVmClassifyHref();
 			String toList = "";
 			String copyList = "";
 			List<Map<String, Object>> mailInfo = dao2.getConfig(projectName);
@@ -60,8 +61,9 @@ public class VersionManagementServiceImpl implements VersionManagementService{
 			String updatedContent = version.getUpdatedContent();
 			StringBuilder builder = new StringBuilder();
 			builder.append("<span style='font-family:微软雅黑;font-size:14px;'>您好！</span><br><br>");
-			builder.append("<span style='font-family:微软雅黑;font-size:14px;'>以下为"+map.get(projectName)
-					+ " " + version.getVersion() + "的上线内容：</span><br><br>");
+			builder.append("<span style='font-family:微软雅黑;font-size:14px;'>以下为<a href='" + vmClassifyHref 
+					+ "' style='color: red;' title='冲锋鹅T2-软件部文档页面-"+map.get(projectName)+"'>"+map.get(projectName)
+					+ " " + version.getVersion()+"</a>的上线内容：</span><br><br>");
 			String[] contentArr = updatedContent.split("VM@splitor");
 			for(int i = 0;i < contentArr.length;i ++){
 				builder.append("<span style='font-family:微软雅黑;font-size:14px;'>" + (i+1) +"、"+contentArr[i]

@@ -51,6 +51,7 @@ public class VersionManagementServlet extends HttpServlet {
 		String UpdatedContent = request.getParameter("UpdatedContent");
 		String Password = request.getParameter("Password");
 		String from = request.getSession().getAttribute("email").toString();
+		String vmClassifyHref = request.getParameter("vmClassifyHref");
 		
 		VersionManagement version = new VersionManagement();
 		version.setProjectName(ProjectName);
@@ -60,6 +61,7 @@ public class VersionManagementServlet extends HttpServlet {
 		version.setUpdatedContent(UpdatedContent);
 		version.setPassword(Password);
 		version.setFrom(from);
+		version.setVmClassifyHref(vmClassifyHref);
 		
 		VersionManagementService service = new VersionManagementServiceImpl();
 		response.getWriter().write(service.addVersion(version));
