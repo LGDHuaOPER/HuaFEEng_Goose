@@ -1,0 +1,602 @@
+
+/*------------------------------------����-----------------------------------*/
+.content .select-content{
+    margin-left: 33%;
+    margin-bottom: 30px;
+    display: inline-block;
+}
+.content .select-button{
+    display: inline-block;
+}
+.content label{
+    font-weight:normal;
+}
+.content .select1,.content .select2{
+    width: auto;
+    height: 30px;
+    border: 1px solid darkgrey;
+    display: inline-block;
+}
+.content .select-content select{
+    width: 120px;
+    height: 30px;
+    color: #000;
+    outline: none;
+    border: none;
+    border-right: 2px solid rgba(169, 169, 169, 0.2);
+}
+.content .select-content input[type="text"]{
+    width: 120px;
+    height: 27px;
+    margin-left: -5px;
+    color: #000;
+    outline: none;
+    border: none;
+}
+ .time{
+	display:none;
+} 
+.content .select-content input[type="date"]{
+    width: 120px;
+    height: 29px;
+    color: #000;
+    outline: none;
+    border: none;
+}
+.content .select-content input[type="radio"]{
+    margin-bottom: 10px;
+}
+.content .select-button input[type="button"]{
+    width: 50px;
+    height: 30px;
+    border: none;
+}
+.content .choose{
+    margin-left: 5%;
+    margin-bottom: 10px;
+}
+.content .choose input[type="button"]{
+    width: 50px;
+    height: 30px;
+    border: none;
+}
+.bToggle{
+    background: #00aeef;
+    border: solid 1px #00aeef;
+    color:#fff;
+    cursor: pointer;
+    box-shadow: 1px 2px 5px 0 #00aeef;
+}
+ .bToggle:hover{
+    background: #fff;
+    color:#00aeef ;
+}
+
+/*----------------------------------ҳ������---------------------------------*/
+#table1 td{
+    text-align: center;
+    min-width:50px;
+    max-width:150px;
+    word-break: break-all;
+    font-size: 14px;
+    font-weight: normal;
+}
+
+.Customer_th, .Contact_th, .ContactInfo_th, .SalesRepresentative_th, .InstalledTimeSite_th, .Remarks_th {
+    display: none;
+}
+
+ #table1 tr td:nth-child(7),#table1 tr td:nth-child(8),#table1 tr td:nth-child(9),#table1 tr td:nth-child(10),#table1 tr td:nth-child(17),#table1 tr td:nth-child(18){
+   display:none; 
+} 
+#table1 td a{
+    color: #000;
+}
+
+/*---------------------������-----------------------*/
+.operate{
+    background: white;
+    position: absolute;
+    top:5%;
+    left:3%;
+    width: 94%;
+    display: none;
+    border: none;
+    z-index:1;
+}
+.contract{
+    background: white;
+    position: absolute;
+    top:20%;
+    left:25%;
+    width: 50%;
+    height:auto;
+    display: none;
+    border: none;
+    z-index:1;
+}
+
+.info{
+    background: white;
+    position: absolute;
+    top:20%;
+    left:30%;
+    width: 35%;
+    display: none;
+    border: none;
+    z-index:1;
+}
+.info_po{
+    background: white;
+    position: absolute;
+    top:20%;
+    left:30%;
+    width: 35%;
+    max-height: 300px;
+    overflow: auto;
+    display: none;
+    border: none;
+    z-index:1;
+}
+.supply-detail{
+    background: white;
+    position: absolute;
+    top:20%;
+    left:35%;
+    width: 30%;
+    max-height: 300px;
+    overflow: auto;
+    display: none;
+    border: none;
+    z-index:1;
+}
+.update_date{
+	width: 96%;
+    margin: 20px auto;
+    height:50px;
+}
+.update_date input[type="date"],.update_date select{
+    margin: 10px 50px;
+    width: 178px;
+    height: 22px;
+}
+.top_table,.out_table{
+    width: 96%;
+    margin: 20px auto;
+    min-height: 150px;
+    max-height: 250px;
+    overflow: auto;
+}
+.table_po{
+    width: 94%;
+    margin: 20px auto;
+    max-height: 250px;
+    overflow: auto;
+}
+.bottom_table,.check_table{
+    width: 94%;
+    margin: 10px auto 20px;
+}
+.operatePage,.poPage,.contractPage,.infoPage
+{
+    background: white;
+    border: 1px gainsboro solid;
+    width: 100%;
+}
+
+.editPage{
+    background: white;
+    border: none;
+    width: 100%;
+}
+ .check_table .editPage{
+    background: white;
+    border: none;
+    width: 60%;
+    margin:0 auto;
+} 
+.editPage td{
+    height: 34px;
+    border: none;
+    text-align: center;
+}
+.editPage select{
+    width: 184px;
+    height: 26px;
+}
+.editPage input[type='text']{
+    width: 180px;
+    height: 20px;
+}
+.editPage input[type='date']{
+    width: 178px;
+    height: 22px;
+}
+.bottom_table input[type='button'],.check_table input[type='button']{
+    width: 65px;
+    height: 24px;
+    margin: 0 30px;
+}
+.bottom_table .edit_btn,.check_table .edit_btn{
+    margin-top: 20px;
+    text-align: center;
+}
+
+
+.detailPage{
+    background: white;
+    border: 1px solid gainsboro;
+    width: 85%;
+    margin: 20px auto 30px;
+    }
+.infoPage td,.contractPage td,.operatePage td,.detailPage td,.poPage td{
+    word-break: break-all;
+    min-width:50px;
+    max-width:150px;
+    height:30px;
+    text-align: center;
+}
+.infoPage th,.contractPage th,.operatePage th,.detailPage th,.poPage th{
+    word-break: break-all;
+    min-width:50px;
+    max-width:150px;
+    height:30px;
+    text-align: center;
+}
+
+.info_title,.contract_title,.operate_title,.detail_title{
+    height: 35px;
+    width: 100%;
+    line-height: 35px;
+    background-color:#00aeef ;
+    text-indent: 1em;
+    color: white;
+}
+.po_close,.info_close,.contract_close,.operate_close,.supply_detail_close,.MailBar_close{
+    width: 35px;
+    height: 25px;
+    color: white;
+    position: absolute;
+    top: 5px;
+    right: 5px;
+    cursor: pointer;
+}
+
+.cover-color{
+    width: 100%;
+    height:100%;
+    background-color: rgba(10%,20%,30%,0.7);
+    position: absolute;
+    top: -10px;
+    left: 0;
+    display: none;
+    overflow: hidden;
+}
+/*邮件区域样式  */
+.MailBar{
+    background: white;
+    position: absolute;
+
+    top: 40%;
+    left: 35%;
+    width: 30%;
+    height: 28%;
+
+    display: none;
+    border: none;
+    z-index: 100;
+}
+.MailBar_cover_color{
+    width: 100%;
+    height:100%;
+    background-color: rgba(10%,20%,30%,0.7);
+    position: absolute;
+    top: -10px;
+    left: 0;
+    display: none;
+    overflow: hidden;
+    z-index:10;
+}
+
+.MailBar_edit_btn{
+	position: absolute;
+}
+#Mail_fileToUpload{
+	position: absolute;
+	top:42.3%;
+	left:27.3%;
+}
+#Mail_Send{
+    width: 80px;
+    height: 35px;
+    position: absolute;
+    top: 73.5%;
+    left: 40%;
+    font-size: 18px;
+}
+.uploadFileMark{
+	width:150px;
+	display:none;
+}
+
+.flow{
+    width: 300px;
+    height: 410px;
+    background: rgba(10%,20%,30%,0.5);
+    border: 1px solid #fff;
+    /*float: right;*/
+    position: absolute;
+    left:-290px;
+    top:160px;
+}
+.flow #datalist{
+    width: 300px;
+    height: 235px;
+    border: 1px solid green;
+    padding-top:40px ;
+    border: 1px solid #fff;
+    overflow-y: auto;
+}
+#datalist .bar{
+    font-size: 24px;
+    position: absolute;
+    z-index: 1;
+    right:-16px;
+    top: 0px;
+    color: #2badd4;
+    display: block;
+    transform: rotate(180deg);
+
+}
+#datalist b{
+    display:inline-block;
+    font-size: 17px;
+    color:#fff;
+    cursor:pointer;
+    margin-left:20px;
+}
+
+
+#fDrag{
+    position: absolute;
+    top:0;
+    left: 0;
+    width:100%;
+    cursor: move;
+    height:40px;
+    text-align: center;
+    line-height: 40px;
+    color: #fff;
+    background: #00aeef;
+    font-size:16px;
+}
+#datalist ul{
+    margin-top: 20px;
+}
+#datalist ul li{
+    list-style: none;
+    text-align: center;
+    color: #fff;
+}
+.flow .choose{
+
+    height: 130px;
+    /*border: 1px solid red;*/
+    display: block;
+    display: inline-block;
+}
+.choose #choosedisplay{
+    width: 160px;
+    height: 30px;
+    background: #00aeef;
+    margin-top: 10px;
+    text-align: center;
+    line-height: 30px;
+    margin-left: 30%;
+    /* margin-bottom: 1px solid gray; */
+
+    color: #fff;
+}
+.choose ul{
+    list-style: none;
+    cursor: pointer;
+
+}
+.choose ul li{
+
+    width: 160px;
+    /* border-bottom: 1px solid #567084; */
+    color: #000;
+
+
+}
+.choose ul li:hover{
+    color: #fff;
+}
+.choose #submenu{
+    display: none;
+}
+
+.choose #submenu input[type="button"]{
+    width: 160px;
+    background: #ECF0F1;
+    color: #00aeef;
+    border: none;
+    font-size: 14px;
+}
+.bAnimate:hover{
+    cursor: pointer;
+    animation: bAn 0.5s forwards;
+    -webkit-animation: bAn 0.5s forwards;
+}
+@keyframes bAn{
+    from{background: #e4e8eb;color:#00aeef;}
+    to{background: #00aeef;color:#fff;}
+}
+@-webkit-keyframes bAn{
+    from{background: #e4e8eb;color:#00aeef;}
+    to{background: #00aeef;color:#fff;}
+}
+.flow .clear{
+    float: right;
+    margin-right: 20px;
+    margin-top: 10px;
+    border-radius: 3px;
+}
+.clear input[type="button"]{
+    width: 60px;
+    height: 30px;
+    background: #ddb55c;
+    border: none;
+    border-radius: 3px;
+    color: #fff;
+    cursor: pointer;
+}
+
+/*------------------------------�ײ�----------------------------------*/
+.footer{
+    width: 100%;
+    height: 80px;
+    background: #92bd6e;
+    color: #fff;
+    text-align: center;
+
+    margin-top: 54px;
+}
+.footer #p1{
+    margin-top: 12px;
+}
+
+input[name="operate-check"]{
+	margin-top:6px;
+}
+/* ����Ч�� */
+.change
+{
+	color:red ;
+	animation:myfirst 1s;
+	-moz-animation:myfirst 1s; 
+	-webkit-animation:myfirst 1s; 
+	-o-animation:myfirst 1s; 
+	animation-iteration-count:infinite;
+	-moz-animation-iteration-count:infinite;
+	-webkit-animation-iteration-count:infinite;
+	-o-animation-iteration-count:infinite;
+	/* animation-direction:alternate;
+    -moz-animation-direction:alternate;
+    -webkit-animation-direction:alternate;
+    -o-animation-direction:alternate; */
+    
+}
+.change:hover{
+	animation-play-state:paused;
+	/* Safari and Chrome */
+	-webkit-animation:mymove 5s;
+	-moz-animation-play-state:paused;
+	-webkit-animation-play-state:paused;
+	-o-animation-play-state:paused;
+	
+}
+@keyframes myfirst
+{
+    0% {color:red;}
+    100% {color: #fdd530;}
+}
+
+@-moz-keyframes myfirst{
+	0% {color:red;}
+	100% {color:#fdd530;}
+}
+}
+@-webkit-keyframes myfirst{
+	0% {color:red;}
+	100% {color:#fdd530;}
+}
+}
+@-moz-keyframes myfirst{
+	0% {color:red;}
+	100% {color:#fdd530;}
+}
+
+.red_date{
+	color:red;
+}
+
+.transport_calc {
+    min-width: 1000px;
+    width: 90%;
+    margin: 10px auto;
+    padding: 3px;
+    font-size: 16px;
+}
+
+.transport_calc_table {
+    width: 100%;
+    box-sizing: border-box;
+    border-collapse: collapse;
+}
+
+.transport_calc_table thead th, .transport_calc_table tbody td{
+    height: 50px;
+    border: 1px solid #999;
+}
+
+.transport_calc_table thead th {
+    background: #5bc0de;
+    font-weight: 500;
+    color: #fff;
+}
+
+.transport_calc_table tbody td {
+    text-align: center;
+    color: rgba(0,0,0,0.9);
+}
+
+.transport_calc_table tfoot td {
+    text-align: right;
+    padding-right: 10px;
+    height: 50px;
+    color: #00aeef;
+}
+
+.triangle_right{
+    display: inline-block;
+    width: 0;
+    height: 0;
+    border-bottom: 5px solid transparent;
+    border-top: 5px solid transparent;
+    border-left: 5px solid #00aeef;
+}
+
+.transport_calc_table th:nth-child(1) {
+    min-width: 164px;
+    width: 16.4%;
+}
+
+.transport_calc_table th:nth-child(2) {
+    min-width: 254px;
+    width: 25.4%;
+}
+
+.transport_calc_table th:nth-child(3) {
+    min-width: 164px;
+    width: 16.4%;
+}
+
+.transport_calc_table th:nth-child(4) {
+    min-width: 254px;
+    width: 25.4%;
+}
+
+.transport_calc_table th:nth-child(5) {
+    min-width: 164px;
+    width: 16.4%;
+}
+
+.transport_calc_table [class$='_td'] {
+    cursor: pointer;
+}
+
+.transportdetail_td:hover {
+    color: red;
+}

@@ -1,0 +1,1386 @@
+*{
+    margin:0;
+}
+html,body{
+    width:100%;
+    height:auto;
+    font-family: "Arial","microsoft yahei";
+    background: #e4e8eb;
+    font-size:62.5%;
+}
+.contain{
+    width: 100%;
+    height: auto;
+}
+
+input,select{
+    font-family: "Arial","microsoft yahei";
+}
+/*-------------------------ͷ��------------------------------*/
+.header{
+    width: 100%;
+    height: 80px;
+    background: #00aeef;
+    color: #fff;
+    line-height: 80px;
+    font-size: 32px;
+}
+.header span{
+    padding-left: 30px;
+}
+.header .t-span{
+    float: right;
+    font-size: 14px;
+    margin-right: 20px;
+    padding-top:20px;
+}
+.header a{
+    color: #ffffff;
+    text-decoration: none;
+    cursor:pointer;
+}
+.header a:hover{
+    text-decoration:none!important;
+    color:#fff!important;
+}
+a:hover{
+    text-decoration:none!important;
+}
+/*-----------------------------------������---------------------------------*/
+.content{
+    width: 100%;
+    height: 100%;
+    background: #e4e8eb;
+    padding-bottom: 80px;
+    position: relative;
+    min-width: 1100px;
+}
+
+/*--------------------------------------��̬��������-----------------------------*/
+.prompt{
+    border: solid 3px #00AEEF;
+    width:90%;
+    height:140px;
+    position: relative;
+    left: 5%;
+    top:25px;
+    min-width: 1000px;
+    overflow: hidden;
+
+}
+.prompt-top{
+    width: 60%;
+    height:35px;
+    /*border: solid 1px red;*/
+    margin: 0 auto 8px;
+    overflow: hidden;
+
+}
+.prompt-top ul li{
+    /*float: left;*/
+    display: inline-block;
+    /*margin-left: 15%;*/
+   /*  font-size: 28px; */
+   font-size:2.8rem;
+    color: red;
+    font-weight: bolder;
+    text-align: center;
+}
+
+.prompt-top .prompt-top1{
+    margin-left: 0%;
+}
+.prompt-top .prompt-top2{
+    margin-left: 2%;
+}
+.prompt-top .prompt-top3{
+    margin-left: 5%;
+    color: #000;
+   font-size:1.7rem;
+    font-weight: normal;
+}
+.prompt-middle{
+    position: absolute;
+    width:70%;
+    height: 100px;
+    margin-left:15%;
+}
+.proClick{
+    position: absolute;
+    top: -29%;
+    left: -16.6%;
+    text-align: center;
+    display: none;
+   /*  font-size: 1.6rem; */
+   font-size:16px;
+}
+.proClick ol li{
+    /*position: absolute;*/
+    color:blue;
+    cursor: pointer;
+    margin-bottom: 2px;
+}
+.proTitle{
+    width: 100%;
+    overflow: hidden;
+}
+.prompt-middle ul li{
+    width: 13.1%;
+    /*border: solid 1px #00aeef;*/
+    //float: left;
+    display:inline-block;
+    font-size: 17px;
+    text-align: center;
+}
+.proSouth :hover,.proNorth :hover,.proSouthwest :hover{
+    background: #ebf2fc;
+}
+.proTotal{
+    display: none;
+}
+.proSingal{
+    display: none;
+}
+.proSingal ul li{
+    font-size:2.0rem;
+    margin-top:16px;
+    border: none;
+}
+.prompt-content{
+    display: none;
+}
+.prompt .add-div-top{
+    width: 50%;
+    height: 120px;
+    /*border:1px solid #1987CF;*/
+    margin:10px auto ;
+    font-size: 28px;
+    position:relative;
+    overflow:hidden;
+    color: red;
+    font-weight: bolder;
+}
+
+.prompt .add-div-top .number2{
+    position: absolute;
+    top: -25px;
+    left: 55%;
+    /*animation: myfirst 3s;*/
+}
+
+/*.add-div-top:hover span{
+    transform:skew(90deg);
+}*/
+
+.add-div-top span{
+    position:absolute;
+    margin-left: 22%;
+    transition:all 0.4s 0s linear;
+
+}
+.add-div-top .span2{
+    position: absolute;
+    left: 30%;
+}
+.add-div-top .number{
+    display: inline-block;
+    width:100px;
+    height: 100px;
+    position: absolute;
+    top:-25px;
+    left: 24%;
+    transition:all 0.4s 0s linear;
+
+}
+
+ul,li{
+    list-style: none;
+}
+.prompt-alert{
+    visibility: hidden;
+    width: 15%;
+    height: 130px;
+    position: absolute;
+    right: 0;
+    top:5px;
+    overflow: hidden;
+}
+.swiper-slide{
+    width: 50%;
+    height: 130px;
+
+}
+.swiper-slide img{
+    float: left;
+    width: 50%;
+    height: 130px;
+}
+.swiper-slide span{
+    float: left;
+    width: 50%;
+    height: 85px;
+    font-size: 20px;
+    text-align: center;
+    padding-top: 45px;
+    white-space:pre-wrap;
+}
+/*------------------------------------ɸѡ-----------------------------------*/
+.content .select-content{
+    padding-top: 25px;
+    margin-left: 33%;
+    margin-bottom: 30px;
+    display: inline-block;
+}
+.content .select-button{
+    display: inline-block;
+}
+.content label{
+    font-weight:normal;
+    font-size: 16px;
+}
+.content .select1,.content .select2{
+    width: auto;
+    height: 30px;
+    border: 1px solid darkgrey;
+    display: inline-block;
+}
+.content .select-content select{
+    width: 120px;
+    height: 30px;
+    color: #000;
+    outline: none;
+    border: none;
+    border-right: 2px solid rgba(169, 169, 169, 0.2);
+}
+.content .select-content input[type="text"]{
+    width: 120px;
+    height: 27px;
+    margin-left: -5px;
+    color: #000;
+    outline: none;
+    border: none;
+}
+ .time{
+	display:none;
+} 
+.content .select-content input[type="date"]{
+    width: 120px;
+    height: 29px;
+    color: #000;
+    outline: none;
+    border: none;
+}
+.content .select-content input[type="radio"]{
+    margin-bottom: 10px;
+}
+.content .select-button input[type="button"]{
+    width: 50px;
+    height: 30px;
+    color: #fff;
+    border: none;
+}
+.content .choose{
+    margin-left: 5%;
+    margin-bottom: 10px;
+}
+.content .choose input[type="button"]{
+    width: 50px;
+    height: 30px;
+    color: #fff;
+    border: none;
+}
+.contain .content .bToggle{
+    background: #00aeef;
+    border: solid 1px #00aeef;
+    color:#fff;
+    cursor: pointer;
+    box-shadow: 1px 2px 5px 0 #00aeef;
+}
+.contain .content .bToggle:hover{
+    background: #fff;
+    color:#00aeef ;
+}
+
+/*-------------------------------------�ϴ�------------------------------------------------*/
+.upload{
+    background: white;
+    position: absolute;
+    top:15%;
+    left:35%;
+    width: 30%;
+    height:auto;
+    display: none;
+    border: none;
+    z-index:2;
+}
+.file_content{
+    width: 70%;
+    margin: 35px auto 25px;
+}
+
+.file_content .error{
+    color:red;
+    font-size:12px;
+    left:110px;
+    position:relative;
+}
+.list{
+	display: none;
+	text-align:start;
+	margin:0 0 10px 5%;
+}
+.list ul {
+	padding:0;
+	margin:0;
+}
+.list ul li{
+	padding:2px 0;
+}
+.file{
+    position: relative;
+    background: #00aeef;
+    border: solid 1px #00aeef;
+    color:#fff;
+    cursor: pointer;
+    box-shadow: 1px 2px 5px 0 #00aeef;
+    margin-top: 10px;
+    margin-left: 10%;
+    padding:2px;
+    overflow: hidden;
+    font-size: 14px;
+    text-decoration: none;
+    text-indent: 0;
+    line-height: 38px;
+}
+
+.file input {
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 75px;
+    filter:alpha(opacity=0);
+    opacity: 0;
+}
+#file_name{
+    margin-left: 5px;
+    height: 20px;
+}
+#open{
+    width: 55px;
+    height: 26px;
+    position: relative;
+    left: 42%;
+    margin-bottom:10px;
+    
+}
+.file:hover{
+    background: #fff;
+    color:#00aeef ;
+}
+
+.table{
+    margin: 0 auto;
+    width: 90%;
+    height: auto;
+    background: #e4e8eb;
+    color: #000;
+    table-layout: fixed;
+    border: 1px solid #00aeef;
+}
+
+#table1{
+    margin: 0 auto;
+    box-sizing: border-box;
+    min-width: 1000px;
+    width: 90%;
+    background: #fff;
+    color: #000;
+    border: 1px solid #999;
+    border-collapse: collapse;
+}
+
+#table1 tr {
+    width: 100%;
+}
+
+#table1 tr:nth-child(1) {
+    background-color: #ccc;
+}
+
+#table1 td{
+    text-align: center;
+    vertical-align: middle;
+    height: 30px;
+    /*min-width:50px;*/
+    /*max-width:150px;*/
+    word-break: break-all;
+    font-size: 15px;
+    color: #000;
+    font-weight: normal;
+    box-sizing: border-box;
+    // border: 1px solid rgba(0,0,0,0.8);
+    /*white-space: nowrap;*/
+    /*overflow: hidden;*/
+    /*text-overflow: ellipsis;*/
+}
+
+#table1 tr td:nth-child(1) {
+    min-width:40px; 
+    width: 4%;
+}
+
+#table1 tr td:nth-child(2) {
+    width: auto;
+    max-width: 260px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+#table1 tr td:nth-child(3) {
+    max-width: 55px;
+    min-width: 55px;
+    width: 55px;
+}
+
+#table1 tr td:nth-child(4) {
+    max-width: 105px;
+    min-width: 105px;
+    width: 105px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+#table1 tr td:nth-child(5) {
+    width: auto;
+    max-width: 175px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+#table1 tr td:nth-child(6) {
+    max-width: 85px;
+    min-width: 85px;
+    width: 85px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+#table1 tr td:nth-child(7) {
+    min-width: 65px;
+    width: 6.5%;
+}
+
+#table1 tr td:nth-child(8) {
+    min-width: 100px;
+    width: 10.0%;
+}
+
+#table1 tr td:nth-child(9) {
+    min-width: 84px;
+    width: 8.4%;
+}
+
+#table1 tr td:nth-child(10) {
+    min-width: 100px;
+    width: 10.0%;
+}
+
+#table1 tr td:nth-child(11) {
+    min-width: 81px;
+    width: 8.1%
+}
+
+#table1 tr td:nth-child(12) {
+    min-width: 81px;
+    width: 8.1%;
+}
+
+.actual_pay_time_th, .actual_pay_time {
+    min-width: 100px;
+    width: 10.0%;
+}
+
+#table1 td a{
+    color: #000;
+}
+#table1 tr td:nth-child(3), #table1 tr td:nth-child(4), #table1 tr td:nth-child(6){
+   display:none; 
+} 
+.contract-edit{
+    cursor: pointer;
+}
+
+/*------------------------������------------------------------*/
+.operate{
+    background: white;
+    position: absolute;
+    top:20%;
+    left:13%;
+    width: 74%;
+    display: none;
+    border: none;
+    z-index:1;
+}
+.contract_add,.contract_update{
+    background: white;
+    position: absolute;
+    top:2%;
+    left:13%;
+    width: 74%;
+    height:auto;
+    display: none;
+    border: none;
+    z-index:1;
+    font-size:1.6rem;
+}
+.contract_send{
+	background: white;
+    position: absolute;
+    top:30%;
+    left:50%;
+    width: 40%;
+    height:auto;
+    display: none;
+    border: none;
+    z-index:1;
+}
+.contract,.supply_detail{
+    background: white;
+    position: absolute;
+    top:15%;
+    left:20%;
+    width: 60%;
+    min-height:230px;
+    display: none;
+    border: none;
+    z-index:1;
+     font-size:1.6rem;
+}
+.supply_detail{
+    left:5%;
+    width: 90%;
+}
+.contarct_info,.supply_detail_info{
+    width: 94%;
+    margin: 20px auto;
+    min-height: 150px;
+    max-height: 280px;
+    overflow: auto;
+}
+.basic_info{
+    width: 94%;
+    margin: 10px auto;
+}
+.table_title{
+    margin: 5px 0;color: #00aeef;
+}
+.apply_add_info input[type=search]{
+    z-index: 999;
+    position: absolute;
+    top:0;
+    right:0;
+    width: 150px;
+}
+.apply_left,.apply_right{
+    display: inline-block;
+    position: relative;
+    height: 30px;
+    width: 220px;
+    top:10px;
+    left: 3%;
+}
+.apply_right{
+    margin-left: 20px;
+    width: 300px;
+}
+#select{
+    display: none;
+    position: absolute;
+    top:22px;
+    right: 0;
+}
+.info{
+    background: white;
+    position: absolute;
+    top:20%;
+    left:30%;
+    width: 35%;
+    max-height: 300px;
+    overflow: auto;
+    display: none;
+    border: none;
+    z-index:1;
+}
+
+.operatePage,.contract_basic{
+    background: white;
+    border: none;
+    width: 100%;
+}
+.contract_basic td{
+    height: 34px;
+    border: none;
+    text-align: center;
+}
+.search,.pay_search{
+	z-index: 999;
+    position: absolute;
+    width: 184px;
+    height: 26px;
+    left:0;
+}
+.out_search{
+	position: relative;
+	margin:0 auto;
+	width: 184px;
+    height: 26px;
+}
+.editPage select,.contract_basic select{
+    width: 184px;
+    height: 26px;
+}
+.contract_basic select[name='whether_to_pay'],.contract_basic select[name='payment_terms']{
+	    min-height: 110px;
+	    position: absolute;
+        top:26px;
+        display:none;
+        left:0;
+        z-index: 2;
+}
+.editPage input[type='text'],.contract_basic input[type='text']{
+    width: 180px;
+    height: 20px;
+}
+.editPage input[type='date'],.contract_basic input[type='date']{
+    width: 178px;
+    height: 22px;
+}
+.edit_btn input[type='button']{
+    width: 65px;
+    height: 24px;
+    margin: 5px 0 5px 3%;
+}
+.edit_btn{
+    margin: 10px auto;
+    text-align: center;
+}
+
+.apply_add_info{
+	height:75px;
+}
+.contract  .edit_btn{
+    text-align: left;
+}
+
+.contractPage{
+    background: white;
+    border-color: gainsboro;
+    width: 100%;
+}
+.contractPage td,.contractPage th{
+    word-break: break-all;
+    height:34px;
+    min-width:50px;
+    max-width:150px;
+    text-align: center;
+}
+
+.contract_title{
+    height: 35px;
+    width: 100%;
+    line-height: 35px;
+    background-color:#00aeef ;
+    text-indent: 1em;
+    color: white;
+}
+.contract_close,.operate_close,.contractAdd_close,.contractUpdate_close,.contract_apply_close,.supply_detail_close,.upload_close,.contractSend_close{
+    width: 35px;
+    height: 25px;
+    color: white;
+    position: absolute;
+    top: 5px;
+    right: 5px;
+    cursor: pointer;
+}
+.cover-color{
+    width: 100%;
+    height: 100%;
+    background-color: rgba(10%,20%,30%,0.7);
+    position: absolute;
+    top: -10px;
+    left: 0;
+    display: none;
+    overflow: hidden;
+}
+.cover-color2{
+    width: 100%;
+    height:100%;
+    background-color: rgba(10%,20%,30%,0.7);
+    position: absolute;
+    top: -10px;
+    left: 0;
+    display: none;
+    z-index:2;
+    overflow: hidden;
+}
+
+.cover-color3 {
+    width: 100%;
+    height: calc(100% + 100px);
+    background-color: rgba(10%,20%,30%,0.7);
+    position: absolute;
+    top: 0;
+    left: 0;
+    display: none;
+    z-index:3;
+    overflow: hidden;
+}
+
+.flow{
+    width: 300px;
+    height: 410px;
+    background: rgba(10%,20%,30%,0.5);
+    border: 1px solid #fff;
+    /*float: right;*/
+    position: absolute;
+    left:-290px;
+    top:160px;
+}
+.flow #datalist{
+    width: 300px;
+    height: 235px;
+    border: 1px solid green;
+    padding-top:40px ;
+    border: 1px solid #fff;
+    overflow-y: auto;
+}
+#datalist .bar{
+    font-size: 24px;
+    position: absolute;
+    z-index: 1;
+    right:-16px;
+    top: 0px;
+    color: #2badd4;
+    display: block;
+    transform: rotate(180deg);
+
+}
+#datalist b{
+    display:inline-block;
+    font-size: 17px;
+    color:#fff;
+    cursor:pointer;
+    margin-left:20px;
+}
+
+
+#fDrag{
+    position: absolute;
+    top:0;
+    left: 0;
+    width:100%;
+    cursor: move;
+    height:40px;
+    text-align: center;
+    line-height: 40px;
+    color: #fff;
+    background: #00aeef;
+    font-size:16px;
+}
+#datalist ul{
+    margin-top: 20px;
+}
+#datalist ul li{
+    list-style: none;
+    text-align: center;
+    color: #fff;
+}
+.flow .choose{
+
+    height: 130px;
+    /*border: 1px solid red;*/
+    display: block;
+    display: inline-block;
+}
+.choose #choosedisplay{
+    width: 160px;
+    height: 30px;
+    background: #00aeef;
+    margin-top: 10px;
+    text-align: center;
+    line-height: 30px;
+    margin-left: 30%;
+    /* margin-bottom: 1px solid gray; */
+
+    color: #fff;
+}
+.choose ul{
+    list-style: none;
+    cursor: pointer;
+
+}
+.choose ul li{
+
+    width: 160px;
+    /* border-bottom: 1px solid #567084; */
+    color: #000;
+
+
+}
+.choose ul li:hover{
+    color: #fff;
+}
+.choose #submenu{
+    display: none;
+}
+
+.choose #submenu input[type="button"]{
+    width: 160px;
+    background: #ECF0F1;
+    color: #00aeef;
+    border: none;
+    font-size: 14px;
+}
+.bAnimate:hover{
+    cursor: pointer;
+    animation: bAn 0.5s forwards;
+    -webkit-animation: bAn 0.5s forwards;
+}
+@keyframes bAn{
+    from{background: #e4e8eb;color:#00aeef;}
+    to{background: #00aeef;color:#fff;}
+}
+@-webkit-keyframes bAn{
+    from{background: #e4e8eb;color:#00aeef;}
+    to{background: #00aeef;color:#fff;}
+}
+.flow .clear{
+    float: right;
+    margin-right: 20px;
+    margin-top: 10px;
+    border-radius: 3px;
+}
+.clear input[type="button"]{
+    width: 60px;
+    height: 30px;
+    background: #ddb55c;
+    border: none;
+    border-radius: 3px;
+    color: #fff;
+    cursor: pointer;
+}
+
+/*----------------------------------------��ҳ----------------------------------------*/
+.content #page{
+    height: 50px;
+    float:right;
+    margin-top: 20px;
+    margin-right:65px; 
+    font-size:16px;
+}
+
+.changePage{
+    display:inline-block;
+
+}
+.changePage input[type="button"]{
+    cursor:pointer;
+    border:none;
+    border-radius:3px;
+    width:50px;
+    height:30px;
+}
+
+.changePage input[type="text"]{
+    width:60px;
+    height:20px;
+}
+.pageInfo{
+    display:inline-block;
+    color:#000;
+}
+
+/*------------------------------�ײ�----------------------------------*/
+.footer{
+    width: 100%;
+    height: 80px;
+    background: #92bd6e;
+    color: #fff;
+    text-align: center;
+
+    margin-top: 54px;
+}
+.footer #p1{
+    margin-top: 12px;
+}
+/* ����Ч�� */
+.change
+{
+	color:red ;
+	animation:myfirst 1s;
+	-moz-animation:myfirst 1s; 
+	-webkit-animation:myfirst 1s; 
+	-o-animation:myfirst 1s; 
+	animation-iteration-count:infinite;
+	-moz-animation-iteration-count:infinite;
+	-webkit-animation-iteration-count:infinite;
+	-o-animation-iteration-count:infinite;
+	/* animation-direction:alternate;
+    -moz-animation-direction:alternate;
+    -webkit-animation-direction:alternate;
+    -o-animation-direction:alternate; */
+    
+}
+.change:hover{
+	animation-play-state:paused;
+	/* Safari and Chrome */
+	-webkit-animation:mymove 5s;
+	-moz-animation-play-state:paused;
+	-webkit-animation-play-state:paused;
+	-o-animation-play-state:paused;
+	
+}
+@keyframes myfirst
+{
+    0% {color:red;}
+    100% {color: #fdd530;}
+}
+
+@-moz-keyframes myfirst{
+	0% {color:red;}
+	100% {color:#fdd530;}
+}
+
+@-webkit-keyframes myfirst{
+	0% {color:red;}
+	100% {color:#fdd530;}
+}
+
+@-moz-keyframes myfirst{
+	0% {color:red;}
+	100% {color:#fdd530;}
+}
+
+@media screen and (max-width: 1400px) {
+    .prompt-middle ul li{
+	    font-size: 16px!important;
+	}
+}
+
+
+.fa-hand-o-right:before {
+    content: "" !important;
+}
+li.jilu {
+	color:red !important;
+	position: relative;
+    font-family: Microsoft YaHei;
+    font-size:15px!important;
+    font-weight:bold;
+  float:right;
+ /*  width:20%; */
+  right:10%;
+  margin-top:-4%;
+  cursor:pointer;
+}
+
+/*update*/
+.contract-purchase, .email-send {
+    position: absolute;
+    top: calc(50vh - 375px);
+    left: calc(50vw - 430px);
+    width: 860px;
+    min-height: 540px;
+    background-color: rgba(255,255,255,1);
+    display: none;
+    z-index: 10;
+    /*overflow-x: auto;*/
+    /*min-width: 800px;*/
+}
+
+.contract-purchase .top, .email-send .u-top {
+    display: flex;
+    width: 100%;
+    height: 40px;
+    line-height: 40px;
+    background-color: #00aeef;
+    color: rgba(255,255,255,0.9);
+}
+
+.contract-purchase .top span, .email-send .u-top span {
+    display: inline-block;
+    flex: 1;
+    padding-left: 20px;
+    font-size: 18px;
+}
+
+.contract-purchase .top span:nth-child(2), .email-send .u-top span:nth-child(2) {
+    padding-right: 20px;
+    text-align: right;
+}
+
+.contract-purchase .top span i, .email-send .u-top span i {
+    font-style: normal;
+}
+
+.contract-purchase .u-body {
+    margin: 20px;
+}
+
+.contract-purchase .i-top {
+    margin-bottom: 20px;
+    height: 60px;
+    width: 100%;
+    font-size: 16px;
+}
+
+.contract-purchase .i-top .title {
+    color: #00aeef;
+    padding-left: 0;
+    height: 20px;
+    line-height: 20px;
+}
+
+
+.upFileText {
+    margin-top: 10px;
+    font-size: 13px;
+    position: relative;
+}
+
+.upFileText .input_text {
+    margin-left: 20px;
+    width: 200px;
+    height: 12px;
+    line-height: 12px;
+    padding: 5px;
+    border: 1px solid #C0C5CB;
+    font-size: 12px;
+    color: #333;}
+
+.upFileText .input_sub{
+	width: 60px;
+	height: 24px;
+	line-height: 24px;
+	text-align: center;
+	font-size: 13px;
+	color: #fff;
+	border: none;
+	background: #00aeef;}
+
+.upFileText .input_file{
+	position: absolute;
+	top: 0;
+    left: 75px;
+	height: 24px;
+	_height: 30px;
+	filter: alpha(opacity : 0);
+	opacity: 0;
+	width: 278px}
+
+.upFileText .error1	{
+		color:red;
+    	font-size:12px;
+    	left:10px;
+    	position:relative;
+	}
+	
+.contract-purchase .i-body .title {
+    margin-bottom: 20px;
+    width: 100%;
+    height: 20px;
+    line-height: 20px;
+    color: #00aeef;
+    font-size: 16px;
+}
+
+.contract-purchase .i-body .table1 {
+    box-sizing: border-box;
+    width: 100%;
+    max-height: 255px;
+    height: 255px;
+    font-size: 15px;
+    text-align: center;
+    vertical-align: middle;
+    background-color: #fff;
+    overflow-y: auto;
+}
+
+.contract-purchase .i-body .table1 table {
+    border-spacing: 0;
+    height: 248px;
+    border: none;
+    box-sizing: border-box;
+    border-collapse: collapse;
+}
+
+.contract-purchase .i-body .table1 th, .contract-purchase .i-body .table1 td {
+    box-sizing: border-box;
+    border-collapse: collapse;
+    border: 1px solid #00aeef;
+    height: 72px;
+}
+
+.contract-purchase .i-body .table1 th {
+    border-bottom: none;
+    height: 30px;
+    /*border-top: none;*/
+}
+
+.h88 {
+    height: 216px;
+}
+
+.hasUn {
+    text-decoration: underline;
+    cursor: pointer;
+}
+
+span.hasUn {
+    display: inline-block;
+    min-width: 40px;
+    height: 17px;
+    line-height: 17px;
+}
+/*.contract-purchase .i-body .table1 td span {*/
+    /*text-decoration: none;*/
+/*}*/
+
+.contract-purchase .i-body .table1 th:nth-child(1) {
+    width: 220px;
+}
+
+.contract-purchase .i-body .table1 th:nth-child(2) {
+    width: 100px;
+}
+
+.contract-purchase .i-body .table1 th:nth-child(3) {
+    width: 100px;
+}
+
+.contract-purchase .i-body .table1 th:nth-child(4) {
+    width: 140px;
+}
+
+.contract-purchase .i-body .table1 th:nth-child(5) {
+    width: 260px;
+}
+
+.contract-purchase .u-body .i-foot {
+    margin-top: 20px;
+}
+
+.contract-purchase .u-body .i-foot input {
+    height: 30px;
+    width: 100px;
+    background-color: #00aeef;
+    color: #fff;
+    border: solid 1px #00aeef;
+    border-radius: 3px;
+    cursor: pointer;
+    box-shadow: 1px 2px 5px 0 #00aeef
+}
+
+.contract-purchase .u-body .i-foot input:hover {
+    background-color: #fff;
+    color: #00aeef;
+}
+
+.contract-purchase .u-foot {
+    margin-top: 20px;
+    margin-bottom: 15px;
+    width: calc(100% - 290px);
+    height: 30px;
+    line-height: 30px;
+    padding-left: 290px;
+}
+
+.contract-purchase .u-foot input:nth-child(2) {
+    margin-left: 110px;
+}
+
+.contract-purchase .u-foot input {
+    height: 30px;
+    width: 70px;
+    background-color: #00aeef;
+    color: #fff;
+    border: solid 1px #00aeef;
+    border-radius: 3px;
+    cursor: pointer;
+    box-shadow: 1px 2px 5px 0 #00aeef;
+    font-size: 12px;
+}
+
+.contract-purchase .u-foot input:hover {
+    background-color: #fff;
+    color: #00aeef;
+}
+
+/*发送邮件弹窗*/
+
+.email-send .u-body {
+    margin: 20px;
+}
+
+.email-send .u-left div {
+    margin-bottom: 15px;
+    height: 20px;
+    line-height: 20px;
+    font-size: 16px;
+    text-align: left;
+    text-indent: 0;
+}
+
+.email-send .u-left {
+    width: 120px;
+}
+
+.email-send .u-right {
+    width: 695px;
+}
+
+.email-send .u-left, .email-send .u-right {
+    display: inline-block;
+}
+
+.email-send .u-right input{
+    font-size: 14px;
+    border: 1px solid #999;
+    box-sizing: border-box;
+    height: 20px;
+    text-indent: 10px;
+}
+
+.email-send .u-right input[type="email"] {
+    width: 190px;
+}
+
+.email-send .i-row2 div {
+    display: inline-block;
+}
+
+.email-send .i-row2 div input {
+    margin-left: 50px;
+}
+
+.i-row1, .i-row2, .i-row3, .i-row4 {
+    height: 20px;
+    line-height: 20px;
+    margin-bottom: 15px;
+}
+
+.email-send .email-tit, .email-send .email-text {
+    display: inline-block;
+}
+
+.email-send .email-tit {
+    width: 120px;
+    font-size: 16px;
+    vertical-align: top;
+}
+
+.email-send .email-text {
+    font-size: 14px;
+    width: 695px;
+    box-sizing: border-box;
+    border: 1px solid #999;
+    padding: 3px 10px 5px 10px;
+}
+
+.email-send .email-text table {
+    border-spacing: 0;
+    height: 120px;
+    border: none;
+    box-sizing: border-box;
+    border-collapse: collapse;
+    text-align: center;
+    vertical-align: middle;
+}
+
+.email-send .email-text table td {
+    box-sizing: border-box;
+    border-collapse: collapse;
+    border: 1px solid #00aeef;
+    height: 30px;
+}
+
+.email-send .email-text table tr td:nth-child(1) {
+    width: 190px;
+}
+
+.email-send .email-text table tr td:nth-child(2) {
+    width: 78px;
+}
+
+.email-send .email-text table tr td:nth-child(3) {
+    width: 78px;
+}
+
+.email-send .email-text table tr td:nth-child(4) {
+    width: 115px;
+}
+
+.email-send .email-text table tr td:nth-child(5) {
+    width: 212px;
+}
+
+.email-send .email-text p {
+    line-height: 24px;
+}
+
+.email-send .u-foot {
+    margin-top: 15px;
+    margin-bottom: 15px;
+    width: calc(100% - 290px);
+    height: 30px;
+    line-height: 30px;
+    padding-left: 290px;
+}
+
+.email-send .u-foot input:nth-child(2) {
+    margin-left: 110px;
+}
+
+.email-send .u-foot input {
+    height: 30px;
+    width: 70px;
+    background-color: #00aeef;
+    color: #fff;
+    border: solid 1px #00aeef;
+    border-radius: 3px;
+    cursor: pointer;
+    box-shadow: 1px 2px 5px 0 #00aeef;
+    font-size: 14px;
+}
+
+.email-send .u-foot input:hover {
+    background-color: #fff;
+    color: #00aeef;
+}
+
+.contract-purchase .top i:hover, .email-send .u-top i:hover, .isTransport:hover, .input_sub:hover {
+    cursor: pointer;
+}
+
+.noTransport {
+    color: rgba(255,0,0,0.7);
+}
+
+.btnDisabled {
+    background-color: #999;
+    color: #fff;
+    cursor: not-allowed;
+}
+
+#table1 tr:not(:nth-child(1)) td {
+    font-size: 15px;
+}
+
+.choose_in {
+    width: 250px;
+    height: 85px;
+}

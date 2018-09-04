@@ -1,0 +1,342 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+</head>
+<body>
+	<div id="container"></div>
+	<div id="container2"></div>
+	<!-- <script src="https://code.highcharts.com/highcharts.src.js"></script> -->
+	<script src="../plugins/highcharts/highcharts-gantt.src.js"></script>
+<script>
+	var today = new Date(),
+	    day = 1000 * 60 * 60 * 24;
+
+	// Set to 00:00:00:000 today
+	today.setUTCHours(0);
+	today.setUTCMinutes(0);
+	today.setUTCSeconds(0);
+	today.setUTCMilliseconds(0);
+	today = today.getTime();
+
+	// THE CHART
+	Highcharts.ganttChart('container', {
+	    title: {
+	        text: 'Gantt Chart Test'
+	    },
+	    // xAxis: {
+	    //     currentDateIndicator: true,
+	    //     min: today - 3 * day,
+	    //     max: today + 18 * day
+	    // },
+	    xAxis: [{
+	        grid: true,
+	        type: 'datetime',
+	        opposite: true,
+	        // tickInterval: 1000 * 60 * 60 * 24 * 30, // Month
+	        tickInterval: 1000 * 60 * 60 * 24, // Month
+	        labels: {
+	            format: '{value:%d}',
+	            style: {
+	                fontSize: '10px'
+	            }
+	        },
+	        min: Date.UTC(2018, 6, 1),
+	        max: Date.UTC(2018, 6, 30),
+	        currentDateIndicator: true
+	    }, {
+	        grid: true,
+	        type: 'datetime',
+	        opposite: true,
+	        tickInterval: 1000 * 60 * 60 * 24 * 30, // Year
+	        labels: {
+	            format: '{value:%b}',
+	            style: {
+	                fontSize: '15px'
+	            }
+	        },
+	        linkedTo: 0
+	    }],
+	    /*
+	    plotOptions: {
+	        gantt: {
+	            pathfinder: {
+	                type: 'simpleConnect'
+	            }
+	        }
+	    },
+	    */
+
+	    series: [{
+	        name: 'Offices',
+	        data: [{
+	            taskName: 'New offices',
+	            id: 'new_offices',
+	            start: Date.UTC(2018, 6, 1),
+	            end: Date.UTC(2018, 6, 6),
+	            description: "111"
+	        }, {
+	            taskName: 'Prepare office building',
+	            id: 'prepare_building',
+	            parent: 'new_offices',
+	            start: today - (2 * day),
+	            end: today + (6 * day),
+	            completed: {
+	                amount: 0.2
+	            }
+	        }, {
+	            taskName: 'Inspect building',
+	            id: 'inspect_building',
+	            dependency: 'prepare_building',
+	            parent: 'new_offices',
+	            start: today + 6 * day,
+	            end: today + 8 * day
+	        }, {
+	            taskName: 'Passed inspection',
+	            id: 'passed_inspection',
+	            dependency: 'inspect_building',
+	            parent: 'new_offices',
+	            start: today + 9.5 * day,
+	            milestone: true
+	        }, {
+	            taskName: 'Relocate',
+	            id: 'relocate',
+	            dependency: 'passed_inspection',
+	            parent: 'new_offices',
+	            start: today + 10 * day,
+	            end: today + 14 * day
+	        }, {
+	            taskName: 'Relocate staff',
+	            id: 'relocate_staff',
+	            parent: 'relocate',
+	            start: today + 10 * day,
+	            end: today + 11 * day
+	        }, {
+	            taskName: 'Relocate test facility',
+	            dependency: 'relocate_staff',
+	            parent: 'relocate',
+	            start: today + 11 * day,
+	            end: today + 13 * day
+	        }, {
+	            taskName: 'Relocate cantina',
+	            dependency: 'relocate_staff',
+	            parent: 'relocate',
+	            start: today + 11 * day,
+	            end: today + 14 * day
+	        }]
+	    }, {
+	        name: 'Product',
+	        data: [{
+	            taskName: 'New product launch',
+	            id: 'new_product',
+	            start: today - day,
+	            end: today + 18 * day
+	        }, {
+	            taskName: 'Development',
+	            id: 'development',
+	            parent: 'new_product',
+	            start: today - day,
+	            end: today + (11 * day),
+	            completed: {
+	                amount: 0.6,
+	                fill: '#e80'
+	            }
+	        }, {
+	            taskName: 'Beta',
+	            id: 'beta',
+	            dependency: 'development',
+	            parent: 'new_product',
+	            start: today + 12.5 * day,
+	            milestone: true
+	        }, {
+	            taskName: 'Final development',
+	            id: 'finalize',
+	            dependency: 'beta',
+	            parent: 'new_product',
+	            start: today + 13 * day,
+	            end: today + 17 * day
+	        }, {
+	            taskName: 'Launch',
+	            dependency: 'finalize',
+	            parent: 'new_product',
+	            start: today + 17.5 * day,
+	            milestone: true
+	        }]
+	    }]
+	});
+
+	// THE CHART
+	Highcharts.chart('container2', {
+	    chart: {
+	        type: 'gantt',
+	        marginLeft: 150,
+	        marginRight: 150
+	    },
+	    title: {
+	        text: 'Gantt Chart with Years and Months'
+	    },
+	    xAxis: [{
+	        grid: true,
+	        type: 'datetime',
+	        opposite: true,
+	        // tickInterval: 1000 * 60 * 60 * 24 * 30, // Month
+	        tickInterval: 1000 * 60 * 60 * 24, // Month
+	        labels: {
+	            format: '{value:%d}',
+	            style: {
+	                fontSize: '10px'
+	            }
+	        },
+	        min: Date.UTC(2014, 0, 17),
+	        max: Date.UTC(2014, 1, 30),
+	        currentDateIndicator: true
+	    }, {
+	        grid: true,
+	        type: 'datetime',
+	        opposite: true,
+	        tickInterval: 1000 * 60 * 60 * 24 * 30, // Year
+	        labels: {
+	            format: '{value:%b}',
+	            style: {
+	                fontSize: '15px'
+	            }
+	        },
+	        linkedTo: 0
+	    }],
+	    yAxis: [{
+	        categories: ['Prototyping', 'Development', 'Testing'],
+	        reversed: true,
+	        grid: true
+	    }],
+	    series: [{
+	        name: 'Project 1',
+	        dataLabels: {
+	            verticalAlign: 'top',
+	            inside: false
+	        },
+	        data: [{
+	            start: Date.UTC(2014, 4, 18),
+	            end: Date.UTC(2014, 11, 25),
+	            taskGroup: 0,
+	            taskName: 'Start prototype'
+	        }, {
+	            start: Date.UTC(2015, 0, 0),
+	            end: Date.UTC(2015, 10, 25),
+	            taskGroup: 1,
+	            taskName: 'Develop'
+	        }, {
+	            start: Date.UTC(2015, 0, 0),
+	            end: Date.UTC(2015, 3, 0),
+	            taskName: 'Test prototype',
+	            taskGroup: 0
+	        }, {
+	            start: Date.UTC(2015, 9, 23),
+	            end: Date.UTC(2015, 10, 26),
+	            taskName: 'Run acceptance tests',
+	            taskGroup: 2
+	        }]
+	    }]
+	});
+
+/*
+*[{
+                    name: 'Offices',
+                    data: [{
+                        taskName: 'New offices111111111111111',
+                        id: 'new_offices',
+                        start: new Date(2018, 6, 1).getTime(),
+                        end: new Date(2018, 6, 10).getTime()
+                    }, {
+                        taskName: 'Prepare office building',
+                        id: 'prepare_building',
+                        parent: 'new_offices',
+                        start: new Date(2018, 6, 1).getTime(),
+                        end: new Date(2018, 6, 11).getTime(),
+                        completed: {
+                            amount: 0.2
+                        }
+                    }, {
+                        taskName: 'Inspect building',
+                        id: 'inspect_building',
+                        dependency: 'prepare_building',
+                        parent: 'new_offices',
+                        start: new Date(2018, 6, 1).getTime(),
+                        end: new Date(2018, 6, 10).getTime()
+                    }, {
+                        taskName: 'Passed inspection',
+                        id: 'passed_inspection',
+                        dependency: 'inspect_building',
+                        parent: 'new_offices',
+                        start: new Date(2018, 6, 1).getTime(),
+                        milestone: true
+                    }, {
+                        taskName: 'Relocate',
+                        id: 'relocate',
+                        dependency: 'passed_inspection',
+                        parent: 'new_offices',
+                        start: new Date(2018, 6, 1).getTime(),
+                        end: new Date(2018, 6, 11).getTime()
+                    }, {
+                        taskName: 'Relocate staff',
+                        id: 'relocate_staff',
+                        parent: 'relocate',
+                        start: new Date(2018, 6, 1).getTime(),
+                        end: new Date(2018, 6, 10).getTime()
+                    }, {
+                        taskName: 'Relocate test facility',
+                        dependency: 'relocate_staff',
+                        parent: 'relocate',
+                        start: new Date(2018, 6, 1).getTime(),
+                        end: new Date(2018, 6, 11).getTime()
+                    }, {
+                        taskName: 'Relocate cantina',
+                        dependency: 'relocate_staff',
+                        parent: 'relocate',
+                        start: new Date(2018, 6, 1).getTime(),
+                        end: new Date(2018, 6, 11).getTime()
+                    }]
+                }, {
+                    name: 'Product',
+                    data: [{
+                        taskName: 'New product launch',
+                        id: 'new_product',
+                        start: new Date(2018, 6, 1).getTime(),
+                        end: new Date(2018, 6, 10).getTime()
+                    }, {
+                        taskName: 'Development',
+                        id: 'development',
+                        parent: 'new_product',
+                        start: new Date(2018, 6, 1).getTime(),
+                        end: new Date(2018, 6, 10).getTime(),
+                        completed: {
+                            amount: 0.6,
+                            fill: '#e80'
+                        }
+                    }, {
+                        taskName: 'Beta',
+                        id: 'beta',
+                        dependency: 'development',
+                        parent: 'new_product',
+                        start: new Date(2018, 6, 1).getTime(),
+                        milestone: true
+                    }, {
+                        taskName: 'Final development',
+                        id: 'finalize',
+                        dependency: 'beta',
+                        parent: 'new_product',
+                        start: new Date(2018, 6, 1).getTime(),
+                        end: new Date(2018, 6, 10).getTime()
+                    }, {
+                        taskName: 'Launch',
+                        dependency: 'finalize',
+                        parent: 'new_product',
+                        start: new Date(2018, 6, 1).getTime(),
+                        milestone: true
+                    }]
+                }]
+ */
+
+</script>
+</body>
+</html>

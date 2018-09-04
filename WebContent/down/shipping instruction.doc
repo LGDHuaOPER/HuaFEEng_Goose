@@ -1,0 +1,260 @@
+Mime-Version: 1.0
+Content-Base: http://58.210.123.22:8085/Logistics/Insurance
+Content-Type: Multipart/related; boundary="NEXT.ITEM-BOUNDARY";type="text/html"
+
+--NEXT.ITEM-BOUNDARY
+Content-Type: text/html; charset="utf-8"
+Content-Location: http://58.210.123.22:8085/Logistics/Insurance
+
+<!DOCTYPE html>
+<html xmlns:v='urn:schemas-microsoft-com:vml'xmlns:o='urn:schemas-microsoft-com:office:office'xmlns:w='urn:schemas-microsoft-com:office:word'xmlns:m='http://schemas.microsoft.com/office/2004/12/omml'xmlns='http://www.w3.org/TR/REC-html40'  xmlns='http://www.w3.org/1999/xhtml' >
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8"><meta name=ProgId content=Word.Document><meta name=Generator content='Microsoft Word 12'><meta name=Originator content='Microsoft Word 12'>
+<style>html,body{font-family:微软雅黑,Arial;font-size:14px;}   .news,#hiddenView{width:800px;min-height:500px;margin-bottom:30px}  .news table{margin:0 auto;width:90%} .news table tr td{height:50px}  .news table{border-right:1px solid #000;border-bottom:1px solid #000}  .news table td{border-left:1px solid #000;border-top:1px solid #000}  .chooseTem{background:#00aeef}  .outlineNone{outline:none} .tc{text-align:center}  .pl{padding-left:10px} .s14{font-size:14px} .s12{font-size:12px} .lf{float:left} .rt{float:right} .cf{clear:both} .vtop{vertical-align:top} .f14{font-size:14px} .f16{font-size:16px} .b{font-weight:bold} p,span,td{outline:none} #view .yemei,#view .yejiao{width:83%;height:auto;margin:0 auto} #table_Insurance{width:750px;height:auto;margin:0 auto;font-size:14px;line-height:25px}  #table_Insurance span{float:right;padding-right:10px} #table_Insurance p{padding-left:10px} .f29{font-size:29px} .f18{font-size:18px} .m30{margin-top:30px} .m30b{margin-bottom:30px}  .m60b{margin-bottom:60px} .red{color:red;} .noteditDom{display:none;
+</style><style>html,body{font-family:Arial;font-size:14px;}</style>
+<!--[if gte mso 9]><xml><w:WordDocument><w:View>Print</w:View><w:TrackMoves>false</w:TrackMoves><w:TrackFormatting/><w:ValidateAgainstSchemas/><w:SaveIfXMLInvalid>false</w:SaveIfXMLInvalid><w:IgnoreMixedContent>false</w:IgnoreMixedContent><w:AlwaysShowPlaceholderText>false</w:AlwaysShowPlaceholderText><w:DoNotPromoteQF/><w:LidThemeOther>EN-US</w:LidThemeOther><w:LidThemeAsian>ZH-CN</w:LidThemeAsian><w:LidThemeComplexScript>X-NONE</w:LidThemeComplexScript><w:Compatibility><w:BreakWrappedTables/><w:SnapToGridInCell/><w:WrapTextWithPunct/><w:UseAsianBreakRules/><w:DontGrowAutofit/><w:SplitPgBreakAndParaMark/><w:DontVertAlignCellWithSp/><w:DontBreakConstrainedForcedTables/><w:DontVertAlignInTxbx/><w:Word11KerningPairs/><w:CachedColBalance/><w:UseFELayout/></w:Compatibility><w:BrowserLevel>MicrosoftInternetExplorer4</w:BrowserLevel><m:mathPr><m:mathFont m:val='Cambria Math'/><m:brkBin m:val='before'/><m:brkBinSub m:val='--'/><m:smallFrac m:val='off'/><m:dispDef/><m:lMargin m:val='0'/> <m:rMargin m:val='0'/><m:defJc m:val='centerGroup'/><m:wrapIndent m:val='1440'/><m:intLim m:val='subSup'/><m:naryLim m:val='undOvr'/></m:mathPr></w:WordDocument></xml><![endif]--></head>
+<body >
+			
+			    <!--运输保险指令文档-->
+			    <div id="table_Insurance" class="InsuranceID" value="414">
+			    <table cellpadding="0" cellspacing="0" border="1" style=" width:100%;">
+			        <tbody><tr>
+			            <td style="text-align:right;">
+			               <span>SO号：</span>
+			            </td>
+			            <td style="width: 65%;text-align:center;">
+			                <p contenteditable="true" class="SONO tc">-</p>
+			            </td>
+			        </tr>
+			        <tr>
+			            <td style="text-align:right;">
+			                <span>PO号：</span>
+			            </td>
+			            <td style="text-align:center;">
+			                <p contenteditable="true" class="PONO tc">-</p>
+			            </td>
+			        </tr>
+			         <tr>
+			            <td style="text-align:right;">
+			                <span>入仓号：</span>
+			            </td>
+			            <td style="text-align:center;">
+			                <p contenteditable="true" class="InWarehouse tc">1、运单号157-3275 0314 ，FRA 0006 6863提三个木箱中的一个木箱，唛头为POE20160714AN001-14；2、11614-SM0066343；3、11649-fedex780316788300；4、11667-FEDEX780371510311；5、11670-FEDEX780411644960；6、11669-fedex780366357988；7、11668-fedex780348235135</p>
+			            </td>
+			        </tr>
+			        <tr>
+			            <td style="text-align:right;">
+			                <span class="red">合同号：</span>
+			            </td>
+			            <td style="text-align:center;">
+			                <p contenteditable="true" class="ContractNO tc">SZ/E20180412-A</p>
+			            </td>
+			        </tr>
+			        <tr>
+			            <td style="text-align:right;">
+			                <span>信用证号：</span>
+			            </td>
+			            <td style="text-align:center;">
+			                <p contenteditable="true" class="DCNO tc">-</p>
+			            </td>
+			        </tr>
+			        <tr>
+			            <td style="text-align:right;">
+			                <span>运单号：</span>
+			            </td>
+			            <td style="text-align:center;">
+			                <p contenteditable="true" class="Waybill tc">-</p>
+			            </td>
+			        </tr>
+			        <tr>
+			            <td style="text-align:right;">
+			                <span>提货日期：</span>
+			            </td>
+			            <td style="text-align:center;">
+			                <p contenteditable="true" class="TakingDate tc">2018-04-12 00:00</p>
+			                
+			            </td>
+			        </tr>
+			        <!--修改（预览）时显示的文本框  -->
+			        <tr>
+			            <td style="text-align:right;">
+			                <span>提货地址：</span>
+			            </td>
+			            <td style="line-height: 27px;" class="tiADD">
+			                <p contenteditable="true" class="Name b">香港货仓：Unit 248,Airport Freight Forwarding Centre,2 Chun</p>
+			                <p contenteditable="true" class="ADD">Unit 248,Airport Freight Forwarding Centre,2 Chun Wan Road,Chek Lap Kok,Hong Kong</p>
+			                <p contenteditable="true" class="ATT">HANG</p>
+			                <p contenteditable="true" class="Tel">Tel: 22443069</p> 
+			            </td>
+			        </tr>
+			        <tr>
+			            <td style="text-align:right;">
+			                <span class="red">Shipper：</span>
+			            </td>
+			            <td>
+			                <p class="b">HK EOULU TRADING LIMITED</p>
+			                <p>ADD：Room 1501, Grand Millennium Plaza (Lower Block), 181 Queen's Road Central, HONG KONG</p>
+			                <p>ATTN：WANG XIAOLIANG</p>
+			                <p>TEL：00852-21527388/21527399 </p>
+			
+			            </td>
+			        </tr>
+			        <tr>
+			            <td style="text-align:right;">
+			                <span class="red">Consignee：</span>
+			            </td>
+			            <td style="line-height: 28px;">
+			                <p contenteditable="true" class="ConsigneeName">Shenzhen Eoulu Micro-System Co., Ltd</p>
+			               ADD:<p contenteditable="true" class="ConsigneeADD" style="display:inline-block;">Unit 1303, Floor 13, Block C of Ming Wah Center, No.8Guishan Road, Nanshan, Shenzhen</p><br>
+			               ATTN：<p contenteditable="true" class="ConsigneeATTN" style="display:inline-block;">Ms zhao</p><br>
+			               TEL： <p contenteditable="true" class="ConsigneeTel" style="display:inline-block;">+86-755-2162 7980/7981</p>
+			            </td>
+			        </tr>
+			        <tr>
+			            <td style="text-align:right;">
+			                <span class="red">Notifying applicant&nbsp;：</span>
+			            </td>
+			            <td style="line-height: 28px;">
+			                <p contenteditable="true" class="Applicant ConsigneeName">Shenzhen Eoulu Micro-System Co., Ltd</p>
+			                ADD：<p contenteditable="true" class="ApplicantADD ConsigneeADD" style="display:inline-block;">Unit 1303, Floor 13, Block C of Ming Wah Center, No.8Guishan Road, Nanshan, Shenzhen</p><br>
+			                ATTN：<p contenteditable="true" class="ApplicantATTN ConsigneeATTN" style="display:inline-block;">Ms zhao</p><br>
+			                TEL：<p contenteditable="true" class="ApplicantTel ConsigneeTel" style="display:inline-block;">+86-755-2162 7980/7981</p>
+			            </td>
+			        </tr>
+			        <tr>
+			            <td style="text-align:right;">
+			                <span class="red">起运港（保单相同）：</span>
+			            </td>
+			           <td>
+			                <p contenteditable="true" class="Shipment">HK</p>
+			            </td>
+			        </tr>
+			        <tr>
+			            <td style="text-align:right;">
+			                <span class="red">目的港：</span>
+			            </td>
+			            <td>
+			                <p contenteditable="true" class="Destination">SHANGHAI</p>
+			            </td>
+			        </tr>
+			        <tr class="ModelTd">
+			            <td style="text-align:right;">
+			                <span class="red">货物信息（保单相同）：</span>
+			            </td>
+			            <td class="ModelList" style="line-height: 34px;"><p><a>Model：</a><a contenteditable="true" class="Model">EPS150RF</a></p><p><a>Description：</a><a contenteditable="true" class="Description">MANUAL PROBE STAITON SYSTEM</a></p><p><a>Qty：</a><a contenteditable="true" class="Qty">1</a></p><p><a>Size：</a><a contenteditable="true" class="Size"></a></p></td>
+			        </tr>
+			        <tr>
+			            <td style="text-align:right;">
+			                <span class="red">shipping mark（保单相同）：</span>
+			            </td>
+			            <td>
+			                <p contenteditable="true" class="ShippingMarkNO">SZ/E20180412-A</p>
+			                <p style="border: 1px dashed #000;margin-left: 10px;width: 70px;"></p>
+			                <p contenteditable="true" class="ShippingMarkADD">SHANGHAI</p>
+			            </td>
+			        </tr>
+			        <tr>
+			            <td style="text-align:right;">
+			                <span class="red">运单要求：</span>
+			            </td>
+			            <td style="font-size: 12px;line-height: 30px;" class="red">
+			                <p>1.&nbsp;运单中一定要有&nbsp;'FREIGHT PREPAID'&nbsp;INDICATING FREIGHT&nbsp;AMOUNT</p>
+			                <p>2.&nbsp;Consignee &amp; Notifying applicant要依照指令写</p>
+			                <p>3. 运单上应该列明：合同号，Shipping mark，货物型号，描述，数量，尺寸，重量</p>
+			                <p>4.&nbsp;运单右下角关于shipper或agent签名空白处加一句“ on behalf of the shipper"</p>
+			                <p>5. 运单右下角关于carrier或agent处空白地加一句”as agent of the carrier&nbsp;写什么航空公司”。</p>
+			
+			            </td>
+			        </tr>
+			
+			    </tbody></table>
+			
+			        <p class="m30b changeP" style="margin-top: 10px;display:none;">*以上红字标识的项目需全部在运单中体现，且需跟保单完全一致。</p>
+			        <p style="margin-bottom: 10px;display:none;">除去运单中的相同项外，保单的其他要求：</p>
+			    <table cellpadding="0" cellspacing="0" border="1" style=" width:100%;display:none; ">
+			        <tbody><tr>
+			            <td style="text-align:right;">
+			                <span>发票金额：</span>
+			            </td>
+			            <td style="width: 65%;text-align:center;">
+			                <p contenteditable="true" class="InvoiceUSD tc">1.00</p>
+			            </td>
+			        </tr>
+			        <tr>
+			            <td style="text-align:right;">
+			                <span>保险金额：</span>
+			            </td>
+			            <td style="text-align:center;">
+			                <p contenteditable="true" class="InsuranceUSD tc">1.10</p>
+			            </td>
+			        </tr>
+			        <tr>
+			            <td style="text-align:right;">
+			                <span>最终目的地：</span>
+			            </td>
+			            <td style="text-align:center;">
+			                <p contenteditable="true" class="FinalADD tc">NA</p>
+			            </td>
+			        </tr>
+			        <tr>
+			            <td style="text-align:right;">
+			                <span>保险责任至：</span>
+			            </td>
+			            <td style="text-align:center;">
+			                <p contenteditable="true" class="Insured tc">NA</p>
+			            </td>
+			        </tr>
+			        <tr>
+			            <td style="text-align:right;">
+			                <span>赔付币种：</span>
+			            </td>
+			            <td style="text-align:center;">
+			                <p contenteditable="true" class="Currency tc">NA</p>
+			            </td>
+			        </tr>
+			        <tr>
+			            <td style="text-align:right;">
+			                <span>赔付地点：</span>
+			            </td>
+			            <td style="text-align:center;">
+			                <p contenteditable="true" class="Address tc">NA</p>
+			            </td>
+			        </tr>
+			        <tr>
+			            <td style="text-align:right;">
+			                <span>货物尺寸：</span>
+			            </td>
+			            <td>
+			                <p>（保单运单需一致）</p>
+			            </td>
+			        </tr>
+			        <tr>
+			            <td style="text-align:right;">
+			                <span>投保人：</span>
+			            </td>
+			            <td>
+			                <p>深圳伊欧陆微电子系统有限公司</p>
+			            </td>
+			        </tr>
+			        <tr>
+			            <td style="text-align:right;">
+			                <span>被保险人：</span>
+			            </td>
+			            <td>
+			               <p>HK EOULU TRADING LIMITED</p>
+			            </td>
+			        </tr>
+			        <tr>
+			            <td style="text-align:right;">
+			                <span>保单注意事项：</span>
+			            </td>
+			            <td>
+			               <p style="font-size: 12px;">包装尺寸、开航日期、包装、尺寸、运输工具、起运港由运输商视实情填写,保单运单必须一致。
+			                   且所有列出的项必须都在保单中体现出。保单的所有项都应有英文翻译。保单一定要涵盖航空一切险、战争险/邮包一切险、战争险（邮包）
+			               </p>
+			            </td>
+			        </tr>
+			    	</tbody></table>
+				</div>
+			</body></html>
+--NEXT.ITEM-BOUNDARY--

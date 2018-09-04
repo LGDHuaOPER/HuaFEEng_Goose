@@ -1,0 +1,811 @@
+*{
+    margin:0;
+}
+html,body{
+    width:100%;
+    height:auto;
+    font-family: "Arial","microsoft yahei";
+    background: #e4e8eb;
+}
+.contain{
+    width: 100%;
+    height: auto;
+}
+input,select{
+    font-family: "Arial","microsoft yahei";
+}
+
+/*-------------------------婢舵挳鍎�------------------------------*/
+.header{
+    width: 100%;
+    height: 80px;
+    background: #00aeef;
+    color: #fff;
+    line-height: 80px;
+    font-size: 32px;
+}
+.header span{
+    padding-left: 30px;
+}
+.header .t-span{
+    float: right;
+    font-size: 14px;
+    margin-right: 20px;
+    padding-top:20px;
+}
+.header a{
+    color: #ffffff;
+    text-decoration: none;
+    cursor:pointer;
+}
+.header a:hover{
+    text-decoration:none!important;
+    color:#fff!important;
+}
+a:hover{
+    text-decoration:none!important;
+}
+
+.content{
+    width: 100%;
+    height: 100%;
+    background: #e4e8eb;
+    position: relative;
+}
+
+.content .select-content{
+    padding-top: 25px;
+    margin-left: 33%;
+    margin-bottom: 30px;
+    display: inline-block;
+}
+.content .select-button{
+    display: inline-block;
+}
+.content label{
+    font-weight:normal;
+}
+.content .select1,.content .select2{
+    width: auto;
+    height: 30px;
+    border: 1px solid darkgrey;
+    display: inline-block;
+}
+.content .select-content select{
+    width: 120px;
+    height: 30px;
+    color: #000;
+    outline: none;
+    border: none;
+    border-right: 2px solid rgba(169, 169, 169, 0.2);
+}
+.content .select-content input[type="text"]{
+    width: 120px;
+    height: 27px;
+    margin-left: -5px;
+    color: #000;
+    outline: none;
+    border: none;
+}
+ .time{
+	display:none;
+} 
+.content .select-content input[type="date"]{
+    width: 120px;
+    height: 29px;
+    color: #000;
+    outline: none;
+    border: none;
+}
+.content .select-content input[type="radio"]{
+    margin-bottom: 10px;
+}
+.content .select-button input[type="button"]{
+    width: 50px;
+    height: 30px;
+    color: #fff;
+    border: none;
+}
+.content .choose{
+    margin-left: 5%;
+    margin-bottom: 10px;
+}
+.content .choose input[type="button"]{
+    width: 50px;
+    height: 30px;
+    color: #fff;
+    border: none;
+}
+.contain .content .bToggle{
+    background: #00aeef;
+    border: solid 1px #00aeef;
+    color:#fff;
+    cursor: pointer;
+    box-shadow: 1px 2px 5px 0 #00aeef;
+}
+.contain .content .bToggle:hover{
+    background: #fff;
+    color:#00aeef ;
+}
+
+.upload{
+    background: white;
+    position: absolute;
+    top:15%;
+    left:35%;
+    width: 30%;
+    height:300px;
+    display: none;
+    border: none;
+    z-index:1;
+}
+.file_content{
+    width: 70%;
+    margin: 50px auto 30px;
+}
+.file{
+    position: relative;
+    background: #00aeef;
+    border: solid 1px #00aeef;
+    color:#fff;
+    cursor: pointer;
+    box-shadow: 1px 2px 5px 0 #00aeef;
+    margin-top: 10px;
+    margin-left: 10%;
+    padding:2px;
+    overflow: hidden;
+    font-size: 14px;
+    text-decoration: none;
+    text-indent: 0;
+    line-height: 38px;
+}
+
+.file input {
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 75px;
+    filter:alpha(opacity=0);
+    opacity: 0;
+}
+#file_name{
+    margin-left: 5px;
+    height: 20px;
+}
+#open{
+    width: 55px;
+    height: 26px;
+    position: relative;
+    left: 42%;
+}
+.file:hover{
+    background: #fff;
+    color:#00aeef ;
+}
+
+.table{
+    margin: 0 auto;
+    width: 90%;
+    height: auto;
+    background: #e4e8eb;
+    color: #000;
+    table-layout: fixed;
+    border: 1px solid #00aeef;
+}
+
+#table1{
+    margin: 0 auto;
+    width: 100%;
+    height: auto;
+    background: #e4e8eb;
+    color: #000;
+    box-sizing: border-box;
+    border-collapse: collapse;
+}
+
+#table1 .bgcccTr {
+    background: #ccc;
+}
+
+// #table1 td:nth-child(2),#table1 td:nth-child(8),#table1 td:nth-child(9){
+//     width: 85px;
+// }
+
+#table1 td{
+    text-align: center;
+    height: 30px;
+    // min-width:50px;
+    // max-width:150px;
+    word-break: break-all;
+    font-size: 15px;
+    font-weight: normal;
+    border: 1px solid #999;
+}
+#table1 td a{
+    color: #000;
+}
+
+.fa{
+    cursor: pointer;
+}
+
+.inventory_update{
+    background: white;
+    position: absolute;
+    top:10%;
+    left:38%;
+    width: 24%;
+    height:200px;
+    display: none;
+    border: none;
+    z-index:4;
+}
+.inventory_in,.inventory_out{
+    background: white;
+    position: absolute;
+    top:15%;
+    left:10%;
+    width: 80%;
+    min-height:230px;
+    display: none;
+    border: none;
+    z-index:4;
+}
+.exportinventory{
+    background: white;
+    position: absolute;
+    top: 20%;
+    left: 40%;
+    width: 20%;
+    min-width:380px;
+    min-height: 200px;
+    display: none;
+    border: none;
+    z-index: 1;
+}
+.exportinventory .edit_btn{
+    margin: 176px auto 0px;
+    text-align: center;
+}
+.basic_info{
+    width: 94%;
+    margin: 20px auto;
+}
+.inventory_basic {
+    background: white;
+    border: none;
+    width: 100%;
+}
+.inventory_basic td{
+    height: 34px;
+    border: none;
+    text-align: center;
+}
+.inventory_basic input{
+    width: 200px;
+    height: 20px;
+}
+.table_title{
+    margin: 5px 0;
+    color: #00aeef;
+}
+
+.inventory_in_info,.inventory_out_info{
+	margin:10px auto;
+    width: 100%;
+    min-height: 110px;
+    max-height: 260px;
+    overflow: auto;
+}
+.apply_add_info input[type=search]{
+    z-index: 999;
+    position: absolute;
+    top:0;
+    right:0;
+    width: 150px;
+}
+.apply_left,.apply_right{
+    display: inline-block;
+    position: relative;
+    height: 30px;
+    width: 220px;
+    top:10px;
+    left: 3%;
+}
+.apply_right{
+    margin-left: 20px;
+    width: 300px;
+}
+
+.edit_btn input[type='button']{
+    width: 65px;
+    height: 24px;
+    margin: 5px 3%;
+}
+.edit_btn{
+    margin: 10px auto;
+    text-align: center;
+}
+
+.inventory_inPage,.inventory_outPage{
+    background: white;
+    width: 94%;
+    margin: 15px auto 10px;
+    font-size: 15px;
+    border-collapse: collapse;
+    box-sizing: border-box;
+}
+.inventory_inPage td, .inventory_inPage th, .inventory_outPage td, .inventory_outPage th{
+    word-break: break-all;
+    height:34px;
+    min-width:50px;
+    max-width:150px;
+    text-align: center;
+    border: 1px solid gainsboro;
+}
+
+.inventory_title{
+    height: 35px;
+    width: 100%;
+    line-height: 35px;
+    background-color:#00aeef ;
+    text-indent: 1em;
+    color: white;
+}
+.inventory_close,.inventory_update_close,.inventory_in_close,.inventory_out_close{
+    width: 35px;
+    height: 25px;
+    color: white;
+    position: absolute;
+    top: 5px;
+    right: 5px;
+    cursor: pointer;
+}
+.cover-color{
+    width: 100%;
+    height:100%;
+    background-color: rgba(10%,20%,30%,0.7);
+    position: absolute;
+    top: -10px;
+    left: 0;
+    display: none;
+    overflow: hidden;
+    z-index: 3;
+}
+.choose #choosedisplay{
+    width: 160px;
+    height: 30px;
+    background: #00aeef;
+    margin-top: 10px;
+    text-align: center;
+    line-height: 30px;
+    margin-left: 30%;
+    color: #fff;
+}
+.choose ul{
+    list-style: none;
+    cursor: pointer;
+}
+.choose ul li{
+    width: 160px;
+    color: #000;
+}
+.choose ul li:hover{
+    color: #fff;
+}
+.choose #submenu{
+    display: none;
+}
+
+.choose #submenu input[type="button"]{
+    width: 160px;
+    background: #ECF0F1;
+    color: #00aeef;
+    border: none;
+    font-size: 14px;
+}
+
+.footer{
+    width: 100%;
+    height: 80px;
+    background: #92bd6e;
+    color: #fff;
+    text-align: center;
+    margin-top: 54px;
+}
+.footer #p1{
+    margin-top: 12px;
+}
+
+input[name="delete-save"],input[name="delete_out_save"]{
+	margin-left:8px;
+}
+
+/*   添加按钮  弹出框  */
+.contract_add{
+    background: white;
+    position: absolute;
+    top:20%;
+    left:13%;
+    width: 74%;
+    height:auto;
+    display: none;
+    border: none;
+    z-index: 4;
+}
+.contract_title{
+    height: 35px;
+    width: 100%;
+    line-height: 35px;
+    background-color:#00aeef ;
+    text-indent: 1em;
+    color: white;
+}
+.contractAdd_close{
+    width: 35px;
+    height: 25px;
+    color: white;
+    position: absolute;
+    top: 5px;
+    right: 5px;
+    cursor: pointer;
+}
+.basic_info{
+    width: 94%;
+    margin: 10px auto;
+}
+.contract_basic{
+    background: white;
+    border: none;
+    width: 100%;
+}
+.contract_basic td{
+    height: 34px;
+    border: none;
+    text-align: center;
+}
+.contract_basic input[type='text']{
+    width: 180px;
+    height: 20px;
+}
+.contract_basic input[type='date']{
+    width: 178px;
+    height: 22px;
+}
+.tdTitle{
+	color: #00aeef;
+}
+.bToggleW{
+	width:80px !important;
+}
+.content .select-content {
+    padding-top: 50px !important;
+}
+.reserve_box{
+	width:70%;
+	background:#fff;
+	position:absolute;
+	top:150px;
+	left:15%;
+}
+.reserve_basic{
+	margin: 0 auto;
+    height: auto;
+    width: 100%;
+    color: #000;
+    font-size: 15px;
+    border-collapse: collapse;
+    box-sizing: border-box;
+}
+.reserve_basic th,.reserve_basic td {
+    text-align: center;
+    height: 30px;
+    min-width: 70px;
+    word-break: break-all;
+    font-weight: normal;
+    border: 1px solid #00aeef;
+}
+
+// .reserve_basic th:nth-child(2) {
+//     border-bottom-width: 0px !important; 
+// }
+.reserve_box .reserve_add {
+	color:#000;
+	margin-left:5px;
+}
+.reserve_box .edit{
+	margin-right:10%;	
+}
+.reserve_box .fa-pencil:before{
+	color:#00aeef;
+	margin-right:3px;
+}
+
+.reserve_box .fa-trash:before{
+	color:red;
+	margin-right:3px;
+}
+.bToggle_reserve{
+	width:60px !important;
+	height:30px !important;
+}
+.reserve_box .edit_btn{
+	margin-bottom:30px;	
+}
+.equipmentList {
+    display: none;
+    position: absolute;
+    width: 184px;
+    z-index: 1;
+    background: #dadada;
+    opacity: 0.9;
+    max-height: 110px;
+    overflow-y: scroll;
+}
+.equipmentList li {
+    border-bottom: solid 1px #fff;
+    cursor: pointer;
+    font-size: 14px;
+}
+.customerList{
+    display: none;
+    z-index: 1;
+    background: #dadada;
+    opacity: 0.9;
+    max-height: 100px;
+    overflow-y: scroll;
+    position:absolute;
+    top:30px;
+    width:100%
+}
+.customerList li {
+    border-bottom: solid 1px #fff;
+    cursor: pointer;
+    font-size: 14px;
+}
+.reserveCustomer{
+	width:calc(100% - 2px);
+	height:100%;
+	text-align:center;
+	top:0px;
+	outline:none;
+    border-bottom:1px solid #00aeef;
+    border-left:0px solid #00aeef;
+	border-top:0px solid #00aeef;
+	position:absolute;
+	left:0px;
+}
+.reserve_customer{
+	display:inline-block;
+	width:100%;
+	position:relative;
+    border-left: 0px solid #00aeef !important;
+    border-bottom: 0px solid #00aeef !important;
+    border-top: 1px solid #00aeef !important;
+    border-right: 1px solid #00aeef !important;
+}
+
+/*修改框*/
+.update_div {
+    position: absolute;
+    top: 20%;
+    left: 50%;
+    margin-left: -300px;
+    background: #fff;
+    width: 600px;
+    font-size: 16px;
+    z-index: 4;
+}
+
+.update_div_top {
+    position: relative;
+    height: 30px;
+    line-height: 30px;
+    color: #fff;
+    background: #00aeef;
+}
+
+.update_div_top_l {
+    width: 535px;
+    text-indent: 20px;
+}
+
+.update_div_top_r {
+    position: absolute;
+    right: 0;
+    top: 0;
+    width: 60px;
+}
+
+.update_div_body {
+    padding: 20px;
+    font-size: 15px;
+}
+
+.update_div_foot {
+    height: 32px;
+    line-height: 32px;
+    margin-bottom: 10px;
+}
+
+.add_NonStandard_foot_in {
+    width: 150px;
+    margin: 0 auto;
+}
+
+#NonStandard_addsubmit {
+    margin-right: 25px;
+    -webkit-filter: brightness(0.9);
+    filter: brightness(0.9);
+}
+
+#NonStandard_addclose {
+    -webkit-filter: brightness(0.9);
+    filter: brightness(0.9);
+}
+
+#NonStandard_addsubmit:hover, #NonStandard_addclose:hover {
+    -webkit-filter: brightness(1.2);
+    filter: brightness(1.2);
+}
+
+.line_0 {
+    display: flex;
+    height: 35px;
+    line-height: 35px;
+    margin-bottom: 20px;
+}
+
+.line_01 {
+    flex: 1;
+}
+
+.line_02 {
+    flex: 4;
+}
+
+.update_div_top_r, .inventory-edit {
+    cursor: pointer;
+}
+
+.info_PNCode {
+    margin: 0 auto;
+    width: 95%;
+    height: 33px;
+}
+
+.info_remakes {
+    margin: 0 auto;
+    width: 95%;
+}
+
+/*主页面表格*/
+.wrapper_table {
+    min-width: 1100px;
+    width: 90%;
+    margin: 0 auto;
+    overflow-x: scroll;
+}
+
+.tt1 {
+    min-width: 40px;
+    width: 4%;
+}
+
+.tt2 {
+    min-width: 110px;
+    max-width: 110px;
+    width: 110px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+.tt3 {
+    min-width: 140px;
+    max-width: 140px;
+    width: 140px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+.tt4 {
+    min-width: 85px;
+    width: 8.5%;
+}
+
+.tt5 {
+    min-width: 75px;
+    width: 7.5%;
+}
+
+.tt6 {
+    min-width: 95px;
+    width: 9.5%;
+}
+
+.tt7 {
+    min-width: 75px;
+    max-width: 75px;
+    width: 75px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+.tt8, .tt9, .tt10 {
+    min-width: 70px;
+    width: 7%;
+}
+
+.tt11, .tt12, .tt13, .tt14, .tt16, .tt17, .tt18 {
+    min-width: 50px;
+    width: 5%;
+}
+
+.tt19 {
+    min-width: 55px;
+    width: 5.5%;
+}
+
+.tt15 {
+    min-width: 60px;
+    max-width: 60px;
+    width: 60px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+.tt16, .tt17, .tt18, .tt19 {
+    display: none;
+}
+
+/*新需求，翻页组件*/
+.page_div {
+    height: 50px;
+    line-height: 50px;
+    min-width: 1000px;
+    width: 90%;
+    margin: 1px auto;
+}
+
+.page_div_l {
+    display: inline-block;
+    position: absolute;
+    z-index: 2;
+    width: 220px;
+}
+
+.page_div_r {
+    display: inline-block;
+    padding-left: 222px;
+    text-align: right;
+    box-sizing: border-box;
+    width: 100%;
+}
+
+.page_div_r .pageInfo, .page_div_r .changePage {
+    display: inline-block;
+}
+
+.page_div_l>.eou_new_well {
+    padding-top: 15px;
+    padding-bottom: 14px;
+    // opacity: 0;
+}
+
+/*最新盘点*/
+.latest_develop {
+    display: inline-block;
+    width: 200px;
+    height: 50px;
+}
+
+.latest_develop>.eou_new_well {
+    position: relative;
+    bottom: -15px;
+    padding-top: 10px;
+    padding-bottom: 10px;
+}

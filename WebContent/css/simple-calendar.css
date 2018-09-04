@@ -1,0 +1,390 @@
+.sc-calendar {
+  width: 500px;
+  height: 432px;
+  text-align: center;
+  font-family: "Microsoft Yahei";
+  color: #4A4A4A;
+  /*box-shadow: 2px 4px 5px #bdbdbd;*/
+  border-width: 1px 0 0 1px;
+  border-color: #E6E4E0;
+  border-style: solid;
+  float: left;
+  margin-right: 20px;
+  -moz-user-select: none;
+  /*火狐*/
+  -webkit-user-select: none;
+  /*webkit浏览器*/
+  -ms-user-select: none;
+  /*IE10*/
+  user-select: none;
+  -webkit-text-size-adjust: none;
+  font-size: 16px;
+}
+
+.sc-header {
+  height: 35px;
+  border-bottom: 0;
+}
+.sc-body {
+  height: 124%;
+  clear: both;
+  /*box-shadow: 2px 4px 5px #bdbdbd;*/
+}
+.sc-week {
+  /*height: 12%;*/
+  font-weight: 400;
+  font-size: 20px;
+  color: #4A4A4A;
+}
+.sc-days {
+  height: 88%;
+  padding-bottom: 10px;
+  background-color: #fff;
+}
+.sc-item {
+  height: 14%;
+  float: left;
+  font-weight: 400;
+  color: #565555;
+  width: 14.285%;
+  padding-top: 10px;
+  background-color: #ffffff;
+  border-width: 0 0 1px 1px;
+  border-color: #F1EBE4;
+  /*border-style: solid;*/
+  box-sizing: border-box;
+}
+.item-nolunar {
+  padding-top: 20px;
+}
+.sc-item:nth-child(7n) .day, .sc-item:nth-child(7n+6) .day {
+  /*color: rgba(224, 8, 8, 0.74);*/
+}
+.sc-vocation {
+  background-color: #FFEBEC;
+}
+.sc-mark{
+  background-color: #E5FBFA;
+}
+.sc-vocation:before {
+  content: '休';
+  display: block;
+  position: absolute;
+  font-size: 0.7em;
+  width: 1.2em;
+  font-weight: 100;
+  color: white;
+  background-color: #E00808;
+  margin-top: -10px;
+}
+.sc-othermenth {
+  color: #C1C0C0 !important;
+}
+.sc-othermenth .day, .sc-othermenth .lunar-day {
+  color: #C1C0C0 !important;
+}
+.sc-active-day, .sc-selected {
+  border: 1px solid orange;
+}
+.sc-today {
+  background-color: #e9b73e;
+  color: white;
+  border: 1px solid #e9b73e;
+}
+.sc-item .day {
+  font-size: 1.2em;
+}
+.sc-today .day {
+  color: white !important;
+}
+.sc-item .lunar-day {
+  font-size: 10px;
+  font-weight: normal;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+.sc-festival .lunar-day {
+  color: #ff935a;
+}
+
+/*.sc-item:last-child, .sc-item:nth-child(7n) {
+  border-width: 0 1px 1px 1px;
+}*/
+
+.sc-week-item {
+  height: 100%;
+  padding-top: 2%;
+  padding-bottom: 2%;
+  float: left;
+  width: 14.285%;
+  background-color: #f3f3f3;
+  border-width: 1px 0 1px 1px;
+  border-color: #ECE3B1;
+  /*border-style: solid;*/
+  box-sizing: border-box;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+.sc-item-small{
+  font-size: 10px !important;
+}
+.sc-week-item:last-child {
+  border-width: 1px 1px 1px 1px;
+}
+.sc-week-item:nth-child(7n), .sc-week-item:nth-child(7n+6) {
+  /*color: rgba(224, 8, 8, 0.74)!important;*/
+}
+.sc-actions {
+  float: left;
+  width: 25%;
+  padding: 5px;
+  height: 100%;
+  box-sizing: border-box;
+}
+.sc-actions:last-child {
+  float: right;
+}
+.sc-actions-big{
+  width: 50%;
+}
+@media screen and (max-width : 500px){
+.sc-actions{
+  width: 50%;
+}
+}
+.sc-header select {
+  border-color: rgba(0, 0, 0, 0);
+  padding: 0.2em;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+  font-family: "Microsoft Yahei";
+  color: #606060;
+  font-size: 14px ;
+}
+.sc-header input {
+  border-color: rgba(0, 0, 0, 0);
+  padding: 0.2em;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+  font-family: "Microsoft Yahei";
+  color: #606060;
+}
+.sc-actions div {
+  display: inline-block;
+  /*border: 1px solid #ccc;*/
+  vertical-align: bottom;
+  width: 20px;
+  padding-bottom: 5px;
+  font-size: 1.5em;
+  line-height: 0.9em;
+}
+.sc-return-today {
+  display: block;
+  background-color: #F5F5F9;
+  border-radius: 2px;
+  /* border: 1px solid #ccc; */
+  width: 60px;
+  font-size: 0.8em;
+  padding: 0.3em;
+  margin: auto;
+}
+
+.sc-time {
+  display: block;
+  margin-top: 3px;
+  font-size: 0.8em;
+}
+/* 层叠的样式 */
+.sc-calendar{
+  float: left;
+  width: 420px;
+  border:10px solid #dbdbdb;
+  border-radius:15px 15px 0 0;
+  border-bottom: 0!important;
+}
+.search{
+  float: left;
+  width: 450px;
+  height: 280px;
+  background: #dbdbdb;
+  padding-left: 10px;
+  border-radius:0 0 15px 15px;
+  margin-left: -480px;
+  padding-top: 23px;
+}
+.user_search{
+  color:#333;
+}
+.search input{
+  float: left;
+  width: 242px;
+  height: 32px;
+  margin-bottom: 10px;
+}
+.search span{
+  float: left;
+  width: 50px;
+  height: 30px;
+  margin-left: 20px;
+  background: #00aeef;
+  /*margin-top: -13px;*/
+  line-height: 30px;
+  text-align: center;
+  color: #fff;
+}
+.search span.tongji_btn{
+  width: 20px;
+  height: 68px;
+  line-height: 24px;
+  padding-top: 15px;
+  padding-left: 15px;
+  padding-right: 15px;
+  margin-top: -46px;
+}
+#content-wrapper{
+  width: 440px;
+  height: 441px;
+  margin-left: 80px;
+}
+/*日历头部*/
+.calendar_head{
+  width: 100%;
+  height: 200px;
+  background-color: cyan;
+}
+
+/* 下面是页面右侧表格部分的样式 */
+    *{
+      margin: 0;
+      padding: 0;
+    }
+    ul,ol{
+      list-style: none;
+    }
+    .schedule-form{
+      position:absolute;
+      top:48px;
+      left:560px;/* 
+      width: 1218px;
+      对min-height做兼容处理
+      min-height:100px; 
+      height:auto !important; 
+      height:100px;
+      overflow:visible; */
+    }
+    .form-title{
+      margin-top: 20px;
+      text-align: center;
+    }
+    .form-head{
+      margin-top: 10px;
+      margin-left: 30px;
+    }
+    .form-head li,.form-content li{
+      float: left;
+      /*width: 100px;*/
+      height: 34px;
+      line-height: 34px;
+      border:2px solid #2db9ee;
+      border-left: none;
+      text-align: center;
+    }
+    li.xuhao{
+      border-left:2px solid #2db9ee;
+    }
+     li.Twoword{
+      width: 45px;
+    }
+    li.schedule_time{
+      width: 92px;
+    }
+    li.name{
+      width: 67px;
+    }
+    li.kehu{
+      width: 132px;
+    }
+    li.whatTodo{
+      width: 113px;
+    }
+    li.vehicle{
+      width: 94px;
+    }
+    li.start_addr,li.end_addr{
+      width: 56px;
+    }
+    li.start_time,li.end_time{
+      width: 94px;
+    }
+    li.hotel{
+      width: 337px;
+    }
+    div.button{
+      float: left;
+
+      height: 50px;
+    }
+    span.add{
+      float: left;
+      width: 60px;
+      height: 30px;
+      line-height: 30px;
+      text-align: center;
+      color: #fff;
+      background-color: #2db9ee;
+      box-shadow: 0px 2px 2px 0px #2db9ee;
+      margin-left: 800px;
+    }
+    .form-content {
+      margin-left: 30px;
+    }
+    .form-content li{
+      border-top: none;
+    }
+    .pdf{
+      float: left;
+      width: 90px;
+      height: 30px;
+      line-height: 30px;
+      text-align: center;
+      color: #fff;
+      background-color: #2db9ee;
+      box-shadow: 0px 2px 2px 0px #2db9ee;
+      margin-left: 100px;
+    }
+    span.distribution{
+      float: left;
+      width: 120px;
+      height: 30px;
+      line-height: 30px;
+      text-align: center;
+      color: #fff;
+      background-color: #2db9ee;
+      box-shadow: 0px 2px 2px 0px #2db9ee;
+      margin-left: 100px;
+    }
+    div.btn{
+      position:fixed;
+      right:200px;
+      top:50px;
+      width:100px;
+      height: 60px;
+      float: left;
+      margin-left: 50px;
+    }
+    div.btn span.closeBtn,div.btn span.downBtn{
+      display: block;
+      width: 80px;
+      height: 40px;
+      background-color:#2db9ee;
+      color:#fff;
+      text-align: center;
+      line-height: 40px;
+      margin-bottom: 20px;
+      cursor:pointer;
+    }
+    body{
+      background-color: #e4e8eb;
+    }

@@ -1,0 +1,746 @@
+<!-- 方案图添加 -->
+<div id="add_section_scheme" class="add_section_all ApplicationGallery_post" data-icategory="scheme" data-itype="add">
+    <!-- 头部 -->
+    <div class="add_section_all_tit">
+        <div class="add_section_all_tit_l">添加方案图</div>
+        <div class="add_section_all_tit_r"><span class="glyphicon glyphicon-remove-circle" aria-hidden="true"></span>
+        </div>
+    </div>
+    <!-- 主体 -->
+    <div class="add_section_all_body">
+        <div class="add_section_all_body_in">
+            <!-- 可替换内容 -->
+            <fieldset><legend>基本信息</legend>
+                <div class="container-fluid">
+                    <div class="row">
+                        <div class="col-md-6 col-lg-6">
+                            <div class="form-horizontal">
+                                <!-- 一个form-group就是一个整体 -->
+                                <div class="form-group">
+                                    <label for="add_scheme_ApplicationType" class="col-sm-3 control-label">应用类型</label>
+                                    <div class="col-sm-9">
+                                        <input type="text" class="form-control" id="add_scheme_ApplicationType" placeholder="必填项">
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label for="add_scheme_CustomerName" class="col-sm-3 control-label">客户名称</label>
+                                    <div class="col-sm-9">
+                                        <input type="text" class="form-control" id="add_scheme_CustomerName">
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label for="add_scheme_SchemeName" class="col-sm-3 control-label">方案名称</label>
+                                    <div class="col-sm-9">
+                                        <input type="text" class="form-control" id="add_scheme_SchemeName">
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-6 col-lg-6">
+                            <div class="form-horizontal">
+                                <div class="form-group">
+                                    <label for="add_scheme_MachineModel" class="col-sm-3 control-label">机台型号</label>
+                                    <div class="col-sm-9">
+                                        <input type="text" class="form-control" id="add_scheme_MachineModel">
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label for="add_scheme_MakeTime" class="col-sm-3 control-label">制定时间</label>
+                                    <div class="col-sm-9">
+                                        <input type="date" class="form-control" id="add_scheme_MakeTime">
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div><!-- row end -->
+                </div><!-- container-fluid end -->
+            </fieldset>
+            <!-- 文件上传部分 -->
+            <fieldset><legend>附件上传--CAD图纸</legend>
+                <div class="form-group">
+                    <label for="scheme_add_CADdrawings_file" class="trigger_click"><button type="button" class="btn btn-info"><span class="glyphicon glyphicon-folder-open" aria-hidden="true"></span>&nbsp;选择文件</button></label>
+                    <input type="file" id="scheme_add_CADdrawings_file" multiple="multiple" accept="application/msword, application/pdf, image/*, application/vnd.ms-powerpoint, text/plain, application/vnd.openxmlformats-officedocument.presentationml.presentation, application/vnd.openxmlformats-officedocument.wordprocessingml.document" data-ifiletype="CADdrawings">
+                    <label class="scheme_add_CADdrawings_Upload"><button type="button" class="btn btn-info"><span class="glyphicon glyphicon-cloud-upload" aria-hidden="true"></span>&nbsp;上传</button></label>
+                </div>
+                <div class="add_fileList_ul_wrapper">
+                    <div class="add_fileList_info">
+                        上传总进度：
+                        <div class="progress">
+                            <div class="progress-bar progress-bar-success progress-bar-striped active" role="progressbar" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100" style="min-width: 2em;">0%</div>
+                        </div> 
+                    </div>
+                    <ul class="list-group" id="scheme_add_CADdrawings_list">
+                        <!-- <li class="list-group-item list-group-item-success"><span class="badge">14</span>Cras justo odio</li>
+                        <li class="list-group-item list-group-item-danger"><span class="badge">14</span>Dapibus ac facilisis in</li>
+                        <li class="list-group-item"><span class="badge">14</span>Morbi leo risus</li> -->
+                    </ul>
+                </div>
+            </fieldset>
+            <fieldset><legend>附件上传--PDF图纸</legend>
+                <div class="form-group">
+                    <label for="scheme_add_PDFdrawings_file" class="trigger_click"><button type="button" class="btn btn-info"><span class="glyphicon glyphicon-folder-open" aria-hidden="true"></span>&nbsp;选择文件</button></label>
+                    <input type="file" id="scheme_add_PDFdrawings_file" multiple="multiple" accept="application/msword, application/pdf, image/*, application/vnd.ms-powerpoint, text/plain, application/vnd.openxmlformats-officedocument.presentationml.presentation, application/vnd.openxmlformats-officedocument.wordprocessingml.document" data-ifiletype="PDFdrawings">
+                    <label class="scheme_add_PDFdrawings_Upload"><button type="button" class="btn btn-info"><span class="glyphicon glyphicon-cloud-upload" aria-hidden="true"></span>&nbsp;上传</button></label>
+                </div>
+                <div class="add_fileList_ul_wrapper">
+                    <div class="add_fileList_info">
+                        上传总进度：
+                        <div class="progress">
+                            <div class="progress-bar progress-bar-success progress-bar-striped active" role="progressbar" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100" style="min-width: 2em;">0%</div>
+                        </div>
+                    </div>
+                    <ul class="list-group" id="scheme_add_PDFdrawings_list">
+                        <!-- <li class="list-group-item list-group-item-success"><span class="badge">14</span>Cras justo odio</li>
+                        <li class="list-group-item list-group-item-danger"><span class="badge">14</span>Dapibus ac facilisis in</li>
+                        <li class="list-group-item"><span class="badge">14</span>Morbi leo risus</li> -->
+                    </ul>
+                </div>
+            </fieldset><!-- 文件上传部分end -->
+            <!-- 备注 -->
+            <fieldset><legend>备注说明</legend>
+                <div class="container-fluid">
+                    <div class="form-group">
+                        <textarea class="form-control" rows="3" id="add_scheme_Remark" placeholder="填写备注"></textarea>
+                    </div>
+                </div><!-- container-fluid end -->
+            </fieldset><!-- 备注 end -->
+        </div><!-- add_section_all_body_in end -->
+    </div>
+    <!-- 底部 -->
+    <div class="add_section_all_foot">
+        <div class="add_section_all_foot_in">
+            <input type="button" class="btn btn-success" id="submit_scheme_add" value="提交">
+            <input type="button" class="btn btn-warning" id="close_scheme_add" value="取消">
+        </div>
+    </div>
+</div>
+
+<!-- 方案图修改 -->
+<div id="update_section_scheme" class="update_section_all ApplicationGallery_post" data-icategory="scheme" data-itype="update">
+    <!-- 头部 -->
+    <div class="update_section_all_tit">
+        <div class="update_section_all_tit_l">修改方案图</div>
+        <div class="update_section_all_tit_r"><span class="glyphicon glyphicon-remove-circle" aria-hidden="true"></span>
+        </div>
+    </div>
+    <!-- 主体 -->
+    <div class="update_section_all_body">
+        <div class="update_section_all_body_in">
+            <!-- 可替换内容 -->
+            <fieldset><legend>基本信息</legend>
+                <div class="container-fluid">
+                    <div class="row">
+                        <div class="col-md-6 col-lg-6">
+                            <div class="form-horizontal">
+                                <!-- 一个form-group就是一个整体 -->
+                                <div class="form-group">
+                                    <label for="update_scheme_ApplicationType" class="col-sm-3 control-label">应用类型</label>
+                                    <div class="col-sm-9">
+                                        <input type="text" class="form-control" id="update_scheme_ApplicationType" placeholder="必填项">
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label for="update_scheme_CustomerName" class="col-sm-3 control-label">客户名称</label>
+                                    <div class="col-sm-9">
+                                        <input type="text" class="form-control" id="update_scheme_CustomerName">
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label for="update_scheme_SchemeName" class="col-sm-3 control-label">方案名称</label>
+                                    <div class="col-sm-9">
+                                        <input type="text" class="form-control" id="update_scheme_SchemeName">
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-6 col-lg-6">
+                            <div class="form-horizontal">
+                                <div class="form-group">
+                                    <label for="update_scheme_MachineModel" class="col-sm-3 control-label">机台型号</label>
+                                    <div class="col-sm-9">
+                                        <input type="text" class="form-control" id="update_scheme_MachineModel">
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label for="update_scheme_MakeTime" class="col-sm-3 control-label">制定时间</label>
+                                    <div class="col-sm-9">
+                                        <input type="date" class="form-control" id="update_scheme_MakeTime">
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div><!-- row end -->
+                </div><!-- container-fluid end -->
+            </fieldset>
+            <!-- 文件上传部分 -->
+            <fieldset><legend>附件上传--CAD图纸</legend>
+                <div class="form-group">
+                    <label for="scheme_update_CADdrawings_file" class="trigger_click"><button type="button" class="btn btn-info"><span class="glyphicon glyphicon-folder-open" aria-hidden="true"></span>&nbsp;选择文件</button></label>
+                    <input type="file" id="scheme_update_CADdrawings_file" multiple="multiple" accept="application/msword, application/pdf, image/*, application/vnd.ms-powerpoint, text/plain, application/vnd.openxmlformats-officedocument.presentationml.presentation, application/vnd.openxmlformats-officedocument.wordprocessingml.document" data-ifiletype="CADdrawings">
+                    <label class="scheme_update_CADdrawings_Upload"><button type="button" class="btn btn-info"><span class="glyphicon glyphicon-cloud-upload" aria-hidden="true"></span>&nbsp;上传</button></label>
+                </div>
+                <div class="update_fileList_ul_wrapper">
+                    <div class="update_fileList_info">
+                        上传总进度：
+                        <div class="progress">
+                            <div class="progress-bar progress-bar-success progress-bar-striped active" role="progressbar" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100" style="min-width: 2em;">0%</div>
+                        </div> 
+                    </div>
+                    <ul class="list-group" id="scheme_update_CADdrawings_list">
+                        <!-- <li class="list-group-item list-group-item-success"><span class="badge">14</span>Cras justo odio</li>
+                        <li class="list-group-item list-group-item-danger"><span class="badge">14</span>Dapibus ac facilisis in</li>
+                        <li class="list-group-item"><span class="badge">14</span>Morbi leo risus</li> -->
+                    </ul>
+                </div>
+            </fieldset>
+            <fieldset><legend>附件上传--PDF图纸</legend>
+                <div class="form-group">
+                    <label for="scheme_update_PDFdrawings_file" class="trigger_click"><button type="button" class="btn btn-info"><span class="glyphicon glyphicon-folder-open" aria-hidden="true"></span>&nbsp;选择文件</button></label>
+                    <input type="file" id="scheme_update_PDFdrawings_file" multiple="multiple" accept="application/msword, application/pdf, image/*, application/vnd.ms-powerpoint, text/plain, application/vnd.openxmlformats-officedocument.presentationml.presentation, application/vnd.openxmlformats-officedocument.wordprocessingml.document" data-ifiletype="PDFdrawings">
+                    <label class="scheme_update_PDFdrawings_Upload"><button type="button" class="btn btn-info"><span class="glyphicon glyphicon-cloud-upload" aria-hidden="true"></span>&nbsp;上传</button></label>
+                </div>
+                <div class="update_fileList_ul_wrapper">
+                    <div class="update_fileList_info">
+                        上传总进度：
+                        <div class="progress">
+                            <div class="progress-bar progress-bar-success progress-bar-striped active" role="progressbar" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100" style="min-width: 2em;">0%</div>
+                        </div>
+                    </div>
+                    <ul class="list-group" id="scheme_update_PDFdrawings_list">
+                        <!-- <li class="list-group-item list-group-item-success"><span class="badge">14</span>Cras justo odio</li>
+                        <li class="list-group-item list-group-item-danger"><span class="badge">14</span>Dapibus ac facilisis in</li>
+                        <li class="list-group-item"><span class="badge">14</span>Morbi leo risus</li> -->
+                    </ul>
+                </div>
+            </fieldset><!-- 文件上传部分end -->
+            <!-- 备注 -->
+            <fieldset><legend>备注说明</legend>
+                <div class="container-fluid">
+                    <div class="form-group">
+                        <textarea class="form-control" rows="3" id="update_scheme_Remark" placeholder="填写备注"></textarea>
+                    </div>
+                </div><!-- container-fluid end -->
+            </fieldset><!-- 备注 end -->
+        </div><!-- update_section_all_body_in end -->
+    </div>
+    <!-- 底部 -->
+    <div class="update_section_all_foot">
+        <div class="update_section_all_foot_in">
+            <input type="button" class="btn btn-success" id="submit_scheme_update" value="提交">
+            <input type="button" class="btn btn-warning" id="close_scheme_update" value="取消">
+        </div>
+    </div>
+</div>
+
+<!-- 标准产品图添加 -->
+<div id="add_section_standard" class="add_section_all ApplicationGallery_post" data-icategory="standard" data-itype="add">
+    <!-- 头部 -->
+    <div class="add_section_all_tit">
+        <div class="add_section_all_tit_l">添加标准产品图</div>
+        <div class="add_section_all_tit_r"><span class="glyphicon glyphicon-remove-circle" aria-hidden="true"></span>
+        </div>
+    </div>
+    <!-- 主体 -->
+    <div class="add_section_all_body">
+        <div class="add_section_all_body_in">
+            <!-- 可替换内容 -->
+            <fieldset><legend>基本信息</legend>
+                <div class="container-fluid">
+                    <div class="row">
+                        <div class="col-md-6 col-lg-6">
+                            <div class="form-horizontal">
+                                <!-- 一个form-group就是一个整体 -->
+                                <div class="form-group">
+                                    <label for="add_standard_ProductName" class="col-sm-3 control-label">产品名称</label>
+                                    <div class="col-sm-9">
+                                        <input type="text" class="form-control" id="add_standard_ProductName" placeholder="必填项">
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label for="add_standard_ProductType" class="col-sm-3 control-label">产品类型</label>
+                                    <div class="col-sm-9">
+                                        <input type="text" class="form-control" id="add_standard_ProductType">
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label for="add_standard_Machine" class="col-sm-3 control-label">适用机台</label>
+                                    <div class="col-sm-9">
+                                        <input type="text" class="form-control" id="add_standard_Machine">
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-6 col-lg-6">
+                            <div class="form-horizontal">
+                                <div class="form-group">
+                                    <label for="add_standard_VersionNO" class="col-sm-3 control-label">版本号</label>
+                                    <div class="col-sm-9">
+                                        <input type="text" class="form-control" id="add_standard_VersionNO">
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label for="add_standard_DesignTime" class="col-sm-3 control-label">设计时间</label>
+                                    <div class="col-sm-9">
+                                        <input type="date" class="form-control" id="add_standard_DesignTime">
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label for="add_standard_UseCondition" class="col-sm-3 control-label">使用情况</label>
+                                    <div class="col-sm-9">
+                                        <select class="form-control" id="add_standard_UseCondition">
+                                            <option value="" disabled>请选择</option>
+                                            <option value="在用">在用</option>
+                                            <option value="停用">停用</option>
+                                        </select>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div><!-- row end -->
+                </div><!-- container-fluid end -->
+            </fieldset>
+            <!-- 文件上传部分 -->
+            <fieldset><legend>附件上传--CAD图纸</legend>
+                <div class="form-group">
+                    <label for="standard_add_CADdrawings_file" class="trigger_click"><button type="button" class="btn btn-info"><span class="glyphicon glyphicon-folder-open" aria-hidden="true"></span>&nbsp;选择文件</button></label>
+                    <input type="file" id="standard_add_CADdrawings_file" multiple="multiple" accept="application/msword, application/pdf, image/*, application/vnd.ms-powerpoint, text/plain, application/vnd.openxmlformats-officedocument.presentationml.presentation, application/vnd.openxmlformats-officedocument.wordprocessingml.document" data-ifiletype="CADdrawings">
+                    <label class="standard_add_CADdrawings_Upload"><button type="button" class="btn btn-info"><span class="glyphicon glyphicon-cloud-upload" aria-hidden="true"></span>&nbsp;上传</button></label>
+                </div>
+                <div class="add_fileList_ul_wrapper">
+                    <div class="add_fileList_info">
+                        上传总进度：
+                        <div class="progress">
+                            <div class="progress-bar progress-bar-success progress-bar-striped active" role="progressbar" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100" style="min-width: 2em;">0%</div>
+                        </div> 
+                    </div>
+                    <ul class="list-group" id="standard_add_CADdrawings_list">
+                        <!-- <li class="list-group-item list-group-item-success"><span class="badge">14</span>Cras justo odio</li>
+                        <li class="list-group-item list-group-item-danger"><span class="badge">14</span>Dapibus ac facilisis in</li>
+                        <li class="list-group-item"><span class="badge">14</span>Morbi leo risus</li> -->
+                    </ul>
+                </div>
+            </fieldset>
+            <fieldset><legend>附件上传--PDF图纸</legend>
+                <div class="form-group">
+                    <label for="standard_add_PDFdrawings_file" class="trigger_click"><button type="button" class="btn btn-info"><span class="glyphicon glyphicon-folder-open" aria-hidden="true"></span>&nbsp;选择文件</button></label>
+                    <input type="file" id="standard_add_PDFdrawings_file" multiple="multiple" accept="application/msword, application/pdf, image/*, application/vnd.ms-powerpoint, text/plain, application/vnd.openxmlformats-officedocument.presentationml.presentation, application/vnd.openxmlformats-officedocument.wordprocessingml.document" data-ifiletype="PDFdrawings">
+                    <label class="standard_add_PDFdrawings_Upload"><button type="button" class="btn btn-info"><span class="glyphicon glyphicon-cloud-upload" aria-hidden="true"></span>&nbsp;上传</button></label>
+                </div>
+                <div class="add_fileList_ul_wrapper">
+                    <div class="add_fileList_info">
+                        上传总进度：
+                        <div class="progress">
+                            <div class="progress-bar progress-bar-success progress-bar-striped active" role="progressbar" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100" style="min-width: 2em;">0%</div>
+                        </div>
+                    </div>
+                    <ul class="list-group" id="standard_add_PDFdrawings_list">
+                        <!-- <li class="list-group-item list-group-item-success"><span class="badge">14</span>Cras justo odio</li>
+                        <li class="list-group-item list-group-item-danger"><span class="badge">14</span>Dapibus ac facilisis in</li>
+                        <li class="list-group-item"><span class="badge">14</span>Morbi leo risus</li> -->
+                    </ul>
+                </div>
+            </fieldset><!-- 文件上传部分end -->
+            <!-- 备注 -->
+            <fieldset><legend>备注说明</legend>
+                <div class="container-fluid">
+                    <div class="form-group">
+                        <textarea class="form-control" rows="3" id="add_standard_Remark" placeholder="填写备注"></textarea>
+                    </div>
+                </div><!-- container-fluid end -->
+            </fieldset><!-- 备注 end -->
+        </div><!-- add_section_all_body_in end -->
+    </div>
+    <!-- 底部 -->
+    <div class="add_section_all_foot">
+        <div class="add_section_all_foot_in">
+            <input type="button" class="btn btn-success" id="submit_standard_add" value="提交">
+            <input type="button" class="btn btn-warning" id="close_standard_add" value="取消">
+        </div>
+    </div>
+</div>
+
+
+<!-- 标准产品图修改 -->
+<div id="update_section_standard" class="update_section_all ApplicationGallery_post" data-icategory="standard" data-itype="update">
+    <!-- 头部 -->
+    <div class="update_section_all_tit">
+        <div class="update_section_all_tit_l">修改标准产品图</div>
+        <div class="update_section_all_tit_r"><span class="glyphicon glyphicon-remove-circle" aria-hidden="true"></span>
+        </div>
+    </div>
+    <!-- 主体 -->
+    <div class="update_section_all_body">
+        <div class="update_section_all_body_in">
+            <!-- 可替换内容 -->
+            <fieldset><legend>基本信息</legend>
+                <div class="container-fluid">
+                    <div class="row">
+                        <div class="col-md-6 col-lg-6">
+                            <div class="form-horizontal">
+                                <!-- 一个form-group就是一个整体 -->
+                                <div class="form-group">
+                                    <label for="update_standard_ProductName" class="col-sm-3 control-label">产品名称</label>
+                                    <div class="col-sm-9">
+                                        <input type="text" class="form-control" id="update_standard_ProductName" placeholder="必填项">
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label for="update_standard_ProductType" class="col-sm-3 control-label">产品类型</label>
+                                    <div class="col-sm-9">
+                                        <input type="text" class="form-control" id="update_standard_ProductType">
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label for="update_standard_Machine" class="col-sm-3 control-label">适用机台</label>
+                                    <div class="col-sm-9">
+                                        <input type="text" class="form-control" id="update_standard_Machine">
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-6 col-lg-6">
+                            <div class="form-horizontal">
+                                <div class="form-group">
+                                    <label for="update_standard_VersionNO" class="col-sm-3 control-label">版本号</label>
+                                    <div class="col-sm-9">
+                                        <input type="text" class="form-control" id="update_standard_VersionNO">
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label for="update_standard_DesignTime" class="col-sm-3 control-label">设计时间</label>
+                                    <div class="col-sm-9">
+                                        <input type="date" class="form-control" id="update_standard_DesignTime">
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label for="update_standard_UseCondition" class="col-sm-3 control-label">使用情况</label>
+                                    <div class="col-sm-9">
+                                        <select class="form-control" id="update_standard_UseCondition">
+                                            <option value="" disabled>请选择</option>
+                                            <option value="在用">在用</option>
+                                            <option value="停用">停用</option>
+                                        </select>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div><!-- row end -->
+                </div><!-- container-fluid end -->
+            </fieldset>
+            <!-- 文件上传部分 -->
+            <fieldset><legend>附件上传--CAD图纸</legend>
+                <div class="form-group">
+                    <label for="standard_update_CADdrawings_file" class="trigger_click"><button type="button" class="btn btn-info"><span class="glyphicon glyphicon-folder-open" aria-hidden="true"></span>&nbsp;选择文件</button></label>
+                    <input type="file" id="standard_update_CADdrawings_file" multiple="multiple" accept="application/msword, application/pdf, image/*, application/vnd.ms-powerpoint, text/plain, application/vnd.openxmlformats-officedocument.presentationml.presentation, application/vnd.openxmlformats-officedocument.wordprocessingml.document" data-ifiletype="CADdrawings">
+                    <label class="standard_update_CADdrawings_Upload"><button type="button" class="btn btn-info"><span class="glyphicon glyphicon-cloud-upload" aria-hidden="true"></span>&nbsp;上传</button></label>
+                </div>
+                <div class="update_fileList_ul_wrapper">
+                    <div class="update_fileList_info">
+                        上传总进度：
+                        <div class="progress">
+                            <div class="progress-bar progress-bar-success progress-bar-striped active" role="progressbar" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100" style="min-width: 2em;">0%</div>
+                        </div> 
+                    </div>
+                    <ul class="list-group" id="standard_update_CADdrawings_list">
+                        <!-- <li class="list-group-item list-group-item-success"><span class="badge">14</span>Cras justo odio</li>
+                        <li class="list-group-item list-group-item-danger"><span class="badge">14</span>Dapibus ac facilisis in</li>
+                        <li class="list-group-item"><span class="badge">14</span>Morbi leo risus</li> -->
+                    </ul>
+                </div>
+            </fieldset>
+            <fieldset><legend>附件上传--PDF图纸</legend>
+                <div class="form-group">
+                    <label for="standard_update_PDFdrawings_file" class="trigger_click"><button type="button" class="btn btn-info"><span class="glyphicon glyphicon-folder-open" aria-hidden="true"></span>&nbsp;选择文件</button></label>
+                    <input type="file" id="standard_update_PDFdrawings_file" multiple="multiple" accept="application/msword, application/pdf, image/*, application/vnd.ms-powerpoint, text/plain, application/vnd.openxmlformats-officedocument.presentationml.presentation, application/vnd.openxmlformats-officedocument.wordprocessingml.document" data-ifiletype="PDFdrawings">
+                    <label class="standard_update_PDFdrawings_Upload"><button type="button" class="btn btn-info"><span class="glyphicon glyphicon-cloud-upload" aria-hidden="true"></span>&nbsp;上传</button></label>
+                </div>
+                <div class="update_fileList_ul_wrapper">
+                    <div class="update_fileList_info">
+                        上传总进度：
+                        <div class="progress">
+                            <div class="progress-bar progress-bar-success progress-bar-striped active" role="progressbar" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100" style="min-width: 2em;">0%</div>
+                        </div>
+                    </div>
+                    <ul class="list-group" id="standard_update_PDFdrawings_list">
+                        <!-- <li class="list-group-item list-group-item-success"><span class="badge">14</span>Cras justo odio</li>
+                        <li class="list-group-item list-group-item-danger"><span class="badge">14</span>Dapibus ac facilisis in</li>
+                        <li class="list-group-item"><span class="badge">14</span>Morbi leo risus</li> -->
+                    </ul>
+                </div>
+            </fieldset><!-- 文件上传部分end -->
+            <!-- 备注 -->
+            <fieldset><legend>备注说明</legend>
+                <div class="container-fluid">
+                    <div class="form-group">
+                        <textarea class="form-control" rows="3" id="update_standard_Remark" placeholder="填写备注"></textarea>
+                    </div>
+                </div><!-- container-fluid end -->
+            </fieldset><!-- 备注 end -->
+        </div><!-- update_section_all_body_in end -->
+    </div>
+    <!-- 底部 -->
+    <div class="update_section_all_foot">
+        <div class="update_section_all_foot_in">
+            <input type="button" class="btn btn-success" id="submit_standard_update" value="提交">
+            <input type="button" class="btn btn-warning" id="close_standard_update" value="取消">
+        </div>
+    </div>
+</div>
+
+
+
+<!-- 定制产品图添加 -->
+<div id="add_section_customization" class="add_section_all ApplicationGallery_post" data-icategory="customization" data-itype="add">
+    <!-- 头部 -->
+    <div class="add_section_all_tit">
+        <div class="add_section_all_tit_l">添加定制产品图</div>
+        <div class="add_section_all_tit_r"><span class="glyphicon glyphicon-remove-circle" aria-hidden="true"></span>
+        </div>
+    </div>
+    <!-- 主体 -->
+    <div class="add_section_all_body">
+        <div class="add_section_all_body_in">
+            <!-- 可替换内容 -->
+            <fieldset><legend>基本信息</legend>
+                <div class="container-fluid">
+                    <div class="row">
+                        <div class="col-md-6 col-lg-6">
+                            <div class="form-horizontal">
+                                <!-- 一个form-group就是一个整体 -->
+                                <div class="form-group">
+                                    <label for="add_customization_ProductName" class="col-sm-3 control-label">产品名称</label>
+                                    <div class="col-sm-9">
+                                        <input type="text" class="form-control" id="add_customization_ProductName" placeholder="必填项">
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label for="add_customization_ProductType" class="col-sm-3 control-label">产品类型</label>
+                                    <div class="col-sm-9">
+                                        <input type="text" class="form-control" id="add_customization_ProductType">
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label for="add_customization_Machine" class="col-sm-3 control-label">适用机台</label>
+                                    <div class="col-sm-9">
+                                        <input type="text" class="form-control" id="add_customization_Machine">
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-6 col-lg-6">
+                            <div class="form-horizontal">
+                                <div class="form-group">
+                                    <label for="add_customization_VersionNO" class="col-sm-3 control-label">版本号</label>
+                                    <div class="col-sm-9">
+                                        <input type="text" class="form-control" id="add_customization_VersionNO">
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label for="add_customization_DesignTime" class="col-sm-3 control-label">设计时间</label>
+                                    <div class="col-sm-9">
+                                        <input type="date" class="form-control" id="add_customization_DesignTime">
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label for="add_customization_UseCondition" class="col-sm-3 control-label">使用情况</label>
+                                    <div class="col-sm-9">
+                                        <select class="form-control" id="add_customization_UseCondition">
+                                            <option value="" disabled>请选择</option>
+                                            <option value="在用">在用</option>
+                                            <option value="停用">停用</option>
+                                        </select>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div><!-- row end -->
+                </div><!-- container-fluid end -->
+            </fieldset>
+            <!-- 文件上传部分 -->
+            <fieldset><legend>附件上传--CAD图纸</legend>
+                <div class="form-group">
+                    <label for="customization_add_CADdrawings_file" class="trigger_click"><button type="button" class="btn btn-info"><span class="glyphicon glyphicon-folder-open" aria-hidden="true"></span>&nbsp;选择文件</button></label>
+                    <input type="file" id="customization_add_CADdrawings_file" multiple="multiple" accept="application/msword, application/pdf, image/*, application/vnd.ms-powerpoint, text/plain, application/vnd.openxmlformats-officedocument.presentationml.presentation, application/vnd.openxmlformats-officedocument.wordprocessingml.document" data-ifiletype="CADdrawings">
+                    <label class="customization_add_CADdrawings_Upload"><button type="button" class="btn btn-info"><span class="glyphicon glyphicon-cloud-upload" aria-hidden="true"></span>&nbsp;上传</button></label>
+                </div>
+                <div class="add_fileList_ul_wrapper">
+                    <div class="add_fileList_info">
+                        上传总进度：
+                        <div class="progress">
+                            <div class="progress-bar progress-bar-success progress-bar-striped active" role="progressbar" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100" style="min-width: 2em;">0%</div>
+                        </div> 
+                    </div>
+                    <ul class="list-group" id="customization_add_CADdrawings_list">
+                        <!-- <li class="list-group-item list-group-item-success"><span class="badge">14</span>Cras justo odio</li>
+                        <li class="list-group-item list-group-item-danger"><span class="badge">14</span>Dapibus ac facilisis in</li>
+                        <li class="list-group-item"><span class="badge">14</span>Morbi leo risus</li> -->
+                    </ul>
+                </div>
+            </fieldset>
+            <fieldset><legend>附件上传--PDF图纸</legend>
+                <div class="form-group">
+                    <label for="customization_add_PDFdrawings_file" class="trigger_click"><button type="button" class="btn btn-info"><span class="glyphicon glyphicon-folder-open" aria-hidden="true"></span>&nbsp;选择文件</button></label>
+                    <input type="file" id="customization_add_PDFdrawings_file" multiple="multiple" accept="application/msword, application/pdf, image/*, application/vnd.ms-powerpoint, text/plain, application/vnd.openxmlformats-officedocument.presentationml.presentation, application/vnd.openxmlformats-officedocument.wordprocessingml.document" data-ifiletype="PDFdrawings">
+                    <label class="customization_add_PDFdrawings_Upload"><button type="button" class="btn btn-info"><span class="glyphicon glyphicon-cloud-upload" aria-hidden="true"></span>&nbsp;上传</button></label>
+                </div>
+                <div class="add_fileList_ul_wrapper">
+                    <div class="add_fileList_info">
+                        上传总进度：
+                        <div class="progress">
+                            <div class="progress-bar progress-bar-success progress-bar-striped active" role="progressbar" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100" style="min-width: 2em;">0%</div>
+                        </div>
+                    </div>
+                    <ul class="list-group" id="customization_add_PDFdrawings_list">
+                        <!-- <li class="list-group-item list-group-item-success"><span class="badge">14</span>Cras justo odio</li>
+                        <li class="list-group-item list-group-item-danger"><span class="badge">14</span>Dapibus ac facilisis in</li>
+                        <li class="list-group-item"><span class="badge">14</span>Morbi leo risus</li> -->
+                    </ul>
+                </div>
+            </fieldset><!-- 文件上传部分end -->
+            <!-- 备注 -->
+            <fieldset><legend>备注说明</legend>
+                <div class="container-fluid">
+                    <div class="form-group">
+                        <textarea class="form-control" rows="3" id="add_customization_Remark" placeholder="填写备注"></textarea>
+                    </div>
+                </div><!-- container-fluid end -->
+            </fieldset><!-- 备注 end -->
+        </div><!-- add_section_all_body_in end -->
+    </div>
+    <!-- 底部 -->
+    <div class="add_section_all_foot">
+        <div class="add_section_all_foot_in">
+            <input type="button" class="btn btn-success" id="submit_customization_add" value="提交">
+            <input type="button" class="btn btn-warning" id="close_customization_add" value="取消">
+        </div>
+    </div>
+</div>
+
+
+
+<!-- 定制产品图修改 -->
+<div id="update_section_customization" class="update_section_all ApplicationGallery_post" data-icategory="customization" data-itype="update">
+    <!-- 头部 -->
+    <div class="update_section_all_tit">
+        <div class="update_section_all_tit_l">修改定制产品图</div>
+        <div class="update_section_all_tit_r"><span class="glyphicon glyphicon-remove-circle" aria-hidden="true"></span>
+        </div>
+    </div>
+    <!-- 主体 -->
+    <div class="update_section_all_body">
+        <div class="update_section_all_body_in">
+            <!-- 可替换内容 -->
+            <fieldset><legend>基本信息</legend>
+                <div class="container-fluid">
+                    <div class="row">
+                        <div class="col-md-6 col-lg-6">
+                            <div class="form-horizontal">
+                                <!-- 一个form-group就是一个整体 -->
+                                <div class="form-group">
+                                    <label for="update_customization_ProductName" class="col-sm-3 control-label">产品名称</label>
+                                    <div class="col-sm-9">
+                                        <input type="text" class="form-control" id="update_customization_ProductName" placeholder="必填项">
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label for="update_customization_ProductType" class="col-sm-3 control-label">产品类型</label>
+                                    <div class="col-sm-9">
+                                        <input type="text" class="form-control" id="update_customization_ProductType">
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label for="update_customization_Machine" class="col-sm-3 control-label">适用机台</label>
+                                    <div class="col-sm-9">
+                                        <input type="text" class="form-control" id="update_customization_Machine">
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-6 col-lg-6">
+                            <div class="form-horizontal">
+                                <div class="form-group">
+                                    <label for="update_customization_VersionNO" class="col-sm-3 control-label">版本号</label>
+                                    <div class="col-sm-9">
+                                        <input type="text" class="form-control" id="update_customization_VersionNO">
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label for="update_customization_DesignTime" class="col-sm-3 control-label">设计时间</label>
+                                    <div class="col-sm-9">
+                                        <input type="date" class="form-control" id="update_customization_DesignTime">
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label for="update_customization_UseCondition" class="col-sm-3 control-label">使用情况</label>
+                                    <div class="col-sm-9">
+                                        <select class="form-control" id="update_customization_UseCondition">
+                                            <option value="" disabled>请选择</option>
+                                            <option value="在用">在用</option>
+                                            <option value="停用">停用</option>
+                                        </select>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div><!-- row end -->
+                </div><!-- container-fluid end -->
+            </fieldset>
+            <!-- 文件上传部分 -->
+            <fieldset><legend>附件上传--CAD图纸</legend>
+                <div class="form-group">
+                    <label for="customization_update_CADdrawings_file" class="trigger_click"><button type="button" class="btn btn-info"><span class="glyphicon glyphicon-folder-open" aria-hidden="true"></span>&nbsp;选择文件</button></label>
+                    <input type="file" id="customization_update_CADdrawings_file" multiple="multiple" accept="application/msword, application/pdf, image/*, application/vnd.ms-powerpoint, text/plain, application/vnd.openxmlformats-officedocument.presentationml.presentation, application/vnd.openxmlformats-officedocument.wordprocessingml.document" data-ifiletype="CADdrawings">
+                    <label class="customization_update_CADdrawings_Upload"><button type="button" class="btn btn-info"><span class="glyphicon glyphicon-cloud-upload" aria-hidden="true"></span>&nbsp;上传</button></label>
+                </div>
+                <div class="update_fileList_ul_wrapper">
+                    <div class="update_fileList_info">
+                        上传总进度：
+                        <div class="progress">
+                            <div class="progress-bar progress-bar-success progress-bar-striped active" role="progressbar" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100" style="min-width: 2em;">0%</div>
+                        </div> 
+                    </div>
+                    <ul class="list-group" id="customization_update_CADdrawings_list">
+                        <!-- <li class="list-group-item list-group-item-success"><span class="badge">14</span>Cras justo odio</li>
+                        <li class="list-group-item list-group-item-danger"><span class="badge">14</span>Dapibus ac facilisis in</li>
+                        <li class="list-group-item"><span class="badge">14</span>Morbi leo risus</li> -->
+                    </ul>
+                </div>
+            </fieldset>
+            <fieldset><legend>附件上传--PDF图纸</legend>
+                <div class="form-group">
+                    <label for="customization_update_PDFdrawings_file" class="trigger_click"><button type="button" class="btn btn-info"><span class="glyphicon glyphicon-folder-open" aria-hidden="true"></span>&nbsp;选择文件</button></label>
+                    <input type="file" id="customization_update_PDFdrawings_file" multiple="multiple" accept="application/msword, application/pdf, image/*, application/vnd.ms-powerpoint, text/plain, application/vnd.openxmlformats-officedocument.presentationml.presentation, application/vnd.openxmlformats-officedocument.wordprocessingml.document" data-ifiletype="PDFdrawings">
+                    <label class="customization_update_PDFdrawings_Upload"><button type="button" class="btn btn-info"><span class="glyphicon glyphicon-cloud-upload" aria-hidden="true"></span>&nbsp;上传</button></label>
+                </div>
+                <div class="update_fileList_ul_wrapper">
+                    <div class="update_fileList_info">
+                        上传总进度：
+                        <div class="progress">
+                            <div class="progress-bar progress-bar-success progress-bar-striped active" role="progressbar" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100" style="min-width: 2em;">0%</div>
+                        </div>
+                    </div>
+                    <ul class="list-group" id="customization_update_PDFdrawings_list">
+                        <!-- <li class="list-group-item list-group-item-success"><span class="badge">14</span>Cras justo odio</li>
+                        <li class="list-group-item list-group-item-danger"><span class="badge">14</span>Dapibus ac facilisis in</li>
+                        <li class="list-group-item"><span class="badge">14</span>Morbi leo risus</li> -->
+                    </ul>
+                </div>
+            </fieldset><!-- 文件上传部分end -->
+            <!-- 备注 -->
+            <fieldset><legend>备注说明</legend>
+                <div class="container-fluid">
+                    <div class="form-group">
+                        <textarea class="form-control" rows="3" id="update_customization_Remark" placeholder="填写备注"></textarea>
+                    </div>
+                </div><!-- container-fluid end -->
+            </fieldset><!-- 备注 end -->
+        </div><!-- update_section_all_body_in end -->
+    </div>
+    <!-- 底部 -->
+    <div class="update_section_all_foot">
+        <div class="update_section_all_foot_in">
+            <input type="button" class="btn btn-success" id="submit_customization_update" value="提交">
+            <input type="button" class="btn btn-warning" id="close_customization_update" value="取消">
+        </div>
+    </div>
+</div>

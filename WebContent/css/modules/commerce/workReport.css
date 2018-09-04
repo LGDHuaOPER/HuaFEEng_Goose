@@ -1,0 +1,770 @@
+body {
+	height: auto;
+}
+
+.g_container {
+	min-width: 1000px;
+	width: 90%;
+	margin: 0 auto;
+}
+
+.m_button {
+	width: 100%;
+	height: 40px;
+	margin-top: 10px;
+	margin-bottom: 5px;
+}
+
+.m_button_l, .m_button_r {
+	display: inline-block;
+	height: 40px;
+	vertical-align: middle;
+}
+
+.m_button_l {
+	position: absolute;
+	width: 300px;
+	z-index: 2;
+}
+
+.m_button_l input+input {
+	margin-left: 10px;
+}
+
+.m_button_r {
+	position: relative;
+	padding-left: 302px;
+	width: 100%;
+}
+
+.m_button_r_in {
+	position: absolute;
+	right: 0;
+	display: flex;
+	width: 480px;
+}
+
+.m_button_r_in>div {
+	flex: 1;
+}
+
+.m_button_r_in>div .input-group-addon {
+	height: 35px;
+	background-color: #eee;
+}
+
+.m_button_r_in>div .btn-group>button:nth-child(1) {
+	border-top-left-radius: 0px;
+	border-bottom-left-radius: 0px;
+}
+
+.m_button_r_in_r input {
+	margin-left: 20px;
+}
+
+ul.dropdown-menu {
+	width: 100px;
+	min-width: 100px;
+	padding-left: 8px;
+	padding-right: 8px;
+}
+
+ul.dropdown-menu>li:not(:last-child) {
+	border-bottom: 1px solid #ddd;
+}
+
+ul.dropdown-menu li {
+	padding-top: 3px;
+	padding-bottom: 3px;
+}
+
+/*主体表格*/
+.m_table table {
+	min-width: 1000px;
+	width: 100%;
+	/*border: 1px solid #999;*/
+	text-align: center;
+	font-size: 15px;
+	box-shadow: -3px 3px 10px 2px rgba(195,206,220,0.7), 3px 3px 10px 2px rgba(195,206,220,0.7);
+}
+
+.m_table table th {
+	text-align: center;
+}
+
+.m_table table td:not(:first-child) {
+	border-left: 1px solid #999;
+}
+
+.m_table table td:not(:first-child):not(:nth-child(7)):not(:nth-child(8)) {
+	border-right: 1px solid #999;
+}
+
+.m_table table tbody tr:nth-child(odd) {
+	height: 45px;
+	background: #fff;
+}
+
+.m_table table tbody tr:nth-child(even) {
+	height: 45px;
+	background: rgba(195,206,220,0.9);
+}
+
+.m_table table thead tr {
+	background: #b5b5b5;
+}
+
+.m_table table thead tr:nth-child(1) {
+	height: 40px;
+}
+
+.m_table .inormal .t1 {
+	min-width: 50px;
+	width: 5%;
+}
+
+.m_table .jurisdiction .t1 {
+	min-width: 50px;
+	width: 5%;
+}
+
+.m_table .inormal th:not(.t1) {
+	min-width: 158px;
+	width: 15.83%;
+}
+
+.m_table .jurisdiction th:not(.t1) {
+	min-width: 135px;
+	width: 13.57%;
+}
+
+/*翻页组件*/
+.m_page {
+	margin-top: 10px;
+	/*display: table-cell;*/
+	width: 100%;
+	height: 32px;
+	vertical-align: middle;
+	text-align: right;
+	padding-top: 1px;
+	padding-right: 10px;
+	font-size: 15px;
+}
+
+.pageInfo, .changePage {
+	display: inline-block;
+}
+
+/* .u_page {
+// 	width: 575px;
+// 	height: 32px;
+// 	margin-top: 8px;
+// 	margin-left: calc(100% - 580px);
+// }*/
+
+/*弹出类*/
+.bg_cover {
+	width: 100%;
+	height: 100%;
+	background-color: rgba(10%,20%,30%,0.7);
+    position: absolute;
+    top: 0;
+    left: 0;
+    display: none;
+    overflow: hidden;
+    z-index: 3;
+}
+
+.add_NonStandard {
+	width: 840px;
+	height: auto;
+	position: absolute;
+	top: 15px;
+	left: calc(50% - 420px);
+	z-index: 4;
+	background: #fff;
+	font-size: 16px;
+}
+
+.add_NonStandard_tit {
+	position: relative;
+	width: 100%;
+	height: 35px;
+	background: #707070;
+	color: #fff;
+}
+
+.add_NonStandard_tit_l {
+	height: 35px;
+	line-height: 35px;
+	display: inline-block;
+	width: 775px;
+	text-indent: 20px;
+}
+
+.add_NonStandard_tit_r {
+	display: inline-block;
+	height: 35px;
+	line-height: 35px;
+	width: 60px;
+	position: absolute;
+	right: 0px;
+}
+
+.add_NonStandard_body_in {
+	margin: 20px;
+	font-size: 14px;
+}
+
+.add_NonStandard_body_in legend {
+	font-size: 16px;
+	color: #00aeef;
+}
+
+.add_NonStandard_body_in input:not([type="button"]):not([type="date"]), .add_NonStandard_body_in select {
+	box-sizing: border-box;
+	width: 300px;
+	height: 30px;
+}
+
+/*添加修改共用*/
+.line_relative {
+	position: relative;
+}
+
+.add_NonStandard_foot, .update_NonStandard_foot, .add_NonStandard_submit_1 {
+	height: 35px;
+	width: 100%;
+	margin-bottom: 10px;
+	text-align: center;
+}
+
+.add_NonStandard_foot_in, .update_NonStandard_foot_in, .add_NonStandard_submit_1_in {
+	display: inline-block;
+	height: 35px;
+}
+
+.add_NonStandard_body_main input, .add_NonStandard_body_main select, .update_NonStandard_body_main input, .update_NonStandard_body_main select {
+	font-size: 14px;
+}
+
+#NonStandard_addsubmit, #NonStandard_updatesubmit, #NonStandard_addsubmit_1 {
+	-webkit-filter: brightness(0.9);
+	filter: brightness(0.9);
+	font-size: 15px;
+}
+
+#NonStandard_addsubmit {
+	margin-right: 40px;
+}
+
+#NonStandard_updatesubmit {
+	margin-right: 45px;
+}
+
+#NonStandard_addclose, #NonStandard_updateclose {
+	-webkit-filter: brightness(0.9);
+	filter: brightness(0.9);
+	font-size: 15px;
+}
+
+#NonStandard_addsubmit:hover, #NonStandard_updatesubmit:hover, #NonStandard_addsubmit_1:hover {
+	-webkit-filter: brightness(1.2);
+	filter: brightness(1.2);
+}
+
+#NonStandard_addclose:hover, #NonStandard_updateclose:hover {
+	-webkit-filter: brightness(1.2);
+	filter: brightness(1.2);
+}
+
+/*报销详情样式*/
+[class$="NonStandard_details_div"] th, [class$="NonStandard_details_div"] td {
+	text-align: center;
+	word-wrap: break-word;
+	/*字内换行行为*/
+	word-break: break-all;
+}
+
+[class$="NonStandard_details_div"] .detail_td_Type {
+	min-width: 95px;
+	max-height: 95px;
+	width: 95px;
+}
+
+[class$="NonStandard_details_div"] .detail_td_Amount, [class$="NonStandard_details_div"] .detail_td_CustomerName {
+	min-width: 90px;
+	max-height: 90px;
+	width: 90px;
+}
+
+[class$="NonStandard_details_div"] .detail_td_MainContent {
+	min-width: 200px;
+	max-height: 200px;
+	width: 200px;
+}
+
+[class$="NonStandard_details_div"] .detail_td_City {
+	min-width: 170px;
+	max-height: 170px;
+	width: 170px;
+}
+
+[class$="NonStandard_details_div"] .detail_td_Time {
+	min-width: 270px;
+	max-height: 270px;
+	width: 270px;
+}
+
+/*事由，地点*/
+[class$="NonStandard_details_address"] th, [class$="NonStandard_details_address"] td {
+	text-align: center;
+	word-wrap: break-word;
+	word-break: break-all;
+}
+
+[class$="NonStandard_details_address"] td:nth-child(odd):not(:last-child) {
+	min-width: 70px;
+	max-height: 70px;
+	width: 70px;
+}
+
+[class$="NonStandard_details_address"] .detail_td_TravelPlace, [class$="NonStandard_details_address"] .detail_td_Days {
+	min-width: 80px;
+	max-height: 80px;
+	width: 80px;
+}
+
+[class$="NonStandard_details_address"] .detail_td_MainContent {
+	min-width: 210px;
+	max-height: 210px;
+	width: 210px;
+}
+
+[class$="NonStandard_details_address"] .detail_td_TravelTime {
+	min-width: 270px;
+	max-height: 270px;
+	width: 270px;
+}
+
+/*模态框幕布*/
+div.modal-backdrop.in {
+	position: static;
+	height: 0px;
+}
+
+.hastd_Pass input[value="未审核"], .hastd_Pass input[value="通过"], .hastd_Pass input[value="未通过"] {
+	display: inline-block;
+    width: 60px;
+    height: 26px;
+    font-size: 14px;
+    border-radius: 5px;
+    border-width: 0;
+}
+
+.hastd_Pass input[value="未审核"] {
+	background: #ddd;
+    color: rgba(0,0,0,0.9);
+}
+
+.hastd_Pass input[value="通过"] {
+    background: #5cb85c;
+    color: rgba(255,255,255,0.9);
+}
+
+.hastd_Pass input[value="未通过"] {
+    background: #f0ad4e;
+    color: rgba(255,255,255,0.9);
+}
+
+#ReimburseApplication_y {
+	margin-right: 10px;
+}
+
+/*模态框里的表格*/
+.modal-body {
+	max-height: 450px;
+}
+
+.modal-body_detail thead th:nth-child(1), .modal-body_detail thead th:nth-child(2), .modal-body_detail thead th:nth-child(4), .modal-body_detail thead th:nth-child(5), .modal-body_detail tbody td:nth-child(1), .modal-body_detail tbody td:nth-child(2), .modal-body_detail tbody td:nth-child(4), .modal-body_detail tbody td:nth-child(5) {
+	max-width: 70px;
+	min-width: 70px;
+	width: 70px;
+	word-wrap: break-word;
+	word-break: break-all;
+}
+
+.modal-body_detail thead th:nth-child(3), .modal-body_detail tbody td:nth-child(3) {
+	max-width: 150px;
+	min-width: 150px;
+	width: 150px;
+	word-wrap: break-word;
+	/*字内换行行为*/
+	word-break: break-all;
+}
+
+.modal-body_detail th, .modal-body_detail td, .modal-body_travel td {
+	text-align: center;
+}
+
+.modal-body_travel tbody td:nth-child(1), .modal-body_travel tbody td:nth-child(5), .modal-body_travel tbody td:nth-child(2), .modal-body_travel tbody td:nth-child(8) {
+	max-width: 70px;
+	min-width: 70px;
+	width: 70px;
+	word-wrap: break-word;
+	word-break: break-all;
+}
+
+.modal-body_travel tbody td:nth-child(3), .modal-body_travel tbody td:nth-child(7) {
+	max-width: 45px;
+	min-width: 45px;
+	width: 45px;
+}
+
+.modal-body_travel tbody td:nth-child(4) {
+	max-width: 100px;
+	min-width: 100px;
+	width: 100px;
+	word-wrap: break-word;
+	word-break: break-all;
+}
+
+.modal-body_detail tbody td:nth-child(5), .modal-body_detail tbody td:nth-child(6), .modal-body_travel tbody td:nth-child(6) {
+	font-size: 13px;
+}
+
+/*工作日志模板*/
+.daily_log_temp {
+	position: absolute;
+	top: 50px;
+	left: calc(50% - 450px);
+	width: 900px;
+	z-index: 19;
+	background-color: #fff;
+	font-size: 15px;
+}
+
+.daily_log_temp_head, .daily_log_temp_foot {
+	text-align: center;
+}
+
+.daily_log_temp_head>section>img, .daily_log_temp_foot>section>img {
+	width: 100%;
+}
+
+.daily_log_temp_body_tit {
+	height: 40px;
+	line-height: 40px;
+	text-align: center;
+	font-size: 18px;
+	font-weight: 700;
+}
+
+.daily_log_temp_body_body {
+	margin: 25px;
+}
+
+.daily_log_temp_body_body>fieldset>legend {
+	font-size: 16px;
+	font-weight: 600;
+}
+
+.daily_log_temp_body_body>fieldset+fieldset {
+	margin-top: 10px;
+}
+/*工作日志模板结束*/
+
+/*邮件模板*/
+.mail_template {
+	position: absolute;
+	top: 50px;
+	left: calc(50% - 300px);
+	width: 600px;
+	z-index: 19;
+	background-color: #fff;
+	font-size: 15px;
+}
+
+.mail_template_tit {
+	height: 35px;
+	line-height: 35px;
+	background-color: #707070;
+	font-weight: 500;
+	font-size: 16px;
+	color: #fff;
+	text-indent: 20px;
+}
+
+.mail_template_body {
+	margin: 20px;
+}
+
+.mail_template_body>fieldset>legend {
+	font-size: 16px;
+	font-weight: 600;
+}
+
+.mail_template .has-feedback>textarea {
+	padding-right: 8px;
+}
+/*邮件模板结束*/
+
+/*收件人抄送人*/
+.selectMailList_cover {
+	width: 100%;
+	height: 100%;
+	background-color: rgba(10%,20%,30%,0.7);
+    position: absolute;
+    top: 0;
+    left: 0;
+    display: none;
+    overflow: hidden;
+    z-index: 30;
+}
+
+.selectMailList {
+	position: absolute;
+	top: 50px;
+	left: calc(50% - 300px);
+	width: 600px;
+	z-index: 31;
+	background-color: #eee;
+	font-size: 15px;
+}
+
+.selectMailList_tit {
+	height: 35px;
+	line-height: 35px;
+	background-color: #707070;
+	font-weight: 500;
+	font-size: 16px;
+	color: #fff;
+	text-indent: 20px;
+}
+
+.selectMailList_body {
+	margin: 20px;
+}
+
+.selectMailList_body>div {
+	display: inline-block;
+	vertical-align: top;
+	height: 400px;
+}
+
+.selectMailList_body_l, .selectMailList_body_r {
+	width: 245px;
+}
+
+.selectMailList_body_m {
+	width: 60px;
+	padding-left: 10px;
+	padding-right: 10px;
+}
+
+.selectMailList_body_m>div, .selectMailList_body_r>div {
+	height: 200px;
+}
+
+.selectMailList_body_m>div {
+	padding-top: 65px;
+}
+
+.selectMailList_body_l fieldset>div {
+	max-height: 355px;
+	min-height: 355px;
+}
+
+.selectMailList_body_r fieldset>div {
+	max-height: 155px;
+	min-height: 155px;
+}
+
+.selectMailList ul>li {
+	background-color: #fff;
+	color: #000;
+	padding-left: 8px;
+	font-size: 14px;
+	cursor: pointer;
+}
+
+.selectMailList ul>li.hasSelected {
+	background-color: #00aeef;
+	color: #fff;
+}
+
+.selectMailList fieldset>div {
+	border: 1px solid #ccc;
+	background-color: #fff;
+	overflow-y: auto;
+	overflow-x: hidden;
+}
+
+.selectMailList_body fieldset>legend {
+	font-size: 14px;
+	font-weight: 600;
+}
+
+.selectMailList_foot {
+	margin-bottom: 10px;
+	text-align: center;
+}
+
+.selectMailList_foot_in {
+	display: inline-block;
+}
+
+#selectMailList_no {
+	margin-left: 25px;
+}
+/*收件人抄送人结束*/
+
+/*发送意见*/
+.suggestion_div {
+	position: absolute;
+	top: 50px;
+	left: calc(50% - 300px);
+	width: 600px;
+	z-index: 31;
+	background-color: #fff;
+	font-size: 15px;
+}
+
+.suggestion_div_tit {
+	height: 35px;
+	line-height: 35px;
+	background-color: #707070;
+	font-weight: 500;
+	font-size: 16px;
+	color: #fff;
+	text-indent: 20px;
+}
+
+.suggestion_div_body_in {
+	margin: 20px;
+}
+
+.suggestion_div_body_in legend {
+	font-size: 15px;
+	font-weight: 600;
+}
+
+.suggestion_div_foot {
+	margin-bottom: 10px;
+	text-align: center;
+}
+
+.suggestion_div_foot_in {
+	display: inline-block;
+}
+
+#suggestion_no {
+	margin-left: 25px;
+}
+/*发送意见结束*/
+
+/*维护y轴超出滚动元素*/
+.add_NonStandard_details_div, .add_NonStandard_details_address, .update_NonStandard_details_div, .update_NonStandard_details_address, .modal-body {
+	overflow-y: auto; 
+	overflow-x: hidden;
+}
+
+/*维护隐藏元素*/
+.bg_cover, .add_NonStandard, .update_NonStandard, .daily_log_temp, .mail_template, .operation_nav_bar, .hastd_AfternoonPlan, .hastd_MorningPlan, .hastd_Introspection, .selectMailList, .hastd_ToList, .hastd_CopyToList, .suggestion_div {
+	display: none;
+}
+
+/*维护鼠标悬浮元素*/
+span.glyphicon, .add_NonStandard_tit_r, .update_NonStandard_tit_r, .update_td, ul.dropdown-menu>li, span.downFile_span {
+	cursor: pointer;
+}
+
+/*维护超出隐藏元素*/
+.m_table table td, .m_table table th {
+	overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+/*维护第三方库覆盖样式*/
+.operation_nav_bar {
+	position: fixed;
+	top: 0;
+	left: 0;
+	right: 0;
+	min-width: 1100px;
+	z-index: 21;
+}
+.opera_wrapper {
+	margin: 0 auto;
+	min-width: 1000px;
+	width: 90%;
+}
+.navbar-collapse>ul {
+	padding-left: 0;
+    margin-bottom: 0;
+    list-style: none;
+}
+.navbar-collapse>ul>li {
+	height: 50px;
+	line-height: 50px;
+}
+.navbar-collapse>ul>li:nth-child(5)>div {
+	border: 1px solid transparent;
+	width: 5px;
+	height: 50px;
+	background-color: #ddd;
+	margin: 0 10px;
+}
+.navbar-brand {
+	padding: 8px 15px;
+}
+.form-control-feedback {
+	z-index: 20;
+	pointer-events: auto;
+}
+
+/*权限样式*/
+thead.jurisdiction .t8, tbody.jurisdiction .workReport_Comments_td {
+	display: table-cell;
+}
+thead.inormal .t8, tbody.inormal .workReport_Comments_td {
+	display: none;
+}
+
+/*动态提示剩余字数*/
+.wrapper_number_no {
+	display: inline-block;
+	margin-left: 15px;
+	font-size: 12px;
+	font-weight: normal;
+}
+
+.all_number_no {
+	font-size: 13px;
+	font-weight: 500;
+}
+
+.overplus_number_no {
+	font-size: 13px;
+	font-weight: 500;
+	color: red;
+}
+
+@media screen and (max-width: 900px) {
+    .add_NonStandard, .update_NonStandard, .daily_log_temp {
+		left: 0;
+		margin-left: 0;
+    }
+
+    .bg_cover, .selectMailList_cover {
+    	width: 1050px;
+    }
+}
+
+@media screen and (max-width: 600px) {
+    .mail_template, .selectMailList, .suggestion_div {
+		left: 0;
+		margin-left: 0;
+    }
+}

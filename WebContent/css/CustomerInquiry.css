@@ -1,0 +1,370 @@
+
+.table{
+    margin: 0 auto;
+    width: 90%;
+    height: auto;
+    background: #e4e8eb;
+    color: #000;
+    table-layout: fixed;
+    border: 1px solid #00aeef;
+}
+
+
+#table1{
+    margin: 0 auto;
+    width: 90%;
+    height: auto;
+    background:#fff;
+    color: #000;
+    border: 1px solid #000;
+}
+
+#table1 td{
+    text-align: center;
+    height: 30px;
+    min-width:35px;
+    word-break: break-all;
+    font-size: 16px;
+    color: #000;
+    font-weight: normal;
+}
+#table1 .tbody_CustomerName,#table1 .tbody_PreSalesTable{
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+#table1 td a{
+    color: #000;
+} 
+.fa{
+    cursor: pointer;
+}
+.contract_title,.PreviewBox_title{
+    height: 35px;
+    width: 100%;
+    line-height: 35px;
+    background-color:#00aeef ;
+    text-indent: 1em;
+    color: white;
+}
+.Shipnotice_close,.PreviewBox_close{
+    width: 35px;
+    height: 25px;
+    color: white;
+    position: absolute;
+    top: 5px;
+    right: 5px;
+    cursor: pointer;
+}
+/*----------------------------------------锟斤拷页----------------------------------------*/
+.content #page{
+    height: 50px;
+    float:right;
+    margin-top: 20px;
+    margin-right:60px;
+}
+
+.changePage{
+    display:inline-block;
+
+}
+.changePage input[type="button"]{
+    cursor:pointer;
+    border:none;
+    border-radius:3px;
+    width:50px;
+    height:30px;
+}
+
+.changePage input[type="text"]{
+    width:60px;
+    height:20px;
+}
+.pageInfo{
+    display:inline-block;
+    color:#000;
+}
+
+
+.MailBar_cover_color{
+    width: 100%;
+    height:100%;
+    background-color: rgba(10%,20%,30%,0.7);
+    position: absolute;
+    top:0;
+    left: 0;
+   display: none;
+    overflow: hidden;
+    z-index:10;
+}
+.cover_color{
+	width: 100%;
+    height:100%;
+    background-color: rgba(10%,20%,30%,0.7);
+    position: absolute;
+    top:0;
+    left: 0;
+    display: none;
+    overflow: hidden;
+    z-index:12;
+}
+.hideTD{
+	display:none;
+}
+
+.table1_title{
+	background:#bfbfbf;
+}
+/* 新增发货通知模态框 */
+.ShipnoticeBox,.InquiryModifyBox{
+	background: white;
+    position: absolute;
+    top: 8%;
+    left: 13%;
+    width: 76%;
+    height: auto;
+    display: none; 
+    border: none;
+    z-index: 11;
+	padding-bottom:10px;
+}
+
+.PreviewBox{
+	background: white;
+    position: absolute;
+    top: 8%;
+    left: 7%;
+    width: 86%;
+    height: auto;
+    min-height:400px;
+    display: none;
+    border: none;
+    z-index: 11;
+    padding-bottom: 10px;
+}
+.PreviewContent ul{
+	width:100%;
+}
+.PreviewContent ul li {
+	border-bottom: #00aeef 2px solid;
+	width:100%;
+    height: 35px;
+    line-height: 35px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+.PreviewContent ul li:last-child{
+	border-bottom:none;
+}
+.ShipnoticeMsg{
+	width: 94%; 
+    min-height: 400px;
+    margin: 0px auto 10px;
+}
+.ShipnoticeMsg ul li{
+	margin:20px 0 0 20px;
+}
+.Shipnotice_rightul ul  li{
+	margin:20px 0 0 60px;
+}
+.Shipnotice_leftul{
+	width:50%;
+	float:left;
+    border-right: solid 1px #bfbfbf;
+    margin-bottom:20px;
+}
+.Shipnotice_rightul{
+    width: calc( 45% - 2px);
+    float: left;
+    padding-left: 5%;
+}
+.ShipnoticeMsg ul li .Shipnotice_span{
+    margin-right: 4%;
+    width: 23%;
+    display: inline-block;
+}
+.ShipnoticeMsg ul li input,.ShipnoticeMsg ul li select{
+	width:244px;
+	height:21px;
+}
+#ShipnoticeTable{
+	width:100%;
+	height:30px;	
+	text-align:center;
+	border-color:#00aeef;
+}
+
+#ShipnoticeTable td{
+	height:30px;
+	line-height:30px;
+	outline:none;
+}
+.ShipNumInput{
+    width: 100%;
+	height:30px;
+	line-height:30px;
+	font-size:17px;
+	border: none;
+}
+.SerAdd{
+	vertical-align: middle;
+	display:none;
+}
+.SerText{
+	margin-left:0px;
+}
+.OperUp,.OperDel,.OperDown{
+	width:20%;
+	border:solid 1px #00aeef;
+}
+.btnBox{
+    position: relative;
+    bottom: 0px; 
+    width: 100%;
+    height: 35px;
+    padding: 5px 0;
+    text-align:center;
+}
+.btnBox input{
+	width:75px;
+	height:30px;
+}
+#Shipnotice_submit,#Modify_submit{
+    margin-right: 90px;
+}
+.add_fileBox,.update_fileBox,.modelBox{
+	display:inline-block;
+	position: relative;
+	border: 1px solid #999;
+	text-decoration: none;
+	height:26px;
+	margin-top:4px;
+}
+.add_change,.update_change{
+    overflow: hidden;
+    opacity: 0;
+    width: 180px;
+    cursor: pointer;
+}
+.add_uploadText,.update_uploadText,.add_Model{
+    background: #00aeef;
+    position: absolute;
+    top: 0;
+    right: 0;
+    width: 50px;
+    height: 26px;
+    line-height: 26px;
+    text-align: center;
+    cursor: pointer;
+    color:#fff;
+}
+.Shipnotice_rightul .modelBox .ModelInput{
+	height:25px;
+	 border:none;
+}
+.add_fileCont,.add_fileCont1,.update_fileCont,.update_fileCont1{
+	display: inline-block;
+	width: 180px;
+	line-height: 26px;
+	height:26px;
+	position: absolute;
+    cursor: pointer;
+	overflow: hidden;
+	text-overflow:ellipsis;
+	white-space: nowrap;
+    font-size: 14px;
+}
+
+
+
+.CustomerMsgTitle {
+    width: 100%;
+    height: 20px;
+    padding: 20px 0 5px 20px;
+    font-size: 17px;
+    color: #00aeef;
+}
+	.ysearch {
+	    float: right;
+	    position: relative;
+	    height: 30px;
+	    border-radius: 0 15px 15px 0;
+	    background: #989898;
+        min-width: 27px;
+	    font: normal normal normal 14px/1 FontAwesome;
+	    text-rendering: auto;
+	    color: #fff;
+	    line-height: 30px;
+	    padding-left: 8px;
+	    font-size: 16px;
+	    cursor: pointer;
+	}
+	.ysearch:before {
+	    content: "\f002";
+	}
+	.tsearch {
+	    position: absolute;
+	    right: 0;
+	    width: 20%;
+	    min-width: 220px;
+    	height: 29px;
+	    background: #fff;
+	    border-radius: 15px;
+	    border: 1px solid #ccc;
+	    padding-left: 10px;
+	    right: 27%;
+	}
+	.InitiateService,.contract-edit{
+		cursor:pointer;
+	}
+	.content .choose  .exportBtn{
+		margin-left:20px!important;
+	}
+	
+	.Customerlist,.ModelList{
+		display:none;
+		position: absolute;
+	    width: 248px;
+	    z-index: 1;
+	    background: #dadada;
+	    opacity: 0.9;
+	    max-height: 100px;
+	    overflow-y: scroll;
+	}
+	.ModelListUl,.PackageNameListUl,.RemarksListUl{
+		 display:none;
+		position: absolute;
+	    width: 174px;
+	    z-index: 1;
+	    background: #dadada;
+	    opacity: 0.9;
+	    max-height: 100px;
+	    overflow-y: scroll;
+	}
+	.ModelList{
+	    left: -1px;
+	}
+	.Customerlist li{
+		border-bottom:solid 1px #fff;
+		cursor:pointer;
+		font-size:14px;
+		margin:0!important;
+	}
+	.ModelList li{
+		border-bottom:solid 1px #fff;
+		cursor:pointer;
+		font-size:14px;
+		margin:0!important;
+		padding-top:5px;
+	}
+	.ModelListUl li,.PackageNameListUl li,.RemarksListUl li{
+		text-align:left;
+		border-bottom:solid 1px #fff;
+		cursor:pointer;
+		font-size:14px;
+		margin:0!important;
+	}
+	.Customerlist li:hover,.ModelList li:hover,.ModelListUl li:hover{
+		background:#fff;
+	}

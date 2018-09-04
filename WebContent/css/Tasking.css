@@ -1,0 +1,582 @@
+body {
+	height: auto;
+}
+
+.g_container {
+	min-width: 1000px;
+	width: 90%;
+	margin: 0 auto;
+}
+
+.m_button {
+	width: 100%;
+	height: 32px;
+	margin-top: 10px;
+	margin-bottom: 20px;
+}
+
+.m_button_l, .m_button_r {
+	display: inline-block;
+	height: 32px;
+}
+
+.m_button_l {
+	width: 62px;
+}
+
+.m_button_r {
+	width: 102px;
+	margin-left: calc(100% - 170px);
+}
+
+.m_table table {
+	min-width: 1000px;
+	width: 100%;
+	border: 1px solid #999;
+	text-align: center;
+}
+
+.m_table table th {
+	text-align: center;
+}
+
+.m_table table th, .m_table table td {
+	border: 1px solid #999;
+	box-sizing: border-box;
+}
+
+.m_table table thead tr {
+	background: #ccc;
+}
+
+.m_table table tr {
+	height: 30px;
+}
+
+.m_table tbody {
+	background: #f8f8f8;
+}
+
+.m_table .t1 {
+	min-width: 39px;
+	width: 3.9%;
+}
+
+.m_table .t2 {
+	min-width: 130px;
+	width: 13.0%;
+}
+
+.m_table .t3 {
+	min-width: 103px;
+	max-width: 140px;
+	width: 10.3%;
+}
+
+.m_table .task_des_td {
+	min-width: 103px;
+	max-width: 140px;
+	width: 10.3%;
+	overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+.m_table .task_category_td {
+	overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+.m_table .t4 {
+	min-width: 58px;
+	width: 5.8%;
+}
+
+.m_table .t5 {
+	min-width: 58px;
+	width: 5.8%;
+}
+
+.m_table .t6 {
+	min-width: 109px;
+	max-width: 150px;
+	width: 10.9%;
+}
+
+.m_table .task_progress_td {
+	min-width: 109px;
+	max-width: 150px;
+	width: 10.9%;
+	overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+.m_table .t7 {
+	min-width: 75px;
+	width: 7.5%;
+}
+
+.m_table .t8 {
+	min-width: 90px;
+	width: 9.0%;
+}
+
+.m_table .t9 {
+	min-width: 90px;
+	width: 9.0%;
+}
+
+.m_table .t10 {
+	min-width: 50px;
+	width: auto;
+}
+
+.m_table .t11 {
+	min-width: 42px;
+	max-width: 130px;
+	width: auto;
+}
+
+.m_table .task_no_td {
+	min-width: 42px;
+	max-width: 130px;
+	overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+.m_table .t12 {
+	min-width: 70px;
+	width: 7.0%;
+}
+
+.m_page {
+	width: 100%;
+	height:50px;
+	vertical-align: middle;
+	padding-top: 1px;
+}
+
+.u_page {
+	width: 575px;
+	height: 32px;
+	margin-top: 8px;
+	margin-left: calc(100% - 580px);
+}
+
+.bg_cover {
+	width: 100%;
+	height: 100%;
+	background-color: rgba(10%,20%,30%,0.7);
+    position: absolute;
+    top: 0;
+    left: 0;
+    display: none;
+    overflow: hidden;
+    z-index: 3;
+}
+
+.add_tasking {
+	width: 1000px;
+	height: auto;
+	position: absolute;
+	top: 130px;
+	left: calc(50% - 500px);
+	z-index: 4;
+	background: #fff;
+	font-size: 16px;
+}
+
+.add_tasking_tit {
+	position: relative;
+	width: 100%;
+	height: 35px;
+	background: #00aeef;
+	color: #fff;
+}
+
+.add_tasking_tit_l {
+	height: 35px;
+	line-height: 35px;
+	display: inline-block;
+	width: 940px;
+	text-indent: 20px;
+}
+
+.add_tasking_tit_r {
+	display: inline-block;
+	height: 35px;
+	line-height: 35px;
+	width: 34px;
+	position: absolute;
+	right: 20px;
+}
+
+.add_tasking_body_in {
+	margin: 20px;
+	font-size: 15px;
+}
+
+.add_tasking_body_in input, .add_tasking_body_in select {
+	box-sizing: border-box;
+	width: 150px;
+	height: 25px;
+}
+
+.add_tasking_body_tit {
+	color: #00aeef;
+	font-size: 16px;
+}
+
+.add_tasking_body_main {
+	width: 100%;
+	height: auto;
+	display: flex;
+	margin-top: 20px;
+}
+
+.add_tasking_body_main_l, .add_tasking_body_main_m, .add_tasking_body_main_r {
+	flex:1;
+	padding-bottom: 5px;
+}
+
+.add_tasking_body_main_m, .add_tasking_body_main_r {
+	border-left: 1px solid #ccc;
+}
+
+.add_tasking_body_main_l {
+	padding-right: 50px;
+}
+
+.add_tasking_body_main_m {
+	padding-left: 50px;
+	padding-right: 50px;
+}
+
+.add_tasking_body_main_r {
+	padding-left: 50px;
+}
+
+/*修改*/
+.update_tasking {
+	width: 1000px;
+	height: auto;
+	position: absolute;
+	top: 130px;
+	left: calc(50% - 500px);
+	z-index: 4;
+	background: #fff;
+	font-size: 16px;
+}
+
+.update_tasking_tit {
+	position: relative;
+	width: 100%;
+	height: 35px;
+	background: #00aeef;
+	color: #fff;
+}
+
+.update_tasking_tit_l {
+	height: 35px;
+	line-height: 35px;
+	display: inline-block;
+	width: 940px;
+	text-indent: 20px;
+}
+
+.update_tasking_tit_r {
+	display: inline-block;
+	height: 35px;
+	line-height: 35px;
+	width: 34px;
+	position: absolute;
+	right: 20px;
+}
+
+.update_tasking_body_in {
+	margin: 20px;
+	font-size: 15px;
+}
+
+.update_tasking_body_in input, .update_tasking_body_in select {
+	box-sizing: border-box;
+	width: 150px;
+	height: 25px;
+}
+
+.update_tasking_body_tit {
+	color: #00aeef;
+	font-size: 16px;
+}
+
+.update_tasking_body_main {
+	width: 100%;
+	height: auto;
+	display: flex;
+	margin-top: 20px;
+}
+
+.update_tasking_body_main_l, .update_tasking_body_main_m, .update_tasking_body_main_r {
+	flex:1;
+	padding-bottom: 5px;
+}
+
+.update_tasking_body_main_m, .update_tasking_body_main_r {
+	border-left: 1px solid #ccc;
+}
+
+.update_tasking_body_main_l {
+	padding-right: 50px;
+}
+
+.update_tasking_body_main_m {
+	padding-left: 50px;
+	padding-right: 50px;
+}
+
+.update_tasking_body_main_r {
+	padding-left: 50px;
+}
+
+.line_0 {
+	height: 25px;
+	width: 100%;
+	display: flex;
+	margin-bottom: 15px;
+}
+
+.line_01 {
+	height: 25px;
+	flex: 2;
+}
+
+.line_02 {
+	height: 25px;
+	flex: 3;
+}
+
+.pageInfo, .changePage {
+	display: inline-block;
+}
+
+.add_tasking_foot, .update_tasking_foot {
+	height: 32px;
+	width: 100%;
+	margin-bottom: 10px;
+}
+
+.add_tasking_foot_in, .update_tasking_foot_in {
+	width: 152px;
+	height: 32px;
+	margin: 0 auto;
+}
+
+#tasking_addsubmit, #tasking_updatesubmit {
+	margin-right: 20px;
+}
+
+.add_tasking_tit_r, .update_tasking_tit_r, .update_td {
+	cursor: pointer;
+}
+
+.buttonDisabled {
+    background: #dddddd;
+    color: #808080;
+    border: none;
+    box-shadow: 0 0 0 0 #f8fcfd;
+    cursor: not-allowed;
+}
+
+.buttonAbled {
+    background: #00aeef;
+    color: #fff;
+    border: 1px solid #00aeef;
+    box-shadow: 1px 2px 5px 0 #00aeef;
+    cursor: pointer;
+}
+
+.publish_td input {
+	display: inline-block;
+	width: 60px;
+	height: 26px;
+	font-size: 14px;
+	border-radius: 13px;
+	background: #00aeef;
+	color: #fff;
+	border-width: 0;
+}
+
+.publish_div {
+	position: absolute;
+	top: 200px;
+	left: 50%;
+	z-index: 5;
+	height: 130px;
+	width: 220px;
+	margin-left: -110px;
+	font-size: 16px;
+	background: #fff;
+}
+
+.publish_div_tit {
+	height: 30px;
+	line-height: 30px;
+	text-indent: 10px;
+	background: #00aeef;
+}
+
+.publish_div_body {
+	height: 50px;
+	line-height: 50px;
+	color: rgba(255,0,0,0.8);
+	text-align: center;
+}
+
+.publish_div_foot {
+	height: 45px;
+	line-height: 45px;
+	text-align: center;
+}
+
+.publish_div_foot_in {
+	font-size: 15px;
+	margin: 0 auto;
+	width: 160px;
+	height: 45px;
+	line-height: 45px;
+	text-align: center;
+}
+
+#publish_yes {
+	margin-right: 10px;
+}
+
+.t3 span {
+	margin-left: 3px;
+	display: inline-block;
+	font-size: 14px;
+}
+
+.t3 i {
+	cursor: pointer;
+}
+
+.add_tasking_body_main input, .add_tasking_body_main select {
+	font-size: 14px;
+}
+
+.update_tasking_body_main input, .update_tasking_body_main select {
+	font-size: 14px;
+}
+
+/*tips*/
+.tips_out span {
+	position: absolute;
+	left: 2px;
+	top: 2px;
+	display: inline-block;
+	width: 21px;
+	height: 21px;
+	font-size: 13px;
+	padding: 3px;
+	background-color: #61b035;
+	border: 1px solid #70c244;
+	z-index: 9;
+}
+
+.tips_out i {
+	display: inline-block;
+	width: 13px;
+    height: 13px;
+    background: url(../image/plus.gif) no-repeat center center;
+    -webkit-transition: -webkit-transform 0.7s linear;
+    -moz-transition: -moz-transform 0.7s linear;
+    transition: transform 0.7s linear;
+}
+
+.close_icon {
+	transform:rotate(45deg);
+	-ms-transform:rotate(45deg); /* Internet Explorer */
+	-moz-transform:rotate(45deg); /* Firefox */
+	-webkit-transform:rotate(45deg); /* Safari 和 Chrome */
+	-o-transform:rotate(45deg); /* Opera */
+}
+
+/*tips body*/
+.tips_body {
+	position: absolute;
+	left: 2px;
+	top:2px;
+	width: 0px;
+	height: 0px;
+	font-size: 14px;
+	z-index: 8;
+	background: #fff;
+	-webkit-transition: all 0.7s linear;
+    -moz-transition: all 0.7s linear;
+    transition: all 0.7s linear;
+}
+
+.tips_body_wh {
+	width: 300px;
+	height: 200px;
+}
+
+.tips_body_tit {
+	text-indent: 25px;
+	height: 0;
+	width:0;
+	line-height: 21px;
+	color: #fff;
+	background: #00aeef;
+	-webkit-transition: all 0.7s linear;
+    -moz-transition: all 0.7s linear;
+    transition: all 0.7s linear;
+}
+
+.tips_body_tit_wh {
+	height: 21px;
+	width:300px;
+}
+
+.tips_body_in {
+	width: 0px;
+	height: 0px;
+	padding-top: 1px;
+	margin: 20px;
+	text-align: center;
+	-webkit-transition: all 0.7s linear;
+    -moz-transition: all 0.7s linear;
+    transition: all 0.7s linear;
+}
+
+.tips_body_in_wh {
+	width: 260px;
+	height: 139px;
+} 
+
+.task_des, .task_progress {
+	text-indent: 25px;
+}
+
+/*主表格tips*/
+
+.tips_span, .tips_span1 {
+	padding:8px;
+	position: absolute;
+	display: inline-block;
+	width: 230px;
+	height: auto;
+	border-radius: 10px;
+	background: #333;
+	opacity: 0;
+	visibility: hidden;
+	color: #fff;
+}
+
+.task_des_td, .task_progress_td {
+	cursor: pointer;
+}

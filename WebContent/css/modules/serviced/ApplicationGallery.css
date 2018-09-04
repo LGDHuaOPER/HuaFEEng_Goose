@@ -1,0 +1,636 @@
+#global_table_style_wrapper, #glbal_table_page_wrapper {
+	min-width: 1000px;
+	width: 90%;
+	margin: 2px auto;
+}
+
+#global_table_style {
+	min-width: 1000px;
+    width: 100%;
+    box-sizing: border-box;
+    border-collapse: collapse;
+    /*如果定义两个 length 参数，那么第一个设置水平间距，而第二个设置垂直间距。*/
+    border-spacing: 0;
+    text-align: center;
+    font-size: 14px;
+    box-shadow: -3px 3px 10px 2px rgba(195,206,220,0.7), 3px 3px 10px 2px rgba(195,206,220,0.7);
+}
+
+/*超出隐藏*/
+#global_table_style .global_overflow_hide {
+	overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+#global_table_style td, #global_table_style th {
+	overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    padding: 1px 2px;
+}
+
+#global_table_style th {
+	text-align: center;
+	font-size: 15px;
+	font-weight: 600;
+}
+
+#global_table_style td:not(:first-child) {
+	border-left: 1px solid #999;
+}
+
+#global_table_style tbody tr:nth-child(odd) {
+	height: 40px;
+	background: #fff;
+}
+
+#global_table_style tbody tr:nth-child(even) {
+	height: 40px;
+	background: rgba(195,206,220,0.9);
+}
+
+#global_table_style thead tr {
+	height: 35px;
+	background: #b5b5b5;
+}
+
+/*翻页*/
+#glbal_table_page, #global_table_page {
+	margin-top: 8px;
+	/*display: table-cell;*/
+	width: 100%;
+	height: 32px;
+	line-height: 32px;
+	text-align: right;
+	padding-top: 1px;
+	padding-right: 10px;
+	font-size: 15px;
+}
+
+#glbal_table_page>.pageInfo, #glbal_table_page>.changePage, #global_table_page>.pageInfo, #global_table_page>.changePage {
+	display: inline-block;
+}
+
+
+
+/*
+*备份的样式 class命名*
+ */
+.gl_table_style_wrapper, .gl_table_page_wrapper {
+	min-width: 1000px;
+	width: 90%;
+	margin: 2px auto;
+}
+	/*可修改*/
+.gl_table_style_wrapper {
+	min-height: 446px;
+}
+
+.gl_table_style {
+	min-width: 1000px;
+    width: 100%;
+    box-sizing: border-box;
+    border-collapse: collapse;
+    /*如果定义两个 length 参数，那么第一个设置水平间距，而第二个设置垂直间距。*/
+    border-spacing: 0;
+    text-align: center;
+    font-size: 14px;
+    box-shadow: -3px 3px 10px 2px rgba(195,206,220,0.7), 3px 3px 10px 2px rgba(195,206,220,0.7);
+}
+
+/*超出隐藏*/
+.gl_table_style .gl_overflow_hide {
+	overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+.gl_table_style td, .gl_table_style th {
+	overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    padding: 1px 2px;
+}
+
+.gl_table_style th {
+	text-align: center;
+	font-size: 15px;
+	font-weight: 600;
+}
+
+.gl_table_style td:not(:first-child) {
+	border-left: 1px solid #999;
+}
+
+.gl_table_style tbody tr:nth-child(odd) {
+	height: 40px;
+	background: #fff;
+}
+
+.gl_table_style tbody tr:nth-child(even) {
+	height: 40px;
+	background: rgba(195,206,220,0.9);
+}
+
+.gl_table_style thead tr {
+	height: 35px;
+	background: #b5b5b5;
+}
+
+/*翻页*/
+.gl_table_page {
+	margin-top: 8px;
+	/*display: table-cell;*/
+	width: 100%;
+	height: 32px;
+	line-height: 32px;
+	text-align: right;
+	padding-top: 1px;
+	padding-right: 10px;
+	font-size: 15px;
+}
+
+.gl_table_page>.pageInfo, .gl_table_page>.changePage {
+	display: inline-block;
+}
+body {
+	height: auto;
+}
+
+.g_container {
+	min-width: 1000px;
+	width: 90%;
+	margin: 0 auto;
+}
+
+.m_button {
+	position: relative;
+    top: 20px;
+	width: 100%;
+	height: 40px;
+	margin-top: 10px;
+	margin-bottom: 5px;
+}
+
+.m_button>.row>div:nth-child(2) {
+	text-align: right;
+}
+
+.m_button>.row {
+	max-height: 40px;
+	min-height: 40px;
+	height: 40px;
+}
+
+.search_in {
+	position: relative;
+    top: 20px;
+	display: inline-block;
+    text-align: left;
+}
+
+.search_in>div:nth-child(1) {
+	margin-bottom: 3px;
+}
+
+.m_button>.row>div:nth-child(1)>span {
+	font-size: 22px;
+	transform:rotate(45deg);
+	-ms-transform:rotate(45deg); 	/* IE 9 */
+	-moz-transform:rotate(45deg); 	/* Firefox */
+	-webkit-transform:rotate(45deg); /* Safari 和 Chrome */
+	-o-transform:rotate(45deg); 	/* Opera */
+}
+
+ul.dropdown-menu {
+	width: 100px;
+	min-width: 100px;
+	padding-left: 7px;
+	padding-right: 8px;
+}
+
+ul.dropdown-menu>li:not(:last-child) {
+	border-bottom: 1px solid #ddd;
+}
+
+ul.dropdown-menu li {
+	padding-left: 2px;
+	padding-top: 3px;
+	padding-bottom: 3px;
+	cursor: pointer;
+}
+
+.m_pagination {
+	min-width: 1000px;
+	width: 100%;
+}
+
+.m_pagination td {
+	max-width: 150px;
+}
+
+.m_pagination .t1, .m_pagination .tt1, .m_pagination .ttt1, .update_td {
+	max-width: 50px;
+	min-width: 50px;
+	width: 50px;
+}
+
+.t7, .t8, .t9, .tt8, .tt9, .tt10, .ttt8, .ttt9, .ttt10, .hastd_CADdrawings, .hastd_PDFdrawings, .hastd_Remark {
+	max-width: 120px;
+	min-width: 120px;
+	width: 120px;
+}
+
+/*弹出类*/
+.bg_cover {
+	width: 100%;
+	height: 100%;
+	background-color: rgba(10%,20%,30%,0.7);
+    position: absolute;
+    top: 0;
+    left: 0;
+    display: none;
+    overflow: hidden;
+    z-index: 3;
+}
+
+div[class^='add_wrapper_'], div[class^='update_wrapper_'] {
+	width: 840px;
+	height: auto;
+	position: absolute;
+	top: 15px;
+	left: calc(50% - 420px);
+	z-index: 4;
+	background: #fff;
+	font-size: 16px;
+}
+
+// #BiddingDocumentUpload+label {
+// 	margin-left: 10px;
+// 	width: 25px;
+// 	height: 25px;
+// 	font-size: 22px;
+// }
+
+/*报销详情样式*/
+[class$="NonStandard_details_div"] th, [class$="NonStandard_details_div"] td {
+	text-align: center;
+	word-wrap: break-word;
+	/*字内换行行为*/
+	word-break: break-all;
+}
+
+/*维护y轴超出滚动元素*/
+.add_NonStandard_details_div, .add_NonStandard_details_address, .update_NonStandard_details_div, .update_NonStandard_details_address, .modal-body {
+	overflow-y: auto; 
+	overflow-x: hidden;
+}
+
+/*维护隐藏元素*/
+.bg_cover, div[class^='add_wrapper_'], div[class^='update_wrapper_'], .mixSelect_search, .m_button div.form-group input[type='text'], .m_button div.form-group input[type='date'], .m_button div.form-group select {
+	display: none;
+}
+
+/*维护鼠标悬浮元素*/
+span.glyphicon, .add_NonStandard_tit_r, .update_NonStandard_tit_r, .update_td, ul.dropdown-menu>li, #fileList_ul .badge {
+	cursor: pointer;
+}
+
+/*维护第三方库覆盖样式*/
+.operation_nav_bar {
+	position: fixed;
+	top: 0;
+	left: 0;
+	right: 0;
+	min-width: 1100px;
+	z-index: 21;
+}
+.opera_wrapper {
+	margin: 0 auto;
+	min-width: 1000px;
+	width: 90%;
+}
+.navbar-collapse>ul {
+	padding-left: 0;
+    margin-bottom: 0;
+    list-style: none;
+}
+.navbar-collapse>ul>li {
+	height: 50px;
+	line-height: 50px;
+}
+.navbar-collapse>ul>li:nth-child(5)>div {
+	border: 1px solid transparent;
+	width: 5px;
+	height: 50px;
+	background-color: #ddd;
+	margin: 0 10px;
+}
+.navbar-brand {
+	padding: 8px 15px;
+}
+.form-control-feedback {
+	z-index: 20;
+	pointer-events: auto;
+}
+
+/*权限样式*/
+thead.jurisdiction .t8, tbody.jurisdiction .workReport_Comments_td {
+	display: table-cell;
+}
+thead.inormal .t8, tbody.inormal .workReport_Comments_td {
+	display: none;
+}
+
+/*动态提示剩余字数*/
+.wrapper_number_no {
+	display: inline-block;
+	margin-left: 15px;
+	font-size: 12px;
+	font-weight: normal;
+}
+
+.all_number_no {
+	font-size: 13px;
+	font-weight: 500;
+}
+
+.overplus_number_no {
+	font-size: 13px;
+	font-weight: 500;
+	color: red;
+}
+
+/*下载样式*/
+span.td_download_file {
+	cursor: pointer;
+	color: #00aeef;
+}
+
+li.list-group-item-success, li.list-group-item-info, ol>li {
+	text-decoration: underline;
+	cursor: pointer;
+}
+
+ol {
+	list-style-type: decimal;
+}
+
+ol>li {
+	list-style-type: decimal;
+	list-style-position:inside;
+	color: #00aeef;
+}
+
+ol>li+li {
+	margin-top: 3px;
+}
+
+/*loading图*/
+.loading_div_g_div {
+	position: fixed;
+	top: 0;
+	bottom: 0;
+	left: 0;
+	right: 0;
+	z-index: 100;
+	width: 100vw;
+	height: 100vh;
+	background-color: #5bc0de;
+
+	filter:alpha(opacity=90); /* IE */  
+	-moz-opacity:0.9; /* 老版Mozilla */  
+	-khtml-opacity:0.9; /* 老版Safari */  
+	opacity: 0.9; /* 支持opacity的浏览器*/ 
+
+    // text-align: center;
+    /*水平垂直居中，父元素设置*/
+    display: -webkit-flex;
+    display: flex;
+    	/*设置弹性盒子元素在主轴（横轴）的对齐方式。*/
+    justify-content: center;
+	/*
+	* align-items, align-self 
+设置弹性盒子元素在垂直方向上（纵轴）的对齐方式。其中align-items属性用于弹性容器，而align-self用于弹性项目。
+	align-self 属性定义flex子项单独在侧轴（纵轴）方向上的对齐方式。
+	align-self 属性可重写灵活容器的 align-items 属性。
+	 */
+    align-items: center;
+}
+
+/*
+* 用min-width时，小的放上面大的在下面，同理如果是用max-width那么就是大的在上面，小的在下面
+ */
+@media screen and (max-width: 900px) {
+    div[class^='add_wrapper_'], div[class^='update_wrapper_'] {
+		left: 0;
+		margin-left: 0;
+    }
+
+    .bg_cover {
+    	width: 1050px;
+    }
+}
+/*ApplicationGallery 研发图库页面*/
+div.add_section_all {
+	width: 100%;
+}
+
+.add_section_all_tit {
+	position: relative;
+	width: 100%;
+	height: 35px;
+	line-height: 35px;
+	background: #707070;
+	color: #fff;
+}
+
+.add_section_all_tit_l {
+	height: 35px;
+	display: inline-block;
+	text-indent: 20px;
+}
+
+.add_section_all_tit_r {
+	display: inline-block;
+	height: 35px;
+	width: 40px;
+	position: absolute;
+	right: 0px;
+}
+
+.add_section_all_tit_r>span{
+	font-size: 20px;
+	margin-top: 7px;
+}
+
+.add_section_all_body_in {
+	margin: 20px;
+	font-size: 14px;
+}
+
+.add_section_all_body_in legend {
+	margin-bottom: 8px;
+	font-size: 16px;
+	color: #00aeef;
+}
+
+.add_section_all_body_in input[type='file'] {
+	display: none;
+}
+
+.add_fileList_ul_wrapper {
+	max-height: 150px;
+	overflow-y: auto;
+    overflow-x: hidden;
+}
+
+.add_fileList_info {
+	font-size: 13px;
+}
+
+.add_fileList_info div.progress {
+	margin-bottom: 5px;
+}
+
+.add_section_all_foot {
+	height: 35px;
+	width: 100%;
+	margin-bottom: 10px;
+	text-align: center;
+}
+
+.add_section_all_foot_in {
+	display: inline-block;
+	height: 35px;
+}
+
+.add_section_all_foot_in>input {
+	-webkit-filter: brightness(0.9);
+	filter: brightness(0.9);
+	font-size: 15px;
+}
+
+.add_section_all_foot_in>input:hover {
+	-webkit-filter: brightness(1.2);
+	filter: brightness(1.2);
+}
+
+.add_section_all_foot_in>input+input {
+	margin-left: 45px;
+}
+
+/*修改*/
+div.update_section_all {
+	width: 100%;
+}
+
+.update_section_all_tit {
+	position: relative;
+	width: 100%;
+	height: 35px;
+	line-height: 35px;
+	background: #707070;
+	color: #fff;
+}
+
+.update_section_all_tit_l {
+	height: 35px;
+	display: inline-block;
+	text-indent: 20px;
+}
+
+.update_section_all_tit_r {
+	display: inline-block;
+	height: 35px;
+	width: 40px;
+	position: absolute;
+	right: 0px;
+}
+
+.update_section_all_tit_r>span{
+	font-size: 20px;
+	margin-top: 7px;
+}
+
+.update_section_all_body_in {
+	margin: 20px;
+	font-size: 14px;
+}
+
+.update_section_all_body_in legend {
+	margin-bottom: 8px;
+	font-size: 16px;
+	color: #00aeef;
+}
+
+.update_section_all_body_in input[type='file'] {
+	display: none;
+}
+
+.update_fileList_ul_wrapper {
+	max-height: 150px;
+	overflow-y: auto;
+    overflow-x: hidden;
+}
+
+.update_fileList_info {
+	font-size: 13px;
+}
+
+.update_fileList_info div.progress {
+	margin-bottom: 5px;
+}
+
+.update_section_all_foot {
+	height: 35px;
+	width: 100%;
+	margin-bottom: 10px;
+	text-align: center;
+}
+
+.update_section_all_foot_in {
+	display: inline-block;
+	height: 35px;
+}
+
+.update_section_all_foot_in>input {
+	-webkit-filter: brightness(0.9);
+	filter: brightness(0.9);
+	font-size: 15px;
+}
+
+.update_section_all_foot_in>input:hover {
+	-webkit-filter: brightness(1.2);
+	filter: brightness(1.2);
+}
+
+.update_section_all_foot_in>input+input {
+	margin-left: 45px;
+}
+
+ul>li>span {
+	cursor: pointer;
+}
+/*bs组件 nav 去除项目样式*/
+ul.nav {
+	clear: none !important;
+	min-width: 1px !important;
+	width: auto !important;
+	height: auto !important;
+	line-height: 1.42857143 !important;
+	margin: 0 0 !important;
+	background: transparent !important;
+}
+
+ul.nav li a {
+	color: #337ab7 !important;
+	cursor: pointer !important;
+}
+
+ul.nav li.active a {
+	color: #555 !important;
+	cursor: default !important;
+}
+/*bs组件 nav 去除项目样式 end*/

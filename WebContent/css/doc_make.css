@@ -1,0 +1,181 @@
+
+ul,li,dl,dt,dd{
+	list-style:none;
+}
+a{
+	text-decoration:none;
+}
+.contain{
+    width: 100%;
+    height: auto;
+}
+input,select{
+    font-family: "Arial","microsoft yahei";
+}
+.pl{padding-left:10px;}
+.lf{float:left;}
+.rt{float:right;}
+.cl{clear:both;}
+
+
+.contract .contractPage th:last-child,.contract .contractPage td:last-child{
+    display: none;
+}
+.content .choose{
+    margin: 50px 0 10px 5%;
+}
+.content .choose input[type="button"]{
+    width: 100px;
+    height: 30px;
+    color: #fff;
+    border: none;
+}
+
+.contain .content .bToggle{
+    background: #00aeef;
+    border: solid 1px #00aeef;
+    color:#fff;
+    cursor: pointer;
+    box-shadow: 1px 2px 5px 0 #00aeef;
+}
+.contain .content .bToggle:hover{
+    background: #fff;
+    color:#00aeef ;
+}
+
+/*涓讳綋閮ㄥ垎*/
+.mainContent{ 
+	width:90%;
+	min-height:300px;
+	margin:0 auto;
+	}
+/*绔栫姸瀵艰埅鏍�*/	
+.nav-bar{ 
+	width:20%;
+	float:left;
+	margin-bottom:30px;
+	border:solid 1px #00aeef;
+}
+
+.contactList{width:100%;}
+.contactList .sw_list,.contactList .wl_list{
+	width:100%;
+	height:306px;
+	line-height:37px;
+	display:block;
+}
+.sw_list{
+	border-bottom:solid 1px #00aeef;
+}
+.wl_list_title,.sw_list_title{
+	text-align:center;
+	letter-spacing:5px;
+	font-size:22px;
+	border-bottom:solid 1px #00aeef;
+	
+}
+.wl_list li,.sw_list li{
+	cursor: pointer;
+	border-bottom:dashed 1px #00aeef;
+}
+.contactList ul{
+	height:260px;
+	overflow-y: auto;
+}
+
+
+.MailBar{
+    background: white;
+    position: absolute;
+    top:38%;
+    left: 35%;
+    width: 24%;
+    height: 28%;
+    min-width:460px;
+	min-height:260px;
+    display: none;
+    border: none;
+    z-index: 100;
+}
+.MailBar_cover_color{
+    width: 100%;
+    height:100%;
+    background-color: rgba(10%,20%,30%,0.7);
+    position: absolute;
+    top: -10px;
+    left: 0;
+    display: none;
+    overflow: hidden;
+    z-index:10;
+}
+
+.MailBar_edit_btn{
+	position: absolute;
+}
+#tem_fileToUpload{
+	position: absolute;
+	top:42.3%;
+	left:27.3%;
+}
+#Mail_Send{
+    width: 80px;
+    height: 35px;
+    position: absolute;
+    top: 73.5%;
+    left: 40%;
+    font-size: 18px;
+}
+
+.operate_title{
+    height: 35px;
+    width: 100%;
+    line-height: 35px;
+    background-color:#00aeef ;
+    text-indent: 1em;
+    color: white;
+}
+.MailBar_close{
+    width: 35px;
+    height: 25px;
+    color: white;
+    position: absolute;
+    top: 5px;
+    right: 5px;
+    cursor: pointer;
+}
+.chooseSWOrWL{
+	margin:20px 0 0 20%;
+	
+}
+
+/*鍙充晶淇℃伅鏍�*/	
+.news,#hiddenView{
+	width:79%;
+	min-height:500px;
+	float:right;
+	margin-bottom:30px;
+	}
+
+/* 页眉  ,页脚*/
+#view .yemei,#view .yejiao{width: 83%;height: auto;margin:0 auto;}
+
+
+.news table{
+	margin:0 auto;
+	width:90%;
+	font-family: -webkit-body;
+}
+.news table tr td {
+	height: 43px;
+}
+.news table{border-right:1px solid #000;border-bottom:1px solid #000;} 
+.news table td{border-left:1px solid #000;border-top:1px solid #000;} 
+
+.chooseTem{
+	background:#00aeef;
+}
+
+.outlineNone{
+	outline:none;
+	/*color:#00aeef;*/
+

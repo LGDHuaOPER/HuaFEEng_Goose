@@ -1,0 +1,1312 @@
+*{
+    margin:0;
+}
+html,body{
+    width:100%;
+    height:auto;
+    font-family: "Arial","microsoft yahei";
+    background: #e4e8eb;
+}
+.contain{
+    width: 100%;
+    height: auto;
+}
+
+input,select{
+    font-family: "Arial","microsoft yahei";
+    outline:none;
+}
+/*-------------------------婢舵挳鏁撻弬銈嗗------------------------------*/
+.header{
+    width: 100%;
+    height: 80px;
+    background: #00aeef;
+    color: #fff;
+    line-height: 80px;
+    font-size: 32px;
+}
+.header span{
+    padding-left: 30px;
+}
+.header .t-span{
+    float: right;
+    font-size: 14px;
+    margin-right: 20px;
+    padding-top:20px;
+}
+.header a{
+    color: #ffffff;
+    text-decoration: none;
+    cursor:pointer;
+}
+.header a:hover{
+    text-decoration:none!important;
+    color:#fff!important;
+}
+a:hover{
+    text-decoration:none!important;
+}
+/*-----------------------------------闁跨喐鏋婚幏鐑芥晸閺傘倖瀚归柨鐔告灮閹凤拷---------------------------------*/
+
+.content{
+    width: 100%;
+    height: 100%;
+    background: #e4e8eb;
+    padding-bottom: 80px;
+    position: relative;
+}
+
+/*--------------------------------------闁跨喐鏋婚幏閿嬶拷渚�鏁撻弬銈嗗闁跨喐鏋婚幏鐑芥晸閺傘倖瀚归柨鐔告灮閹凤拷-----------------------------*/
+
+/*------------------------------------缁涙盯锟斤拷-----------------------------------*/
+.content .select-content{
+    padding-top: 15px !important;
+    margin-bottom: 10px !important;
+    display: inline-block !important;
+    position: static !important;
+    margin-left: calc(94% - 352px) !important;
+}
+.content .select-button{
+    display: inline-block;
+}
+.content label{
+    font-weight:normal;
+}
+.content .select1,.content .select2{
+    width: auto;
+    height: 30px;
+    border: 1px solid darkgrey;
+    display: inline-block;
+}
+.content .select-content select{
+    width: 120px;
+    height: 30px;
+    color: #000;
+    outline: none;
+    border: none;
+    border-right: 2px solid rgba(169, 169, 169, 0.2);
+}
+.content .select-content input[type="text"]{
+    width: 120px;
+    height: 27px;
+    margin-left: -5px;
+    color: #000;
+    outline: none;
+    border: none;
+}
+ .time{
+	display:none;
+} 
+.content .select-content input[type="date"]{
+    width: 120px;
+    height: 29px;
+    color: #000;
+    outline: none;
+    border: none;
+}
+.content .select-content input[type="radio"]{
+    margin-bottom: 10px;
+}
+.content .select-button input[type="button"]{
+    width: 50px;
+    height: 30px;
+    border: none;
+}
+.content .choose{
+    margin-left: 5%;
+    margin-bottom: 10px;
+}
+.content .choose input[type="button"]{
+    width: 50px;
+    height: 30px;
+    border: none;
+}
+ .bToggle{
+    background: #00aeef;
+    border: solid 1px #00aeef;
+    color:#fff;
+    cursor: pointer;
+    box-shadow: 1px 2px 5px 0 #00aeef;
+}
+ .bToggle:hover{
+    background: #fff;
+    color:#00aeef;
+}
+
+/*-------------------------------------闁跨喕绶濇潏鐐------------------------------------------------*/
+.upload{
+    background: white;
+    position: absolute;
+    top:15%;
+    left:35%;
+    width: 30%;
+    height:auto;
+    display: none;
+    border: none;
+    z-index:2;
+}
+.file_content{
+    width: 70%;
+    margin: 35px auto 25px;
+}
+
+.file_content .error{
+    color:red;
+    font-size:12px;
+    left:110px;
+    position:relative;
+}
+.list{
+	display: none;
+	text-align:start;
+	margin:0 0 10px 5%;
+}
+.list ul {
+	padding:0;
+	margin:0;
+}
+.list ul li{
+	padding:2px 0;
+}
+.file{
+    position: relative;
+    background: #00aeef;
+    border: solid 1px #00aeef;
+    color:#fff;
+    cursor: pointer;
+    box-shadow: 1px 2px 5px 0 #00aeef;
+    margin-top: 10px;
+    margin-left: 10%;
+    padding:2px;
+    overflow: hidden;
+    font-size: 14px;
+    text-decoration: none;
+    text-indent: 0;
+    line-height: 38px;
+}
+
+.file input {
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 75px;
+    filter:alpha(opacity=0);
+    opacity: 0;
+}
+#file_name{
+    margin-left: 5px;
+    height: 20px;
+}
+#open{
+    width: 55px;
+    height: 26px;
+    position: relative;
+    left: 42%;
+    margin-bottom:10px;
+    
+}
+.file:hover{
+    background: #fff;
+    color:#00aeef ;
+}
+
+.table{
+    margin: 0 auto;
+    width: 90%;
+    height: auto;
+    background: #e4e8eb;
+    color: #000;
+    table-layout: fixed;
+    border: 1px solid #00aeef;
+}
+
+
+#table1{
+    margin: 0 auto;
+    width: 90%;
+    height: auto;
+    background: #e4e8eb;
+    color: #000;
+    border: 1px solid #999;
+}
+
+.table1-th {
+    background: #ccc;
+}
+
+#table1 td{
+    text-align: center;
+    height: 30px;
+    min-width:50px;
+    max-width:150px;
+    word-break: break-all;
+    color: #000;
+    font-weight: normal;
+    box-sizing: border-box;
+    border-collapse: collapse;
+}
+
+#table1 .tbody_tr td {
+    font-size: 15px;
+}
+
+#table1 td a{
+    color: #000;
+} 
+.fa{
+    cursor: pointer;
+}
+
+/*------------------------闁跨喐鏋婚幏鐑芥晸閺傘倖瀚归柨鐔告灮閹凤拷------------------------------*/
+.operate{
+    background: white;
+    position: absolute;
+    top:20%;
+    left:13%;
+    width: 74%;
+    display: none;
+    border: none;
+    z-index:1;
+}
+.contract_add,.contract_update{
+    background: white;
+    position: absolute;
+    top:2%;
+    left:13%;
+    width: 74%;
+    height:auto;
+   display: none; 
+    border: none;
+    z-index:1;
+}
+.contract,.supply_detail{
+    background: white;
+    position: absolute;
+    top:15%;
+    left:20%;
+    width: 60%;
+    min-height:230px;
+    display: none;
+    border: none;
+    z-index:1;
+}
+.supply_detail{
+    left:5%;
+    width: 90%;
+}
+.contarct_info,.supply_detail_info{
+    width: 94%;
+    margin: 20px auto;
+    min-height: 150px;
+    max-height: 280px;
+    overflow: auto;
+}
+.basic_info{
+    width: 94%;
+    margin: 10px auto;
+}
+.table_title{
+    margin: 5px 0;color: #00aeef;
+}
+.apply_add_info input[type=search]{
+    z-index: 999;
+    position: absolute;
+    top:0;
+    right:0;
+    width: 150px;
+}
+.apply_left,.apply_right{
+    display: inline-block;
+    position: relative;
+    height: 30px;
+    width: 220px;
+    top:10px;
+    left: 3%;
+}
+.apply_right{
+    margin-left: 20px;
+    width: 300px;
+}
+#select{
+    display: none;
+    position: absolute;
+    top:22px;
+    right: 0;
+    width: 150px;
+}
+.info{
+    background: white;
+    position: absolute;
+    top:20%;
+    left:30%;
+    width: 35%;
+    max-height: 300px;
+    overflow: auto;
+    display: none;
+    border: none;
+    z-index:1;
+}
+
+.operatePage,.contract_basic{
+    background: white;
+    border: none;
+    width: 100%;
+}
+.contract_basic td{
+    height: 34px;
+    border: none;
+    text-align: center;
+}
+.search,.pay_search{
+	z-index: 999;
+    position: absolute;
+    width: 184px;
+    height: 26px;
+    left:0;
+}
+.out_search{
+	position: relative;
+	margin:0 auto;
+	width: 184px;
+    height: 26px;
+}
+.editPage select,.contract_basic select{
+    width: 178px;
+    height: 26px;
+}
+.contract_basic select[name='whether_to_pay'],.contract_basic select[name='payment_terms']{
+	    min-height: 110px;
+	    position: absolute;
+        top:26px;
+        display:none;
+        left:0;
+        z-index: 2;
+}
+.editPage input[type='text'],.contract_basic input[type='text']{
+    width: 175px;
+    height: 22px;
+}
+.editPage input[type='date'],.contract_basic input[type='date']{
+    width: 175px;
+    height: 22px;
+}
+.edit_btn input[type='button']{
+    width: 65px;
+    height: 24px;
+    margin: 5px 0 5px 3%;
+}
+.edit_btn{
+    margin: 10px auto;
+    text-align: center;
+}
+
+.apply_add_info{
+	height:75px;
+}
+.contract  .edit_btn{
+    text-align: left;
+}
+
+.contractPage{
+    background: white;
+    border-color: gainsboro;
+    width: 100%;
+}
+.contractPage td,.contractPage th{
+    word-break: break-all;
+    height:34px;
+    min-width:50px;
+    max-width:150px;
+    text-align: center;
+}
+
+.contract_title{
+    height: 35px;
+    width: 100%;
+    line-height: 35px;
+    background-color:#00aeef ;
+    text-indent: 1em;
+    color: white;
+}
+.contract_close,.operate_close,.contractAdd_close,.contractUpdate_close,.contract_apply_close,.supply_detail_close,.upload_close{
+    width: 35px;
+    height: 25px;
+    color: white;
+    position: absolute;
+    top: 5px;
+    right: 5px;
+    cursor: pointer;
+}
+.cover-color{
+    width: 100%;
+    height:100%;
+    background-color: rgba(10%,20%,30%,0.7);
+    position: absolute;
+    top: -10px;
+    left: 0;
+    display: none;
+    overflow: hidden;
+}
+.cover-color2{
+    width: 100%;
+    height:100%;
+    background-color: rgba(10%,20%,30%,0.7);
+    position: absolute;
+    top: -10px;
+    left: 0;
+    display: none;
+    z-index:2;
+    overflow: hidden;
+}
+
+.bg_cover2 {
+    width: 100vw;
+    height: 100vh;
+    background-color: rgba(10%,20%,30%,0.7);
+    position: absolute;
+    top: -10px;
+    left: 0;
+    display: none;
+    z-index:20;
+    overflow: hidden;
+}
+
+.flow{
+    width: 300px;
+    height: 410px;
+    background: rgba(10%,20%,30%,0.5);
+    border: 1px solid #fff;
+    /*float: right;*/
+    position: absolute;
+    left:-290px;
+    top:160px;
+}
+.flow #datalist{
+    width: 300px;
+    height: 235px;
+    border: 1px solid green;
+    padding-top:40px ;
+    border: 1px solid #fff;
+    overflow-y: auto;
+}
+#datalist .bar{
+    font-size: 24px;
+    position: absolute;
+    z-index: 1;
+    right:-16px;
+    top: 0px;
+    color: #2badd4;
+    display: block;
+    transform: rotate(180deg);
+
+}
+#datalist b{
+    display:inline-block;
+    font-size: 17px;
+    color:#fff;
+    cursor:pointer;
+    margin-left:20px;
+}
+
+
+#fDrag{
+    position: absolute;
+    top:0;
+    left: 0;
+    width:100%;
+    cursor: move;
+    height:40px;
+    text-align: center;
+    line-height: 40px;
+    color: #fff;
+    background: #00aeef;
+    font-size:16px;
+}
+#datalist ul{
+    margin-top: 20px;
+}
+#datalist ul li{
+    list-style: none;
+    text-align: center;
+    color: #fff;
+}
+.flow .choose{
+
+    height: 130px;
+    /*border: 1px solid red;*/
+    display: block;
+    display: inline-block;
+}
+.choose #choosedisplay{
+    width: 160px;
+    height: 30px;
+    background: #00aeef;
+    margin-top: 10px;
+    text-align: center;
+    line-height: 30px;
+    margin-left: 30%;
+    /* margin-bottom: 1px solid gray; */
+
+    color: #fff;
+}
+.choose ul{
+    list-style: none;
+    cursor: pointer;
+
+}
+.choose ul li{
+
+    width: 160px;
+    /* border-bottom: 1px solid #567084; */
+    color: #000;
+
+
+}
+.choose ul li:hover{
+    color: #fff;
+}
+.choose #submenu{
+    display: none;
+}
+
+.choose #submenu input[type="button"]{
+    width: 160px;
+    background: #ECF0F1;
+    color: #00aeef;
+    border: none;
+    font-size: 14px;
+}
+.bAnimate:hover{
+    cursor: pointer;
+    animation: bAn 0.5s forwards;
+    -webkit-animation: bAn 0.5s forwards;
+}
+@keyframes bAn{
+    from{background: #e4e8eb;color:#00aeef;}
+    to{background: #00aeef;color:#fff;}
+}
+@-webkit-keyframes bAn{
+    from{background: #e4e8eb;color:#00aeef;}
+    to{background: #00aeef;color:#fff;}
+}
+.flow .clear{
+    float: right;
+    margin-right: 20px;
+    margin-top: 10px;
+    border-radius: 3px;
+}
+.clear input[type="button"]{
+    width: 60px;
+    height: 30px;
+    background: #ddb55c;
+    border: none;
+    border-radius: 3px;
+    color: #fff;
+    cursor: pointer;
+}
+
+/*----------------------------------------闁跨喐鏋婚幏鐑姐��----------------------------------------*/
+.content #page{
+    height: 50px;
+    float:right;
+    margin-top: 20px;
+    margin-right:60px;
+}
+
+.changePage{
+    display:inline-block;
+
+}
+.changePage input[type="button"]{
+    cursor:pointer;
+    border:none;
+    border-radius:3px;
+    width:50px;
+    height:30px;
+}
+
+.changePage input[type="text"]{
+    width:60px;
+    height:20px;
+}
+.pageInfo{
+    display:inline-block;
+    color:#000;
+}
+
+/*------------------------------闁跨喖妯佺拠褎瀚�----------------------------------*/
+.footer{
+    width: 100%;
+    height: 80px;
+    background: #92bd6e;
+    color: #fff;
+    text-align: center;
+
+    margin-top: 54px;
+}
+.footer #p1{
+    margin-top: 12px;
+}
+/* 闁跨喐鏋婚幏鐑芥晸閺傘倖瀚归弫鍫ユ晸閺傘倖瀚� */
+.change
+{
+	color:red ;
+	animation:myfirst 1s;
+	-moz-animation:myfirst 1s; 
+	-webkit-animation:myfirst 1s; 
+	-o-animation:myfirst 1s; 
+	animation-iteration-count:infinite;
+	-moz-animation-iteration-count:infinite;
+	-webkit-animation-iteration-count:infinite;
+	-o-animation-iteration-count:infinite;
+	/* animation-direction:alternate;
+    -moz-animation-direction:alternate;
+    -webkit-animation-direction:alternate;
+    -o-animation-direction:alternate; */
+    
+}
+.change:hover{
+	animation-play-state:paused;
+	/* Safari and Chrome */
+	-webkit-animation:mymove 5s;
+	-moz-animation-play-state:paused;
+	-webkit-animation-play-state:paused;
+	-o-animation-play-state:paused;
+	
+}
+@keyframes myfirst
+{
+    0% {color:red;}
+    100% {color: #fdd530;}
+}
+
+@-moz-keyframes myfirst{
+	0% {color:red;}
+	100% {color:#fdd530;}
+}
+}
+@-webkit-keyframes myfirst{
+	0% {color:red;}
+	100% {color:#fdd530;}
+}
+}
+@-moz-keyframes myfirst{
+	0% {color:red;}
+	100% {color:#fdd530;}
+}
+
+
+/* 婵烇綀顕ф慨鐐哄矗閹寸姰鍋嶅ǎ鍥ｅ墲娴煎懘宕犻崫鍕幍  */
+.contract_add,.contract_update{
+    background: white;
+    position: absolute;
+    top:8%;
+    left:15%;
+    width: 70%;
+    height:auto;
+   /*  display: none; */
+    border: none;
+    z-index:11;
+}
+.contract_title{
+    height: 35px;
+    width: 100%;
+    line-height: 35px;
+    background-color:#00aeef ;
+    text-indent: 1em;
+    color: white;
+}
+.contractAdd_close{
+    width: 35px;
+    height: 25px;
+    color: white;
+    position: absolute;
+    top: 5px;
+    right: 5px;
+    cursor: pointer;
+}
+.edit_btn input[type='button']{
+    width: 65px;	
+    height: 24px;
+    margin: 5px 0 5px 3%;
+}
+.edit_btn{
+    margin: 10px auto;
+    text-align: center;
+}
+.basic_info{
+    width: 94%;
+    min-height:150px;
+    margin: 10px auto;
+}
+.table_title{
+    margin: 5px 0;color: #00aeef;
+    font-size: 17px;
+}
+.contract_basic{
+    background: white;
+    border: none;
+    width: 100%;
+    margin-bottom:10px;
+}
+.contract_basic td{
+    height: 34px;
+    border: none;
+    text-align: center;
+}
+.contract_basic tr{
+   margin:3px 0;
+}
+.contract_basic input[type='text']{
+    width: 175px;
+    height: 22px;
+}
+.contract_basic input[type='date']{
+    width: 175px;
+    height: 22px;
+}
+.contract_basic select{
+    width: 178px;
+    height: 26px;
+}
+.MailBar_cover_color{
+    width: 100%;
+    height:100%;
+    background-color: rgba(10%,20%,30%,0.7);
+    position: absolute;
+    top:0;
+    left: 0;
+   display: none;
+    overflow: hidden;
+    z-index:10;
+}
+
+.chooseTem{
+	background:#00aeef;
+}
+
+.outlineNone{
+	outline:none;
+	/*color:#00aeef;*/
+}
+.tc{text-align: center;}
+.pl{padding-left:10px;}
+.s14{font-size:14px;}
+.s12{font-size:12px;}
+.lf{float:left;}
+.rt{float:right;}
+.cf{clear: both;}
+.vtop{vertical-align:top;}
+
+
+.f14{font-size: 14px;}
+.f16{font-size: 16px;}
+.f24{font-size: 24px;}
+.b{font-weight: bold;}
+
+.f29{font-size: 29px;}
+.f18{font-size: 18px;}
+.m30{margin-top: 30px;}
+.m30b{margin-bottom: 30px;}
+/*.m60b{margin-bottom: 60px;}*/
+
+.contract_send{
+	background: white;
+    position: absolute;
+    top:30%;
+    left:50%;
+    width: 30%;
+    height:auto;
+    display: none;
+    border: none;
+    z-index:1;
+}
+/* 新增样式 */
+.passeye{
+	display: inline-block;
+    font: normal normal normal 14px/1 FontAwesome;
+    font-size: inherit;
+    text-rendering: auto;
+}
+.passeye:before {
+    content: "\f06e";
+}
+input:-webkit-autofill {
+	-webkit-box-shadow: 0 0 0px 1000px white inset;
+	border: 1px solid #CCC!important;
+}
+/* em{
+	font-style:normal;
+}
+.pr{
+	display:inline-block;
+	position:absolute;
+	width:100%;
+	height:auto;
+	background:#fff;
+	left:0px;
+}
+em.pa{
+	position:relative;
+	top:-160px;
+	left:40px;
+	margin-right:83px;
+}
+.edit_btn{
+	position:relative;
+	overflow:hidden;
+} */
+.contract_update{
+    left:13%;
+    width: 80%;
+    min-width: 800px;
+}
+/* 上传和下载按钮 */
+.up_file{
+	display:inline-block;
+	width: 46px;
+    height: 24px;
+	background: #00aeef;
+    border: solid 1px #00aeef;
+    color: #fff;
+    cursor: pointer;
+    box-shadow: 1px 2px 5px 0 #00aeef;
+    text-align:center;
+}
+
+
+/*上传文件区域样式  */
+.MailBar,.MailBar_All{
+    background: white;
+    position: absolute;
+
+    top: 20%;
+    left: 35%;
+    width: 30%;
+    height: 28%;
+
+    display: none;
+    border: none;
+    z-index: 100;
+}
+.MailBar_cover_color_file{
+    width: 100%;
+    height:100%;
+    background-color: rgba(10%,20%,30%,0.7);
+    position: absolute;
+    top: -10px;
+    left: 0;
+    display: none;
+    overflow: hidden;
+    z-index:15;
+}
+
+.MailBar_edit_btn{
+	position: absolute;
+}
+#Mail_fileToUpload{
+	position: absolute;
+	top:42.3%;
+	left:27.3%;
+	border:none;
+	
+}
+#Mail_Send,#All_Send{
+    width: 80px;
+    height: 30px;
+    position: absolute;
+    top: 73.5%;
+    left: 40%;
+    font-size: 18px;
+}
+#All_Send2{
+    width: 80px;
+    height: 35px;
+    position: absolute;
+    top: 73.5%;
+    left: 60%;
+    font-size: 18px;
+}
+.info_title,.contract_title,.operate_title,.detail_title{
+    height: 35px;
+    width: 100%;
+    line-height: 35px;
+    background-color:#00aeef ;
+    text-indent: 1em;
+    color: white;
+}
+.po_close,.info_close,.contract_close,.operate_close,.supply_detail_close,.MailBar_close{
+    width: 35px;
+    height: 25px;
+    color: white;
+    position: absolute;
+    top: 5px;
+    right: 5px;
+    cursor: pointer;
+}
+.SOA,.BAFA{
+	cursor:pointer;
+}
+.down_file{
+    display: inline-block;
+    font: normal normal normal 14px/1 FontAwesome;
+    font-size: inherit;
+    text-rendering: auto;
+    position:relative;
+    top:0;
+    left:0;
+}
+.down_file:before {
+    content: "\f06e"; 
+}
+.contract_update td{
+	text-align:left;
+}
+
+.contract_basic tr td:nth-of-type(odd){
+    font-size: 14px;
+}
+
+.contract_basic tr td:nth-of-type(even){
+    min-width: 239px;
+}
+
+#table1{
+    box-sizing: border-box;
+    border-collapse:collapse;
+}
+
+.filespan {
+    display: inline-block;
+    min-width: 50px;
+    max-width: 150px;
+    font-size: 12px;
+}
+
+.overhid {
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+.tab_href {
+    display: inline-block;
+    min-width: 30px;
+    max-width: 100px;
+    background: #e4e8eb;
+    cursor: pointer;
+    border: none;
+    color: blue;
+    vertical-align: text-bottom;
+}
+
+.PSD-email-tem, .PT-email-tem, .Inform-email-tem {
+    position: absolute;
+    height: auto;
+    min-width: 900px;
+    width: 80%;
+    left: 10%;
+    top: 100px;
+    z-index: 11;
+    background: rgba(255,255,255,0.9);
+}
+
+.Inform-email-tem {
+    z-index: 20;
+}
+
+.PSD-email-tem-tit, .PT-email-tem-tit, .InformSel-tit, .Inform-email-tem-tit {
+    position: relative;
+    width: 100%;
+    font-size: 16px;
+    background: #00aeef;
+    color: rgba(255,255,255,0.9);
+}
+
+
+/*弹出框头部*/
+.PSD-email-tem-tit-l, .PSD-email-tem-tit-r, .PSD-email-tem-tit {
+    height: 35px;
+    line-height: 35px;
+}
+
+.PT-email-tem-tit-l, .PT-email-tem-tit-r, .PT-email-tem-tit {
+    height: 35px;
+    line-height: 35px;
+}
+
+.InformSel-tit, .InformSel-tit-l, .InformSel-tit-r {
+    height: 35px;
+    line-height: 35px;
+}
+
+.Inform-email-tem-tit-l, .Inform-email-tem-tit-r, .Inform-email-tem-tit {
+    height: 35px;
+    line-height: 35px;
+}
+
+.PSD-email-tem-tit-l, .PT-email-tem-tit-l, .InformSel-tit-l, .Inform-email-tem-tit-l {
+    display: inline-block;
+    width: calc(100% - 45px);
+    text-indent: 8px;
+}
+
+.PSD-email-tem-tit-r, .PT-email-tem-tit-r, .InformSel-tit-r, .Inform-email-tem-tit-r {
+    display: inline-block;
+    width: 35px;
+}
+
+.PSD-email-tem-tit-r:hover, .PT-email-tem-tit-r:hover, .InformSel-tit-r:hover, .Inform-email-tem-tit-r {
+    cursor: pointer;
+}
+
+.PSD-email-tem-foot, .PT-email-tem-foot, .Inform-email-tem-foot {
+    width: 100%;
+    height: 42px;
+    padding-bottom: 9px;
+}
+
+.PSD-email-tem-foot-in, .PT-email-tem-foot-in, .Inform-email-tem-foot-in {
+    width: 200px;
+    height: 32px;
+    margin: 0 auto;
+}
+
+.PSD-email-tem-body, .PT-email-tem-body, .Inform-email-tem-body {
+    width: 100%;
+    height: auto;
+}
+
+.PSD-email-tem-body .m-title, .PT-email-tem-body .m-title2, .Inform-email-tem-body .m-title3 {
+    font-size: 16px;
+    color:#00aeef;
+    width: 100%;
+    height: 20px;
+    line-height: 20px;
+    margin-bottom: 10px;
+    margin-top: 10px;
+    text-indent: 15px;
+}
+
+.PSD-email-tem-body .m-recipient, .PSD-email-tem-body .m-CC, .m-subject, .m-content, .PT-email-tem-body .m-recipient2, .PT-email-tem-body .m-CC2, .m-subject2, .m-content2 {
+    font-size: 15px;
+    width: calc(100% - 30px);
+    padding-left: 15px;
+    padding-right: 15px;
+    margin-bottom: 20px;
+}
+
+.Inform-email-tem-body .m-recipient3, .Inform-email-tem-body .m-CC3, .m-subject3, .m-content3 {
+    font-size: 15px;
+    width: calc(100% - 30px);
+    padding-left: 15px;
+    padding-right: 15px;
+    margin-bottom: 20px;
+}
+
+.PSD-email-tem-body .u-recipient, .PSD-email-tem-body .u-CC, .PT-email-tem-body .u-recipient2, .PT-email-tem-body .u-CC2 {
+    display: flex;
+    width: 100%;
+    height: 30px;
+    margin-bottom: 8px;
+}
+
+.Inform-email-tem-body .u-recipient3, .Inform-email-tem-body .u-CC3 {
+    display: flex;
+    width: 100%;
+    height: 30px;
+    margin-bottom: 8px;
+}
+
+.PSD-email-tem-body .u-recipient>div, .PSD-email-tem-body .u-CC>div, .PT-email-tem-body .u-recipient2>div, .PT-email-tem-body .u-CC2>div {
+    flex: 1;
+    height: 30px;
+    line-height: 30px;
+}
+
+.Inform-email-tem-body .u-recipient3>div, .Inform-email-tem-body .u-CC3>div {
+    flex: 1;
+    height: 30px;
+    line-height: 30px;
+}
+
+.i-recipient, .i-CC, .u-subject, .u-content, .i-recipient2, .i-CC2, .u-subject2, .u-content2, .i-recipient3, .i-CC3, .u-subject3, .u-content3 {
+    display: inline-block;
+    width: 65px;
+}
+
+.u-recipient input, .u-CC input, .u-recipient2 input, .u-CC2 input, .u-recipient3 input, .u-CC3 input {
+    margin-right: 3px;
+    width: 180px;
+}
+
+.m-subject input, .m-subject2 input, .m-subject3 input {
+    width: calc(100% - 80px);
+}
+
+.u-recipient input, .u-CC input, .m-subject input, .u-recipient2 input, .u-CC2 input, .m-subject2 input {
+    height: 28px;
+    padding: 2px 4px;
+    font-size: 14px;
+    line-height: 1.42857143;
+}
+
+.u-recipient3 input, .u-CC3 input, .m-subject3 input {
+    height: 28px;
+    padding: 2px 4px;
+    font-size: 14px;
+    line-height: 1.42857143;
+}
+
+.u-recipient input, .u-CC input, .m-subject input, .m-content div, .u-recipient2 input, .u-CC2 input, .m-subject2 input, .m-content2 div, #InformSel-body-sel {
+    color: #555;
+    background-color: #fff;
+    background-image: none;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    -webkit-box-shadow: inset 0 1px 1px rgba(0,0,0,.075);
+    box-shadow: inset 0 1px 1px rgba(0,0,0,.075);
+    -webkit-transition: border-color ease-in-out .15s,-webkit-box-shadow ease-in-out .15s;
+    -o-transition: border-color ease-in-out .15s,box-shadow ease-in-out .15s;
+    transition: border-color ease-in-out .15s,box-shadow ease-in-out .15s;
+}
+
+.u-recipient3 input, .u-CC3 input, .m-subject3 input, .m-content3 div {
+    color: #555;
+    background-color: #fff;
+    background-image: none;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    -webkit-box-shadow: inset 0 1px 1px rgba(0,0,0,.075);
+    box-shadow: inset 0 1px 1px rgba(0,0,0,.075);
+    -webkit-transition: border-color ease-in-out .15s,-webkit-box-shadow ease-in-out .15s;
+    -o-transition: border-color ease-in-out .15s,box-shadow ease-in-out .15s;
+    transition: border-color ease-in-out .15s,box-shadow ease-in-out .15s;
+}
+
+.u-recipient input:focus, .u-CC input:focus, .m-subject input:focus, .u-recipient2 input:focus, .u-CC2 input:focus, .m-subject2 input:focus, #InformSel-body-sel:focus {
+    border-color: rgba(82, 168, 236, 0.8);
+    outline: 0;
+    outline: thin dotted \9;
+    /* IE6-9 */  
+    box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075), 0 0 8px rgba(82, 168, 236, 0.6);
+}
+
+.u-recipient3 input:focus, .u-CC3 input:focus, .m-subject3 input:focus {
+    border-color: rgba(82, 168, 236, 0.8);
+    outline: 0;
+    outline: thin dotted \9;
+    /* IE6-9 */  
+    box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075), 0 0 8px rgba(82, 168, 236, 0.6);
+}
+
+#InformSel-body-sel {
+    width:99%;
+    height: 60px;
+    line-height: 1.42857143;
+    padding: 15px 10px;
+    font-size: 16px;
+}
+
+.i-del {
+    margin-left: 2px;
+}
+
+.m-content div, .m-content2 div, .m-content3 div {
+    display: inline-block;
+    width: calc(100% - 75px);
+    vertical-align: top;
+} 
+
+.m-content span, .m-content2 span, .m-content3 span {
+    vertical-align: top;
+}
+
+.m-content div p, .m-content2 div p, .m-content3 div p {
+    height: 22px;
+    line-height: 22px;
+    margin-top: 5px;
+    margin-bottom: 8px;
+    font-size: 15px;
+    text-indent: 5px;
+    overflow: hidden; 
+    text-overflow:ellipsis;
+    white-space:nowrap;
+}
+
+.InformSel {
+    position: absolute;
+    top: 100px;
+    background: rgba(255,255,255,0.9);
+    width: 350px;
+    height: 135px;
+    z-index: 20;
+}
+
+.InformSel-body-in {
+    width: 300px;
+    height: 60px;
+    margin: 20px auto;
+}
+
+.m-title3 span {
+    margin-left: 20px;
+    color: rgba(255,0,0,0.7);
+    font-size: 14px;
+}
+
+.m-title3 button {
+    margin-left: 10px;
+    box-sizing: border-box;
+}
+
+/*保存与发送分离*/
+.publish_div {
+    position: absolute;
+    top: 200px;
+    left: 50%;
+    z-index: 25;
+    height: 130px;
+    width: 300px;
+    margin-left: -150px;
+    font-size: 15px;
+    background: #fff;
+}
+
+.publish_div_tit {
+    height: 30px;
+    line-height: 30px;
+    text-indent: 10px;
+    background: #00aeef;
+}
+
+.publish_div_body {
+    height: 50px;
+    line-height: 50px;
+    color: rgba(255,0,0,0.8);
+    text-align: center;
+}
+
+.publish_div_foot {
+    height: 45px;
+    line-height: 45px;
+    /*text-align: center;*/
+}
+
+.publish_div_foot_in {
+    font-size: 15px;
+    margin: 0 auto;
+    width: 240px;
+    height: 45px;
+    line-height: 45px;
+    text-align: center;
+}
+
+#publish_yes {
+    margin-right: 20px;
+}
+
+.InvoiceFile1_td, .InvoiceFile2_td, .InvoiceFile3_td {
+    cursor: pointer;
+    color: #00aeef;
+}

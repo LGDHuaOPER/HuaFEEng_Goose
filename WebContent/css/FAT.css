@@ -1,0 +1,686 @@
+
+/*-------------------------------------閿熻緝杈炬嫹------------------------------------------------*/
+.upload{
+    background: white;
+    position: absolute;
+    top:15%;
+    left:35%;
+    width: 30%;
+    height:auto;
+    display: none;
+    border: none;
+    z-index:2;
+}
+.file_content{
+    width: 70%;
+    margin: 35px auto 25px;
+}
+
+.file_content .error{
+    color:red;
+    font-size:12px;
+    left:110px;
+    position:relative;
+}
+.list{
+	display: none;
+	text-align:start;
+	margin:0 0 10px 5%;
+}
+.list ul {
+	padding:0;
+	margin:0;
+}
+.list ul li{
+	padding:2px 0;
+}
+.file{
+    position: relative;
+    background: #00aeef;
+    border: solid 1px #00aeef;
+    color:#fff;
+    cursor: pointer;
+    box-shadow: 1px 2px 5px 0 #00aeef;
+    margin-top: 10px;
+    margin-left: 10%;
+    padding:2px;
+    overflow: hidden;
+    font-size: 14px;
+    text-decoration: none;
+    text-indent: 0;
+    line-height: 38px;
+}
+
+.file input {
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 75px;
+    filter:alpha(opacity=0);
+    opacity: 0;
+}
+#file_name{
+    margin-left: 5px;
+    height: 20px;
+}
+#open{
+    width: 55px;
+    height: 26px;
+    position: relative;
+    left: 42%;
+    margin-bottom:10px;
+    
+}
+.file:hover{
+    background: #fff;
+    color:#00aeef ;
+}
+
+.table{
+    margin: 0 auto;
+    width: 90%;
+    height: auto;
+    background: #e4e8eb;
+    color: #000;
+    table-layout: fixed;
+    border: 1px solid #00aeef;
+}
+
+
+#table1{
+    margin: 0 auto;
+    width: 90%;
+    height: auto;
+    background: #e4e8eb;
+    color: #000;
+    border: 1px solid #00aeef;
+}
+
+
+#table1 td{
+    text-align: center;
+    height: 30px;
+    min-width:50px;
+    max-width:150px;
+    word-break: break-all;
+    font-size: 16px;
+    color: #000;
+    font-weight: normal;
+}
+#table1 td a{
+    color: #000;
+} 
+.fa{
+    cursor: pointer;
+}
+
+/*------------------------閿熸枻鎷烽敓鏂ゆ嫹閿熸枻鎷�------------------------------*/
+.operate{
+    background: white;
+    position: absolute;
+    top:20%;
+    left:13%;
+    width: 74%;
+    display: none;
+    border: none;
+    z-index:1;
+}
+.contract_add,.contract_update{
+    background: white;
+    position: absolute;
+    top:2%;
+    left:13%;
+    width: 74%;
+    height:auto;
+   display: none; 
+    border: none;
+    z-index:1;
+}
+.contract,.supply_detail{
+    background: white;
+    position: absolute;
+    top:15%;
+    left:20%;
+    width: 60%;
+    min-height:230px;
+    display: none;
+    border: none;
+    z-index:1;
+}
+.supply_detail{
+    left:5%;
+    width: 90%;
+}
+.contarct_info,.supply_detail_info{
+    width: 94%;
+    margin: 20px auto;
+    min-height: 150px;
+    max-height: 280px;
+    overflow: auto;
+}
+.basic_info{
+    width: 94%;
+    margin: 10px auto;
+}
+.table_title{
+    margin: 5px 0;color: #00aeef;
+}
+.apply_add_info input[type=search]{
+    z-index: 999;
+    position: absolute;
+    top:0;
+    right:0;
+    width: 150px;
+}
+.apply_left,.apply_right{
+    display: inline-block;
+    position: relative;
+    height: 30px;
+    width: 220px;
+    top:10px;
+    left: 3%;
+}
+.apply_right{
+    margin-left: 20px;
+    width: 300px;
+}
+#select{
+    display: none;
+    position: absolute;
+    top:22px;
+    right: 0;
+    width: 150px;
+}
+.info{
+    background: white;
+    position: absolute;
+    top:20%;
+    left:30%;
+    width: 35%;
+    max-height: 300px;
+    overflow: auto;
+    display: none;
+    border: none;
+    z-index:1;
+}
+
+.operatePage,.contract_basic{
+    background: white;
+    border: none;
+    width: 100%;
+}
+.contract_basic td{
+    height: 34px;
+    border: none;
+    text-align: center;
+}
+.search,.pay_search{
+	z-index: 999;
+    position: absolute;
+    width: 184px;
+    height: 26px;
+    left:0;
+}
+.out_search{
+	position: relative;
+	margin:0 auto;
+	width: 184px;
+    height: 26px;
+}
+.editPage select,.contract_basic select{
+    width: 184px;
+    height: 26px;
+}
+.contract_basic select[name='whether_to_pay'],.contract_basic select[name='payment_terms']{
+	    min-height: 110px;
+	    position: absolute;
+        top:26px;
+        display:none;
+        left:0;
+        z-index: 2;
+}
+.editPage input[type='text'],.contract_basic input[type='text']{
+    width: 180px;
+    height: 20px;
+}
+.editPage input[type='date'],.contract_basic input[type='date']{
+    width: 178px;
+    height: 22px;
+}
+.edit_btn input[type='button']{
+    width: 65px;
+    height: 24px;
+    margin: 5px 0 5px 3%;
+}
+.edit_btn{
+    margin: 10px auto;
+    text-align: center;
+}
+
+.apply_add_info{
+	height:75px;
+}
+.contract  .edit_btn{
+    text-align: left;
+}
+
+.contractPage{
+    background: white;
+    border-color: gainsboro;
+    width: 100%;
+}
+.contractPage td,.contractPage th{
+    word-break: break-all;
+    height:34px;
+    min-width:50px;
+    max-width:150px;
+    text-align: center;
+}
+
+.contract_title{
+    height: 35px;
+    width: 100%;
+    line-height: 35px;
+    background-color:#00aeef ;
+    text-indent: 1em;
+    color: white;
+}
+.contract_close,.operate_close,.contractAdd_close,.contractUpdate_close,.contract_apply_close,.supply_detail_close,.upload_close{
+    width: 35px;
+    height: 25px;
+    color: white;
+    position: absolute;
+    top: 5px;
+    right: 5px;
+    cursor: pointer;
+}
+.cover-color{
+    width: 100%;
+    height:100%;
+    background-color: rgba(10%,20%,30%,0.7);
+    position: absolute;
+    top: -10px;
+    left: 0;
+    display: none;
+    overflow: hidden;
+}
+.cover-color2{
+    width: 100%;
+    height:100%;
+    background-color: rgba(10%,20%,30%,0.7);
+    position: absolute;
+    top: -10px;
+    left: 0;
+    display: none;
+    z-index:2;
+    overflow: hidden;
+}
+.flow{
+    width: 300px;
+    height: 410px;
+    background: rgba(10%,20%,30%,0.5);
+    border: 1px solid #fff;
+    /*float: right;*/
+    position: absolute;
+    left:-290px;
+    top:160px;
+}
+.flow #datalist{
+    width: 300px;
+    height: 235px;
+    border: 1px solid green;
+    padding-top:40px ;
+    border: 1px solid #fff;
+    overflow-y: auto;
+}
+#datalist .bar{
+    font-size: 24px;
+    position: absolute;
+    z-index: 1;
+    right:-16px;
+    top: 0px;
+    color: #2badd4;
+    display: block;
+    transform: rotate(180deg);
+
+}
+#datalist b{
+    display:inline-block;
+    font-size: 17px;
+    color:#fff;
+    cursor:pointer;
+    margin-left:20px;
+}
+
+
+#fDrag{
+    position: absolute;
+    top:0;
+    left: 0;
+    width:100%;
+    cursor: move;
+    height:40px;
+    text-align: center;
+    line-height: 40px;
+    color: #fff;
+    background: #00aeef;
+    font-size:16px;
+}
+#datalist ul{
+    margin-top: 20px;
+}
+#datalist ul li{
+    list-style: none;
+    text-align: center;
+    color: #fff;
+}
+.flow .choose{
+
+    height: 130px;
+    /*border: 1px solid red;*/
+    display: block;
+    display: inline-block;
+}
+.choose #choosedisplay{
+    width: 160px;
+    height: 30px;
+    background: #00aeef;
+    margin-top: 10px;
+    text-align: center;
+    line-height: 30px;
+    margin-left: 30%;
+    /* margin-bottom: 1px solid gray; */
+
+    color: #fff;
+}
+.choose ul{
+    list-style: none;
+    cursor: pointer;
+
+}
+.choose ul li{
+
+    width: 160px;
+    /* border-bottom: 1px solid #567084; */
+    color: #000;
+
+
+}
+.choose ul li:hover{
+    color: #fff;
+}
+.choose #submenu{
+    display: none;
+}
+
+.choose #submenu input[type="button"]{
+    width: 160px;
+    background: #ECF0F1;
+    color: #00aeef;
+    border: none;
+    font-size: 14px;
+}
+.bAnimate:hover{
+    cursor: pointer;
+    animation: bAn 0.5s forwards;
+    -webkit-animation: bAn 0.5s forwards;
+}
+@keyframes bAn{
+    from{background: #e4e8eb;color:#00aeef;}
+    to{background: #00aeef;color:#fff;}
+}
+@-webkit-keyframes bAn{
+    from{background: #e4e8eb;color:#00aeef;}
+    to{background: #00aeef;color:#fff;}
+}
+.flow .clear{
+    float: right;
+    margin-right: 20px;
+    margin-top: 10px;
+    border-radius: 3px;
+}
+.clear input[type="button"]{
+    width: 60px;
+    height: 30px;
+    background: #ddb55c;
+    border: none;
+    border-radius: 3px;
+    color: #fff;
+    cursor: pointer;
+}
+
+/*----------------------------------------閿熸枻鎷烽〉----------------------------------------*/
+.content #page{
+    height: 50px;
+    float:right;
+    margin-top: 20px;
+    margin-right:60px;
+}
+
+.changePage{
+    display:inline-block;
+
+}
+.changePage input[type="button"]{
+    cursor:pointer;
+    border:none;
+    border-radius:3px;
+    width:50px;
+    height:30px;
+}
+
+.changePage input[type="text"]{
+    width:60px;
+    height:20px;
+}
+.pageInfo{
+    display:inline-block;
+    color:#000;
+}
+
+/*------------------------------閿熼樁璇ф嫹----------------------------------*/
+.footer{
+    width: 100%;
+    height: 80px;
+    background: #92bd6e;
+    color: #fff;
+    text-align: center;
+
+    margin-top: 54px;
+}
+.footer #p1{
+    margin-top: 12px;
+}
+/* 閿熸枻鎷烽敓鏂ゆ嫹鏁堥敓鏂ゆ嫹 */
+.change
+{
+	color:red ;
+	animation:myfirst 1s;
+	-moz-animation:myfirst 1s; 
+	-webkit-animation:myfirst 1s; 
+	-o-animation:myfirst 1s; 
+	animation-iteration-count:infinite;
+	-moz-animation-iteration-count:infinite;
+	-webkit-animation-iteration-count:infinite;
+	-o-animation-iteration-count:infinite;
+	/* animation-direction:alternate;
+    -moz-animation-direction:alternate;
+    -webkit-animation-direction:alternate;
+    -o-animation-direction:alternate; */
+    
+}
+.change:hover{
+	animation-play-state:paused;
+	/* Safari and Chrome */
+	-webkit-animation:mymove 5s;
+	-moz-animation-play-state:paused;
+	-webkit-animation-play-state:paused;
+	-o-animation-play-state:paused;
+	
+}
+@keyframes myfirst
+{
+    0% {color:red;}
+    100% {color: #fdd530;}
+}
+
+@-moz-keyframes myfirst{
+	0% {color:red;}
+	100% {color:#fdd530;}
+}
+}
+@-webkit-keyframes myfirst{
+	0% {color:red;}
+	100% {color:#fdd530;}
+}
+}
+@-moz-keyframes myfirst{
+	0% {color:red;}
+	100% {color:#fdd530;}
+}
+
+
+/* 濞ｈ濮為崣鎴犮偍娣団剝浼呴崠鍝勭厵  */
+.contract_add,.contract_update{
+    background: white;
+    position: absolute;
+    top:8%;
+    left:13%;
+    width: 76%;
+    height:auto;
+   /*  display: none; */
+    border: none;
+    z-index:11;
+}
+.contract_title{
+    height: 35px;
+    width: 100%;
+    line-height: 35px;
+    background-color:#00aeef ;
+    text-indent: 1em;
+    color: white;
+}
+.contractAdd_close{
+    width: 35px;
+    height: 25px;
+    color: white;
+    position: absolute;
+    top: 5px;
+    right: 5px;
+    cursor: pointer;
+}
+.edit_btn input[type='button']{
+    width: 65px;	
+    height: 24px;
+    margin: 5px 0 5px 3%;
+}
+.edit_btn{
+    margin: 10px auto;
+    text-align: center;
+}
+.basic_info{
+    width: 94%;
+    min-height:400px;
+    margin: 10px auto;
+}
+.table_title{
+    margin: 5px 0;color: #00aeef;
+    font-size: 17px;
+}
+.contract_basic{
+    background: white;
+    border: none;
+    width: 100%;
+}
+.contract_basic td{
+    height: 34px;
+    border: none;
+    text-align: center;
+}
+.contract_basic tr{
+   margin:3px 0;
+}
+.contract_basic input[type='text']{
+    width: 180px;
+    height: 20px;
+}
+.contract_basic input[type='date']{
+    width: 178px;
+    height: 22px;
+}
+.contract_basic select{
+    width: 184px;
+    height: 26px;
+}
+.MailBar_cover_color{
+    width: 100%;
+    height:100%;
+    background-color: rgba(10%,20%,30%,0.7);
+    position: absolute;
+    top:0;
+    left: 0;
+   display: none;
+    overflow: hidden;
+    z-index:10;
+}
+.hideTD{
+	display:none;
+}
+		/*閸欏厖鏅舵穱鈩冧紖閺嶏拷*/	
+.news,#hiddenView{
+	width:65%;
+	min-height:500px;
+	margin-bottom:30px;
+	}
+	ul,li{
+		list-style: none;
+	}
+/* 椤电湁  ,椤佃剼*/
+#view .yemei,#view .yejiao{width: 83%;height: auto;margin:0 auto;}
+
+
+.news table{
+	margin:0 auto;
+	width:90%;
+	font-family: -webkit-body;
+}
+.news table tr td {
+	height: 32px;
+	padding-left:5px;
+}
+.news table{border-right:1px solid #000;border-bottom:1px solid #000;} 
+.news table td{border-left:1px solid #000;border-top:1px solid #000;} 
+
+.chooseTem{
+	background:#00aeef;
+}
+
+.outlineNone{
+	outline:none;
+	/*color:#00aeef;*/
+}
+.tc{text-align: center;}
+.pl{padding-left:10px;}
+.s14{font-size:14px;}
+.s12{font-size:12px;}
+.lf{float:left;}
+.rt{float:right;}
+.cl{clear:both;}
+.b{font-weight: bold;}
+.vtop{vertical-align:top;}
+.cf{clear: both;}
+
+#view .yemei,#view .yejiao{width: 90%;height: auto;margin:0 auto;}
+
+.MaxW{max-width: 370px;}
+
+#FATPdf{width: 90%;height: auto;margin:0 auto;font-size: 14px;line-height: 25px;}
+
+#FATPdf .noneLine{text-decoration: none;}
+.content_text{width: 100%;  height: auto;line-height: 30px; overflow: hidden; background-color: #fff;}
+.f29{font-size: 29px;}
+.f18{font-size: 18px;}
+.f16{font-size: 16px;}
+.m30{margin-top: 30px;}
+.m30b{margin-bottom: 30px;}
+.m60b{margin-bottom: 60px;}

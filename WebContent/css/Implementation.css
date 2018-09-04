@@ -1,0 +1,994 @@
+
+.content .select-content{
+    padding-top: 25px;
+    margin-left: 33%;
+    margin-bottom: 30px;
+    display: inline-block;
+}
+.content .select-button{
+    display: inline-block;
+}
+.content label{
+    font-weight:normal;
+}
+.content .select{
+    width: 210px;
+    height: 30px;
+    display: inline-block;
+}
+.content .select-content input[type="text"]{
+    width: 120px;
+    height: 22px;
+    color: #000;
+    margin-left: 5px;
+}
+.content .select-button input[type="button"]{
+    width: 50px;
+    height: 30px;
+    color: #fff;
+    border: none;
+}.content .choose{
+	height:95px;
+    margin-left: 5%;
+    margin-bottom: 10px;
+}
+.content .choose input[type="button"]{
+    width: 50px;
+    height: 30px;
+    color: #fff;
+    border: none;
+}
+.contain .content .bToggle{
+    background: #00aeef;
+    border: solid 1px #00aeef;
+    color:#fff;
+    cursor: pointer;
+    box-shadow: 1px 2px 5px 0 #00aeef;
+}
+.contain .content .bToggle:hover{
+    background: #fff;
+    color:#00aeef ;
+}
+/*----------------------------------ҳ��������---------------------------------*/
+#table1 {
+    margin-top: 10px;
+}
+
+#table1 td a{
+    color: #000;
+}
+
+.ModalBox{
+    background: white;
+    position: absolute;
+    top: 1%;
+    left:2.5%;
+    min-width: 1100px;
+    width: 95%;
+    // min-height:410px;
+    height: auto;
+    display: none;
+    z-index:1;
+}
+.ModifyBox{
+    background: white;
+    position: absolute;
+    top: 1%;
+    left:5.5%;
+    width: 89%;
+    /*height:450px;*/
+    display: none; 
+    z-index:1;
+    font-size: 16px;
+}
+
+.addImplementationOut{
+    position: absolute;
+    top: 1%;
+    left: 5.5%;
+    width: 89%;
+    height: 450px;
+    display: none; 
+    z-index: 1;
+    font-size: 16px;
+}
+
+.addImplementationBox {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    background: white;
+}
+
+.ModalBox_title{
+    height: 35px;
+    width: 100%;
+    line-height: 35px;
+    background-color: #00aeef;
+    text-indent: 1em;
+    color: white;
+}
+.ModalBox_close, .ModalBox_close2{
+	width: 35px;
+    height: 25px;
+    color: white;
+    position: absolute;
+    top: 5px;
+    right: 5px;
+    cursor: pointer;
+}
+.ModalBoxTitle, .ScheduleBox_title{
+    /*width: 100%;*/
+    height: 20px;
+    margin: 20px 0 5px 15px;
+    font-size: 17px;
+    color: #00aeef;
+}
+.ModalBoxMsg{
+    width: clac( 100% - 40px );
+    // min-height: 400px;
+    height: auto;
+    margin: 0px auto 15px;
+}
+ .ModalBoxMsgList ul{
+	float:left;
+	width:calc(25% - 2px);
+	border-right: solid 1px #bfbfbf;
+    min-height: 140px;
+}
+ .ModalBoxMsgList .ModalBoxMsg_ul3{
+	width:26%;
+}
+ .ModalBoxMsgList .ModalBoxMsg_ul4{
+	width:calc(24% - 2px);
+	border-right: none;
+}
+ .ModalBoxMsgList ul li{
+	margin:20px 0 0 15px;
+	font-size: 14px;
+}
+ .ModalBoxMsgList ul li input{
+	width:170px;
+	height:20px;
+}
+ .ModalBoxMsgList ul li .ModalBoxMsg_span{
+    margin-right: 2%;
+    width: 25%;
+    display: inline-block;
+}
+ .ModalBoxMsgList .ModalBoxMsg_ul3 li .ModalBoxMsg_span{
+    width: 30%;
+}
+
+.ScheduleBox{
+	clear:both;
+}
+ .ModalBoxMsgList .add_fileBox{
+	display:inline-block;
+	position: relative;
+	// border: 1px solid #999;
+	text-decoration: none;
+    box-sizing: border-box;
+	height:22px;
+    width: 170px;
+	vertical-align:middle;
+}
+ .ModalBoxMsgList .add_fileBox img{
+ 	display:inline-block;
+ 	// width:80%;
+ 	// height:80%;
+    width: 20px;
+    height: 18px; 
+ }
+ .ModalBoxMsgList .add_change{
+    overflow: hidden;
+    opacity: 0;
+    width: 27px;
+    height: 22px;
+    position: relative;
+    left: 120px;
+    cursor: pointer;
+}
+ .ModalBoxMsgList .add_uploadText{
+   /*  background: #00aeef; */
+    position: absolute;
+    top: 0;
+    right: 23px;
+    width: 25px;
+    height: 22px;
+    line-height: 28px;
+    text-align: center;
+    cursor: pointer;
+    color:#fff;
+    border:solid 1px #999;
+    // border-right:solid 1px #000;
+}
+.ModalBoxMsgList .add_download{
+	/* background: #00aeef; */
+    position: absolute;
+    top: 0;
+    right: -2px;
+    width: 25px;
+    height: 22px;
+    line-height: 28px;
+    text-align: center;
+    cursor: pointer;
+    color:#fff;
+    z-index: 11;
+    border:solid 1px #999;
+}
+ .ModalBoxMsgList .add_fileCont{
+	display: inline-block;
+	width: 120px;
+	line-height: 22px;
+	height:22px;
+	position: absolute;
+    cursor: pointer;
+	overflow: hidden;
+	text-overflow:ellipsis;
+	white-space: nowrap;
+    font-size: 14px;
+    border: 1px dotted #ccc;
+}
+/*模态框 进度  */
+.ScheduleBoxList1{
+    padding: 20px 0 15px 15px;
+}
+.ScheduleBoxList1 li{
+	float:left;
+	width:60px;
+	height:25px;
+	line-height:25px;
+	text-align:center;
+	cursor:pointer;
+    border-radius: 4px;
+}
+.ScheduleBoxList1 .active,.ScheduleBoxList1 .lihover{
+	background:#00aeef;
+	color:#fff;
+}
+.SelectBox{
+	padding-left:15px;
+	clear:both;
+	width:calc(100% - 15px);
+	height:70px;
+}
+.ScheduleBoxList2{
+	width:22%;
+	float:left;
+}
+.SelectBox_Remark .Remarks{
+	width:160px;
+	height:65px;
+	max-height:65px;
+	min-height:65px;
+	vertical-align:middle;
+	outline:none;
+}
+.ScheduleBoxList2 li{
+	margin:15px 0 0 0;
+}
+.ScheduleBoxList2 li span{
+	margin-right:30px;
+}
+.ScheduleBoxList2 select{
+    width: 120px;
+    height: 25px
+}
+.SelectBox_Remark{
+	float:left;
+	margin-top:10px;
+}
+.SelectBox_Remark span{
+	margin-right:30px;
+}
+.ServiceContentBox{
+	width:100%;
+    max-height: 250px;
+	margin-top:20px;
+	clear:both;
+}
+.ServiceContentBox .ServiceContent_title span{
+	margin-left:15px;
+	font-size:17px;
+	color:#00aeef;
+}
+.ServiceContentBox .ServiceContent_title input{
+	margin-left:20px;
+	font-size:16px;
+	width:60px;
+	height:23px;
+}
+#ServiceContentTable{
+	width:calc(100% - 30px);
+	margin:20px 15px;
+	text-align:center;
+	border:solid 1px #00aeef;
+}
+#ServiceContentTable tr,#ServiceContentTable tr td{
+	border:solid 1px #00aeef;
+}
+#ServiceContentTable tr td{
+	height:30px;
+	line-height:30px;
+	outline:none;
+}
+#ServiceContentTable tr td input{
+    width: calc(100% - 2px);
+    height: calc(100% - 2px);
+	border:none;
+}
+
+.btnBox {
+    position: relative;
+    bottom: 0px;
+    width: 100%;
+    height: 35px;
+    margin: 5px 0;
+    text-align: center;
+}
+
+.btnBox input {
+    width: 75px;
+    height: 30px;
+}
+#ModalBox_submit,#modify_submit{
+    margin-right: 90px;
+}
+
+.cover-color{
+    width: 100%;
+    height:100%;
+    background-color: rgba(10%,20%,30%,0.7);
+    position: absolute;
+    top: -10px;
+    left: 0;
+    display: none;
+    overflow: hidden;
+}
+
+/*修改框  */
+.ShipnoticeMsg{
+	width: 94%; 
+    min-height: 300px;
+    margin: 0px auto 10px;
+}
+.ShipnoticeMsg ul li{
+	margin:20px 0 0 20px;
+}
+.Shipnotice_rightul ul  li{
+	margin:20px 0 0 60px;
+}
+.Shipnotice_leftul{
+	width:50%;
+	float:left;
+    border-right: solid 1px #bfbfbf;
+    margin-bottom:20px;
+}
+.Shipnotice_rightul{
+    width: calc( 45% - 2px);
+    float: left;
+    padding-left: 5%;
+}
+.ShipnoticeMsg ul li .Shipnotice_span{
+    margin-right: 4%;
+    width: 23%;
+    display: inline-block;
+}
+.ShipnoticeMsg ul li input, .ShipnoticeMsg ul li select{
+	width: 244px;
+	height: 23px;
+}
+
+/*----------------------------------------page---------------------------------------*/
+	.ysearch {
+	    float: right;
+	    position: relative;
+	    height: 34px;
+	    border-radius: 0 15px 15px 0;
+	    background: #989898;
+        min-width: 27px;
+	    font: normal normal normal 14px/1 FontAwesome;
+	    text-rendering: auto;
+	    color: #fff;
+	    line-height: 34px;
+	    padding-left: 8px;
+	    font-size: 16px;
+	    cursor: pointer;
+	}
+	.ysearch:before {
+	    content: "\f002";
+	}
+	.tsearch {
+	    position: absolute;
+	    right: 0;
+	    width: 20%;
+	    min-width: 220px;
+    	height: 33px;
+	    background: #fff;
+	    border-radius: 15px;
+	    border: 1px solid #ccc;
+	    padding-left: 10px;
+	    right: 27%;
+	}
+	.toggleedit{
+		cursor:pointer;
+	}
+    .overhid{
+    	overflow: hidden;
+	    text-overflow: ellipsis;
+	    white-space: nowrap;
+    }
+    
+	.hide{
+		display:none;
+	}
+
+    .addBtnDiv {
+        margin: 10px auto 1px;
+        padding: 0 auto 0 10px;
+        width: 90%;
+        height: 30px;
+    }
+
+    .impl-add-table {
+        max-height: 210px;
+        overflow: auto;
+    }
+
+    #ServiceContentTable th {
+        border: 1px solid #00aeef;
+        box-sizing: border-box;
+        border-collapse: collapse;
+    }
+
+    #ServiceContentTable tbody select{
+        display: block;
+        margin: 0 auto;
+        width: 95%;
+        height: 29px;
+        padding: 1px;
+        font-size: 13px;
+        line-height: 1.42857143;
+        color: #444;
+        // color: #555;
+        background-color: #fff;
+        background-image: none;
+        border: none;
+    }
+
+    input.add_fileCont {
+        color: #00aeef;
+    }
+
+    .dropFileBox {
+        width: 600px;
+        height: 400px;
+        position: absolute;
+        top: calc(6% + 80px);
+        left: calc(50% - 300px);
+        display: none;
+        z-index: 3;
+        border: 1px dashed #999;
+    }
+
+    .dropFile {
+        position: relative;
+        height: 400px;
+        width: 100%;
+        background: #fff;
+    }
+
+    .dropFileTit {
+        height: 35px;
+        line-height: 35px;
+        color: #fff;
+        text-indent: 15px;
+        background: #00aeef;
+        font-size: 15px;
+        position: relative;
+    }
+
+    .dropFileTit span {
+        display: inline-block;
+        width: 50px;
+        height: 35px;
+        position: absolute;
+        right: 2px;
+        top: 0;
+        cursor: pointer;
+    }
+
+    .dropFileConTop {
+        margin: 15px auto 40px auto;
+        width: 500px; 
+        height:250px; 
+        line-height:250px; 
+        text-align:center; 
+        font-size:24px; 
+        color:#999; 
+        border:3px #c0c0c0 dashed; 
+        position:relative;
+    }
+
+    .toggleFileUp {
+        height: 30px;
+        margin-top: 0;
+        padding-left: calc(50% - 50px);
+    }
+
+    .dragTd {
+        cursor: pointer;
+    }
+
+    .dropFileConMid {
+        margin: 15px auto 40px auto;
+        width: 500px; 
+        height:250px; 
+        line-height:250px; 
+        text-align:center;
+        border:1px #c0c0c0 dashed;
+        display: none;
+        position: relative;
+    }
+
+    .toggleFileUp {
+        position: absolute;
+        bottom: 20px;
+    }
+
+    .dropFileConMidTop, .dropFileConMidMid, .dropFileConMidbot {
+        margin: 30px auto 20px auto;
+        width: 400px;
+        height: 40px;
+        line-height: 40px;
+        /*border: 1px solid #ccc;*/
+    }
+
+    .dropFileConMidTop {
+        font-size: 13px;
+        text-align: center;
+        position: relative;
+    }
+
+    .dropFileConMidMid .progressOut, .dropFileConMidMid .progressIn {
+        margin: 10px auto 10px 0;
+        height: 20px;
+        line-height: 20px;
+        border-radius: 10px;
+        text-align: center;
+        font-size: 13px;
+        // border: 1px solid #ccc;
+    }
+    
+    .dropFileConMidMid .progressOut {
+        width: 400px;
+    }
+
+    .dropFileConMidMid .progressIn {
+        position: relative;
+        top: -30px;
+        background: #4DBF7D;
+        // background: #00aeef;
+        width: 30px;
+        max-width: 400px;
+    }
+
+    #serFinRepUpload {
+        width: 70px;
+        height: 22px;
+        position: absolute;
+        left: 5px;
+        top: 9px;
+        overflow: hidden;
+        opacity: 0;
+        cursor: pointer;
+    }
+
+    .preUpload1 {
+        cursor: pointer;
+    }
+
+    .serFinRepUploadName {
+        margin-left: 7px;
+        margin-top: 1px;
+        width: 240px;
+        height: 20px;
+        border: none;
+        font-size: 12px;
+    }
+
+    .isUpload {
+        display: inline-block;
+        width: 80px;
+        height: 20px;
+        line-height: 20px;
+        text-align: left;
+        color: red;
+    }
+
+    td.dragTd {
+        position: relative;
+        padding-right: 23px;
+        max-width: 203px;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        white-space: nowrap;
+        color: #00aeef;
+    }
+
+    .serRepDown {
+        position: absolute;
+        height: 20px;
+        width: 20px;
+        right: 2px;
+        top: 5px;
+    }
+
+    .serRepDown img {
+        margin: 0;
+        height: 20px;
+        width: 20px;
+    }
+
+    .dropFileCon {
+        overflow: hidden;
+    }
+
+    .ServiceContentTr {
+        font-size: 12px;
+    }
+
+    .exceDate {
+        margin-left: 2px;
+        margin-top: 1px;
+        margin-bottom: 1px;
+        box-sizing: border-box;
+        width: 110px !important;
+        height: calc(100% - 2px) !important;
+        font-size: 12px;
+    }
+
+    td.SerCon_Ser {
+        font-size: 14px;
+    }
+
+    select.addEngineer, select.alterEngineer {
+        display: none;
+        position: relative;
+        left: 28%;
+    }
+/*甘特图*/
+.gantt_Wrapper {
+    position: absolute;
+    top: 90px;
+    left: 5%;
+    min-width: 1100px;
+    width: 90%;
+    background-color: #fff;
+    display: none;
+    z-index: 98;
+}
+
+.gantt_Wrapper_top {
+    position: relative;
+    height: 35px;
+    line-height: 35px;
+    background-color: #00aeef;
+    color: #fff;
+}
+
+.gantt_Wrapper_top_l {
+    width: calc(100% - 156px);
+    text-indent: 20px;
+}
+
+.gantt_Wrapper_top_r {
+    position: absolute;
+    top: 0;
+    right: 0;
+    width: 55px;
+}
+
+.gantt_Wrapper_top_m {
+    position: absolute;
+    top: 0;
+    right: 56px;
+    width: 100px;
+    color: red;
+}
+
+.gantt_Wrapper_body {
+    margin: 10px;
+}
+/*
+.gantt_Wrapper_foot {
+    margin-bottom: 10px;
+    text-align: center;
+    height: 32px;
+    line-height: 32px;
+}
+*/
+.ProgressStatus, .gantt_Wrapper_top_r, .gantt_Wrapper_top_m {
+    cursor: pointer;
+}
+
+.ProgressStatus {
+    opacity: 0;
+}
+
+#table1 .firstTr th:not(.ID):not(:nth-child(11)){
+    cursor: pointer;
+}
+
+
+/*eoulu 样式*/
+
+.eou-color {
+    color: #00aeef;
+}
+
+/*
+*表单元素
+*/
+.eou-button {
+    background: #00aeef;
+    border: solid 1px #00aeef;
+    color: #fff;
+    cursor: pointer;
+    box-shadow: 1px 2px 5px 0 #00aeef;
+    padding: 0;
+    text-align: center;
+    vertical-align: middle;
+}
+
+.eou-button-radius {
+    border-radius: 2px;
+}
+
+.eou-button:hover {
+    background: #fff;
+    color:#00aeef;
+}
+
+.eou-button-20 {
+    height: 20px;
+    line-height: 20px;
+}
+
+.eou-button-30 {
+    height: 30px;
+    line-height: 30px;
+}
+
+.eou-button-40 {
+    height: 40px;
+    line-height: 40px;
+}
+
+.eou-button-w40 {
+    width: 40px;
+}
+
+.eou-button-w50 {
+    width: 50px;
+}
+
+.eou-button-w60 {
+    width: 60px;
+}
+
+.eou-button-w80 {
+    width: 80px;
+}
+
+.eou-button-w100 {
+    width: 100px;
+}
+
+.eou-button-w120 {
+    width: 120px;
+}
+
+/*按钮可点与不可点*/
+.eou-btn-disabled {
+    background: #dddddd;
+    color: #808080;
+    border: none;
+    box-shadow: 0 0 0 0 #f8fcfd;
+    cursor: not-allowed;
+}
+
+.eou-btn-abled {
+    background: #00aeef;
+    color: #fff;
+    border: 1px solid #00aeef;
+    box-shadow: 1px 2px 5px 0 #00aeef;
+    cursor: pointer;
+}
+
+.eou-table-collapse {
+    box-sizing: border-box;
+    border-collapse: collapse;
+}
+
+.eou-relevance {
+    display: inline-block;
+    margin-right: -10px;
+    width: 10px;
+    height: 10px;
+    position: relative;
+    left: -10px;
+    background: url(../../image/relevance.png) no-repeat center;
+}
+
+.eou-bstr-input {
+    padding: 2px 3px;
+    font-size: 14px;
+    line-height: 1.42857143;
+    color: #555;
+    background-color: #fff;
+    background-image: none;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    -webkit-box-shadow: inset 0 1px 1px rgba(0,0,0,.075);
+    box-shadow: inset 0 1px 1px rgba(0,0,0,.075);
+    -webkit-transition: border-color ease-in-out .15s,-webkit-box-shadow ease-in-out .15s;
+    -o-transition: border-color ease-in-out .15s,box-shadow ease-in-out .15s;
+    transition: border-color ease-in-out .15s,box-shadow ease-in-out .15s;
+}
+
+.eou-bstr-input:focus {
+    border-color: rgba(82, 168, 236, 0.8);
+    outline: 0;
+    outline: thin dotted \9;
+    /* IE6-9 */  
+    box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075), 0 0 8px rgba(82, 168, 236, 0.6);
+}
+
+/*新版本按钮*/
+.eou_new_btn {
+    background: #5bc0de;
+    border: solid 1px #5bc0de;
+    color: rgba(0,0,0,0.9);
+    cursor: pointer;
+    box-shadow: 1px 1px 4px 0 #5bc0de;
+    padding: 0;
+    text-align: center;
+}
+
+.eou_new_radius {
+    border-radius: 5px;
+}
+
+/*
+*图形
+*/
+/*向右三角形 span需要加inline-block 默认#ddd 可修改*/
+.triangle_right {
+    width: 0;
+    height: 0;
+    border-bottom: 50px solid transparent;
+    border-top: 50px solid transparent;
+    border-left: 100px solid #ddd;
+}
+
+.triangle_up {
+    width: 0;
+    height: 0;
+    border-left: 50px solid transparent;
+    border-right: 50px solid transparent;
+    border-bottom: 100px solid #ddd;
+}
+
+.triangle_down {
+    width: 0;
+    height: 0;
+    border-left: 50px solid transparent;
+    border-right: 50px solid transparent;
+    border-top: 100px solid #ddd;
+}
+
+.triangle_left {
+    width: 0;
+    height: 0;
+    border-bottom: 50px solid transparent;
+    border-top: 50px solid transparent;
+    border-right: 100px solid #ddd;
+}
+
+.triangleTopLeft {
+    width: 0;
+    height: 0;
+    border-top: 100px solid #ddd;
+    border-right: 100px solid transparent;
+}
+
+.triangleTopRight {
+    width: 0;
+    height: 0;
+    border-top: 100px solid #ddd;
+    border-left: 100px solid transparent;
+}
+
+.triangleBottomLeft {
+    width: 0;
+    height: 0;
+    border-bottom: 100px solid #ddd;
+    border-right: 100px solid transparent;
+}
+
+.triangleBottomRight {
+    width: 0;
+    height: 0;
+    border-bottom: 100px solid #ddd;
+    border-left: 100px solid transparent;
+}
+
+/*disabled*/
+input[type='button'][disabled='disabled'] {
+    cursor: not-allowed;
+}
+
+input[type='text'][disabled='disabled'] {
+    cursor: not-allowed;
+    background-color: #eee;
+    opacity: 1;
+}
+
+/*全局字体*/
+.eou_new_font_g {
+    font-family: -apple-system, system-ui, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, "PingFang SC", "Hiragino Sans GB", "Microsoft YaHei", sans-serif;
+}
+
+/*well组件*/
+.eou_new_well {
+    min-height: 20px;
+    padding: 19px;
+    margin-bottom: 20px;
+    background-color: #f5f5f5;
+    border: 1px solid #e3e3e3;
+    border-radius: 4px;
+    -webkit-box-shadow: inset 0 1px 1px rgba(0,0,0,.05);
+    box-shadow: inset 0 1px 1px rgba(0,0,0,.05);
+    /*继承属性*/
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
+    font-family: "Helvetica Neue",Helvetica,Arial,sans-serif;
+    font-size: 14px;
+    line-height: 1.42857143;
+    color: #333;
+    -webkit-tap-highlight-color: rgba(0,0,0,0);
+}
+.eou_new_well:last-child {
+    margin-bottom: 0;
+}
+
+/*eoulu 样式 end*/
+
+
+/*2018-08-22新增*/
+span.glyphicon {
+    cursor: pointer;
+}
+
+span.iiisearch {
+    position: relative;
+    text-align: center;
+    padding-top: 4px;
+    display: inline-block;
+    height: 33px;
+    width: 33px;
+    border-radius: 0 15px 15px 0;
+    background: #989898;
+}
+
+span.iiisearch>span {
+    font-size: 20px;
+}
+
+#page .btn {
+    width: auto !important;
+    height: auto !important;
+}

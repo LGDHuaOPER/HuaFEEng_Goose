@@ -1,0 +1,352 @@
+/*update at 18/03/15*/
+
+/*响应式字体大小*/
+html {
+    font-size: 16px;
+}
+.header{
+    opacity: 0.9;
+}
+#bodyBottom{
+	z-index:1!important;
+}
+#bodyBottom .hr{
+	display:none;
+}
+@media screen and (min-width: 375px) {
+    html {
+        /* iPhone6的375px尺寸作为16px基准，414px正好18px大小, 600 20px */
+        font-size: calc(100% + 2 * (100vw - 375px) / 39);
+        font-size: calc(16px + 2 * (100vw - 375px) / 39);
+    }
+}
+@media screen and (min-width: 414px) {
+    html {
+        /* 414px-1000px每100像素宽字体增加1px(18px-22px) */
+        font-size: calc(112.5% + 4 * (100vw - 414px) / 586);
+        font-size: calc(18px + 4 * (100vw - 414px) / 586);
+    }
+}
+@media screen and (min-width: 600px) {
+    html {
+        /* 600px-1000px每100像素宽字体增加1px(20px-24px) */
+        font-size: calc(125% + 4 * (100vw - 600px) / 400);
+        font-size: calc(20px + 4 * (100vw - 600px) / 400);
+    }
+}
+@media screen and (min-width: 1000px) {
+    html {
+        /* 1000px往后是每100像素0.5px增加 */
+        font-size: calc(137.5% + 6 * (100vw - 1000px) / 1000);
+        font-size: calc(22px + 6 * (100vw - 1000px) / 1000);
+    }
+}
+
+.u-us a, .u-img a {
+    font-family:'jdlibianjian1351221e071c338';
+}
+
+.index-g {
+	background: url("../image/index/indexImg2.png") no-repeat center;
+    background-size: cover;
+    min-height: calc(100vh - 80px);
+}
+
+.container-fluid {
+    margin: 0;
+    padding: 0;
+}
+
+.index-g-top {
+    margin: 8px 10px 0;
+    min-height: 20vh;
+}
+
+.m-h3 {
+    margin: 0 10px;
+    height: 18px;
+    color:#fff;
+}
+
+.m-h2 {
+    position: relative;
+    margin: 0.15rem 9px 0.15rem 20px;
+    height: 32px;
+    color:#fff;
+}
+
+.infoma {
+	font-size: 0.67rem;
+}
+
+.icon1, .icon2, .icon3 {
+    display: inline-block;
+    vertical-align: top;
+}
+.icon1 {
+	margin-top: 2px;
+    width: 18px;
+    height: 18px;
+}
+
+.icon2 {
+    margin-top: 3px;
+    width: 24px;
+    height: 24px;
+}
+
+.icon3 {
+    width: 18px;
+    height: 18px;
+}
+
+.m-h3 h3 {
+    display: inline-block;
+    vertical-align: top;
+    font-size: 18px;
+}
+
+.icon1 .icon-circle-right {
+    line-height: 18px;
+    font-size: 18px;
+}
+
+.icon2 .icon-circle-right {
+    line-height: 24px;
+    font-size: 24px;
+}
+
+.icon3 .icon-information-outline {
+    line-height: 18px;
+    font-size: 18px;
+}
+
+.m-usual {
+    margin-top: 0.15rem;
+    margin-left: 1.25rem;
+}
+
+.u-usual {
+    display: inline-block;
+    min-width: 50px;
+    width: 5vw;
+    margin: 10px 0.5rem;
+    vertical-align: top;
+    opacity: 0;
+}
+
+.u-us {
+    padding-bottom: 138.89%;
+    position: relative;
+    font-size: 0.5rem;
+}
+
+.u-us > img {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+}
+
+.u-us a {
+    position: absolute;
+    display: inline-block;
+    top: 9%;
+    left: 0;
+    padding-top: 10%;
+    height: 90%;
+    width: 100%;
+    cursor: pointer;
+    text-decoration: none;
+    text-align: center;
+    color: rgba(0,0,0,0.9);
+    z-index: 2;
+}
+
+.m-h2 h2{
+    display: inline-block;
+    vertical-align: center;
+    font-size: 24px;
+}
+
+.m-enter {
+	padding-bottom: 7px;
+}
+
+.btn {
+    /* position: absolute;
+    right: 1.7rem; */
+    /*top: 20px;*/
+    position: relative;
+    left: 10px;
+    height: 32px;
+}
+
+.m-img {
+	margin-top: 0.1rem;
+    width: 100%;
+    /*margin: 0 -0.5rem;*/
+    /*overflow: hidden;*/
+}
+
+.u-img {
+    display: inline-block;
+    min-width: 85px;
+    width: calc(0.1667 * (100vw - 660px));
+    /*width: calc(0.125 * (100vw - 18.5rem));*/
+    /*width: calc(12.5% - 2em);*/
+    margin: 16px 49px;
+    /*background: AppWorkspace;*/
+    vertical-align: top;
+}
+
+.m-authority {
+    padding-bottom: 139.23%;
+    position: relative;
+    font-size: 0.85rem;
+}
+
+.unnormal {
+    font-size: 0.6rem;
+}
+
+.m-authority > img {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    opacity: 0;
+    z-index: 30;
+}
+
+.m-authority a {
+    position: absolute;
+    display: inline-block;
+    top: 6%;
+    left: 2%;
+    height: 94%;
+    width: 98%;
+    padding-top: 14%;
+    cursor: pointer;
+    text-decoration: none;
+    text-align: center;
+    color: rgba(0,0,0,0.9);
+    z-index: 50;
+}
+
+.new {
+	display: inline-block;
+	position: absolute;
+	right: 3rem;
+	bottom: -2px;
+}
+
+.new .u-usual {
+	opacity: 1;
+}
+
+.new .u-usual img {
+	opacity: 0;
+}
+
+@media screen and (max-width: 1100px) {
+    .u-img {
+        width: calc(0.166 * (100vw - 14rem));
+    }
+}
+@media screen and (max-width: 820px) {
+    .u-img {
+        width: calc(0.2 * (100vw - 12rem));
+    }
+}
+@media screen and (max-width: 768px) {
+    .u-img {
+        min-width: 69px;
+        width: calc(0.2 * (100vw - 11rem));
+        margin: 0.5rem 0.4rem 5px 1.2rem;
+    }
+    .unnormal {
+        font-size: 0.45rem;
+    }
+}
+@media screen and (max-width: 580px) {
+    .u-img {
+        min-width: 69px;
+        width: calc(0.25 * (100vw - 8rem));
+        margin: 0.5rem 0.3rem 5px 0.9rem;
+    }
+    .unnormal {
+        font-size: 0.4rem;
+    }
+}
+/*@media screen and (max-width: 400px) {*/
+    /*.u-img {*/
+        /*width: calc(0.5 * (100vw - 5rem));*/
+    /*}*/
+/*}*/
+
+.u-img.card-hover {
+    transform: translateY(-0.9rem);
+    -moz-transform: translateY(-0.9rem);
+    -webkit-transform: translateY(-0.9rem);
+    -ms-transform: translateY(-0.9rem);
+}
+
+.u-img.card-hover-out {
+    transform: translateY(0);
+    -moz-transform: translateY(0);
+    -webkit-transform: translateY(0);
+    -ms-transform: translateY(0);
+}
+
+.new .u-usual.card-hover {
+    transform: translateY(-0.8rem);
+    -moz-transform: translateY(-0.8rem);
+    -webkit-transform: translateY(-0.8rem);
+    -ms-transform: translateY(-0.8rem);
+}
+
+.new .u-usual.card-hover-out {
+    transform: translateY(0);
+    -moz-transform: translateY(0);
+    -webkit-transform: translateY(0);
+    -ms-transform: translateY(0);
+}
+
+/* .new a {
+	font-family:'jdlibianjian10e80d4cd41c338'!important;
+	font-size: 0.85rem!important;
+} */
+
+/*.u-img img.img-pos {*/
+    /*position: static;*/
+/*}*/
+
+/*
+
+hr {
+    margin-top: 1px;
+    margin-bottom: 7px;
+    height: 1px;
+    width: 98%;
+    text-align: center;
+    position: relative;
+    background: #A97E05;
+}
+
+.g-index-body::-webkit-scrollbar {
+    height: 16px;
+}
+.g-index-body::-webkit-scrollbar-thumb {
+    border-radius: 6px;
+    -webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0.2);
+    background: rgba(0,0,0,0.2);
+}
+.g-index-body::-webkit-scrollbar-track {
+    -webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0.2);
+    border-radius: 0;
+    background: rgba(0,0,0,0.1);
+}
+*/
