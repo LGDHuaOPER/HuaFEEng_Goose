@@ -283,8 +283,116 @@
                             "mergeToParentFile": "transport.js"
                         }
                     }
-                }
+                },
+                "GetOrderByPageOne": {
+                    "lastModify": "Tue Sep 04 2018 17:49:45 GMT+0800 (中国标准时间)",
+                    "lastModifyTime": "1536054585000",
+                    // css
+                    "cssPrimary": {},
+                    // js
+                    "jsPrimary": {
+                        "bootstrap-grid-form-button-res-icon-list.min.js": {
+                            "referenceOrder": 0,
+                            "filePath": "js/libs/bootstrap/bootstrap-grid-form-button-res-icon-list.min.js",
+                            "mergeToParentFile": null
+                        },
+                        "msgbox.js": {
+                            "referenceOrder": 1,
+                            "filePath": "js/msgbox.js",
+                            "mergeToParentFile": "transport.js"
+                        },
+                        "responseLoading.js": {
+                            "referenceOrder": 2,
+                            "filePath": "js/global/responseLoading.js",
+                            "mergeToParentFile": "transport.js"
+                        },
+                        "transport.js": {
+                            "referenceOrder": 3,
+                            "filePath": "js/transport.js",
+                            "mergeToParentFile": "transport.js"
+                        }
+                    }
+                },
                 // 物流统计页面结束
+                // 付款申请页面
+                "PaymentRequest": {
+                    "lastModify": "Wed Sep 05 2018 13:30:05 GMT+0800 (中国标准时间)",
+                    "lastModifyTime": "1536125405000",
+                    // css
+                    "cssPrimary": {
+                        "bootstrap.min.css": {
+                            "referenceOrder": 0,
+                            "filePath": "css/libs/bootstrap.min.css",
+                            "mergeToParentFile": null
+                        },
+                        "PaymentRequest-9c26a25e2c.min.css": {
+                            "referenceOrder": 1,
+                            "filePath": "css/modules/personnel/PaymentRequest-9c26a25e2c.min.css",
+                            "mergeToParentFile": null
+                        }
+                    },
+                    // js
+                    "jsPrimary": {
+                        "PaymentRequest.js": {
+                            "referenceOrder": 0,
+                            "filePath": "js/modules/personnel/PaymentRequest.js",
+                            "mergeToParentFile": "PaymentRequest.js"
+                        }
+                    }
+                },
+                // 付款申请页面結束
+                // 服务完成报告页面
+                "ServiceReport": {
+                    "lastModify": "Thu Sep 06 2018 11:38:45 GMT+0800 (中国标准时间)",
+                    "lastModifyTime": "1536205125000",
+                    // css
+                    "cssPrimary": {
+                        "bootstrap.min.css": {
+                            "referenceOrder": 0,
+                            "filePath": "css/libs/bootstrap.min.css",
+                            "mergeToParentFile": null
+                        },
+                        "eouluCustom.css": {
+                            "referenceOrder": 1,
+                            "filePath": "css/global/eouluCustom.css",
+                            "mergeToParentFile": "ServiceReport.css"
+                        },
+                        "ServiceReport.css": {
+                            "referenceOrder": 2,
+                            "filePath": "css/ServiceReport.css",
+                            "mergeToParentFile": "ServiceReport.css"
+                        },
+                        "dispatchLoading.css": {
+                            "referenceOrder": 3,
+                            "filePath": "css/global/dispatchLoading.css",
+                            "mergeToParentFile": "ServiceReport.css"
+                        }
+                    },
+                    // js
+                    "jsPrimary": {
+                        "bootstrap.min.js": {
+                            "referenceOrder": 0,
+                            "filePath": "js/libs/bootstrap.min.js",
+                            "mergeToParentFile": null
+                        },
+                        "jSignature.min.js": {
+                            "referenceOrder": 1,
+                            "filePath": "js/libs/jSignature.min.js",
+                            "mergeToParentFile": "ServiceReport.js"
+                        },
+                        "colResizable-1.6.min.js": {
+                            "referenceOrder": 2,
+                            "filePath": "plugins/colResizable/colResizable-1.6.min.js",
+                            "mergeToParentFile": "ServiceReport.js"
+                        },
+                        "ServiceReport.js": {
+                            "referenceOrder": 3,
+                            "filePath": "js/ServiceReport.js",
+                            "mergeToParentFile": "ServiceReport.js"
+                        }
+                    }
+                }
+                // 服务完成报告页面结束
             },
         // pageHrefImportFileMap 结束
         // compressFilePathMap 开始
@@ -307,6 +415,12 @@
                     "outBasePath": "./cfChicken8/WebContent/css/modules/software/",
                     "gulp-rev": "SoftwareDocument-0dd1cea1d7.min.css",
                     "referencePath": "css/modules/software/SoftwareDocument-0dd1cea1d7.min.css"
+                },
+                "ServiceReport.css": {
+                    "originPath": ["./cfChicken8/WebContent/css/global/eouluCustom.css", "./cfChicken8/WebContent/css/ServiceReport.css", "./cfChicken8/WebContent/css/global/dispatchLoading.css"],
+                    "outBasePath": "./cfChicken8/WebContent/css/modules/serviced/",
+                    "gulp-rev": "ServiceReport-30eec74d24.min.css",
+                    "referencePath": "css/modules/serviced/ServiceReport-30eec74d24.min.css"
                 }
             },
             "jsMerge": {
@@ -343,14 +457,26 @@
                 "SoftwareDocument.js": {
                     "originPath": ["./cfChicken8/WebContent/js/global/responseLoading.js", "./cfChicken8/WebContent/js/SoftwareDocument.js"],
                     "outBasePath": "./cfChicken8/WebContent/js/modules/software/",
-                    "gulp-rev": "SoftwareDocument-4a848ad6d1.min.js",
-                    "referencePath": "js/modules/software/SoftwareDocument-4a848ad6d1.min.js"
+                    "gulp-rev": "SoftwareDocument-698d116bb8.min.js",
+                    "referencePath": "js/modules/software/SoftwareDocument-698d116bb8.min.js"
                 },
                 "transport.js": {
                     "originPath": ["./cfChicken8/WebContent/js/msgbox.js", "./cfChicken8/WebContent/js/global/responseLoading.js", "./cfChicken8/WebContent/js/transport.js"],
                     "outBasePath": "./cfChicken8/WebContent/js/modules/transport/",
                     "gulp-rev": "transport-d418d1053c.min.js",
                     "referencePath": "js/modules/transport/transport-d418d1053c.min.js"
+                },
+                "PaymentRequest.js": {
+                    "originPath": ["./cfChicken8/WebContent/js/modules/personnel/PaymentRequest.js"],
+                    "outBasePath": "./cfChicken8/WebContent/js/modules/personnel/",
+                    "gulp-rev": "PaymentRequest-389c676e67.min.js",
+                    "referencePath": "js/modules/personnel/PaymentRequest-389c676e67.min.js"
+                },
+                "ServiceReport.js": {
+                    "originPath": ["./cfChicken8/WebContent/js/libs/jSignature.min.js", "./cfChicken8/WebContent/plugins/colResizable/colResizable-1.6.min.js", "./cfChicken8/WebContent/js/ServiceReport.js"],
+                    "outBasePath": "./cfChicken8/WebContent/js/modules/serviced/",
+                    "gulp-rev": "ServiceReport-2951b6ba44.min.js",
+                    "referencePath": "js/modules/serviced/ServiceReport-2951b6ba44.min.js"
                 }
             }
         }
@@ -376,7 +502,37 @@
             _DefaultParam.projectName = str;
             return this; //返回当前方法，即 eouluGlobal对象
         },
-        
+        // 按钮不可点击
+        C_btnDisabled: function(JQObj, isChangeText, newText){
+            JQObj.css("cursor","not-allowed").prop("disabled","disabled");
+            if(isChangeText){
+                // var element = document.getElementById("p"); var name = element.tagName;
+                // var name = $("#p").get(0).tagName;
+                // var name = $("#p")[0].tagName;
+                // var name = $("#p").prop("tagName");
+                // var name = $("#p").prop("nodeName");
+                var iTagName = JQObj.prop("nodeName").toLocaleUpperCase();
+                if(iTagName == "INPUT"){
+                    JQObj.val(newText);
+                }else if(iTagName == "BUTTON" || iTagName == "A"){
+                    JQObj.text(newText);
+                }
+            }
+            return this;
+        },
+        // 按钮可以点击
+        C_btnAbled: function(JQObj, isChangeText, newText){
+            JQObj.css("cursor","pointer").prop("disabled",false);
+            if(isChangeText){
+                var iTagName = JQObj.prop("nodeName").toLocaleUpperCase();
+                if(iTagName == "INPUT"){
+                    JQObj.val(newText);
+                }else if(iTagName == "BUTTON" || iTagName == "A"){
+                    JQObj.text(newText);
+                }
+            }
+            return this;
+        },
 
     /* 这里定义不可以链式调用的，以S_开头 */
         // 同步或异步动态加载脚本

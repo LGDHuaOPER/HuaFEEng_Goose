@@ -302,8 +302,8 @@ function time_lineRender(res, classify){
 			}else{
 				// 需要自动跳转
 				if(classify == "futureC_T1"){
-					$.Response_Load.Before("时间线绘制提示","正在读取数据！",200);
-					$.Response_Load.After("正在读取数据！", 200);
+					$.Response_Load.Before("时间线绘制提示","正在读取数据！",350);
+					$.Response_Load.After("正在读取数据！", 350);
 				}else{
 					$.Response_Load.Before("时间线绘制提示","无数据！",250);
 					$.Response_Load.After("无数据！", 300);
@@ -451,7 +451,7 @@ $(function(){
 		setTimeout(function(){
 			$(".VersionManagement_div_tit_r li[data-projectname='"+vmClassify+"']").children("a").trigger("click");
 			$(".loading_div_g_div").hide();
-		},1500);
+		},1000);
 	}
 });
 
@@ -1005,6 +1005,7 @@ $("#VersionManagement_submit").click(function(){
 	});
 	UpdatedContent = UpdatedContent.replace(/[\r\n]+/g, "<br>");
 	var vmClassifyHref = eouluGlobal.S_settingURLParam({vmClassify: ProjectName.replace("_", "ZzZ")}, true);
+	var iThat = $(this);
 	$.ajax({
 		type: "POST",
 		url: "VersionManagement",
@@ -1017,26 +1018,30 @@ $("#VersionManagement_submit").click(function(){
 			UpdatedContent: UpdatedContent,
 			vmClassifyHref: vmClassifyHref
 		},
-		dataType: "text",
+		dataType: "json",
 		beforeSend: function(XMLHttpRequest){
 		    $.Response_Load.Before("添加提示","正在提交并发送邮件...",200);
+		    eouluGlobal.C_btnDisabled(iThat, true, "正在发送...");
 		},
 		success: function (data) {
-		    if(data.indexOf("成功")>-1){
-		    	$("#VersionManagement_cancel").trigger("click");
-		    	if($(".VersionManagement_div_tit_r li.actived").data("projectname").toString() != ProjectName){
-		    		$("#"+ProjectName+"_a").siblings().removeClass("active in");
-		    		$("#"+ProjectName+"_a").addClass("active in");
-		    		$(".VersionManagement_div_tit_r li.actived img").attr("src",windowsPng);
-		    		var $curActive = $(".VersionManagement_div_tit_r li[data-projectname='"+ProjectName+"'] img");
-		    		$curActive.attr("src", $curActive.data("isrc").toString());
-		    		$curActive.parent().parent().addClass("actived active").siblings().removeClass("actived active");
-		    	}
-		    	$("#projectname_select").val(ProjectName);
-		    	time_lineGetData(true,ProjectName);
-		    	// $(".VersionManagement_div_tit_r li[data-projectname='"+ProjectName+"']").children("a").trigger("click");
-		    }
-		    $.Response_Load.After(data, 2000);
+			console.log(typeof data);
+			var istatus = data.status;
+			var imessage = data.message;
+			if(istatus == "ok"){
+				$("#VersionManagement_cancel").trigger("click");
+				if($(".VersionManagement_div_tit_r li.actived").data("projectname").toString() != ProjectName){
+					$("#"+ProjectName+"_a").siblings().removeClass("active in");
+					$("#"+ProjectName+"_a").addClass("active in");
+					$(".VersionManagement_div_tit_r li.actived img").attr("src",windowsPng);
+					var $curActive = $(".VersionManagement_div_tit_r li[data-projectname='"+ProjectName+"'] img");
+					$curActive.attr("src", $curActive.data("isrc").toString());
+					$curActive.parent().parent().addClass("actived active").siblings().removeClass("actived active");
+				}
+				$("#projectname_select").val(ProjectName);
+				time_lineGetData(true,ProjectName);
+				// $(".VersionManagement_div_tit_r li[data-projectname='"+ProjectName+"']").children("a").trigger("click");
+			}
+			$.Response_Load.After(imessage, 2100);
 		},
 		error: function () {
 			$.Response_Load.After("服务器繁忙，请稍后重试！", 2000);
@@ -1050,8 +1055,9 @@ $("#VersionManagement_submit").click(function(){
 		    }else if(textStatus=='timeout'){
 		        var xmlhttp = window.XMLHttpRequest ? new window.XMLHttpRequest() : new ActiveXObject("Microsoft.XMLHttp");  
 		        xmlhttp.abort();
-		        $.Response_Load.After("连接超时！", 500);
+		        $.Response_Load.After("连接超时！", 600);
 		    }
+		    eouluGlobal.C_btnAbled(iThat, true, "提交");
 		}
 	});
 });

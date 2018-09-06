@@ -706,6 +706,7 @@ $(document).on("click",".update_td",function(){
 	var iVal = tr.find(".hastd_Department").data("ivalue").toString();
 	var iName = tr.find(".hastd_Applicant").data("ivalue").toString();
 	var insertDOM = $("#update_info_Applicant");
+	$("#update_info_Department").val(iVal);
 	if(Object.keys(hasRequestStaffObj).indexOf(iVal) > -1){
 		var insertStaffStr = '';
 		$.each(hasRequestStaffObj, function(index, value){
@@ -713,6 +714,7 @@ $(document).on("click",".update_td",function(){
 				$.each(value, function(iindex, ivalue){
 					insertStaffStr+='<option value="'+ivalue+'">'+ivalue+'</option>';
 				});
+				return false;
 			}
 		});
 		insertDOM.empty().append(insertStaffStr).val(iName);

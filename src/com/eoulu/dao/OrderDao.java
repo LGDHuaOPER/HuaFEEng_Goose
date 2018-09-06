@@ -186,7 +186,7 @@ public class OrderDao {
 		}
 		
 		if(condition.equals("Overdue")){
-			condition = "Status<>14 and CargoPeriod < ? and";
+			condition = "Status<>14 and Status<>17 and CargoPeriod < ? and";
 			parameter = new Object[] { type, current, (page.getCurrentPage() - 1) * page.getRows(), page.getRows() };
 		}
 	
@@ -383,7 +383,7 @@ public class OrderDao {
 			condition = "";
 		}
 		if(condition.equals("Overdue")){
-			condition = "Status<>14 and CargoPeriod < ? and";
+			condition = "Status<>14 and Status<>17 and CargoPeriod < ? and";
 			parameter = new Object[] {type,current};
 		}
 		

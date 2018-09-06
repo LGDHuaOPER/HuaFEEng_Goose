@@ -9,6 +9,6 @@ public interface VersionManagementService {
 	
 	public List<Map<String, Object>> getData(String ProjectName);
 	
-	public String addVersion(VersionManagement version);
+	public Map<String, String> addVersion(VersionManagement version);
 
 }

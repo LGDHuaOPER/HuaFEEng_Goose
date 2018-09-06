@@ -184,17 +184,7 @@ public class TransportDirectiveServiceImpl implements TransportDirectiveService{
 		}		
 		String[] fileList =new String[] { imagePath};
 		StringBuffer sb = new StringBuffer();
-		sb.append("<html>");
-		sb.append("<head><META content='text/html; charset=gbk' http-equiv=Content-Type>");
-		sb.append("<META name=GENERATOR content='MSHTML 8.00.6001.18702'>");
-		sb.append("<style type='text/css'>");
-		sb.append(".STYLE1 {color: #000000}");
-		sb.append(
-				"TABLE {FONT-SIZE: 12px; COLOR: #444444;LINE-HEIGHT: 14px; FONT-FAMILY: '宋体', 'Arial'; TEXT-DECORATION: none;}");
-		sb.append(".STYLE3 { font-size: 13px;color: #FD9800; font-weight: bold;}");
-		sb.append("</style>");
-		sb.append("</head>");
-		sb.append("<body style='font-family:Arial,微软雅黑;font-sizel:14px;'>");
+
 		sb.append("<span style='font-family:微软雅黑;font-size:14px;'>您好！</span><br><br>");
 		sb.append("<span style='font-family:微软雅黑;font-size:14px;'>我司有有一票货物，从"+address1+"运输到"+address2+"，提货时间"+time+"</span><br>");
 		sb.append("<span style='font-family:微软雅黑;font-size:14px;'>注意事项：</span><br>");
@@ -203,7 +193,6 @@ public class TransportDirectiveServiceImpl implements TransportDirectiveService{
 		MethodUtil util2 = new MethodUtil();
 		String content = util2.getStaffEmailSign(sb.toString(), username, tel,email);
 
-		content +="</body></html>";
 		String subject = "EOULU："+time+"从"+address1+"到"+address2+"的提货指令";
 
 		String result = util.doSendHtmlEmail(to, subject, content, fileList);

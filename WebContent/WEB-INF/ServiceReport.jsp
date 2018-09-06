@@ -18,8 +18,11 @@
         <link rel="shortcut icon" href="image/eoulu.ico" />
         <link rel="bookmark" href="image/eoulu.ico" />
         <link rel="stylesheet" href="css/libs/bootstrap.min.css" type="text/css">
-        <link rel="stylesheet" href="css/global/eouluCustom.css" type="text/css">
-        <link rel="stylesheet" href="css/ServiceReport.css" type="text/css">
+        <!-- delete later -->
+        <!-- <link rel="stylesheet" href="css/global/eouluCustom.css" type="text/css"> -->
+        <!-- <link rel="stylesheet" href="css/ServiceReport.css" type="text/css"> -->
+        <!-- <link rel="stylesheet" href="css/global/dispatchLoading.css" type="text/css"> -->
+        <link rel="stylesheet" href="css/modules/serviced/ServiceReport-30eec74d24.min.css" type="text/css">
         <style>
             .u-admin a {
                 vertical-align: top !important;
@@ -84,6 +87,9 @@
         </style>
     </head>
     <body>
+        <div class="loading_div_g_div">
+            <img src="image/loading/Spinner-1s-200px.gif" alt="loading。。。">
+        </div>
         <div id="NonStandard_wrapper">
             <div id="NonStandard_sticker">
                 <div id="NonStandard_sticker-con">
@@ -493,10 +499,9 @@
 
         <!-- <script src="js/libs/jquery-3.3.1.min.js"></script> -->
         <script src="js/libs/bootstrap.min.js"></script>
-        <script src="js/global/myFunction.js"></script>
-        <script src="js/msgbox_unload.js"></script>
-        <script src="js/libs/jSignature.min.js"></script>
-        <script src="plugins/colResizable/colResizable-1.6.min.js"></script>
-        <script src="js/ServiceReport.js"></script>
+        <!-- delete -->
+        <!-- <script src="js/libs/jSignature.min.js"></script> -->
+        <!-- <script src="plugins/colResizable/colResizable-1.6.min.js"></script> -->
+        <!-- <script src="js/ServiceReport.js"></script> -->
     </body>
 </html>

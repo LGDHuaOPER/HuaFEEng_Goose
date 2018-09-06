@@ -69,11 +69,11 @@ public class TransportDirectiveUtil {
 		SEND_PWD = password;
 		Properties props = System.getProperties();
 		props.setProperty(KEY_SMTP, VALUE_SMTP);
-		props.setProperty(KEY_PROPS, VALUE_PROPS);
 		props.setProperty("mail.smtp.connectiontimeout", "80000");//connectiontimeout--建立socket连接，socket在这个时间内有效
 		props.setProperty("mail.smtp.timeout", "80000");//timeout是socket建立连接后进行的读写超时数
-		props.setProperty("mail.smtp.port", "25");
-		props.setProperty("mail.smtp.auth", "true");
+		props.put(KEY_PROPS, VALUE_PROPS);
+		props.put("mail.smtp.port", "25");
+		props.put("mail.smtp.auth","true");
 		s = Session.getInstance(props, new Authenticator() {
 			protected PasswordAuthentication getPasswordAuthentication() {
 				return new PasswordAuthentication(SEND_UNAME, SEND_PWD);

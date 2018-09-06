@@ -64,7 +64,7 @@ public class VersionManagementServlet extends HttpServlet {
 		version.setVmClassifyHref(vmClassifyHref);
 		
 		VersionManagementService service = new VersionManagementServiceImpl();
-		response.getWriter().write(service.addVersion(version));
+		response.getWriter().write(new Gson().toJson(service.addVersion(version)));
 	}
 
 }

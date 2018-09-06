@@ -92,20 +92,12 @@
 		height: auto !important;
 	}
 
-	/*.content .select-button {
-		position: relative;
-		top: -5px;
-	}
-
-	.content .select-button input[type="button"] {
-		width: auto !important;
-		height: auto !important;
-		border-color: #46b8da;
-		border: 1px solid transparent !important;
-	}*/
-
 	.content .choose input+input {
 		margin-left: 10px !important;
+	}
+
+	.m-nav-div0 {
+		z-index: 101 !important;
 	}
 
 	/*自动填充带来的问题，兼容样式*/

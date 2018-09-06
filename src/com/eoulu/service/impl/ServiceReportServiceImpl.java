@@ -48,11 +48,15 @@ public class ServiceReportServiceImpl implements ServiceReportService{
 	public String getReportNumber(String email) {
 		ServiceReportDao dao = new ServiceReportDao();
 		List<Map<String, Object>> list = dao.getStaffInfo(email);
-		String staffName = null;
-		String staffCode = null;
+		String staffName = "NA";
+		String staffCode = "NA";
 		if(list.size()>1){
-			staffName = list.get(1).get("StaffName").toString();
-			staffCode = list.get(1).get("StaffCode").toString();
+			try{
+				staffName = list.get(1).get("StaffName").toString();
+				staffCode = list.get(1).get("StaffCode").toString();
+			}catch(Exception e){
+				System.out.println("无姓名或员工编号");
+			}
 		}
 		List<Map<String, Object>> list1 = dao.getNumber(staffName);
 		System.out.println("list:"+list1);
