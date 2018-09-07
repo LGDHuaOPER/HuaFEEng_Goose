@@ -242,6 +242,36 @@
 	</div>
 	<a class="a_able" href="vmClassifyHref" style="color: red;" title="冲锋鹅T2-软件部文档页面-ProjectName">ProjectName Version</a>
 	<button class="button_able">123456789</button>
+	<input type="text" id="iInput">
+	<input id="inp1" type="text" value="1234567890">     
+	<input id="inp2" type="text" value="9876543210">     
+	<input type="button" onclick="test()" value="确定">     
+	<script language="javascript">     
+	function test()     
+	{     
+	var o=document.getElementById("inp1");   
+	var r = document.selection.createRange();     
+	if(o.createTextRange().inRange(r))     
+	alert(r.text);     
+	}     
+	</script> 
+	<script language="javascript">      
+	function setFocus()      
+	{      
+	var obj = event.srcElement;      
+	var txt =obj.createTextRange();      
+	txt.moveStart('character',obj.value.length);      
+	txt.collapse(true);      
+	txt.select();      
+	}      
+	</script>   
+	<input type="text" value="http://toto369.net" onfocus="setFocus()">
+	<input type="button" onclick="aa()" value="选中">
+	<script>
+		function aa(){
+			alert(window.getSelection());
+		}
+	</script> 
 	<script src="../js/libs/jquery-3.3.1.min.js"></script>
 </body>
 </html>

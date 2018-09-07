@@ -1040,8 +1040,10 @@ $('#update_submit').click(function () {
 	var USD = $('.contract_update input[name="USD"]').val();
 	var installed_time = $('.contract_update input[name="installed_time"]').val() ==""?"0000-00-00":$('.contract_update input[name="installed_time"]').val();
 	var remarks = $('.contract_update input[name="remarks"]').val();
- 	var ninePaid = $('.contract_update input[name="ninePaid"]').val() == "" ? 0 : $('.contract_update .ninePaid').val();
-	var tenPaid = $('.contract_update input[name="tenPaid"]').val()== "" ? 0 : $('.contract_update .tenPaid').val(); 
+ 	// var ninePaid = $('.contract_update input[name="ninePaid"]').val() == "" ? 0 : $('.contract_update .ninePaid').val();
+ 	var ninePaid = $('.contract_update input[name="ninePaid"]').val() == "" ? 0 : $('.contract_update input[name="ninePaid"]').val();
+	// var tenPaid = $('.contract_update input[name="tenPaid"]').val()== "" ? 0 : $('.contract_update .tenPaid').val();
+	var tenPaid = $('.contract_update input[name="tenPaid"]').val()== "" ? 0 : $('.contract_update input[name="tenPaid"]').val();
 	
 	    var Goods = [];
 	    var itemID = [];

@@ -1151,7 +1151,8 @@ span.hasUn {
 /*}*/
 
 .contract-purchase .i-body .table1 th:nth-child(1) {
-    width: 220px;
+    // width: 220px;
+    width: 80px;
 }
 
 .contract-purchase .i-body .table1 th:nth-child(2) {
@@ -1159,14 +1160,18 @@ span.hasUn {
 }
 
 .contract-purchase .i-body .table1 th:nth-child(3) {
-    width: 100px;
-}
-
-.contract-purchase .i-body .table1 th:nth-child(4) {
     width: 140px;
 }
 
+.contract-purchase .i-body .table1 th:nth-child(4) {
+    width: 100px;
+}
+
 .contract-purchase .i-body .table1 th:nth-child(5) {
+    width: 140px;
+}
+
+.contract-purchase .i-body .table1 th:nth-child(6) {
     width: 260px;
 }
 

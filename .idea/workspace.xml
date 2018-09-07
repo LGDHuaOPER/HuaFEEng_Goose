@@ -1,17 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="aec6b75f-4d26-4c48-a99e-46aaf1da0fea" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/WebContent/WEB-INF/PaymentRequest.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/WebContent/WEB-INF/PaymentRequest.jsp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/WebContent/WEB-INF/SoftwareDocument.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/WebContent/WEB-INF/SoftwareDocument.jsp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/WebContent/WEB-INF/top.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/WebContent/WEB-INF/top.jsp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/WebContent/js/SoftwareDocument.js" beforeDir="false" afterPath="$PROJECT_DIR$/WebContent/js/SoftwareDocument.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/WebContent/js/global/myFunction.js" beforeDir="false" afterPath="$PROJECT_DIR$/WebContent/js/global/myFunction.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/WebContent/js/modules/personnel/PaymentRequest-da05c85c2a.min.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/WebContent/js/modules/personnel/PaymentRequest.js" beforeDir="false" afterPath="$PROJECT_DIR$/WebContent/js/modules/personnel/PaymentRequest.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/WebContent/js/modules/software/SoftwareDocument-4a848ad6d1.min.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/WebContent/js/modules/software/SoftwareDocument.js" beforeDir="false" afterPath="$PROJECT_DIR$/WebContent/js/modules/software/SoftwareDocument.js" afterDir="false" />
-    </list>
+    <list default="true" id="aec6b75f-4d26-4c48-a99e-46aaf1da0fea" name="Default Changelist" comment="" />
     <ignored path="$PROJECT_DIR$/out/" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -23,9 +13,10 @@
     <session id="57235876">
       <usages-collector id="statistics.lifecycle.project">
         <counts>
-          <entry key="project.closed" value="1" />
+          <entry key="project.closed" value="2" />
           <entry key="project.open.time.13" value="1" />
-          <entry key="project.opened" value="1" />
+          <entry key="project.open.time.18" value="1" />
+          <entry key="project.opened" value="2" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.extensions.open">
@@ -62,8 +53,9 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
-      <pane id="Scope" />
       <pane id="AndroidView" />
+      <pane id="PackagesPane" />
+      <pane id="Scope" />
       <pane id="ProjectPane">
         <subPane>
           <expand>
@@ -80,7 +72,6 @@
           <select />
         </subPane>
       </pane>
-      <pane id="PackagesPane" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -110,29 +101,25 @@
       <option name="presentableId" value="Default" />
       <updated>1536134711236</updated>
       <workItem from="1536134717379" duration="838000" />
+      <workItem from="1536289745436" duration="8000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="838000" />
+    <option name="totallyTimeSpent" value="846000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="127" y="0" width="1750" height="1047" extended-state="0" />
     <layout>
-      <window_info id="Designer" />
-      <window_info id="Image Layers" />
-      <window_info id="UI Designer" />
-      <window_info id="Favorites" side_tool="true" />
-      <window_info id="Capture Tool" />
-      <window_info id="Learn" weight="0.26153848" />
-      <window_info id="Web" side_tool="true" />
-      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.21952663" />
+      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.22189349" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
-      <window_info anchor="bottom" id="Terminal" visible="true" weight="0.3125" />
-      <window_info anchor="bottom" id="Event Log" side_tool="true" />
-      <window_info anchor="bottom" id="Java Enterprise" />
-      <window_info anchor="bottom" id="Database Changes" show_stripe_button="false" />
-      <window_info anchor="bottom" id="Version Control" />
+      <window_info id="Designer" order="2" />
+      <window_info id="Image Layers" order="3" />
+      <window_info id="UI Designer" order="4" />
+      <window_info id="Favorites" order="5" side_tool="true" />
+      <window_info id="Capture Tool" order="6" />
+      <window_info id="Learn" order="7" weight="0.26153848" />
+      <window_info id="Web" order="8" side_tool="true" />
       <window_info anchor="bottom" id="Message" order="0" />
       <window_info anchor="bottom" id="Find" order="1" />
       <window_info anchor="bottom" id="Run" order="2" />
@@ -140,15 +127,20 @@
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
       <window_info anchor="bottom" id="TODO" order="6" />
-      <window_info anchor="right" id="Palette" />
-      <window_info anchor="right" id="Capture Analysis" />
-      <window_info anchor="right" id="Maven Projects" />
-      <window_info anchor="right" id="Database" />
-      <window_info anchor="right" id="Palette&#9;" />
-      <window_info anchor="right" id="Theme Preview" />
+      <window_info active="true" anchor="bottom" id="Terminal" order="7" visible="true" weight="0.3125" />
+      <window_info anchor="bottom" id="Event Log" order="8" side_tool="true" />
+      <window_info anchor="bottom" id="Java Enterprise" order="9" />
+      <window_info anchor="bottom" id="Database Changes" order="10" show_stripe_button="false" />
+      <window_info anchor="bottom" id="Version Control" order="11" />
       <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
       <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
       <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
+      <window_info anchor="right" id="Palette" order="3" />
+      <window_info anchor="right" id="Capture Analysis" order="4" />
+      <window_info anchor="right" id="Maven Projects" order="5" />
+      <window_info anchor="right" id="Database" order="6" />
+      <window_info anchor="right" id="Palette&#9;" order="7" />
+      <window_info anchor="right" id="Theme Preview" order="8" />
     </layout>
   </component>
   <component name="TypeScriptGeneratedFilesManager">

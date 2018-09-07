@@ -1025,7 +1025,6 @@ $('#uploadCon').click(function () {
             success: function (data)  //服务器成功响应处理函数
             {
                 console.log(data);
-                console.log(111111);
                 if(data){
                     $("input[name='isPdfUpload']").val(1);
                     $('.upFileText .error1').html('上传成功！');
@@ -1164,7 +1163,7 @@ $(".pC-li4").click(function(){
 });
 
 $(".pC-li5").click(function(){
-    window.open('Statistics')
+    window.open('Statistics');
     /*window.location.href = 'Statistics';*/
 });
 
@@ -1196,31 +1195,31 @@ function showJudge(data){
 var south=parseFloat($('.proSouth').find('b').eq(1).html())/parseFloat(($('.proSouth').find('b').eq(0).html()));
 var north=parseFloat($('.proNorth').find('b').eq(1).html())/parseFloat(($('.proNorth').find('b').eq(0).html()));
 var southwest=parseFloat($('.proSouthwest').find('b').eq(1).html())/parseFloat(($('.proSouthwest').find('b').eq(0).html()));
-Picture(south,north,southwest);
+// Picture(south,north,southwest);
 
-function Picture(south,north,southwest){
-	$('.prompt-alert').html('<div class="swiper-wrapper">'+
-			'<div class="swiper-slide">'+
-			'<span>南方'+showJudge(south).text+'</span>'+
-			'<img src="image/'+showJudge(south).pic[1]+'"/>'+
-			'</div>'+
-			'<div class="swiper-slide">'+
-			'<span>北方'+showJudge(north).text+'</span>'+
-			'<img src="image/'+showJudge(north).pic[0]+'"/>'+
-			'</div>'+
-			'<div class="swiper-slide">'+
-			'<span>西南'+showJudge(southwest).text+'</span>'+
-			'<img src="image/'+showJudge(southwest).pic[2]+'"/>'+
-			'</div>'+
-			'</div>');
+// function Picture(south,north,southwest){
+// 	$('.prompt-alert').html('<div class="swiper-wrapper">'+
+// 			'<div class="swiper-slide">'+
+// 			'<span>南方'+showJudge(south).text+'</span>'+
+// 			'<img src="image/'+showJudge(south).pic[1]+'"/>'+
+// 			'</div>'+
+// 			'<div class="swiper-slide">'+
+// 			'<span>北方'+showJudge(north).text+'</span>'+
+// 			'<img src="image/'+showJudge(north).pic[0]+'"/>'+
+// 			'</div>'+
+// 			'<div class="swiper-slide">'+
+// 			'<span>西南'+showJudge(southwest).text+'</span>'+
+// 			'<img src="image/'+showJudge(southwest).pic[2]+'"/>'+
+// 			'</div>'+
+// 			'</div>');
 
 
-var mySwiper = new Swiper ('.prompt-alert', {
-autoplay: 3000,
-loop: true,
-autoplayDisableOnInteraction : false
-});
-}
+// var mySwiper = new Swiper ('.prompt-alert', {
+// autoplay: 3000,
+// loop: true,
+// autoplayDisableOnInteraction : false
+// });
+// }
 
 
 
@@ -1515,48 +1514,35 @@ if(window.location.href.indexOf("StockPurchasing")>-1){
                 ID: ID,
                 Supplier: Supplier
             },
-            // dataType : 'json',
             dataType : 'json',
             success : function (data) {
-                console.log(data);
                 var product = $(".contract-purchase tbody tr:eq(0) td:eq(1)");
-                var money = $(".contract-purchase tbody tr:eq(0) td:eq(2)");
-                var use = $(".contract-purchase tbody tr:eq(0) td:eq(3)");
-                var company = $(".contract-purchase tbody tr:eq(0) td:eq(4) span");
+                var Currency = $(".contract-purchase tbody tr:eq(0) td:eq(2)>select");
+                var money = $(".contract-purchase tbody tr:eq(0) td:eq(3)");
+                var use = $(".contract-purchase tbody tr:eq(0) td:eq(4)");
+                var company = $(".contract-purchase tbody tr:eq(0) td:eq(5) span");
                 var account = $(".contract-purchase tbody tr:eq(1) td:eq(0) span");
                 var bank = $(".contract-purchase tbody tr:eq(2) td:eq(0) span");
-            	product.text("");
+                product.text("");
+            	Currency.val("RMB");
             	money.text("");
             	use.text("");
             	company.text("");
             	account.text("");
             	bank.text("");
                 if(data.length == 2){
-                	// company.addClass("hasUn");
-                	// account.addClass("hasUn");
-                	// bank.addClass("hasUn");
-                	// company.attr("contenteditable","true");
-                	// account.attr("contenteditable","true");
-                	// bank.attr("contenteditable","true");
-                	/*contenteditable="true"*/
                 	$("#textfield").val("");
                 }else if(data.length == 3){
                     var Company1 = data[1].Company;
                     var Account1 = data[1].Account;
                     var Bank1= data[1].Bank;
-//              
                     $("#textfield").val("");
                     company.text(Company1);
                     account.text(Account1);
                     bank.text(Bank1);
-                 //    company.removeClass("hasUn");
-                	// account.removeClass("hasUn");
-                	// bank.removeClass("hasUn");
-                	// company.attr("contenteditable","false");
-                	// account.attr("contenteditable","false");
-                	// bank.attr("contenteditable","false");
                 }else if(data.length == 4){
                     var Product2 = data[3].Product;
+                    var Currency2 = data[3].Currency;
                     var Money2 = data[3].Money;
                     var Use2 = data[3].UseFor;
                     var Account2 = data[1].Account;
@@ -1568,14 +1554,11 @@ if(window.location.href.indexOf("StockPurchasing")>-1){
                     account.text(Account2);
                     bank.text(Bank2);
                     product.text(Product2);
+                    Currency.val(Currency2);
                     money.text(Money2);
                     use.text(Use2);
-                 //    company.removeClass("hasUn");
-                	// account.removeClass("hasUn");
-                	// bank.removeClass("hasUn");
-                	// company.attr("contenteditable","false");
-                	// account.attr("contenteditable","false");
-                	// bank.attr("contenteditable","false");
+                    money.trigger("blur");
+
                     if(ContractPath2=="--"){
                     	$("#textfield").val("");
                     }else{
@@ -1596,40 +1579,6 @@ if(window.location.href.indexOf("StockPurchasing")>-1){
         });
     }
 
-    function ajaxConInfo2(Supplier) {
-        return $.ajax({
-            type: 'get',
-            url: 'GetSupplierBank',
-            data: {
-                Supplier: Supplier
-            },
-            // dataType : 'json',
-            dataType: 'json',
-            success: function (data) {
-                console.log(data);
-                $("#textfield").val("");
-                // var Customer = data[1].Customer;
-                // var ContractPath = data[1].ContractPath;
-                // var Product = data[1].Product;
-                // var Money = data[1].Money;
-                // var Use = data[1].Use;
-                var Company = data[1].Company;
-                var Account = data[1].Account;
-                var Bank = data[1].Bank;
-                console.log(Company+":"+Account+":"+Bank);
-                $(".contract-purchase tbody tr:eq(0) td:eq(4) span").text(Company);
-                $(".contract-purchase tbody tr:eq(1) td:eq(0) span").text(Account);
-                $(".contract-purchase tbody tr:eq(2) td:eq(0) span").text(Bank);
-                // $.MsgBox.Alert('提示',data);
-                // $('.cover_color').hide();
-                // $('.contract_send').hide();
-            },
-            error: function () {
-                $.MsgBox.Alert("提示", "服务器繁忙，稍后重试！");
-            }
-        });
-    }
-
     // 采购合同显示与银行信息显示
     $(document).on("click",".isTransport",function () {
         $("input[name='isPdfUpload']").val(0);
@@ -1641,128 +1590,56 @@ if(window.location.href.indexOf("StockPurchasing")>-1){
         var ID = $(this).siblings("td.contract-edit").attr("value");
         $("input[name='saveContractId']").val(ID);
         $('.upFileText .error1').html('');
-        $(".contract-purchase tbody tr:eq(0) td:eq(4) span").text("");
+        $(".contract-purchase tbody tr:eq(0) td:eq(5) span").text("");
         $(".contract-purchase tbody tr:eq(1) td:eq(0) span").text("");
         $(".contract-purchase tbody tr:eq(2) td:eq(0) span").text("");
         if($(this).attr("title") == "邮件未发送"){
-            // alert("未发送");
             alertGroupOpen(".cover-color3",".contract-purchase",100);
             $(".shicong1").attr("disabled",false);
             $(".shicong1").css("cursor","pointer");
             $("#contract-purchase-upload").attr("disabled",false);
             $("#contract-purchase-upload").css("cursor","pointer");
             ajaxConInfo(ID,Supplier);
-            // ajaxConInfo2(Supplier);
-                // if(Company0.indexOf("（填写）")>-1 && Account0.indexOf("（填写）")>-1 && Bank0.indexOf("（填写）")>-1){
-                //     $.MsgBox_Unload.Alert("提示", "请填写银行信息并保存");
-                // }else{
-                //     alert(Supplier);
-                //
-                // }
         }else{
-            // alert("已发送");
             alertGroupOpen(".cover-color3",".contract-purchase",100);
             $(".shicong1").attr("disabled","disabled");
             $(".shicong1").css("cursor","not-allowed");
-            // $("#contract-purchase-upload").attr("disabled","disabled");
-            // $("#contract-purchase-upload").css("cursor","not-allowed");
             $("#contract-purchase-upload").attr("disabled",false);
             $("#contract-purchase-upload").css("cursor","pointer");
             ajaxConInfo(ID,Supplier);
-            // ajaxConInfo(ID);
-            // var ID = $(this).siblings("td.contract-edit").attr("value");
-                // $.ajax({
-                //     type : 'get',
-                //     url : 'PurchaseInfo',
-                //     data : {
-                //         ID: ID
-                //     },
-                //     // dataType : 'json',
-                //     dataType : 'json',
-                //     success : function (data) {
-                //         console.log(data);
-                //         var Customer = data[1].Customer;
-                //         var ContractPath = data[1].ContractPath;
-                //         var Product = data[1].Product;
-                //         var Money = data[1].Money;
-                //         var Use = data[1].Use;
-                //         var Company = data[1].Company;
-                //         var Account = data[1].Account;
-                //         var Bank = data[1].Bank;
-                //         $("#textfield").val(ContractPath);
-                //         $(".contract-purchase tbody tr:eq(0) td:eq(1)").val(Product);
-                //         $(".contract-purchase tbody tr:eq(0) td:eq(2)").val(Money);
-                //         $(".contract-purchase tbody tr:eq(0) td:eq(3)").val(Use);
-                //         $(".contract-purchase tbody tr:eq(0) td:eq(4)").val(Company);
-                //         $(".contract-purchase tbody tr:eq(1) td:eq(0)").val(Account);
-                //         $(".contract-purchase tbody tr:eq(2) td:eq(0)").val(Bank);
-                //
-                //         // $.MsgBox.Alert('提示',data);
-                //         // $('.cover_color').hide();
-                //         // $('.contract_send').hide();
-                //     },
-                //     error : function () {
-                //         $.MsgBox.Alert("提示", "服务器繁忙，稍后重试！");
-                //     }
-                // });
         }
-        // alertGroupOpen(".cover-color3",".contract-purchase",100);
-        // var Supplier = $(this).siblings("td:eq(1)").text();
-        // $(".contract-purchase .table1 .supplier").text(Supplier);
-        // $("input[name='saveContractId']").val($(this).siblings("td.contract-edit").attr("value"));
-        // $('.upFileText .error1').html('');
-        // var Company0 = $(".contract-purchase tbody tr:eq(0) td:eq(4) span").text();
-        // var Account0 = $(".contract-purchase tbody tr:eq(1) td:eq(0) span").text();
-        // var Bank0 = $(".contract-purchase tbody tr:eq(2) td:eq(0) span").text();
-        // // ajax 显示银行信息
-        // if(Company0.indexOf("（填写）")>-1 && Account0.indexOf("（填写）")>-1 && Bank0.indexOf("（填写）")>-1){
-        //     alert("找到了");
-        // }else{
-        //     $.ajax({
-        //         type : 'get',
-        //         url : 'GetSupplierBank',
-        //         data : {
-        //             Supplier: Supplier
-        //         },
-        //         // dataType : 'json',
-        //         dataType : 'json',
-        //         success : function (data) {
-        //             console.log(data);
-        //             // $.MsgBox.Alert('提示',data);
-        //             // $('.cover_color').hide();
-        //             // $('.contract_send').hide();
-        //         },
-        //         error : function () {
-        //             $.MsgBox.Alert("提示", "服务器繁忙，稍后重试！");
-        //         }
-        //     });
-        // }
-
     });
+    // 点击发送邮件
     $(document).on("click",".contract-purchase .u-body .i-foot input",function () {
         // var fileName2 = $('#input_file').val().split("\\").pop();
         var fileName2 = $('#textfield').val();
         var isPdfUpload = $("input[name='isPdfUpload']").val();
         var reg = new RegExp(/^[0-9]+(.[0-9]{2})?$/);
-        var cc = $(this).parent().siblings("div.i-body").find("tbody tr:eq(0) td:eq(2)").text();
-        var a1 = $(this).parent().siblings("div.i-body").find("tbody tr:eq(0) td:eq(4) span").text();
+        // 金额
+        var cc = $(this).parent().siblings("div.i-body").find("tbody tr:eq(0) td:eq(3)").text();
+        // 银行信息
+        var a1 = $(this).parent().siblings("div.i-body").find("tbody tr:eq(0) td:eq(5) span").text();
         var b1 = $(this).parent().siblings("div.i-body").find("tbody tr:eq(1) td:eq(0) span").text();
         var c1 = $(this).parent().siblings("div.i-body").find("tbody tr:eq(2) td:eq(0) span").text();
         if(isPdfUpload == 0 || isPdfUpload == "0"){
             $.MsgBox_Unload.Alert("提示", "请上传合同或PO");
-            // return false;
         }else if(a1 == null || a1 == "" || b1 == null || b1 == "" || c1 == null || c1 == ""){
             $.MsgBox_Unload.Alert('提示',"请检查银行信息是否填写完整！");
-            // return false;
         }else{
             alertGroupOpen(".cover-color3",".email-send",100);
-            var aa = $(this).parent().siblings("div.i-body").find("tbody tr:eq(0) td:eq(3)").text();
+            var aa = $(this).parent().siblings("div.i-body").find("tbody tr:eq(0) td:eq(4)").text();
             var bb = $(this).parent().siblings("div.i-body").find("tbody tr:eq(0) td:eq(1)").text();
+            var Currency = $(this).parent().siblings("div.i-body").find("tbody tr:eq(0) td:eq(2)>select").val();
+            // 供应商
             $(".email-send tbody tr:eq(1) td:eq(0)").text($(this).parent().siblings("div.i-body").find("tbody tr:eq(0) td:eq(0)").text());
+            // 产品
             $(".email-send tbody tr:eq(1) td:eq(1)").text(bb);
-            $(".email-send tbody tr:eq(1) td:eq(2)").text(cc);
-            $(".email-send tbody tr:eq(1) td:eq(3)").text(aa);
-            $(".email-send tbody tr:eq(1) td:eq(4)").text("公司："+a1);
+            // 币种
+            $(".email-send tbody tr:eq(1) td:eq(2)").text(Currency);
+            $(".email-send tbody tr:eq(1) td:eq(3)").text(cc);
+            // 用途
+            $(".email-send tbody tr:eq(1) td:eq(4)").text(aa);
+            $(".email-send tbody tr:eq(1) td:eq(5)").text("公司："+a1);
             $(".email-send tbody tr:eq(2) td:eq(0)").text("账号："+b1);
             $(".email-send tbody tr:eq(3) td:eq(0)").text("开户行："+c1);
             $(".i-row4 input").val("Eoulu：申请付款-"+aa+"+"+bb);
@@ -1779,29 +1656,30 @@ if(window.location.href.indexOf("StockPurchasing")>-1){
 
 // ajax 提交合同与银行信息
     $("#contract-purchase-upload").on("click",function(){
+        setTimeout(submitConBankInfo,50);
+    });
+    
+    function submitConBankInfo(){
         var OrderID = $("input[name='saveContractId']").val();
         var ContractPath;
         var isPdfUpload = $("input[name='isPdfUpload']").val();
         if(isPdfUpload == 0 || isPdfUpload == "0"){
-        	ContractPath = "";
+            ContractPath = "";
         }else{
-        	ContractPath = $("#textfield").val();
+            ContractPath = $("#textfield").val();
         }
         console.log("提交合同与银行信息"+ContractPath);
-    	var Supplier = $(".contract-purchase tbody tr:eq(0) td:eq(0)").text();
-    	var product = $(".contract-purchase tbody tr:eq(0) td:eq(1)").text();
-    	var Money = $(".contract-purchase tbody tr:eq(0) td:eq(2)").text();
-        
-        var Use = $(".contract-purchase tbody tr:eq(0) td:eq(3)").text();
-    	var Company = $(".contract-purchase tbody tr:eq(0) td:eq(4) span").text();
-    	var Account = $(".contract-purchase tbody tr:eq(1) td:eq(0) span").text();
-    	var Bank = $(".contract-purchase tbody tr:eq(2) td:eq(0) span").text();
-    	// alert(OrderID+ContractPath+Supplier+product+Money+Use+Company+Account+Bank);
+        var Supplier = $(".contract-purchase tbody tr:eq(0) td:eq(0)").text();
+        var product = $(".contract-purchase tbody tr:eq(0) td:eq(1)").text();
+        var Currency = $(".contract-purchase tbody tr:eq(0) td:eq(2)>select").val();
+        var Money = $(".contract-purchase tbody tr:eq(0) td:eq(3)").text();
+        var Use = $(".contract-purchase tbody tr:eq(0) td:eq(4)").text();
+        var Company = $(".contract-purchase tbody tr:eq(0) td:eq(5) span").text();
+        var Account = $(".contract-purchase tbody tr:eq(1) td:eq(0) span").text();
+        var Bank = $(".contract-purchase tbody tr:eq(2) td:eq(0) span").text();
         var reg = new RegExp(/^[0-9]+(.[0-9]{2})?$/); 
-//        	var Money = (Money1*1).toFixed(2);
         if(Company == null || Company == "" || Account == null || Account == "" || Bank == null || Bank == ""){
             $.MsgBox_Unload.Alert('提示',"请检查银行信息是否填写完整！");
-           // alert("请检查银行信息是否填写完整！");
         }else{
             $.ajax({
                 type : 'get',
@@ -1811,7 +1689,8 @@ if(window.location.href.indexOf("StockPurchasing")>-1){
                     ContractPath: ContractPath,
                     Supplier: Supplier,
                     product: product,
-                    Money: Money,
+                    Currency: Currency,
+                    Money: Money.replace(/,/g, ""),
                     Use: Use,
                     Company: Company,
                     Account: Account,
@@ -1830,8 +1709,7 @@ if(window.location.href.indexOf("StockPurchasing")>-1){
                 }
             });
         }
-    });
-    
+    }
     
     // ajax 提交发送邮件
     $("#email-send-upload").on("click",function(){
@@ -1846,12 +1724,13 @@ if(window.location.href.indexOf("StockPurchasing")>-1){
     	// var fileName3 = $('#input_file').val().split("\\").pop();
     	var fileName3 = $('#textfield').val();
     	var a = $(".email-send tbody tr:eq(1) td:eq(0)").text();
-    	var b = $(".email-send tbody tr:eq(1) td:eq(1)").text();
-    	var c = $(".email-send tbody tr:eq(1) td:eq(2)").text();
-    	var d = $(".email-send tbody tr:eq(1) td:eq(3)").text();
-    	var e = $(".email-send tbody tr:eq(1) td:eq(4)").text();
+        var b = $(".email-send tbody tr:eq(1) td:eq(1)").text();
+    	var Currency1 = $(".email-send tbody tr:eq(1) td:eq(2)").text();
+    	var c = $(".email-send tbody tr:eq(1) td:eq(3)").text();
+    	var d = $(".email-send tbody tr:eq(1) td:eq(4)").text();
+    	var e = $(".email-send tbody tr:eq(1) td:eq(5)").text();
     	// var ee = $(".email-send tbody tr:eq(1) td:eq(4)").text().replace(/公司：/, "");
-    	var ee = $(".contract-purchase tbody tr:eq(0) td:eq(4) span").text();
+    	var ee = $(".contract-purchase tbody tr:eq(0) td:eq(5) span").text();
     	var f = $(".email-send tbody tr:eq(2) td:eq(0)").text();
     	// var ff = $(".email-send tbody tr:eq(2) td:eq(0)").text().replace(/账号：/, "");
     	var ff = $(".contract-purchase tbody tr:eq(1) td:eq(0) span").text();
@@ -1863,10 +1742,9 @@ if(window.location.href.indexOf("StockPurchasing")>-1){
 		'<p style="line-height: 22px;font-size:14px;">烦请您根据以下银行信息安排付款，谢谢晓亮姐！</p>'+
 		'<p style="line-height: 22px;font-size:14px;">如有任何问题，请随时告知，非常感谢！</p>'+
 		'<table style="border-spacing: 0;height: 120px;border: none;box-sizing: border-box;border-collapse: collapse;text-align: center;vertical-align: middle;">'+
-		'<thead><tr><th style="box-sizing: border-box;border-collapse: collapse;border: 1px solid #00aeef;height: 30px;width: 190px;">供应商</th><th style="box-sizing: border-box;border-collapse: collapse;border: 1px solid #00aeef;height: 30px;width: 78px;">产品</th><th style="box-sizing: border-box;border-collapse: collapse;border: 1px solid #00aeef;height: 30px;width: 78px;">金额</th><th style="box-sizing: border-box;border-collapse: collapse;border: 1px solid #00aeef;height: 30px;width: 115px;">用途</th><th style="box-sizing: border-box;border-collapse: collapse;border: 1px solid #00aeef;height: 30px;width: 212px;">银行信息</th></tr><thead>'+
-		'<tbody><tr><td rowspan="3" style="box-sizing: border-box;border-collapse: collapse;border: 1px solid #00aeef;height: 30px;">'+a+'</td><td rowspan="3" style="box-sizing: border-box;border-collapse: collapse;border: 1px solid #00aeef;height: 30px;">'+b+'</td><td rowspan="3" style="box-sizing: border-box;border-collapse: collapse;border: 1px solid #00aeef;height: 30px;">'+c+'</td><td rowspan="3" style="box-sizing: border-box;border-collapse: collapse;border: 1px solid #00aeef;height: 30px;">'+d+'</td><td style="box-sizing: border-box;border-collapse: collapse;border: 1px solid #00aeef;height: 30px;">'+e+'</td></tr>'+
+		'<thead><tr><th style="box-sizing: border-box;border-collapse: collapse;border: 1px solid #00aeef;height: 30px;width: 190px;">供应商</th><th style="box-sizing: border-box;border-collapse: collapse;border: 1px solid #00aeef;height: 30px;width: 78px;">产品</th><th style="box-sizing: border-box;border-collapse: collapse;border: 1px solid #00aeef;height: 30px;width: 78px;">币种</th><th style="box-sizing: border-box;border-collapse: collapse;border: 1px solid #00aeef;height: 30px;width: 78px;">金额</th><th style="box-sizing: border-box;border-collapse: collapse;border: 1px solid #00aeef;height: 30px;width: 115px;">用途</th><th style="box-sizing: border-box;border-collapse: collapse;border: 1px solid #00aeef;height: 30px;width: 212px;">银行信息</th></tr><thead>'+
+		'<tbody><tr><td rowspan="3" style="box-sizing: border-box;border-collapse: collapse;border: 1px solid #00aeef;height: 30px;">'+a+'</td><td rowspan="3" style="box-sizing: border-box;border-collapse: collapse;border: 1px solid #00aeef;height: 30px;">'+b+'</td><td rowspan="3" style="box-sizing: border-box;border-collapse: collapse;border: 1px solid #00aeef;height: 30px;">'+Currency1+'</td><td rowspan="3" style="box-sizing: border-box;border-collapse: collapse;border: 1px solid #00aeef;height: 30px;">'+c+'</td><td rowspan="3" style="box-sizing: border-box;border-collapse: collapse;border: 1px solid #00aeef;height: 30px;">'+d+'</td><td style="box-sizing: border-box;border-collapse: collapse;border: 1px solid #00aeef;height: 30px;">'+e+'</td></tr>'+
 		'<tr><td style="box-sizing: border-box;border-collapse: collapse;border: 1px solid #00aeef;height: 30px;">'+f+'</td></tr><tr><td style="box-sizing: border-box;border-collapse: collapse;border: 1px solid #00aeef;height: 30px;">'+g+'</td></tr></tbody></table>';
-    	// alert(Contract+To+CopyTo1+CopyTo2+CopyTo3+Subject+Input);
 
         $.ajax({
             type : 'get',
@@ -1876,7 +1754,8 @@ if(window.location.href.indexOf("StockPurchasing")>-1){
                 ContractPath: fileName3,
                 Supplier: a,
                 product: b,
-                Money: c,
+                Currency: Currency1,
+                Money: c.replace(/,/g, ""),
                 Use: d,
                 Company: ee,
                 Account: ff,
@@ -1895,7 +1774,6 @@ if(window.location.href.indexOf("StockPurchasing")>-1){
                 });
             },
             success : function (data) {
-                console.log(data);
                 // 内部保存信息
                 $.ajax({
                     type : 'get',
@@ -1913,8 +1791,6 @@ if(window.location.href.indexOf("StockPurchasing")>-1){
         //    		dataType : 'json',
                     dataType : 'text',
                     success : function (data) {
-        //              $("td.isTransport").attr("value",1).text("已发送").removeClass("noTransport");
-                        console.log(data);
                         $.MsgBox.Alert('提示',data);
         //    			$('.cover_color').hide();
         //    			$('.contract_send').hide();
@@ -1923,9 +1799,6 @@ if(window.location.href.indexOf("StockPurchasing")>-1){
                         $.MsgBox.Alert("提示", "服务器繁忙，稍后重试！");
                     }
                 });
-                // $.MsgBox_Unload.Alert('提示',data);
-                // $('.cover_color').hide();
-                // $('.contract_send').hide();
             },
             error : function () {
                 $.MsgBox.Alert("提示", "服务器繁忙，稍后重试！");
@@ -2239,5 +2112,25 @@ $(".preview_download input[value='下载']").on("click",function(e){
     // });
 });
 
+// 金额处理input propertychange
+$(document).on("blur", "td.money_td", function(){
+    var newVal = $(this).text().replace(/[^\d^.]/g,'');
+    var newValArr;
+    if(newVal.indexOf(".")>-1){
+        newValArr = newVal.split(".");
+        $(this).text(ecDo.formatText(newValArr[0], 3, ",") + "." + Number(newValArr[1].substring(0,2)).toString());
+    }else{
+        newValArr = [];
+        newValArr.push(Number(newVal).toString());
+        $(this).text(ecDo.formatText(newValArr[0], 3, ","));
+    }
+    // document.getElementsByClassName("money_td")[0].setSelectionRange($(this).text().length, $(this).text().length);
+    // setFocus.call($(this).get(0));
+});
 
-    
+function setFocus() {
+    var range = this.createTextRange(); //建立文本选区
+    range.moveStart('character', this.value.length); //选区的起点移到最后去
+    range.collapse(true);
+    range.select();
+}

@@ -87,7 +87,7 @@
         </style>
     </head>
     <body>
-        <div class="loading_div_g_div">
+        <div class="loading_div_g_div" style="position: fixed;top: 0;bottom: 0;left: 0;right: 0;z-index: 100;width: 100vw;height: 100vh;background-color: #5bc0de;filter:alpha(opacity=90);-moz-opacity:0.9;-khtml-opacity:0.9;opacity: 0.9;display: -webkit-flex;display: flex;justify-content: center;align-items: center;">
             <img src="image/loading/Spinner-1s-200px.gif" alt="loading。。。">
         </div>
         <div id="NonStandard_wrapper">

@@ -256,7 +256,7 @@ input#username,input#psd{
     width: 100%!important;
 	}
 	.container-l {
-    background: url(../image/login3.png) no-repeat center;
+    background: url(../image/leftpic.png) no-repeat center;
     background-size: 100% 100%;
 }
 }

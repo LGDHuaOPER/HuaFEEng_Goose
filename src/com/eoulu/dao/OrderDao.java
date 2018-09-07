@@ -609,13 +609,14 @@ public class OrderDao {
 	// }
 	public boolean addPurchaseInfo(PurchaseInfo info){
 		DBUtil db = new DBUtil();
-		String sql = "insert into t_purchase_info values(?,?,?,?)";
+		String sql = "insert into t_purchase_info values(?,?,?,?,?)";
 		String sql2 = "update t_order set ContractPath=? where ID=?";
-		Object[] param = new Object[4];
+		Object[] param = new Object[5];
 		param[0] = info.getOrderID();
 		param[1] = info.getProduct();
-		param[2] = info.getMoney();
-		param[3] = info.getUse();
+		param[2] = info.getCurrency();
+		param[3] = info.getMoney();
+		param[4] = info.getUse();
 		Object[] param2 = new Object[]{info.getContractPath(),info.getOrderID()};
 		int result = 0;
 		try {
@@ -630,14 +631,15 @@ public class OrderDao {
 	
 	public boolean updatePurchaseInfo(PurchaseInfo info){
 		DBUtil db = new DBUtil();
-		String sql = "update t_purchase_info set Product= ?,Money= ?,UseFor=?  where OrderID=?";
+		String sql = "update t_purchase_info set Product= ?,Currency= ?,Money= ?,UseFor=?  where OrderID=?";
 		String sql2 = "update t_order set ContractPath=? where ID=?";
-		Object[] param = new Object[4];
+		Object[] param = new Object[5];
 		
 		param[0] = info.getProduct();
-		param[1] = info.getMoney();
-		param[2] = info.getUse();
-		param[3] = info.getOrderID();
+		param[1] = info.getCurrency();
+		param[2] = info.getMoney();
+		param[3] = info.getUse();
+		param[4] = info.getOrderID();
 		Object[] param2 = new Object[]{info.getContractPath(),info.getOrderID()};
 		int result = 0;
 		try {
@@ -652,7 +654,7 @@ public class OrderDao {
 	public List<Map<String, Object>> queryPurchaseInfo(int ID){
 		DBUtil db = new DBUtil();
 		String sql = "select t_order.Customer,t_order.ContractPath,t_purchase_info.Product,"
-				+ "t_purchase_info.Money,t_purchase_info.UseFor "
+				+ "t_purchase_info.Money,t_purchase_info.Currency,t_purchase_info.UseFor "
 				+ "from t_order join t_purchase_info on t_order.ID = t_purchase_info.OrderID where t_order.ID=?";
 		Object[] param = new Object[]{ID};
 		List<Map<String, Object>> list = db.QueryToList(sql, param);
@@ -661,7 +663,7 @@ public class OrderDao {
 	public List<Map<String, Object>> getPurchaseInfoForExcel(int ID){
 		DBUtil db = new DBUtil();
 		String sql = "select t_order.Customer,t_order.ContractPath,t_purchase_info.Product,"
-				+ "t_purchase_info.Money,t_purchase_info.UseFor,t_supplier_bank.Company,"
+				+ "t_purchase_info.Money,t_purchase_info.Currency,t_purchase_info.UseFor,t_supplier_bank.Company,"
 				+ "t_supplier_bank.Account,t_supplier_bank.Bank "
 				+ "from t_order left join t_purchase_info on t_order.ID = t_purchase_info.OrderID " 
 				+ "left join t_supplier_bank on t_order.Customer=t_supplier_bank.Supplier where t_order.ID=?";

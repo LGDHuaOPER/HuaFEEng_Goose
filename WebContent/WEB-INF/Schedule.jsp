@@ -13,8 +13,8 @@
 <link rel="bookmark" href="image/eoulu.ico"/>
 <link rel="stylesheet" href="./css/libs/bootstrap.min.css">
 <link rel="stylesheet" type="text/css" media="all" href="./css/libs/daterangepicker.css" />
-<link rel="stylesheet" type="text/css" href="font-awesome-4.5.0/css/font-awesome.min.css">
-<link rel="stylesheet" type="text/css" href="css/swiper-3.4.1.min.css" />
+<!-- <link rel="stylesheet" type="text/css" href="font-awesome-4.5.0/css/font-awesome.min.css"> -->
+<!-- <link rel="stylesheet" type="text/css" href="css/swiper-3.4.1.min.css" /> -->
 <link rel="stylesheet" href="css/libs/kalendae_pc.css" type="text/css" charset="utf-8">
 <link rel="stylesheet" type="text/css" href="css/schedule.css">
 <link rel="stylesheet" href="css/fullcalendar.css"/>

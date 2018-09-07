@@ -12,7 +12,7 @@
 <link rel="shortcut icon" href="image/eoulu.ico"/>
 <link rel="bookmark" href="image/eoulu.ico"/>
 <link rel="stylesheet" type="text/css" href="font-awesome-4.5.0/css/font-awesome.min.css">
-<link rel="stylesheet" type="text/css" href="css/swiper-3.4.1.min.css" />
+<!-- <link rel="stylesheet" type="text/css" href="css/swiper-3.4.1.min.css" /> -->
 <link rel="stylesheet" href="css/global/eouluCustom.css" type="text/css">
 <link rel="stylesheet" type="text/css" href="css/StockPurchase.css">
 <style>
@@ -396,6 +396,7 @@
 								<thead>
 									<tr><th>供应商</th>
 										<th>产品</th>
+										<th>币种</th>
 										<th>金额</th>
 										<th>用途</th>
 										<th>银行信息</th>
@@ -405,16 +406,21 @@
 									<tr>
 										<td rowspan="3" class="h88 supplier"></td>
 										<td rowspan="3" class="h88 hasUn" contenteditable="true"></td>
-										<td rowspan="3" class="h88 hasUn" contenteditable="true"></td>
+										<td rowspan="3" class="h88 hasUn"><select id="bizhong_sel">
+											<option value="RMB">RMB</option>
+											<option value="USD">USD</option>
+											<option value="JPY">JPY</option>
+											<option value="HKD">HKD</option>
+											<option value="EUR">EUR</option>
+										</select></td>
+										<td rowspan="3" class="h88 hasUn money_td" contenteditable="true"></td>
 										<td rowspan="3" class="h88 hasUn" contenteditable="true"></td>
 										<td>公司：<span class="hasUn" contenteditable="true"></span></td>
 									</tr>
 									<tr>
-
 										<td>账号：<span class="hasUn" contenteditable="true"></span></td>
 									</tr>
 									<tr>
-
 										<td>开户行：<span class="hasUn" contenteditable="true"></span></td>
 									</tr>
 								</tbody>
@@ -461,11 +467,13 @@
 								<tr>
 									<td>供应商</td>
 									<td>产品</td>
+									<td>币种</td>
 									<td>金额</td>
 									<td>用途</td>
 									<td>银行信息</td>
 								</tr>
 								<tr>
+									<td rowspan="3" class="h88"></td>
 									<td rowspan="3" class="h88"></td>
 									<td rowspan="3" class="h88"></td>
 									<td rowspan="3" class="h88"></td>
@@ -1027,7 +1035,7 @@
 	
 </body>
 <script src="js/jquery-1.11.3.js" type="text/javascript" charset="utf-8"></script>
-<script src="js/swiper-3.4.1.jquery.min.js" type="text/javascript" charset="utf-8"></script>
+<!-- <script src="js/swiper-3.4.1.jquery.min.js" type="text/javascript" charset="utf-8"></script> -->
 <script src="js/ajaxfileupload.js" type="text/javascript" charset="utf-8"></script>
 <script src="plugins/cookie/jquery.cookie.js"></script>
 <script src="js/msgbox.js"></script>

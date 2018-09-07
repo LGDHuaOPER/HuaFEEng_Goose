@@ -5,6 +5,7 @@ public class PurchaseInfo {
 	private int OrderID;
 	private String contractPath;
 	private String product;
+	private String currency;
 	private String money;
 	private String use;
 	public int getOrderID() {
@@ -37,6 +38,12 @@ public class PurchaseInfo {
 	}
 	public void setMoney(String money) {
 		this.money = money;
+	}
+	public String getCurrency() {
+		return currency;
+	}
+	public void setCurrency(String currency) {
+		this.currency = currency;
 	}
 	
 	

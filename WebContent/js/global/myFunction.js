@@ -391,8 +391,70 @@
                             "mergeToParentFile": "ServiceReport.js"
                         }
                     }
-                }
+                },
                 // 服务完成报告页面结束
+                // 考核明细页面
+                "AssessmentStatistics": {
+                    "lastModify": "Fri Sep 07 2018 13:06:28 GMT+0800 (中国标准时间)",
+                    "lastModifyTime": "1536296788000",
+                    // css
+                    "cssPrimary": {
+                        "bootstrap.min.css": {
+                            "referenceOrder": 0,
+                            "filePath": "css/libs/bootstrap.min.css",
+                            "mergeToParentFile": null
+                        },
+                        "dispatchLoading.css": {
+                            "referenceOrder": 1,
+                            "filePath": "css/global/dispatchLoading.css",
+                            "mergeToParentFile": "examination.css"
+                        },
+                        "bootstrap-multiselect.css": {
+                            "referenceOrder": 2,
+                            "filePath": "css/libs/bootstrap-multiselect.css",
+                            "mergeToParentFile": "examination.css"
+                        },
+                        "eouluCustom.css": {
+                            "referenceOrder": 3,
+                            "filePath": "css/global/eouluCustom.css",
+                            "mergeToParentFile": "examination.css"
+                        },
+                        "examination.css": {
+                            "referenceOrder": 4,
+                            "filePath": "css/examination.css",
+                            "mergeToParentFile": "examination.css"
+                        }
+                    },
+                    // js
+                    "jsPrimary": {
+                        "bootstrap.min.js": {
+                            "referenceOrder": 0,
+                            "filePath": "js/libs/bootstrap.min.js",
+                            "mergeToParentFile": null
+                        },
+                        "echarts-4.1.0.rc2.min.js": {
+                            "referenceOrder": 1,
+                            "filePath": "js/libs/echarts/echarts-4.1.0.rc2.min.js",
+                            "mergeToParentFile": null
+                        },
+                        "bootstrap-multiselect.js": {
+                            "referenceOrder": 2,
+                            "filePath": "js/libs/bootstrap-multiselect.js",
+                            "mergeToParentFile": "examination.js"
+                        },
+                        "eoulu_chart_1.js": {
+                            "referenceOrder": 3,
+                            "filePath": "plugins/echarts/theme/eoulu_chart_1.js",
+                            "mergeToParentFile": "examination.js"
+                        },
+                        "examination.js": {
+                            "referenceOrder": 4,
+                            "filePath": "js/examination.js",
+                            "mergeToParentFile": "examination.js"
+                        }
+                    }
+                }
+                // 考核明细页面结束
             },
         // pageHrefImportFileMap 结束
         // compressFilePathMap 开始
@@ -421,6 +483,12 @@
                     "outBasePath": "./cfChicken8/WebContent/css/modules/serviced/",
                     "gulp-rev": "ServiceReport-30eec74d24.min.css",
                     "referencePath": "css/modules/serviced/ServiceReport-30eec74d24.min.css"
+                },
+                "examination.css": {
+                    "originPath": ["./cfChicken8/WebContent/css/global/dispatchLoading.css", "./cfChicken8/WebContent/css/libs/bootstrap-multiselect.css", "./cfChicken8/WebContent/css/global/eouluCustom.css", "./cfChicken8/WebContent/css/examination.css"],
+                    "outBasePath": "./cfChicken8/WebContent/css/modules/personnel/",
+                    "gulp-rev": "examination-3a846d3f0d.min.css",
+                    "referencePath": "css/modules/personnel/examination-3a846d3f0d.min.css"
                 }
             },
             "jsMerge": {
@@ -477,6 +545,12 @@
                     "outBasePath": "./cfChicken8/WebContent/js/modules/serviced/",
                     "gulp-rev": "ServiceReport-2951b6ba44.min.js",
                     "referencePath": "js/modules/serviced/ServiceReport-2951b6ba44.min.js"
+                },
+                "examination.js": {
+                    "originPath": ["./cfChicken8/WebContent/js/libs/bootstrap-multiselect.js", "./cfChicken8/WebContent/plugins/echarts/theme/eoulu_chart_1.js", "./cfChicken8/WebContent/js/examination.js"],
+                    "outBasePath": "./cfChicken8/WebContent/js/modules/personnel/",
+                    "gulp-rev": "examination-179cada3b8.min.js",
+                    "referencePath": "js/modules/personnel/examination-179cada3b8.min.js"
                 }
             }
         }
