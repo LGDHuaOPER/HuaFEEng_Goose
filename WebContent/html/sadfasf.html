@@ -297,15 +297,44 @@
 		    	item.Value = value;
 		    	// 索引数组
 		    	var indexs = [];
+		    	var isBreak = false;
 		    	_.map(newArrObj, function(v, i, arr){
     				if(v.Value == key){
     					if(indexs.length == 0){
     						indexs.push(v.Index);
     					}else if(v.Index - _.last(indexs) == 1){
     						indexs.push(v.Index);
+    						isBreak = false;
+    					}else{
+    						if(!isBreak){
+    							indexs.push(v.Index);
+    						}else{
+    							// _.remove(indexs, function(vv, ii, arra) {
+    							//   return ii==(arra.length-1);
+    							// });
+    							// _.pullAt(indexs, indexs.length - 1);
+    							indexs.pop();
+    						}
+    						isBreak = !isBreak;
     					}
     				}
     			});
+    			if(indexs.length == 1){
+    				return true;
+    			}
+    			if(_.nth(indexs, 2) - _.nth(indexs, 1) != 1){
+    				console.log(_.nth(indexs, 2));
+    				console.log(_.nth(indexs, 1));
+    				indexs.shift();
+    			}
+    			if(_.nth(indexs, indexs.length -2) - _.nth(indexs, indexs.length -1) != 1){
+    				console.log(_.nth(indexs, indexs.length -2));
+    				console.log(_.nth(indexs, indexs.length -1));
+    				indexs.pop();
+    			}
+    			if(indexs.length == 1){
+    				return true;
+    			}
 		    	item.indexs = indexs;
 		    	outArr.push(item);
 		    }
