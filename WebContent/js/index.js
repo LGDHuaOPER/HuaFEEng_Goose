@@ -174,6 +174,6 @@ $(function () {
             $(this).find("a").css("color","rgba(0,0,0,0.9)");
         });
     }
-    setTimeout(cardToTop,900);
+    setTimeout(cardToTop,800);
 
 });

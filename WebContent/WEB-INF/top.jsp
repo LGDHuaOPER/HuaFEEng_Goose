@@ -416,6 +416,7 @@
 <!-- <script src="plugins/cookie/jquery.cookie.js"></script> -->
 <!-- <script src="plugins/imageResizeTool/imageResizeTool.min.js"></script> -->
 <!-- <script src="js/msgbox_unload.js"></script> -->
+<script src="js/libs/lodash.min.js"></script>
 <script src="js/modules/sharing/top-dbec435863.min.js"></script>
 <script src="js/global/myFunction.js?iv=201809071300" type="text/javascript" charset="utf-8"></script>
 <script>

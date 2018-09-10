@@ -463,35 +463,6 @@
     cursor: pointer;
 }
 
-/*----------------------------------------闁跨喐鏋婚幏鐑姐��----------------------------------------*/
-.content #page{
-    height: 50px;
-    float:right;
-    margin-top: 20px;
-    margin-right:60px;
-}
-
-.changePage{
-    display:inline-block;
-
-}
-.changePage input[type="button"]{
-    cursor:pointer;
-    border:none;
-    border-radius:3px;
-    width:50px;
-    height:30px;
-}
-
-.changePage input[type="text"]{
-    width:60px;
-    height:20px;
-}
-.pageInfo{
-    display:inline-block;
-    color:#000;
-}
-
 /*------------------------------闁跨喖妯佺拠褎瀚�----------------------------------*/
 .footer{
     width: 100%;

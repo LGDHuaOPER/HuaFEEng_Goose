@@ -11,9 +11,11 @@
 <link rel="bookmark" href="image/eoulu.ico"/>
 <link rel="stylesheet" type="text/css" href="css/libs/bootstrap-buttons.min.css">
 <link rel="stylesheet" type="text/css" href="css/global/eouluCustom.css">
-<link rel="stylesheet" type="text/css" href="css/inventory.css">
-<link rel="stylesheet" type="text/css" href="css/swiper-3.4.1.min.css">
 <link rel="stylesheet" type="text/css" href="font-awesome-4.5.0/css/font-awesome.min.css">
+<link rel="stylesheet" type="text/css" href="plugins/awesomplete/awesomplete.css">
+<link rel="stylesheet" type="text/css" href="plugins/awesomplete/awesomplete.theme.css">
+<link rel="stylesheet" type="text/css" href="css/inventory.css?iv=201809101748">
+<!-- <link rel="stylesheet" type="text/css" href="css/swiper-3.4.1.min.css"> -->
 <style>
 	.tbody_tr td {
 	    padding: 0 3px;
@@ -628,21 +630,18 @@
 								<table class="reserve_basic">
 									<thead>
 										<tr>
-											<th style="width:9%">序号</th>
-											<th style="width:45%">客户名称</th>
-											<th style="width:10%">预定数量</th>
-											<th style="width:10%">仓库地址</th>
-											<th style="width:26%">操作</th>
+											<th class="yuding_th1">序号</th>
+											<th class="yuding_th2">预定时间</th>
+											<th class="yuding_th3">客户名称</th>
+											<th class="yuding_th4">合同号</th>
+											<th class="yuding_th5">预定数量</th>
+											<th class="yuding_th6">仓库地址</th>
+											<th class="yuding_th7">预计发货时间</th>
+											<th class="yuding_th8">操作</th>
 										</tr>
 									</thead>
-										<tbody class="table_content">
-											<!-- <tr>
-												<td>1</td>
-												<td class="reserve_customer">华为</td>
-												<td class="reserve_num">1</td>
-												<td><span class="edit fa fa-pencil">修改</span><span class="delete fa fa-trash">删除</span></td>
-											</tr> -->
-										</tbody>
+									<tbody class="table_content">
+									</tbody>
 								</table>
 							</div>
 							<div class="edit_btn">
@@ -868,12 +867,11 @@
 	</div>
 </body>
 <!-- <script src="js/jquery-1.11.3.js" type="text/javascript" charset="utf-8"></script> -->
-<script src="js/swiper-3.4.1.jquery.min.js" type="text/javascript" charset="utf-8"></script>
+<!-- <script src="js/swiper-3.4.1.jquery.min.js" type="text/javascript" charset="utf-8"></script> -->
 <!-- <script src="js/ajaxfileupload.js" type="text/javascript" charset="utf-8"></script> -->
+<script src="plugins/awesomplete/awesomplete.min.js"></script>
 <script src="js/msgbox.js"></script>
-<!-- <script src="js/msgbox_unload.js"></script> -->
-<!-- <script src="js/global/myFunction.js"></script> -->
-<script src="js/inventory.js"></script>
+<script src="js/inventory.js?iv=201809101748"></script>
 <script type="text/javascript">
 	var classify_ = $("input[name='classify1']").val();
 	var content_ = $("input[name='parameter1']").val();

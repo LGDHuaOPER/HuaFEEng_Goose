@@ -2,6 +2,75 @@
  * Created by eoulu on 2017/3/29.
  */
 
+/*进入页面验证本地存储*/
+// storage.clear(); // 将localStorage的所有内容清除
+// storage.removeItem("a"); // 删除某个键值对
+// storage.key(i); // 使用key()方法，向其中出入索引即可获取对应的键
+var InventoryAllCustomerInfo;
+if(!window.localStorage){
+    alert("浏览器不支持localstorage");
+}else{
+    //主逻辑业务
+    var storage = window.localStorage;
+    var inow = Date.now();
+    var InventoryAllCustomerInfoStr = storage.getItem("InventoryAllCustomerInfo");
+    if(InventoryAllCustomerInfoStr == undefined){
+        // 第一次存
+        getInventoryAllCustomerInfo(function(res){
+            var iObj = {};
+            iObj.expires = inow + 2*60*1000;
+            iObj.data = _.drop(res);
+            // _.cloneDeep(a)
+            var iStr = JSON.stringify(iObj);
+            // storage["InventoryAllCustomerInfo"] = iStr;
+            storage.setItem("InventoryAllCustomerInfo", iStr);
+            buildCustomerInfoList(iObj.data);
+        });
+    }else{
+        var iexpires = JSON.parse(InventoryAllCustomerInfoStr).expires;
+        if(iexpires < inow){
+            // 已超期
+            getInventoryAllCustomerInfo(function(res){
+                var iObj = {};
+                iObj.expires = inow + 2*60*1000;
+                iObj.data = _.drop(res);
+                // _.cloneDeep(a)
+                iStr = JSON.stringify(iObj);
+                // storage["InventoryAllCustomerInfo"] = iStr;
+                storage.setItem("InventoryAllCustomerInfo", iStr);
+                buildCustomerInfoList(iObj.data);
+            });
+        }else{
+            // 未超期
+            var InventoryAllCustomerInfoObj = JSON.parse(InventoryAllCustomerInfoStr);
+            buildCustomerInfoList(InventoryAllCustomerInfoObj.data);
+        }
+    }
+}
+function getInventoryAllCustomerInfo(fn){
+    $.ajax({
+        type: 'GET',
+        url: 'InventoryQuery',
+        data: {
+            classify: 'Customer',
+            content: ""
+        },
+        dataType:'json'
+    }).then(function(res){
+        fn && fn(res);
+    },function(){
+        $.MsgBox_Unload.Alert("最新客户信息获取提示", "网络繁忙！信息获取失败");
+    });
+}
+function buildCustomerInfoList(data){
+    InventoryAllCustomerInfo = _.map(data, function(value, index, collection){
+        var item = {};
+        item.label = value.ID + ".." + value.CustomerName + ":" + value.Contact;
+        item.value = value.CustomerName + ":" + value.Contact;
+        return item;
+    });
+}
+
 var warehouseMapObj = {
 	"苏州":"Suzhou",
 	"合肥":"Hefei",
@@ -123,23 +192,32 @@ function renderInventoryOut(data){
     $('.inventory_out .inventory_outPage tbody').append(tr);
 }
 
-// 预定信息表格渲染
+// 预定信息表格渲染qqq
 function renderReserve(data){
     var Str = '';
     for(var i = 1;i<data.length;i++){
         Str += '<tr class="reserve_trN">'+
-        '<td class="xuhao" value="'+data[i].CustomerOrder+'">'+i+'</td>'+
-        '<td class="reserve_customer" >'+
-            '<input type="text" name="reserveCustomer"  class="reserveCustomer" value="'+data[i].CustomerName+'" disabled="disabled" customerid="'+data[i].CustomerID+'">'+
-            '<ul class="customerList">'+
-            '</ul>'+
+        '<td class="xuhao yuding_td1" value="'+data[i].CustomerOrder+'">'+i+'</td>'+
+        '<td class="yuding_td2 OrderTime_td"><input type="date" value="'+data[i].OrderTime+'" disabled></td>'+
+        '<td class="reserve_customer yuding_td3">'+
+            '<input type="text" name="reserveCustomer" class="reserveCustomer" value="'+data[i].Customer+'" disabled readonly>'+
         '</td>'+
-        '<td class="reserve_num">'+data[i].OrderQuantity +'</td>'+
-        '<td class="reserve_Warehouse">'+getWarehouseCn(data[i].Warehouse)+'</td>'+
-        '<td><span class="edit fa fa-pencil">修改</span><span class="delete fa fa-trash">删除</span></td>'+
+        '<td class="yuding_td4 ContractNO_td">'+data[i].ContractNO+'</td>'+
+        '<td class="reserve_num yuding_td5">'+data[i].OrderQuantity +'</td>'+
+        '<td class="reserve_Warehouse yuding_td6">'+getWarehouseCn(data[i].Warehouse)+'</td>'+
+        '<td class="yuding_td7 EstimatedShippingTime_td"><input type="date" value="'+data[i].EstimatedShippingTime+'" disabled></td>'+
+        '<td class="yuding_td8"><span class="edit fa fa-pencil">修改</span><span class="delete fa fa-trash">删除</span></td>'+
         '</tr>' ;
     }
     $(".table_content").empty().append(Str);
+    $(".table_content>.reserve_trN input.reserveCustomer").each(function(i, el){
+        new Awesomplete(el, {
+            list: InventoryAllCustomerInfo,
+            minChars: 1,
+            maxItems: 18,
+            autoFirst: true
+        });
+    });
 }
 
 $('.cover-color').height($(document).height() - 80);
@@ -184,8 +262,7 @@ function exportinventory(){
 		},
 		//dataType : 'json',
 		success : function(data){
-			console.log(data);
-			window.location.href=data;
+			window.location.href = data;
 			$('.exportinventory').hide();
 		},
 		error : function(e){
@@ -591,9 +668,7 @@ $(document).on("click",'.inventory_out_show',function () {
 
 });
 $('.inventory_out_close').click(function () {
-    $('.cover-color').hide();
-    $('.inventory_out').hide();
-    $('.out_add_info').hide();
+    $('.cover-color, .inventory_out, .out_add_info').hide();
     $(".out_add_info tbody input").val("");
     // outWarehouse = "";
     // outWarehouse2 = "";
@@ -656,7 +731,6 @@ $(document).on("click", "input[name='update_out_save']", function () {
         	}else{
         		$.MsgBox.Alert("提示", "修改失败！");
         	}
-        
         },
         error: function () {
             $.MsgBox.Alert("提示", "服务器繁忙，稍后重试！");
@@ -702,7 +776,6 @@ $(document).on("click", ".inventory_out input[name='add_submit']", function () {
         },
         dataType: 'json',
         success: function (data) {
-        	
             $.ajax({
                 type: 'get',
                 url: 'InventoryQuery',
@@ -808,8 +881,7 @@ $(document).on("click", ".reserve_close", function () {
     window.location.reload();
 });
 $(document).on("click", ".add_cancel", function () {
-    $(".reserve_box").fadeOut(200);
-    $(".cover-color").fadeOut(200);
+    $(".cover-color, .reserve_box").fadeOut(200);
 });
 
 //预定信息显示
@@ -831,100 +903,132 @@ $(document).on("click",".Reserve_info",function(){
 	// }else{
 	// 	Warehouse = getWarehouseEn(reserveWarehouse2);
 	// }
-		$.ajax({
-			type:'get',
-			url:'InventoryQuery',
-			data:{
-				classify:'CustomerOrder',
-				InventoryID : ID
-				// Warehouse: Warehouse
-			},
-			dataType:'JSON',
-			success:function(data){
-				renderReserve(data);
-			},
-			error:function(){
-				  $.MsgBox.Alert("提示", "服务器繁忙，稍后重试！");
-			}
-		})
-	
-	$(".cover-color").show();
-	$(".reserve_box").show();
+	$.ajax({
+		type: 'get',
+		url: 'InventoryQuery',
+		data:{
+			classify: 'CustomerOrder',
+			InventoryID : ID
+			// Warehouse: Warehouse
+		},
+		dataType: 'JSON',
+		success:function(data){
+			renderReserve(data);
+            $(".cover-color, .reserve_box").show();
+		},
+		error:function(){
+			$.MsgBox.Alert("提示", "服务器繁忙，稍后重试！");
+		}
+	});
 });
-//添加一条
+//添加一条qqq
 $(".reserve_add").click(function(){
 	var tr_num = $(".table_content").children().length;
 	var str = '';
 	str = '<tr class="reserve_trN">'+
-	'<td class="xuhao" value="">'+(tr_num+1)+'</td>'+
-	'<td class="reserve_customer" contenteditable="true" value="">'+
+	'<td class="xuhao yuding_td1" value="">'+(tr_num+1)+'</td>'+
+    '<td class="yuding_td2 OrderTime_td"><input type="date"></td>'+
+	'<td class="reserve_customer yuding_td3" contenteditable="true" value="">'+
 		'<input type="text" name="reserveCustomer" value="" class="reserveCustomer">'+
-		'<ul class="customerList">'+
-		'</ul>'+
 	'</td>'+
-	'<td class="reserve_num"  contenteditable="true"></td>'+
-    '<td class="reserve_Warehouse">'+WarehouseHasSelStr+'</td>'+
-	'<td><span class="edit fa fa-pencil" style="display:none;">修改</span><span class="delete fa fa-trash">删除</span></td>'+
+    '<td class="yuding_td4 ContractNO_td" contenteditable="true"></td>'+
+	'<td class="reserve_num yuding_td5" contenteditable="true"></td>'+
+    '<td class="reserve_Warehouse yuding_td6">'+WarehouseHasSelStr+'</td>'+
+    '<td class="yuding_td7 EstimatedShippingTime_td"><input type="date"></td>'+
+	'<td class="yuding_td8"><span class="edit fa fa-pencil" style="display:none;">修改</span><span class="delete fa fa-trash">删除</span></td>'+
 	'</tr>' ;
 	$(".table_content").append(str);
     $(this).hide();
+    // $(".table_content>.reserve_trN:last").each(function(i, el){
+    //     new Awesomplete(el, {
+    //         list: PaymentRequestState.allMail,
+    //         minChars: 2,
+    //         maxItems: 12,
+    //         autoFirst: true
+    //     });
+    // });
+    new Awesomplete($(".table_content>.reserve_trN:last input.reserveCustomer").get(0), {
+        list: InventoryAllCustomerInfo,
+        minChars: 1,
+        maxItems: 18,
+        autoFirst: true
+    });
 });
-//添加中客户搜索
-$(document).on("input propertychange",".reserveCustomer",function(){
-	var content = $(this).val();
-	var $this = $(this);
-	$.ajax({
-		type:'get',
-		url:'InventoryQuery',
-		data:{
-			classify:'Customer',
-			content:content
-		},
-		dataType:'JSON',
-		success:function(data){
-			console.log(data[1]);
-			console.log(data.length);
-			var str = "";
-            for(var i = 1 ; i < data.length; i++){
-           	 str += '<li ID="'+data[i].ID+'" class="customerListli"   Contact="'+data[i].Contact+'" ContactInfo1="'+data[i].ContactInfo1+'";>'+data[i].CustomerName +' : '+ data[i].Contact+'</li>';
-            }
-          $this.next(".customerList").empty();
-          $this.next(".customerList").append(str);
-          $this.next(".customerList").show();
-		},
-		error:function(){
-			 $.MsgBox_Unload.Alert("提示", "服务器繁忙，稍后重试！");
-		}
-	})
-});
-$(document).on("click",function(){
-	$(".customerList").hide();
-});
-$(document).on("click",".customerListli",function(){
-	var currentCont = $(this).text();
-	var ID= $(this).attr("ID");
-	$(this).parent().prev().val(currentCont);
-	$(this).parent().prev().attr("CustomerID",ID);
-	$(".customerList").hide();
-});
-//预定信息修改
+
+// //添加中客户搜索
+// $(document).on("input propertychange",".reserveCustomer",function(){
+// 	var content = $(this).val();
+// 	var $this = $(this);
+// 	$.ajax({
+// 		type: 'get',
+// 		url: 'InventoryQuery',
+// 		data: {
+// 			classify: 'Customer',
+// 			content: content
+// 		},
+// 		dataType: 'JSON',
+// 		success: function(data){
+// 			console.log(data[1]);
+// 			console.log(data.length);
+// 			var str = "";
+//             for(var i = 1 ; i < data.length; i++){
+//            	 str += '<li ID="'+data[i].ID+'" class="customerListli" Contact="'+data[i].Contact+'" ContactInfo1="'+data[i].ContactInfo1+'";>'+data[i].CustomerName +' : '+ data[i].Contact+'</li>';
+//             }
+//           $this.next(".customerList").empty().append(str).show();
+// 		},
+// 		error:function(){
+// 			$.MsgBox_Unload.Alert("提示", "服务器繁忙，稍后重试！");
+// 		}
+// 	});
+// });
+// $(document).on("click",function(){
+// 	$(".customerList").hide();
+// });
+// $(document).on("click",".customerListli",function(){
+// 	var currentCont = $(this).text();
+// 	var ID= $(this).attr("ID");
+// 	$(this).parent().prev().val(currentCont);
+// 	$(this).parent().prev().attr("CustomerID",ID);
+// 	$(".customerList").hide();
+// });
+
+//预定信息修改qqq
 $(document).on("click",".edit",function(){
+    var $parents = $(this).parent().parent();
     if($(this).text()=="修改"){
-        $(this).parent().parent().find(".reserve_customer .reserveCustomer").attr("disabled",false);
-        $(this).parent().parent().find(".reserve_num").attr("contenteditable",true);
+        $parents.find(".reserve_customer .reserveCustomer").attr({"disabled": false, "readonly": false});
+        $parents.find("input[type='date']").attr({"disabled": false});
+        $parents.find(".reserve_num, .yuding_td4").attr("contenteditable",true);
         $(this).text("保存");
     }else if($(this).text()=="保存"){
         var InventoryID = $('.reserve_box .inventory_title').attr('ID');
-        var CustomerID = $(this).parent().parent().find(".reserveCustomer").attr("customerid");
-        if(!CustomerID){
-            $.MsgBox_Unload.Alert("新添加预定信息提示","未选择客户名称！");
+        // var CustomerID = $parents.find(".reserveCustomer").attr("customerid");
+        // if(!CustomerID){
+        //     $.MsgBox_Unload.Alert("新添加预定信息提示","未选择客户名称！");
+        //     return false;
+        // }
+        var Customer = $parents.find("input.reserveCustomer").val().trim();
+        if(Customer === "" || Customer == "--"){
+            $.MsgBox_Unload.Alert("修改预定信息提示","未选择或填写客户名称！");
             return false;
         }
-        var OrderQuantity = $(this).parent().parent().find(".reserve_num").text();
-        var ID = $(this).parent().parent().find(".xuhao").attr("value");
-        var Warehouse = $(this).parent().parent().find(".reserve_Warehouse").text();
+        var OrderTime = $parents.find(".OrderTime_td>input").val();
+        if(OrderTime == ""){
+            $.MsgBox_Unload.Alert("修改预定信息提示","未填写预定时间！");
+            return false;
+        }
+        var EstimatedShippingTime = $parents.find(".EstimatedShippingTime_td>input").val();
+        if(EstimatedShippingTime == ""){
+            $.MsgBox_Unload.Alert("修改预定信息提示","未填写预计下单时间！");
+            return false;
+        }
+        var ContractNO = $parents.find(".ContractNO_td").text().trim();
+
+        var OrderQuantity = $parents.find(".reserve_num").text();
+        var ID = $parents.find(".xuhao").attr("value");
+        var Warehouse = $parents.find(".reserve_Warehouse").text();
         if(Warehouse=="" || Warehouse.indexOf("请选择")>-1 || Warehouse=="--"){
-            $.MsgBox_Unload.Alert("新添加预定信息提示","未选择仓库地址！");
+            $.MsgBox_Unload.Alert("修改预定信息提示","未选择仓库地址！");
             return false;
         }
         var WarehouseEn = getWarehouseEn(Warehouse);
@@ -933,7 +1037,11 @@ $(document).on("click",".edit",function(){
             url:'InventoryInfoOperate',
             data:{
                 InventoryID: InventoryID,
-                CustomerID: CustomerID,
+                // CustomerID: CustomerID,
+                Customer: Customer,
+                OrderTime: OrderTime,
+                EstimatedShippingTime: EstimatedShippingTime,
+                ContractNO: ContractNO,
                 OrderQuantity: OrderQuantity,
                 ID: ID,
                 Warehouse: WarehouseEn
@@ -952,7 +1060,7 @@ $(document).on("click",".edit",function(){
         });
     }
 });
-//预定信息删除
+//预定信息删除qqq
 $(document).on("click",".delete",function(){
     if(!$(this).parent().siblings(".xuhao").attr("value")){
         $("span.reserve_add").show();
@@ -999,50 +1107,69 @@ $(document).on("click",".delete",function(){
 		$(".table_content").find(".xuhao").eq(i).text(i+1);
 	}
 });
-//预定信息提交 
+//预定信息提交qqq
 $(".reserve_box .add_submit").click(function(){
     var addCurTr = $(".table_content .reserve_trN:last");
     if(addCurTr.find(".xuhao").attr("value")){
         $.MsgBox_Unload.Alert("提交提示","请添加一条新的再提交！");
         return false;
-    }else{
-        var InventoryID = $('.reserve_box .inventory_title').attr('ID');
-        var CustomerID = addCurTr.find(".reserveCustomer").attr("customerid");
-        if(!CustomerID){
-            $.MsgBox_Unload.Alert("新添加预定信息提示","未选择客户名称！");
-            return false;
-        }
-        var OrderQuantity = addCurTr.find(".reserve_num").text();
-        var ID = "0";
-        var Warehouse = addCurTr.find(".reserve_Warehouse").text();
-        if(Warehouse=="" || Warehouse.indexOf("请选择")>-1 || Warehouse=="--"){
-            $.MsgBox_Unload.Alert("新添加预定信息提示","未选择仓库地址！");
-            return false;
-        }
-        var WarehouseEn = getWarehouseEn(Warehouse);
-        $.ajax({
-            type:'POST',
-            url:'InventoryInfoOperate',
-            data:{
-                InventoryID: InventoryID,
-                CustomerID: CustomerID,
-                OrderQuantity: OrderQuantity,
-                ID: ID,
-                Warehouse: WarehouseEn
-            },
-            dataType:'json',
-            success:function(data){
-                if(data){
-                    $.MsgBox.Alert("提示", "提交成功！");
-                }else{
-                    $.MsgBox.Alert("提示", "提交失败！");
-                }
-            },
-            error:function(){
-                 $.MsgBox.Alert("提示", "服务器繁忙，稍后重试！");
-            } 
-        });
     }
+    var InventoryID = $('.reserve_box .inventory_title').attr('ID');
+    // var CustomerID = addCurTr.find(".reserveCustomer").attr("customerid");
+    // if(!CustomerID){
+    //     $.MsgBox_Unload.Alert("新添加预定信息提示","未选择客户名称！");
+    //     return false;
+    // }
+    var Customer = addCurTr.find("input.reserveCustomer").val().trim();
+    if(Customer === "" || Customer == "--"){
+        $.MsgBox_Unload.Alert("新添加预定信息提示","未选择或填写客户名称！");
+        return false;
+    }
+    var OrderTime = addCurTr.find(".OrderTime_td>input").val();
+    if(OrderTime == ""){
+        $.MsgBox_Unload.Alert("新添加预定信息提示","未填写预定时间！");
+        return false;
+    }
+    var EstimatedShippingTime = addCurTr.find(".EstimatedShippingTime_td>input").val();
+    if(EstimatedShippingTime == ""){
+        $.MsgBox_Unload.Alert("新添加预定信息提示","未填写预计下单时间！");
+        return false;
+    }
+    var ContractNO = addCurTr.find(".ContractNO_td").text().trim();
+    var OrderQuantity = addCurTr.find(".reserve_num").text();
+    var ID = "0";
+    var Warehouse = addCurTr.find(".reserve_Warehouse").text();
+    if(Warehouse=="" || Warehouse.indexOf("请选择")>-1 || Warehouse=="--"){
+        $.MsgBox_Unload.Alert("新添加预定信息提示","未选择仓库地址！");
+        return false;
+    }
+    var WarehouseEn = getWarehouseEn(Warehouse);
+    $.ajax({
+        type:'POST',
+        url:'InventoryInfoOperate',
+        data:{
+            InventoryID: InventoryID,
+            // CustomerID: CustomerID,
+            Customer: Customer,
+            OrderTime: OrderTime,
+            EstimatedShippingTime: EstimatedShippingTime,
+            ContractNO: ContractNO,
+            OrderQuantity: OrderQuantity,
+            ID: ID,
+            Warehouse: WarehouseEn
+        },
+        dataType:'json',
+        success:function(data){
+            if(data){
+                $.MsgBox.Alert("提示", "提交成功！");
+            }else{
+                $.MsgBox.Alert("提示", "提交失败！");
+            }
+        },
+        error:function(){
+             $.MsgBox.Alert("提示", "服务器繁忙，稍后重试！");
+        } 
+    });
     /*
 	var InventoryID = $('.reserve_box .inventory_title').attr('ID');
 	var CustomerIDArr = [];
@@ -1300,15 +1427,13 @@ $("#publish_yes").on("click",function(){
 
 /*扫码*/
 $(".scan_pncode").on("click",function(){
-    $(".scan_pncode_div").fadeIn(200);
-    $(".cover-color").fadeIn(200);
+    $(".cover-color, .scan_pncode_div").fadeIn(200);
 });
 
 $(".scan_pncode_div_tit_r").on("click",function(){
     $("#scan_pncode_div_sel").val("");
-    $(".cover-color").fadeOut(200);
-    $(".scan_pncode_div").fadeOut(200);
-});
+    $(".cover-color, .scan_pncode_div").fadeOut(200);
+ });
 
 $(".scan_pncode_div_foot input").on("click",function(){
     var PNCode = $("#scan_pncode_div_sel").val().trim();
@@ -1533,6 +1658,5 @@ $(".change_latest_develop").click(function(){
         },function(){
             $.MsgBox_Unload.Alert("更新提示", "网络繁忙，更新失败！");
         });
-        
     }
 });

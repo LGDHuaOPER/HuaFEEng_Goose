@@ -267,10 +267,7 @@ a:hover{
     margin: 176px auto 0px;
     text-align: center;
 }
-.basic_info{
-    width: 94%;
-    margin: 20px auto;
-}
+
 .inventory_basic {
     background: white;
     border: none;
@@ -451,8 +448,7 @@ input[name="delete-save"],input[name="delete_out_save"]{
     cursor: pointer;
 }
 .basic_info{
-    width: 94%;
-    margin: 10px auto;
+    margin: 10px 15px;
 }
 .contract_basic{
     background: white;
@@ -481,13 +477,15 @@ input[name="delete-save"],input[name="delete_out_save"]{
 .content .select-content {
     padding-top: 50px !important;
 }
+
 .reserve_box{
-	width:70%;
-	background:#fff;
+	width: 1050px;
+	background: #fff;
 	position:absolute;
-	top:150px;
-	left:15%;
+	top: 100px;
+	left: calc(50% - 525px);
 }
+
 .reserve_basic{
 	margin: 0 auto;
     height: auto;
@@ -506,12 +504,10 @@ input[name="delete-save"],input[name="delete_out_save"]{
     border: 1px solid #00aeef;
 }
 
-// .reserve_basic th:nth-child(2) {
-//     border-bottom-width: 0px !important; 
-// }
 .reserve_box .reserve_add {
-	color:#000;
-	margin-left:5px;
+	color: #000;
+	margin-left: 5px;
+    font-size: 15px;
 }
 .reserve_box .edit{
 	margin-right:10%;	
@@ -564,25 +560,24 @@ input[name="delete-save"],input[name="delete_out_save"]{
     font-size: 14px;
 }
 .reserveCustomer{
-	width:calc(100% - 2px);
-	height:100%;
+	width: 249px;
+	height: 28px;
 	text-align:center;
-	top:0px;
-	outline:none;
-    border-bottom:1px solid #00aeef;
-    border-left:0px solid #00aeef;
-	border-top:0px solid #00aeef;
-	position:absolute;
-	left:0px;
+	outline: none;
+    border: none;
+ //    border-bottom:1px solid #00aeef;
+ //    border-left:0px solid #00aeef;
+	// border-top:0px solid #00aeef;
 }
 .reserve_customer{
-	display:inline-block;
-	width:100%;
-	position:relative;
-    border-left: 0px solid #00aeef !important;
-    border-bottom: 0px solid #00aeef !important;
-    border-top: 1px solid #00aeef !important;
-    border-right: 1px solid #00aeef !important;
+	display: inline-block;
+	width: 100%;
+    text-align: center;
+	// position: relative;
+ //    border-left: 0px solid #00aeef !important;
+ //    border-bottom: 0px solid #00aeef !important;
+ //    border-top: 1px solid #00aeef !important;
+ //    border-right: 1px solid #00aeef !important;
 }
 
 /*修改框*/
@@ -775,12 +770,12 @@ input[name="delete-save"],input[name="delete_out_save"]{
     display: inline-block;
     position: absolute;
     z-index: 2;
-    width: 220px;
+    width: 260px;
 }
 
 .page_div_r {
     display: inline-block;
-    padding-left: 222px;
+    padding-left: 262px;
     text-align: right;
     box-sizing: border-box;
     width: 100%;
@@ -808,4 +803,47 @@ input[name="delete-save"],input[name="delete_out_save"]{
     bottom: -15px;
     padding-top: 10px;
     padding-bottom: 10px;
+}
+
+/*2018-09-10更新*/
+.yuding_th1, .yuding_td1 {
+    max-width: 40px;
+    min-width: 40px;
+    width: 40px;
+}
+
+.yuding_th2, .yuding_th7, .yuding_td2, .yuding_td7 {
+    max-width: 125px;
+    min-width: 125px;
+    width: 125px;
+}
+
+.yuding_th4, .yuding_td4 {
+    max-width: 100px;
+    min-width: 100px;
+    width: 100px;
+}
+
+.yuding_th8, .yuding_td8 {
+    max-width: 140px;
+    min-width: 140px;
+    width: 140px;
+}
+
+.yuding_th3, .yuding_td3 {
+    max-width: 250px;
+    min-width: 250px;
+    width: 250px;
+}
+
+.reserve_trN input[type="date"] {
+    max-width: 123px;
+    width: 123px;
+    font-size: 13px;
+}
+
+@media screen and (max-width: 1050px) {
+    .reserve_box {
+        left: 0px;
+    }
 }

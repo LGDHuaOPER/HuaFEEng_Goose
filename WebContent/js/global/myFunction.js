@@ -75,6 +75,7 @@
                 "服务部": {
                     "机台统计": "MachineDetails",
                     "装机进展": "Hardware",
+                    "装机进展#": "GetHardwareRoute",
                     "售后维修": "AfterSale",
                     "例行拜访": "RoutineVisit",
                     "标准产品": "StandardProduct",

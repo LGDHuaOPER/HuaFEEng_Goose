@@ -273,5 +273,44 @@
 		}
 	</script> 
 	<script src="../js/libs/jquery-3.3.1.min.js"></script>
+	<script>
+		var originArr = new Array(100);
+		var newArr = _.map(originArr, function(v, i, arr){
+			return _.random(0, 30);
+		});
+		var newArrObj = _.map(newArr, function(v, i, arr){
+		    var item = {};
+		    item.Index = i;
+		    item.Value = v;
+		    return item;
+		});
+		var newArrSet = _.countBy(_.sortBy(newArr, function(o){ 
+			return o; 
+		}));
+		var outArr = [];
+		_.forEach(newArrSet, function(value, key, collection){
+		    if(value>1){
+		    	var item = {};
+		    	// 数字
+		    	item.Key = key;
+		    	// 次数
+		    	item.Value = value;
+		    	// 索引数组
+		    	var indexs = [];
+		    	_.map(newArrObj, function(v, i, arr){
+    				if(v.Value == key){
+    					if(indexs.length == 0){
+    						indexs.push(v.Index);
+    					}else if(v.Index - _.last(indexs) == 1){
+    						indexs.push(v.Index);
+    					}
+    				}
+    			});
+		    	item.indexs = indexs;
+		    	outArr.push(item);
+		    }
+		});
+		outArr;
+	</script>
 </body>
 </html>

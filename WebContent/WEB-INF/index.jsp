@@ -24,7 +24,7 @@
 	<!--<script type="text/javascript" src="http://apps.bdimg.com/libs/jquery/2.1.1/jquery.js"></script>-->
 	<script src="./js/libs/jquery-3.3.1.min.js" defer></script>
     <script src="plugins/cookie/jquery.cookie.js" defer></script>
-	<script src="./js/libs/lodash.min.js" defer></script>
+	<!-- <script src="./js/libs/lodash.min.js" defer></script> -->
 	<script src="./js/libs/jquery.easing.1.3.js" defer></script>
 	<script src="./js/libs/bootstrap.min.js" defer></script>
 	<script src="./js/index.js?iv=201808291121" defer></script>
