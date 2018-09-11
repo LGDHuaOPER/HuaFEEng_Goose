@@ -12,9 +12,11 @@
         <link rel="shortcut icon" href="image/eoulu.ico" />
         <link rel="bookmark" href="image/eoulu.ico" />
         <link rel="stylesheet" href="css/libs/bootstrap.min.css" type="text/css">
-        <link rel="stylesheet" href="css/global/eouluCustom.css" type="text/css">
         <!-- <link rel="stylesheet" type="text/css" href="plugins/webuploader/webuploader.css" /> -->
-        <link rel="stylesheet" href="css/StandardProduct.css" type="text/css">
+        <!-- delete -->
+        <!-- <link rel="stylesheet" href="css/global/eouluCustom.css" type="text/css"> -->
+        <!-- <link rel="stylesheet" href="css/StandardProduct.css" type="text/css"> -->
+        <link rel="stylesheet" href="css/modules/serviced/StandardProduct-855edafc10.min.css" type="text/css">
         <style>
             .u-admin a {
                 vertical-align: top !important;
@@ -76,9 +78,24 @@
                 margin-top:-40px;
             }
 
+            /*表格自定义*/
+            .m_table.inormal .t3, .m_table.inormal .hastd_Title, .m_table.inormal .t4, .m_table.inormal .hastd_Type {
+                min-width: 80px;
+                max-width: 80px;
+                width: 80px;
+            }
+
+            .m_table.inormal .t5, .m_table.inormal .hastd_Machine {
+                min-width: 120px;
+                max-width: 120px;
+                width: 120px;
+            }
         </style>
     </head>
     <body>
+        <div class="loading_div_g_div" style="position: fixed;top: 0;bottom: 0;left: 0;right: 0;z-index: 100;width: 100vw;height: 100vh;background-color: #5bc0de;filter:alpha(opacity=90);-moz-opacity:0.9;-khtml-opacity:0.9;opacity: 0.9;display: -webkit-flex;display: flex;justify-content: center;align-items: center;">
+            <img src="image/loading/Spinner-1s-200px.gif" alt="loading。。。">
+        </div>
         <div id="NonStandard_wrapper">
             <div id="NonStandard_sticker">
                 <div id="NonStandard_sticker-con">
@@ -139,7 +156,7 @@
                                     </div>
                                 </div>
                                 <!-- 页面表格主体 -->
-                                <div class="m_table">
+                                <div class="m_table inormal">
                                     <table class="eou-table-collapse">
                                         <thead>
                                             <tr>
@@ -154,42 +171,10 @@
                                                 <th class="t9">出厂检测报告</th>
                                                 <th class="t10">文档完整性</th>
                                                 <th class="t11">审核</th>
-                                                <!-- <th class="t12">备注</th> -->
-                                                <!-- <th style="display:none">BookingDate</th> -->
+                                                <th class="t12">更新时间</th>
                                             </tr>
                                         </thead>
                                         <tbody>
-                                            <!-- <tr>
-                                                <td class="update_td" value>1</td>
-                                                <td class="ocd">OpportunityCreateDate</td>
-                                                <td class="hastd_customername">CustomerName</td>
-                                                <td class="hastd_city">City</td>
-                                                <td class="hastd_deal_status">DealStatus</td>
-                                                <td class="hastd_win_probability">WinProbability</td>
-                                                <td class="hastd_keysight_FE_name">KeysightName</td>
-                                                <td class="hastd_keysight_model_number">Model</td>
-                                                <td class="hastd_forecasted_order_date">OrderDate</td>
-                                                <td class="hastd_customer_attn">Contact</td>
-                                                <td class="hastd_status">Status</td>
-                                                <td class="hastd_state_province" style="display:none">Area</td>
-                                                <td class="hastd_actual_order_booking_date" style="display:none">BookingDate</td>
-                                                <td class="CommodityID" style="display:none">CommodityID</td>
-                                                <td class="hastd_customer_tel" style="display:none">ContactInfo1</td>
-                                                <td class="hastd_country_code" style="display:none">CountryCode</td>
-                                                <td class="hastd_currency_code" style="display:none">CurrencyCode</td>
-                                                <td class="CustomerID" style="display:none">CustomerID</td>
-                                                <td class="hastd_deal_id" style="display:none">DealID</td>
-                                                <td class="hastd_customer_email" style="display:none">Email</td>
-                                                <td class="hastd_p_c_kr" style="display:none">KeysightReseller</td>
-                                                <td class="hastd_line" style="display:none">Line</td>
-                                                <td class="hastd_partner_id" style="display:none">PartnerID</td>
-                                                <td class="hastd_postal_code" style="display:none">PostalCode</td>
-                                                <td class="hastd_qty" style="display:none">Qty</td>
-                                                <td class="hastd_keysight_sales_order" style="display:none">SalesOrder</td>
-                                                <td class="hastd_estimated_keysight_deal_value" style="display:none">SellerPriceOne</td>
-                                                <td class="hastd_shipto_location" style="display:none">ShipToLocation</td>
-                                                <td class="hastd_street_address" style="display:none">StreetAddress</td>
-                                            </tr> -->
                                         </tbody>
                                     </table>
                                 </div>
@@ -284,6 +269,12 @@
                                                 </select>
                                             </div>
                                         </div>
+                                        <div class="line_0">
+                                            <div class="line_01">更新时间</div>
+                                            <div class="line_02">
+                                                <input type="date" class="info_UpdateTime">
+                                            </div>
+                                        </div>
                                     <!-- 右部结束   -->
                                     </div>
                                 </div>
@@ -370,6 +361,12 @@
                                                 </select>
                                             </div>
                                         </div>
+                                        <div class="line_0">
+                                            <div class="line_01">更新时间</div>
+                                            <div class="line_02">
+                                                <input type="date" class="info_UpdateTime">
+                                            </div>
+                                        </div>
                                     <!-- 右部结束   -->
                                     </div>
                                 </div>
@@ -453,12 +450,9 @@
         <!-- NonStandard_wrapper结束 -->
         </div>
 
-        <!-- <script src="js/libs/jquery-3.3.1.min.js"></script> -->
         <script src="js/libs/bootstrap.min.js"></script>
-        <script src="js/global/myFunction.js"></script>
-        <script src="js/global/responseLoading.js"></script>
-        <script src="js/msgbox_unload.js"></script>
-        <!-- <script type="text/javascript" src="plugins/webuploader/webuploader.min.js"></script> -->
-        <script src="js/StandardProduct.js"></script>
+        <!-- delete -->
+        <!-- <script src="js/global/responseLoading.js"></script> -->
+        <!-- <script src="js/StandardProduct.js"></script> -->
     </body>
 </html>

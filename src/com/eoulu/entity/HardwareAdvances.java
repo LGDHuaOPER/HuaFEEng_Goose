@@ -7,6 +7,7 @@ public class HardwareAdvances {
 	private String InstalledTime;
 	private int Status;
 	private String ResponsibleAndProcess;
+	private String CurrentProgress;
 	private String OperatingTime;
 	public int getID() {
 		return ID;
@@ -37,6 +38,13 @@ public class HardwareAdvances {
 	}
 	public void setResponsibleAndProcess(String responsibleAndProcess) {
 		ResponsibleAndProcess = responsibleAndProcess;
+	}
+	
+	public String getCurrentProgress() {
+		return CurrentProgress;
+	}
+	public void setCurrentProgress(String currentProgress) {
+		CurrentProgress = currentProgress;
 	}
 	public String getOperatingTime() {
 		return OperatingTime;

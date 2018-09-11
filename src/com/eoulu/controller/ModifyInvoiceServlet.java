@@ -63,7 +63,7 @@ public class ModifyInvoiceServlet extends HttpServlet{
 		invoice.setVessel(request.getParameter("Vessel"));
 		invoice.setAdd(request.getParameter("Add"));
 		invoice.setTelFax(request.getParameter("TelFax"));
-		invoice.setTotalAmount(Double.parseDouble(request.getParameter("TotalAmount")));
+		invoice.setTotalAmount(Double.parseDouble(request.getParameter("TotalAmount"))); 
 		invoice.setNinePaid(Double.parseDouble(request.getParameter("NinePaid")));
 		invoice.setTenPaid(Double.parseDouble(request.getParameter("TenPaid")));
 		if(invoiceService.InvoiceModify(invoice,request)>0){

@@ -11,6 +11,7 @@ public class StandardProduct {
 	private String TestInstructions;
 	private String CheckingReport;
 	private String DocumentIntegrity;
+	private String UpdateTime;
 	public int getID() {
 		return ID;
 	}
@@ -70,6 +71,12 @@ public class StandardProduct {
 	}
 	public void setProductInstructions(String productInstructions) {
 		ProductInstructions = productInstructions;
+	}
+	public String getUpdateTime() {
+		return UpdateTime;
+	}
+	public void setUpdateTime(String updateTime) {
+		UpdateTime = updateTime;
 	}
 	
 	

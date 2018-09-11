@@ -24,7 +24,7 @@ public class StandardProductDao {
 	
 	public List<Map<String, Object>> getAllData(Page page,String type,String column1,String content1,String column2,String content2){
 		String sql = "select ID,Model,Title,Type,Machine,InstallInstructions,TestInstructions,CheckingReport,"
-				+ "DocumentIntegrity,Review,ProductInstructions from t_standard_product ";
+				+ "DocumentIntegrity,Review,ProductInstructions,UpdateTime from t_standard_product ";
 		Object[] parameter = new Object[]{(page.getCurrentPage()-1)*page.getRows(),page.getRows()};
 		if(type.equals("singleSelect")){
 			sql += "where "+Classify_Map.get(column1)+" like ?";
@@ -54,10 +54,10 @@ public class StandardProductDao {
 	
 	public boolean insert(StandardProduct product){
 		String sql = "insert into t_standard_product(Model,Title,Type,Machine,InstallInstructions,TestInstructions,CheckingReport,"
-				+ "DocumentIntegrity,Review,OperateTime,ProductInstructions) values(?,?,?,?,?,?,?,?,?,?,?)";
+				+ "DocumentIntegrity,Review,OperateTime,ProductInstructions,UpdateTime) values(?,?,?,?,?,?,?,?,?,?,?,?)";
 		SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
 		
-		Object[] param = new Object[11];
+		Object[] param = new Object[12];
 		param[0] = product.getModel();
 		param[1] = product.getTitle();
 		param[2] = product.getType();
@@ -69,6 +69,7 @@ public class StandardProductDao {
 		param[8] = "未通过";
 		param[9] = format.format(new Date());
 		param[10] = product.getProductInstructions();
+		param[11] = product.getUpdateTime();
 		
 		int result = new DBUtil().executeUpdate(sql, param);
 		return result > 0?true:false;
@@ -77,10 +78,10 @@ public class StandardProductDao {
 	
 	public boolean update(StandardProduct product){
 		String sql = "update t_standard_product set Model=?,Title=?,Type=?,Machine=?,InstallInstructions=?,TestInstructions=?,CheckingReport=?,"
-				+ "DocumentIntegrity=?,OperateTime=?,ProductInstructions=?  where ID=?";
+				+ "DocumentIntegrity=?,OperateTime=?,ProductInstructions=?,UpdateTime=?  where ID=?";
 		SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
 		
-		Object[] param = new Object[11];
+		Object[] param = new Object[12];
 		param[0] = product.getModel();
 		param[1] = product.getTitle();
 		param[2] = product.getType();
@@ -91,7 +92,8 @@ public class StandardProductDao {
 		param[7] = product.getDocumentIntegrity();
 		param[8] = format.format(new Date());
 		param[9] = product.getProductInstructions();
-		param[10] = product.getID();
+		param[10] = product.getUpdateTime();
+		param[11] = product.getID();
 		int result = new DBUtil().executeUpdate(sql, param);
 		return result > 0?true:false;
 		

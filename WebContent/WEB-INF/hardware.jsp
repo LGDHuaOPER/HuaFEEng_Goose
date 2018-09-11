@@ -9,6 +9,14 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>装机进展</title>
+<link rel="shortcut icon" href="image/eoulu.ico"/>
+<link rel="bookmark" href="image/eoulu.ico"/>
+<link rel="stylesheet" type="text/css" href="css/libs/bootstrap-grid-form-btn-res-icon-tooltip-popover.min.css">
+<link rel="stylesheet" type="text/css" href="plugins/awesomplete/awesomplete_all-a2ac84f236.min.css">
+<!-- delete -->
+<!-- <link rel="stylesheet" type="text/css" href="css/global/global_table_style.css"> -->
+<!-- <link rel="stylesheet" type="text/css" href="css/hardware.css"> -->
+<link rel="stylesheet" type="text/css" href="css/modules/serviced/hardware-b64078737b.min.css">
 <style>
 	.content .choose input[type="button"], .content .select-button input[type="button"] {
 		width: auto !important;
@@ -63,8 +71,8 @@
 	}
 
 	#eoulu-copy hr {
-		margin-top: 1px !important;
-		margin-bottom: 1px !important;
+		margin-top: 1px;
+		margin-bottom: 1px;
 	}
 
 	.content .select-button {
@@ -72,15 +80,11 @@
 	    top: -2px !important;
 	}
 </style>
-<link rel="shortcut icon" href="image/eoulu.ico"/>
-<link rel="bookmark" href="image/eoulu.ico"/>
-<!-- <link rel="stylesheet" type="text/css" href="font-awesome-4.5.0/css/font-awesome.min.css"> -->
-<!-- <link rel="stylesheet" type="text/css" href="css/swiper-3.4.1.min.css" /> -->
-<link rel="stylesheet" type="text/css" href="css/libs/bootstrap-grid-form-btn-res-icon-tooltip-popover.min.css">
-<link rel="stylesheet" type="text/css" href="css/global/global_table_style.css">
-<link rel="stylesheet" type="text/css" href="css/hardware.css">
 </head>
 <body>
+	<div class="loading_div_g_div" style="position: fixed;top: 0;bottom: 0;left: 0;right: 0;z-index: 100;width: 100vw;height: 100vh;background-color: #5bc0de;filter:alpha(opacity=90);-moz-opacity:0.9;-khtml-opacity:0.9;opacity: 0.9;display: -webkit-flex;display: flex;justify-content: center;align-items: center;">
+	    <img src="image/loading/Spinner-1s-200px.gif" alt="loading。。。">
+	</div>
 	<div id="Transport_wrapper">
 	    <div id="Transport_sticker">
 	        <div id="Transport_sticker-con">
@@ -101,10 +105,8 @@
 							<input type="text" value="" name="parameter2">
 						  </div>  
 
-			 			<form id="top_text_from" name="top_text_from" method="post"
-							action="GetHardwareRoute">
-							<input type="text" id="search" name="isSearch" value="search"
-								style="display: none;">
+			 			<form id="top_text_from" name="top_text_from" method="post" action="GetHardwareRoute">
+							<input type="text" id="search" name="isSearch" value="search" style="display: none;">
 							<div class="select-content">
 								 <label> <c:choose>
 										<c:when test="${queryType=='mixSelect'}">
@@ -138,7 +140,6 @@
 													</c:otherwise>
 												</c:choose>
 											</c:forEach>
-
 										</select>
 										 <input type="text" id="searchContent1" name="searchContent1" value="${parameter1}">
 									</div>
@@ -180,11 +181,12 @@
 								<tr>
 									<th>项目</th>
 									<th style="display:none">修改</th>
-									<th>客户 </th>
+									<th>客户</th>
 									<th>装机时间</th>
 									<th class="progress_td">项目状态</th>
 									<th>负责人及进展</th>
 									<th style="display:none;">删除数据</th>
+									<th>最新进展</th>
 								</tr>
 							</thead>
 							<tbody>
@@ -193,20 +195,12 @@
 										<tr>
 											<td value="${orderInfo['ID']}" class="contract-edit" style="cursor:pointer">${status.index+(currentPage-1)*10}</td>
 											<td style="display:none"><i class="fa fa-edit" value="${orderInfo['ID']}"></i></td>
-											<td title="${orderInfo['Customer']}">${orderInfo['Customer']}</td>       <!--2  -->
-											<td>${orderInfo['InstalledTime']}</td>   <!--3  -->
-											<c:if test="${orderInfo['Status'] == 1}">
-												<td class="progress_td">交付</td> 
-											</c:if>
-											<c:if test="${orderInfo['Status'] == 2}">
-												<td class="progress_td">尾款</td> 
-											</c:if>
-											<c:if test="${orderInfo['Status'] == 3}">
-												<td class="progress_td">完结</td> 
-											</c:if>
-											         <!--4  -->
-											<td title="${orderInfo['ResponsibleAndProcess']}">${orderInfo['ResponsibleAndProcess']}</td>    <!--5  -->
-											<td style="display:none;"><i class="fa fa-trash-o del"></i></td>   <!--6  -->
+											<td title="${orderInfo['Customer']}" class="td_Customer">${orderInfo['Customer']}</td>       <!--2  -->
+											<td class="td_InstalledTime">${orderInfo['InstalledTime']}</td>
+											<td class="progress_td td_Status" value="${orderInfo['Status']}"></td>
+											<td title="${orderInfo['ResponsibleAndProcess']}" class="td_ResponsibleAndProcess">${orderInfo['ResponsibleAndProcess']}</td>
+											<td style="display:none;"><i class="fa fa-trash-o del"></i></td>
+											<td data-currentprogress='${orderInfo["CurrentProgress"]}' data-latestprogress='${orderInfo["LatestProgress"]}' class="td_LatestProgress"></td>   <!--6  -->
 										</tr>
 									</c:if>
 								</c:forEach>
@@ -243,78 +237,143 @@
 					</div>
 				</div>
 				<div class="MailBar_cover_color" style="display: none;"></div>
-				
 				<!-- 添加装机进展信息 -->
 				<div class="contract_add" style="display: none;">
-					<div class="contract_title">添加装机进展</div>
-					<div class="contractAdd_close">关闭</div>
-					<div class="basic_info">
-						<div class="table_title">装机进展</div>
-						<table border="1" cellspacing="0" cellpadding="0" class="contract_basic">
-							<tbody>	
-								<tr>
-								    <td>装机时间</td>
-									<td><input type="date" name="InstalledTime" value="" id="InstalledTime"></td>	
-									<td>客户</td>
-									<td><input type="text" name="Customer" value=""  id="Customer"></td>
-								</tr>
-								<tr>
-									<td>项目状态</td>
-									<td>
-										<input type="text" name="Status" value="" style="position:absolute;width:162px;" id="Status">
-											<select onchange="document.getElementById('Status').value=this.options[this.selectedIndex].text" class="StatusSelect">
-												<option value="No" selected="selected">--请选择--</option>
-												<option value="">交付</option>
-												<option value="">尾款</option>
-												<option value="">完结</option>
-											</select>
-									</td>
-									<td>负责人及进展</td>
-									<td><input type="text" name="ResponsibleAndProcess" value=""></td>
-								</tr>
-							</tbody>
-						</table>		
+					<div class="contract_add_title">添加装机进展信息<span class="glyphicon glyphicon-remove-circle" aria-hidden="true"></span></div>
+					<div class="contract_add_body">
+						<div class="contract_add_body_in">
+				    		<fieldset><legend>基本信息</legend>
+				    			<div class="container-fluid">
+				    				<div class="row">
+				    					<div class="col-md-6 col-lg-6">
+				    						<div class="form-horizontal">
+				    						    <!-- 一个form-group就是一个整体 -->
+				    						    <div class="form-group">
+				    						        <label for="add_info_InstalledTime" class="col-sm-3 control-label">装机时间</label>
+				    						        <div class="col-sm-9">
+				    						            <input type="date" id="add_info_InstalledTime" class="form-control">
+				    						        </div>
+				    						    </div>
+				    						    <div class="form-group">
+				    						        <label for="add_info_Customer" class="col-sm-3 control-label">客户</label>
+				    						        <div class="col-sm-9">
+				    						            <input type="text" id="add_info_Customer" class="form-control">
+				    						        </div>
+				    						    </div>
+				    						</div>
+				    					</div><!-- col-md-6 end -->
+				    					<div class="col-md-6 col-lg-6">
+				    						<div class="form-horizontal">
+				    						    <!-- 一个form-group就是一个整体 -->
+				    						    <div class="form-group">
+				    						        <label for="add_info_Status" class="col-sm-3 control-label">项目状态</label>
+				    						        <div class="col-sm-9">
+				    						        	<!-- <select onchange="document.getElementById('Status').value=this.options[this.selectedIndex].text" class="StatusSelect"></select> -->
+				    						            <input type="text" id="add_info_Status" placeholder="填写或选择" class="form-control dropdown-input"><button type="button" class="btn btn-default awesomplete_btn" aria-label="Left Align"><span class="glyphicon glyphicon-menu-down" aria-hidden="true"></span></button>
+				    						        </div>
+				    						    </div>
+				    						    <div class="form-group">
+				    						        <label for="add_info_ResponsibleAndProcess" class="col-sm-3 control-label">负责人</label>
+				    						        <div class="col-sm-9">
+				    						            <input type="text" id="add_info_ResponsibleAndProcess" class="form-control">
+				    						        </div>
+				    						    </div>
+				    						</div>
+				    					</div><!-- col-md-6 end -->
+				    				</div>
+				    			</div><!-- container-fluid end -->
+				    		</fieldset>
+				    		<fieldset><legend>进展详情&nbsp;<span class="glyphicon glyphicon-plus-sign add_line_p" aria-hidden="true"></span></legend>
+					    		<div class="container-fluid appendp_p_div">
+					    			<table>
+					    				<thead>
+					    					<tr>
+					    						<th>序号</th>
+					    						<th>进展详情</th>
+					    						<th>时间</th>
+					    					</tr>
+					    				</thead>
+					    				<tbody></tbody>
+					    			</table>
+					    		</div>
+				    		</fieldset>
+						</div>
 					</div>
-					<div class="edit_btn">
-						<input type="button" value="提交" class="bToggle" id="add_submit">
-						<input type="button" value="取消" class="bToggle" id="add_cancel">
+					<div class="contract_add_foot">
+						<div class="contract_add_foot_in">
+							<input type="button" value="提交" class="btn btn-success" id="contract_add_submit">
+							<input type="button" value="取消" class="btn btn-warning" id="contract_add_cancel">
+						</div>
 					</div>
 				</div>
 				
 				<!-- 修改装机进展信息 -->
 				<div class="contract_update" style="display: none;">
-					<div class="contract_title">修改装机进展</div>
-					<div class="contractUpdate_close">关闭</div>
-					<div class="basic_info">
-						<div class="table_title">装机进展</div>
-						<table border="1" cellspacing="0" cellpadding="0" class="contract_basic">
-							<tbody>	
-								<tr>
-								    <td>装机时间</td>
-									<td><input type="date" name="InstalledTime" value="" id="InstalledTime"></td>	
-									<td>客户</td>
-									<td><input type="text" name="Customer" value=""  id="Customer"></td>
-								</tr>
-								<tr>
-									<td>项目状态</td>
-									<td>
-										<input type="text" name="Status" value="" style="position:absolute;width:162px;" id="Status1">
-											<select onchange="document.getElementById('Status1').value=this.options[this.selectedIndex].text" class="StatusSelect">
-												<option value="No" selected="selected">--请选择--</option>
-												<option value="">交付</option>
-												<option value="">尾款</option>
-												<option value="">完结</option>
-											</select>
-									</td>
-									<td>负责人及进展</td>
-									<td><input type="text" name="ResponsibleAndProcess" value=""></td>
-								</tr>
-							</tbody>
-						</table>		
+					<div class="contract_update_title">修改装机进展信息<span class="glyphicon glyphicon-remove-circle" aria-hidden="true"></span></div>
+					<div class="contract_update_body">
+						<div class="contract_update_body_in">
+				    		<fieldset><legend>基本信息</legend>
+				    			<div class="container-fluid">
+				    				<div class="row">
+				    					<div class="col-md-6 col-lg-6">
+				    						<div class="form-horizontal">
+				    						    <!-- 一个form-group就是一个整体 -->
+				    						    <div class="form-group">
+				    						        <label for="update_info_InstalledTime" class="col-sm-3 control-label">装机时间</label>
+				    						        <div class="col-sm-9">
+				    						            <input type="date" id="update_info_InstalledTime" class="form-control">
+				    						        </div>
+				    						    </div>
+				    						    <div class="form-group">
+				    						        <label for="update_info_Customer" class="col-sm-3 control-label">客户</label>
+				    						        <div class="col-sm-9">
+				    						            <input type="text" id="update_info_Customer" class="form-control">
+				    						        </div>
+				    						    </div>
+				    						</div>
+				    					</div><!-- col-md-6 end -->
+				    					<div class="col-md-6 col-lg-6">
+				    						<div class="form-horizontal">
+				    						    <!-- 一个form-group就是一个整体 -->
+				    						    <div class="form-group">
+				    						        <label for="update_info_Status" class="col-sm-3 control-label">项目状态</label>
+				    						        <div class="col-sm-9">
+				    						        	<!-- <select onchange="document.getElementById('Status').value=this.options[this.selectedIndex].text" class="StatusSelect"></select> -->
+				    						            <input type="text" id="update_info_Status" placeholder="填写或选择" class="form-control dropdown-input"><button type="button" class="btn btn-default awesomplete_btn" aria-label="Left Align"><span class="glyphicon glyphicon-menu-down" aria-hidden="true"></span></button>
+				    						        </div>
+				    						    </div>
+				    						    <div class="form-group">
+				    						        <label for="update_info_ResponsibleAndProcess" class="col-sm-3 control-label">负责人</label>
+				    						        <div class="col-sm-9">
+				    						            <input type="text" name="ResponsibleAndProcess" id="update_info_ResponsibleAndProcess" class="form-control">
+				    						        </div>
+				    						    </div>
+				    						</div>
+				    					</div><!-- col-md-6 end -->
+				    				</div>
+				    			</div><!-- container-fluid end -->
+				    		</fieldset>
+				    		<fieldset><legend>进展详情&nbsp;<span class="glyphicon glyphicon-plus-sign update_line_p" aria-hidden="true"></span></legend>
+					    		<div class="container-fluid appendp_p_div">
+					    			<table>
+					    				<thead>
+					    					<tr>
+					    						<th>序号</th>
+					    						<th>进展详情</th>
+					    						<th>时间</th>
+					    					</tr>
+					    				</thead>
+					    				<tbody></tbody>
+					    			</table>
+					    		</div>
+				    		</fieldset>
+						</div>
 					</div>
-					<div class="edit_btn">
-						<input type="button" value="提交" class="bToggle" id="update_submit">
-						<input type="button" value="取消" class="bToggle" id="update_cancel">
+					<div class="contract_update_foot">
+						<div class="contract_update_foot_in">
+							<input type="button" value="提交" class="btn btn-success" id="contract_update_submit">
+							<input type="button" value="取消" class="btn btn-warning" id="contract_update_cancel">
+						</div>
 					</div>
 				</div>
 				
@@ -335,8 +394,9 @@
 	<!-- Transport_wrapper结束 -->
 	</div>
 </body>
-<!-- <script src="js/jquery-1.11.3.js" type="text/javascript" charset="utf-8"></script> -->
 <script src="js/libs/bootstrap/bootstrap-grid-form-btn-res-icon-tooltip-popover.min.js"></script>
-<script src="js/msgbox.js"></script>
-<script src="js/hardware.js"></script>
+<script src="plugins/awesomplete/awesomplete.min.js"></script>
+<!-- delete -->
+<!-- <script src="js/msgbox.js"></script> -->
+<!-- <script src="js/hardware.js"></script> -->
 </html>

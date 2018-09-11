@@ -3,29 +3,32 @@ package com.eoulu.entity;
 public class InventoryOrder {
 	
 	private int ID;
-	private int CustomerID;
+	private String Customer;
 	private int OrderQuantity;
 	private int InventoryID;
 	private String Warehouse;
 	private int RealNum;
+	private String OrderTime;
+	private String ContractNO;
+	private String EstimatedShippingTime;
+	private String OperatingTime;
 	public int getRealNum() {
 		return RealNum;
 	}
 	public void setRealNum(int realNum) {
 		RealNum = realNum;
 	}
-	private String OperatingTime;
 	public int getID() {
 		return ID;
 	}
 	public void setID(int iD) {
 		ID = iD;
 	}
-	public int getCustomerID() {
-		return CustomerID;
+	public String getCustomer() {
+		return Customer;
 	}
-	public void setCustomerID(int customerID) {
-		CustomerID = customerID;
+	public void setCustomer(String customer) {
+		Customer = customer;
 	}
 	public int getOrderQuantity() {
 		return OrderQuantity;
@@ -51,6 +54,25 @@ public class InventoryOrder {
 	public void setWarehouse(String warehouse) {
 		Warehouse = warehouse;
 	}
+	public String getOrderTime() {
+		return OrderTime;
+	}
+	public void setOrderTime(String orderTime) {
+		OrderTime = orderTime;
+	}
+	public String getContractNO() {
+		return ContractNO;
+	}
+	public void setContractNO(String contractNO) {
+		ContractNO = contractNO;
+	}
+	public String getEstimatedShippingTime() {
+		return EstimatedShippingTime;
+	}
+	public void setEstimatedShippingTime(String estimatedShippingTime) {
+		EstimatedShippingTime = estimatedShippingTime;
+	}
+	
 
 
 }

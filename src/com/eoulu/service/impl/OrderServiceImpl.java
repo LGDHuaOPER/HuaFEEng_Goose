@@ -31,6 +31,7 @@ import org.apache.commons.fileupload.servlet.ServletFileUpload;
 import org.apache.poi.xssf.usermodel.XSSFRow;
 import org.apache.poi.xssf.usermodel.XSSFSheet;
 import org.apache.poi.xssf.usermodel.XSSFWorkbook;
+import org.junit.Test;
 
 import com.eoulu.commonality.Page;
 import com.eoulu.dao.LogisticsDao;
@@ -1683,8 +1684,8 @@ System.out.println("obj="+Arrays.toString(obj2));
 				"BillingDate","OrderInfo"};
 		String[] orderInfoColName = new String[]{"型号","描述","数量","货期","预计货期","货运单号","订单状态"};
 		String[] orderInfoDataName = new String[]{"EquipmentModel","Remarks","Number","Date","ExceptDate","DeliveryNumber","Status"};
-		String[] purchaseInfoColName = new String[]{"供应商","产品","采购合同号","金额","用途","公司","账号","开户行"};
-		String[] purchaseInfoDataName = new String[]{"Customer","Product","ContractPath","Money","UseFor","Company","Account","Bank"};
+		String[] purchaseInfoColName = new String[]{"供应商","产品","采购合同号","币种","金额","用途","公司","账号","开户行"};
+		String[] purchaseInfoDataName = new String[]{"Customer","Product","ContractPath","Currency","Money","UseFor","Company","Account","Bank"};
 		Map<String, String[]> map = new HashMap<>();
 		map.put("colName", colName);
 		map.put("dataName", dataName);
@@ -1723,8 +1724,8 @@ System.out.println("obj="+Arrays.toString(obj2));
 				"BillingDate","OrderInfo"};
 		String[] orderInfoColName = new String[]{"型号","描述","数量","货期","预计货期","货运单号","订单状态"};
 		String[] orderInfoDataName = new String[]{"EquipmentModel","Remarks","Number","Date","ExceptDate","DeliveryNumber","Status"};
-		String[] purchaseInfoColName = new String[]{"供应商","产品","采购合同号","金额","用途","公司","账号","开户行"};
-		String[] purchaseInfoDataName = new String[]{"Customer","Product","ContractPath","Money","UseFor","Company","Account","Bank"};
+		String[] purchaseInfoColName = new String[]{"供应商","产品","采购合同号","币种","金额","用途","公司","账号","开户行"};
+		String[] purchaseInfoDataName = new String[]{"Customer","Product","ContractPath","Currency","Money","UseFor","Company","Account","Bank"};
 		Map<String, String[]> map = new HashMap<>();
 		map.put("colName", colName);
 		map.put("dataName", dataName);
@@ -3894,6 +3895,38 @@ System.out.println("obj="+Arrays.toString(obj2));
 	public List<Map<String, Object>> getShippedDetail(Page page,int type, String startTime, String endTime) {
 		
 		return new OrderDao().getShippedDetail(page,type, startTime, endTime);
+	}
+	
+	public boolean splitCurrency(){
+		boolean flag = false;
+		OrderDao dao = new OrderDao();
+		List<Map<String, Object>> map = dao.getAllPurchaseInfo();
+		for(int i = 1;i < map.size();i ++){
+			String money = map.get(i).get("Money").toString();
+			if(!money.equals("")){
+				int index = 0;
+				for(int j = 0;j < money.length();j ++){
+					if(money.charAt(j)>=48 && money.charAt(j)<=57){
+						index = j;
+						break;
+					}
+				}
+				String currency = money.substring(0,index);
+				money = money.substring(index);
+				System.out.println("currency:"+currency);
+				System.out.println("money:"+money);
+				int orderID = Integer.parseInt(map.get(i).get("OrderID").toString());
+				System.out.println("ID:"+orderID+"   "+dao.setCurrency(orderID, currency, money));
+			}
+		}
+		flag = true;
+		return flag;
+		
+	}
+	
+	@Test
+	public void test(){
+		splitCurrency();
 	}
 
 

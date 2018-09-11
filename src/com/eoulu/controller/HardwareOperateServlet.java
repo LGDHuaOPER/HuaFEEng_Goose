@@ -22,6 +22,10 @@ public class HardwareOperateServlet extends HttpServlet{
 	}
 	@Override
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+		
+	}
+	@Override
+	protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		HardwareAdvancesService service = new HardwareAdvancesServiceImpl();
 		String classify = req.getParameter("Classify");
 		boolean flag = false;
@@ -43,10 +47,6 @@ public class HardwareOperateServlet extends HttpServlet{
 			log.insert(req, JspInfo, description);
 		}
 		resp.getWriter().write(new Gson().toJson(flag));
-	}
-	@Override
-	protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-		doPost(req, resp);
 	}
 	
 

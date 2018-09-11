@@ -5,6 +5,7 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.TreeMap;
@@ -20,6 +21,7 @@ import org.apache.poi.ss.usermodel.DateUtil;
 import org.apache.poi.ss.util.CellRangeAddress;
 import org.apache.poi.xssf.usermodel.XSSFCell;
 import org.apache.poi.xssf.usermodel.XSSFCellStyle;
+import org.apache.poi.xssf.usermodel.XSSFFont;
 import org.apache.poi.xssf.usermodel.XSSFRow;
 import org.apache.poi.xssf.usermodel.XSSFSheet;
 import org.apache.poi.xssf.usermodel.XSSFWorkbook;
@@ -321,6 +323,11 @@ public class EXCELUtil {
 		XSSFWorkbook xwk = new XSSFWorkbook();
 		//创建一个名为 one 的sheet
 		XSSFSheet xsheet = xwk.createSheet("one");
+		XSSFCellStyle style = xwk.createCellStyle();
+		XSSFFont font = xwk.createFont();
+		font.setFontHeightInPoints((short) 11);
+		font.setFontName("微软雅黑");
+		style.setFont(font);
 	
 		//行数
 		int rowsCount = data.size();
@@ -340,6 +347,7 @@ public class EXCELUtil {
 			XSSFCell xcell = xrow.createCell(i);
 			//在单元格中添加数据
 			xcell.setCellValue(map.get("colName")[i]);
+			xcell.setCellStyle(style);
 		}
 		for(int j=colsCount-1;j<colsCount+orderInfoColsCount-1; j++){
 		
@@ -347,13 +355,18 @@ public class EXCELUtil {
 			XSSFCell xcell = xrow.createCell(j);
 			//在单元格中添加数据
 			xcell.setCellValue(map.get("orderInfoColName")[j-colsCount+1]);
+			xcell.setCellStyle(style);
+
 		}
 
 	
 		for(int j = colsCount+orderInfoColsCount-1;j<colsCount+orderInfoColsCount+purchaseInfoCount-1; j++){
 			XSSFCell xcell = xrow.createCell(j);
 			//在单元格中添加数据
+		
 			xcell.setCellValue(map.get("purchaseInfoColName")[j-colsCount-orderInfoColsCount+1]);
+			xcell.setCellStyle(style);
+
 		}
 		
 		//第一行创建写入完毕
@@ -378,7 +391,8 @@ public class EXCELUtil {
 						
 						
 						dataCell.setCellValue(val);	
-						
+						dataCell.setCellStyle(style);
+
 					}
 			
 					for(int j=colsCount-1;j<colsCount+orderInfoColsCount-1; j++){
@@ -389,10 +403,10 @@ public class EXCELUtil {
 						
 						val = ((List<Map<String,Object>>)data.get(i).get("OrderInfo")).get(m + 1).get(map.get("orderInfoDataName")[j-colsCount+1]).toString();
 						
-						
-						
+	
 						
 						dataCell.setCellValue(val);	
+						dataCell.setCellStyle(style);
 					}
 
 					for(int j = colsCount+orderInfoColsCount-1;j<colsCount+orderInfoColsCount+purchaseInfoCount-1; j++){
@@ -400,13 +414,19 @@ public class EXCELUtil {
 						XSSFCell dataCell = dataRow.createCell(j);
 						//在单元格中添加数据
 						String val = "";
+						String colName = map.get("purchaseInfoDataName")[j-colsCount-orderInfoColsCount+1];
 						
-						val = ((List<Map<String,Object>>)data.get(i).get("PurchaseInfo")).get(1).get(map.get("purchaseInfoDataName")[j-colsCount-orderInfoColsCount+1]).toString();
+						val = ((List<Map<String,Object>>)data.get(i).get("PurchaseInfo")).get(1).get(colName).toString();
 						
+						if(colName.equals("Money")&&!val.equals("")&&!val.equals("--")){
+							double money = Double.parseDouble(val);
+							dataCell.setCellValue(money);
+						}else{
+							dataCell.setCellValue(val);	
+		
+						}
+						dataCell.setCellStyle(style);
 						
-						
-						
-						dataCell.setCellValue(val);	
 					}
 					
 				}
@@ -440,19 +460,25 @@ public class EXCELUtil {
 					
 					
 					dataCell.setCellValue(val);	
+					dataCell.setCellStyle(style);
 				}
 				for(int j = colsCount+orderInfoColsCount-1;j<colsCount+orderInfoColsCount+purchaseInfoCount-1; j++){
 					//创建单元格
 					XSSFCell dataCell = dataRow.createCell(j);
 					//在单元格中添加数据
 					String val = "";
+					String colName = map.get("purchaseInfoDataName")[j-colsCount-orderInfoColsCount+1];
+					val = ((List<Map<String,Object>>)data.get(i).get("PurchaseInfo")).get(1).get(colName).toString();
+					if(colName.equals("Money")&&!val.equals("")&&!val.equals("--")){
+						double money = Double.parseDouble(val);
+						dataCell.setCellValue(money);
+					}else{
+						dataCell.setCellValue(val);	
+	
+					}
+					dataCell.setCellStyle(style);
 					
-					val = ((List<Map<String,Object>>)data.get(i).get("PurchaseInfo")).get(1).get(map.get("purchaseInfoDataName")[j-colsCount-orderInfoColsCount+1]).toString();
 					
-					
-					
-					
-					dataCell.setCellValue(val);	
 				}
 				currentRow = currentRow + 1;
 			}
@@ -490,7 +516,48 @@ public class EXCELUtil {
 		XSSFWorkbook xwk = new XSSFWorkbook();
 		XSSFSheet xsheet = xwk.createSheet("库存情况");
 		String[] colName = new String[]{
-				"序号","型号","描述","条码号","苏州仓库","香港仓库","厦门仓库","成都仓库","合肥仓库","深圳仓库","北京仓库","石家庄仓库","库存总数","列表单价","列表总价","备注"};
+	       "序号","型号","描述","条码号","苏州仓库","香港仓库","厦门仓库","成都仓库","合肥仓库","深圳仓库","北京仓库","石家庄仓库",
+	       "库存总数","列表单价","列表总价","预定时间","预定客户","合同号","预定数量","预定仓库","预计发货时间"};
+		Map<String, String> warehouse = new HashMap<>();
+		
+		warehouse.put("Suzhou", "苏州仓库");
+		warehouse.put("Hefei", "合肥仓库");
+		warehouse.put("Xianggang","香港仓库");
+		warehouse.put("Xiamen", "厦门仓库");
+		warehouse.put("Chengdu", "成都仓库");
+		warehouse.put("Shenzhen", "深圳仓库");
+		warehouse.put("Beijing", "北京仓库");
+		warehouse.put("Shijiazhuang", "石家庄仓库");
+		warehouse.put("", "");
+		int m = 0;
+		int n = 0;
+		boolean continuity = false;
+		Map<Integer, Integer> index = new HashMap<>();
+		String inventoryID = ls.get(1).get("InventoryID").toString();;
+		for(int i = 2;i < ls.size();i ++){
+			String current = ls.get(i).get("InventoryID").toString();
+			if(current.equals(inventoryID)){
+				if(continuity){
+					n = n + 1;
+				}else{
+					m = i - 1;
+					n = i;
+				}
+				continuity = true;
+				
+			}else{
+				if(continuity){
+					index.put(m, n);
+					System.out.println("------"+m+" "+n);
+				}
+				continuity = false;
+		
+			}
+			inventoryID = current;
+		}
+		
+		
+		
 		xsheet.setColumnWidth(0, (int) 3000);
 		xsheet.setColumnWidth(1, (int) 5000);
 		xsheet.setColumnWidth(2, (int) 12000);
@@ -506,12 +573,24 @@ public class EXCELUtil {
 		xsheet.setColumnWidth(12, (int) 3000);
 		xsheet.setColumnWidth(13, (int) 3000);
 		xsheet.setColumnWidth(14, (int) 3000);
-		xsheet.setColumnWidth(15, (int) 8000);
-		
+		xsheet.setColumnWidth(15, (int) 4000);
+		xsheet.setColumnWidth(16, (int) 6000);
+		xsheet.setColumnWidth(17, (int) 4000);
+		xsheet.setColumnWidth(18, (int) 4000);
+		xsheet.setColumnWidth(19, (int) 4000);
+		xsheet.setColumnWidth(20, (int) 4000);
+		for(int start : index.keySet()){
+			int end = index.get(start);
+			for(int col = 0;col<15;col++){
+				CellRangeAddress region = new CellRangeAddress(start, end, col, col);
+				xsheet.addMergedRegion(region);
+			}
+		}
 		
 		XSSFCellStyle center = xwk.createCellStyle();
 		center.setWrapText(true);// 自动换行
 		center.setAlignment(XSSFCellStyle.ALIGN_CENTER);
+		center.setVerticalAlignment(XSSFCellStyle.ALIGN_CENTER);
 		center.setBorderBottom(CellStyle.BORDER_THIN);
 		center.setBorderLeft(CellStyle.BORDER_THIN);
 		center.setBorderRight(CellStyle.BORDER_THIN);
@@ -531,49 +610,71 @@ public class EXCELUtil {
 						xcell.setCellValue(i+"");
 						break;
 					case "型号":
-						xcell.setCellValue(map.get("Model")==null?"":map.get("Model").toString());
+						xcell.setCellValue(map.get("Model").toString());
 						break;
 					case "描述":
-						xcell.setCellValue(map.get("Description")==null?"":map.get("Description").toString());
+						xcell.setCellValue(map.get("Description").toString());
 						break;
 					case "条码号":
-						xcell.setCellValue(map.get("PNCode")==null?"":map.get("PNCode").toString());
+						xcell.setCellValue(map.get("PNCode").toString());
 						break;
 					case "库存总数":
-						xcell.setCellValue(Integer.parseInt(map.get("InventoryQuantity")==null?"":map.get("InventoryQuantity").toString()));
+						xcell.setCellValue(Integer.parseInt(map.get("InventoryQuantity").toString()));
 						break;
 					case "苏州仓库":
-						xcell.setCellValue(Integer.parseInt(map.get("Suzhou")==null?"":map.get("Suzhou").toString()));
+						xcell.setCellValue(Integer.parseInt(map.get("Suzhou").toString()));
 						break;
 					case "香港仓库":
-						xcell.setCellValue(Integer.parseInt(map.get("Xianggang")==null?"":map.get("Xianggang").toString()));
+						xcell.setCellValue(Integer.parseInt(map.get("Xianggang").toString()));
 						break;
 					case "厦门仓库":
-						xcell.setCellValue(Integer.parseInt(map.get("Xiamen")==null?"":map.get("Xiamen").toString()));
+						xcell.setCellValue(Integer.parseInt(map.get("Xiamen").toString()));
 						break;
 					case "成都仓库":
-						xcell.setCellValue(Integer.parseInt(map.get("Chengdu")==null?"":map.get("Chengdu").toString()));
+						xcell.setCellValue(Integer.parseInt(map.get("Chengdu").toString()));
 						break;
 					case "合肥仓库":
-						xcell.setCellValue(Integer.parseInt(map.get("Hefei")==null?"":map.get("Hefei").toString()));
+						xcell.setCellValue(Integer.parseInt(map.get("Hefei").toString()));
 						break;
 					case "北京仓库":
-						xcell.setCellValue(Integer.parseInt(map.get("Beijing")==null?"":map.get("Beijing").toString()));
+						xcell.setCellValue(Integer.parseInt(map.get("Beijing").toString()));
 						break;
 					case "深圳仓库":
-						xcell.setCellValue(Integer.parseInt(map.get("Shenzhen")==null?"":map.get("Shenzhen").toString()));
+						xcell.setCellValue(Integer.parseInt(map.get("Shenzhen").toString()));
 						break;
 					case "石家庄仓库":
-						xcell.setCellValue(Integer.parseInt(map.get("Shijiazhuang")==null?"":map.get("Shijiazhuang").toString()));
+						xcell.setCellValue(Integer.parseInt(map.get("Shijiazhuang").toString()));
 						break;
 					case "列表单价":
-						xcell.setCellValue(Double.parseDouble(map.get("SellerPriceOne")==null?"":map.get("SellerPriceOne").toString()));
+						xcell.setCellValue(Double.parseDouble(map.get("SellerPriceOne").equals("--")?"0":map.get("SellerPriceOne").toString()));
 						break;
 					case "列表总价":
-						xcell.setCellValue(Double.parseDouble(map.get("ListPrice")==null?"":map.get("ListPrice").toString()));
+						xcell.setCellValue(Double.parseDouble(map.get("ListPrice").equals("--")?"0":map.get("ListPrice").toString()));
 						break;
-					case "备注":
+				/*	case "备注":
 						xcell.setCellValue(map.get("Remarks")==null?"":map.get("Remarks").toString());
+						break; */
+					case "预定时间":
+						xcell.setCellValue(map.get("OrderTime").equals("--")?"":map.get("OrderTime").toString());
+						break;
+					case "预定客户":
+						xcell.setCellValue(map.get("Customer").equals("--")?"":map.get("Customer").toString());
+						break;
+					case "合同号":
+						xcell.setCellValue(map.get("ContractNO").equals("--")?"":map.get("ContractNO").toString());
+						break;
+					case "预定数量":
+						if(map.get("OrderQuantity").equals("--")){
+							xcell.setCellValue("");
+						}else{
+							xcell.setCellValue(Integer.parseInt(map.get("OrderQuantity").toString()));
+						}
+						break;
+					case "预定仓库":
+						xcell.setCellValue(warehouse.get(map.get("Warehouse").equals("--")?"":map.get("Warehouse").toString()));
+						break;
+					case "预计发货时间":
+						xcell.setCellValue(map.get("EstimatedShippingTime").equals("--")?"":map.get("EstimatedShippingTime").toString());
 						break;
 				
 					}
@@ -587,6 +688,7 @@ public class EXCELUtil {
 			xwk.write(fo);
 			fo.flush();
 			fo.close();
+			xwk.close();
 		} catch (FileNotFoundException e) {
 			e.printStackTrace();
 		} catch (IOException e) {

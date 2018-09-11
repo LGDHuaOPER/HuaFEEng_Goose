@@ -256,16 +256,17 @@ public class InventoryDao {
 	
 	public boolean insertCustomerOrder(InventoryOrder order,Map map){
 		String warehouse = order.getWarehouse();
-		String sql1 = "INSERT INTO t_inventory_customer_order (CustomerID,OrderQuantity,InventoryID,OperatingTime,Warehouse,RemarksInfo) VALUES (?,?,?,?,?,?)";
+		String sql1 = "INSERT INTO t_inventory_customer_order (Customer,OrderQuantity,InventoryID,OperatingTime,Warehouse,RemarksInfo,OrderTime,ContractNO,EstimatedShippingTime) VALUES (?,?,?,?,?,?,?,?,?)";
 		String sql2 = "update t_inventory set InventoryQuantity = InventoryQuantity - ? ,"+warehouse+" = "+warehouse +" - ? where ID = ?";
 	
 		DBUtil dbUtil = new DBUtil();
 		Connection conn = dbUtil.getConnection();
 		try {
 			conn.setAutoCommit(false);	
-			String remarksInfo = map.get(warehouse)+":"+getCustomer(order.getCustomerID())+"预定"+order.getOrderQuantity()+"个；";
-			Object[] param = new Object[]{order.getCustomerID(),order.getOrderQuantity(),order.getInventoryID(),
-						new SimpleDateFormat("yyyy-MM-dd HH:mm:ss").format(new Date()),warehouse,remarksInfo};
+			String remarksInfo = map.get(warehouse)+":"+order.getCustomer()+"预定"+order.getOrderQuantity()+"个；";
+			Object[] param = new Object[]{order.getCustomer(),order.getOrderQuantity(),order.getInventoryID(),
+						new SimpleDateFormat("yyyy-MM-dd HH:mm:ss").format(new Date()),warehouse,remarksInfo,
+						order.getOrderTime(),order.getContractNO(),order.getEstimatedShippingTime()};
 			dbUtil.executeUpdateNotClose(sql1, param);
 			dbUtil.executeUpdateNotClose(sql2, new Object[]{order.getOrderQuantity(),order.getOrderQuantity(),order.getInventoryID()});
 			conn.commit();
@@ -288,16 +289,18 @@ public class InventoryDao {
 	}
 	public boolean updateCustomerOrder(InventoryOrder order,Map map){
 		String warehouse = order.getWarehouse();
-		String sql1 = "update t_inventory_customer_order set CustomerID=?,OrderQuantity=?,OperatingTime=?,Warehouse=?,RemarksInfo=? where ID=?";
+		String sql1 = "update t_inventory_customer_order set Customer=?,OrderQuantity=?,OperatingTime=?,Warehouse=?,"
+				+ "RemarksInfo=?,OrderTime=?,ContractNO=?,EstimatedShippingTime=? where ID=?";
 		String sql2 = "update t_inventory set InventoryQuantity = InventoryQuantity - ? ,"+warehouse+" = "+warehouse +" - ? where ID = ?";
 	
 		DBUtil dbUtil = new DBUtil();
 		Connection conn = dbUtil.getConnection();
 		try {
 			conn.setAutoCommit(false);	
-			String remarksInfo = map.get(warehouse)+":"+getCustomer(order.getCustomerID())+"预定"+order.getOrderQuantity()+"个；";
-			Object[] param = new Object[]{order.getCustomerID(),order.getOrderQuantity(),
-						new SimpleDateFormat("yyyy-MM-dd HH:mm:ss").format(new Date()),warehouse,remarksInfo,order.getID()};
+			String remarksInfo = map.get(warehouse)+":"+order.getCustomer()+"预定"+order.getOrderQuantity()+"个；";
+			Object[] param = new Object[]{order.getCustomer(),order.getOrderQuantity(),
+						new SimpleDateFormat("yyyy-MM-dd HH:mm:ss").format(new Date()),warehouse,remarksInfo,
+						order.getOrderTime(),order.getContractNO(),order.getEstimatedShippingTime(),order.getID()};
 			dbUtil.executeUpdateNotClose(sql1, param);
 			dbUtil.executeUpdateNotClose(sql2, new Object[]{order.getRealNum(),order.getRealNum(),order.getInventoryID()});
 			conn.commit();
@@ -377,16 +380,19 @@ public class InventoryDao {
 	
 	
 	public List<Map<String,Object>> getCustomerOrder(int inventoryID){
-		String sql = "SELECT t_inventory_customer_order.ID CustomerOrder,t_inventory_customer_order.CustomerID,t_inventory_customer_order.OrderQuantity,t_inventory_customer_order.Warehouse,t_customer.CustomerName "
-				+ " FROM t_inventory_customer_order LEFT JOIN t_customer ON  t_customer.ID=t_inventory_customer_order.CustomerID WHERE InventoryID=? ";
+		String sql = "SELECT t_inventory_customer_order.ID CustomerOrder,t_inventory_customer_order.OrderQuantity,t_inventory_customer_order.Warehouse,t_inventory_customer_order.Customer, "
+				+ "t_inventory_customer_order.OrderTime,t_inventory_customer_order.ContractNO,t_inventory_customer_order.EstimatedShippingTime FROM t_inventory_customer_order WHERE InventoryID=? ";
 		return new DBUtil().QueryToList(sql, new Object[]{inventoryID});
 	}
 	public List<Map<String,Object>> getAllData(){
-		String sql = "SELECT t_inventory.CommodityID,t_commodity_info.Model,t_commodity_info.CommodityName Description,t_commodity_info.SellerPriceOne,"
-				+ "t_inventory.InventoryQuantity*t_commodity_info.SellerPriceOne ListPrice,t_inventory.PNCode,"
+		String sql = "SELECT t_inventory.ID InventoryID,t_inventory.CommodityID,t_commodity_info.Model,t_commodity_info.CommodityName Description,"
+				+ "t_commodity_info.SellerPriceOne,t_inventory.InventoryQuantity*t_commodity_info.SellerPriceOne ListPrice,t_inventory.PNCode,"
 				+ "t_inventory.InventoryQuantity,t_inventory.Suzhou,t_inventory.Hefei,t_inventory.Xiamen,t_inventory.Chengdu,t_inventory.Xianggang,"
-				+ "t_inventory.Shenzhen,t_inventory.Beijing,t_inventory.Shijiazhuang,t_inventory.Remarks FROM t_inventory "
-				+ "LEFT JOIN t_commodity_info ON t_inventory.CommodityID=t_commodity_info.ID ";
+				+ "t_inventory.Shenzhen,t_inventory.Beijing,t_inventory.Shijiazhuang,t_inventory.Remarks,t_inventory_customer_order.OrderTime,"
+				+ "t_inventory_customer_order.Customer,t_inventory_customer_order.ContractNO,t_inventory_customer_order.OrderQuantity,t_inventory_customer_order.Warehouse,"
+				+ "t_inventory_customer_order.EstimatedShippingTime FROM t_inventory"
+				+ " LEFT JOIN t_commodity_info ON t_inventory.CommodityID=t_commodity_info.ID LEFT JOIN t_inventory_customer_order on"
+				+ " t_inventory.ID=t_inventory_customer_order.InventoryID ORDER BY InventoryQuantity DESC,t_inventory.ID DESC";
 				
 		
 		return new DBUtil().QueryToList(sql, null);

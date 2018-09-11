@@ -275,10 +275,13 @@ public class InventoryServiceImpl implements InventoryService {
 	public  boolean operateCustomerOrder(HttpServletRequest request) {
 		int InventoryID = Integer
 				.parseInt(request.getParameter("InventoryID") == null ? "0" : request.getParameter("InventoryID"));
-		String CustomerID = request.getParameter("CustomerID");
+		String Customer = request.getParameter("Customer");
 		int OrderQuantity = Integer.parseInt(request.getParameter("OrderQuantity").equals("")?"0":request.getParameter("OrderQuantity"));
 		int id = request.getParameter("ID") == null ? 0:Integer.parseInt(request.getParameter("ID"));
 		String Warehouse = request.getParameter("Warehouse");
+		String OrderTime = request.getParameter("OrderTime");
+		String ContractNO = request.getParameter("ContractNO");
+		String EstimatedShippingTime = request.getParameter("EstimatedShippingTime");
 		InventoryDao dao = new InventoryDao();                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                          
 		int oldNum = dao.getOldOrder(id).size()>1?Integer.parseInt(dao.getOldOrder(id).get(1).get("OrderQuantity").toString()):0;
 
@@ -297,8 +300,11 @@ public class InventoryServiceImpl implements InventoryService {
 		InventoryOrder order = new InventoryOrder();
 		order.setInventoryID(InventoryID);
 		order.setOrderQuantity(OrderQuantity);
-		order.setCustomerID(Integer.parseInt(CustomerID));
+		order.setCustomer(Customer);
 		order.setWarehouse(Warehouse);
+		order.setOrderTime(OrderTime);
+		order.setContractNO(ContractNO);
+		order.setEstimatedShippingTime(EstimatedShippingTime);
 		boolean result = false;
 		synchronized (InventoryDao.class) {
 			if(id!=0){

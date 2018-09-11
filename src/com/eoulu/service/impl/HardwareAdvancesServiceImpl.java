@@ -1,16 +1,22 @@
 package com.eoulu.service.impl;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
 
+import org.junit.Test;
+
 import com.eoulu.commonality.Page;
 import com.eoulu.dao.HardwareAdvancesDao;
 import com.eoulu.entity.HardwareAdvances;
 import com.eoulu.service.HardwareAdvancesService;
 import com.eoulu.util.DBUtil;
+
+import net.sf.json.JSONArray;
+import net.sf.json.JSONObject;
 
 
 public class HardwareAdvancesServiceImpl implements HardwareAdvancesService{
@@ -28,8 +34,15 @@ public class HardwareAdvancesServiceImpl implements HardwareAdvancesService{
 	}
 	@Override
 	public List<Map<String, Object>> getHardwareAdvances(Page page) {
+		HardwareAdvancesDao dao = new HardwareAdvancesDao();
+		List<Map<String, Object>> list = dao.getHardwareAdvances(page);
+		for(int i = 1;i < list.size();i ++){
+			List<Map<String, Object>> progress = dao.getCurrentProgress(Integer.parseInt(list.get(i).get("ID").toString()));
+			JSONArray progressJson = JSONArray.fromObject(progress);
+			list.get(i).put("CurrentProgress", progressJson.toString());
+		}
 		
-		return new HardwareAdvancesDao().getHardwareAdvances(page);
+		return list;
 	}
 
 	@Override
@@ -46,29 +59,63 @@ public class HardwareAdvancesServiceImpl implements HardwareAdvancesService{
 		int status = Integer.parseInt(request.getParameter("Status"));
 		String installedTime = request.getParameter("InstalledTime");
 		String responsible = request.getParameter("ResponsibleAndProcess");
+		String progress = request.getParameter("CurrentProgress")==null?"":request.getParameter("CurrentProgress");
+		String latestProgress = request.getParameter("LatestProgress")==null?"":request.getParameter("LatestProgress");
 		hardware.setCustomer(customer);
 		hardware.setStatus(status);
 		hardware.setResponsibleAndProcess(responsible);
+		hardware.setCurrentProgress(latestProgress);
 		if(installedTime.equals("")){
 			hardware.setInstalledTime("0000-00-00");
 		}else{
 			hardware.setInstalledTime(installedTime);	
 		}
-		return new HardwareAdvancesDao().insert(hardware);
+		
+		HardwareAdvancesDao dao = new HardwareAdvancesDao();
+		int maxID;
+		try {
+			maxID = dao.insert(hardware);
+		} catch (Exception e) {
+			e.printStackTrace();
+			return false;
+		}
+		
+		boolean flag = false;
+		if(!progress.equals("")){
+			JSONArray array = JSONArray.fromObject(progress);
+			JSONObject object = null;
+			Map<String,String> updateMap = null;
+			List<Map<String, String>> list = new ArrayList<>();
+			for(int i = 0;i < array.size();i ++){
+				object = array.getJSONObject(i);
+				updateMap = new HashMap<>();
+				updateMap.put("CurrentProgress",(String)object.get("CurrentProgress"));
+				updateMap.put("Date", ((String)object.get("Date")).equals("")?"0000-00-00":(String)object.get("Date"));
+				list.add(updateMap);
+			}
+			flag = dao.insertProgress(list,maxID);
+			
+		}
+		return flag;
+
 	}
 
 	@Override
 	public boolean hardwareAdvancesUpdate(HttpServletRequest request) {
 		HardwareAdvances hardware = new HardwareAdvances();
+		HardwareAdvancesDao dao = new HardwareAdvancesDao();
 		int id = Integer.parseInt(request.getParameter("ID"));
 		String customer = request.getParameter("Customer");
 		int status = Integer.parseInt(request.getParameter("Status"));
 		String installedTime = request.getParameter("InstalledTime");
 		String responsible = request.getParameter("ResponsibleAndProcess");
+		String progress = request.getParameter("CurrentProgress")==null?"":request.getParameter("CurrentProgress");
+		String latestProgress = request.getParameter("LatestProgress")==null?"":request.getParameter("LatestProgress");
 		
 		hardware.setCustomer(customer);
 		hardware.setStatus(status);
 		hardware.setResponsibleAndProcess(responsible);
+		hardware.setCurrentProgress(latestProgress);
 		if(installedTime.equals("")){
 			hardware.setInstalledTime("0000-00-00");
 		}else{
@@ -76,7 +123,29 @@ public class HardwareAdvancesServiceImpl implements HardwareAdvancesService{
 		}
 		hardware.setID(id);
 
-		return new HardwareAdvancesDao().update(hardware);
+		boolean flag = dao.update(hardware);
+		boolean flag1 = false;
+		if(!progress.equals("")){
+			JSONArray array = JSONArray.fromObject(progress);
+			JSONObject object = null;
+			Map<String,String> updateMap = null;
+			List<Map<String, String>> list = new ArrayList<>();
+			for(int i = 0;i < array.size();i ++){
+				object = array.getJSONObject(i);
+				updateMap = new HashMap<>();
+				updateMap.put("CurrentProgress",(String)object.get("CurrentProgress"));
+				updateMap.put("Date", ((String)object.get("Date")).equals("")?"0000-00-00":(String)object.get("Date"));
+				list.add(updateMap);
+			}
+			flag1 = dao.insertProgress(list,id);
+			
+		}
+		if(flag && flag1){
+			return true;	
+		}else{
+			return false;
+		}
+			
 	}
 
 	@Override
@@ -289,6 +358,11 @@ public class HardwareAdvancesServiceImpl implements HardwareAdvancesService{
 			param[param.length-1] = page.getRows();
 		}
 		return new HardwareAdvancesDao().getQueryList(sql, param);
+	}
+	
+	@Test
+	public void test(){
+		System.out.println(Double.parseDouble("10,000.00"));
 	}
 
 }

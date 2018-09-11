@@ -660,6 +660,20 @@ public class OrderDao {
 		List<Map<String, Object>> list = db.QueryToList(sql, param);
 		return list;
 	}
+	
+	public List<Map<String, Object>> getAllPurchaseInfo(){
+		DBUtil dbUtil = new DBUtil();
+		String sql = "select OrderID,Money FROM t_purchase_info";
+		List<Map<String, Object>> list = dbUtil.QueryToList(sql, null);
+		return list;
+	}
+	
+	public boolean setCurrency(int orderID,String currency,String money){
+		DBUtil dbUtil = new DBUtil();
+		String sql = "update t_purchase_info set Currency=?,Money=? where OrderID=?";
+		int result = dbUtil.executeUpdate(sql, new Object[]{currency,money,orderID});
+		return result>0?true:false;
+	}
 	public List<Map<String, Object>> getPurchaseInfoForExcel(int ID){
 		DBUtil db = new DBUtil();
 		String sql = "select t_order.Customer,t_order.ContractPath,t_purchase_info.Product,"

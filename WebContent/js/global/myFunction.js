@@ -454,8 +454,152 @@
                             "mergeToParentFile": "examination.js"
                         }
                     }
-                }
+                },
                 // 考核明细页面结束
+                // 装机进展页面
+                "Hardware": {
+                    "lastModify": "Tue Sep 11 2018 16:39:08 GMT+0800 (中国标准时间)",
+                    "lastModifyTime": "1536655148000",
+                    // css
+                    "cssPrimary": {
+                        "bootstrap-grid-form-btn-res-icon-tooltip-popover.min.css": {
+                            "referenceOrder": 0,
+                            "filePath": "css/libs/bootstrap-grid-form-btn-res-icon-tooltip-popover.min.css",
+                            "mergeToParentFile": null
+                        },
+                        "awesomplete_all-a2ac84f236.min.css": {
+                            "referenceOrder": 1,
+                            "filePath": "plugins/awesomplete/awesomplete_all-a2ac84f236.min.css",
+                            "mergeToParentFile": null
+                        },
+                        "global_table_style.css": {
+                            "referenceOrder": 2,
+                            "filePath": "css/global/global_table_style.css",
+                            "mergeToParentFile": "hardware.css"
+                        },
+                        "hardware.css": {
+                            "referenceOrder": 3,
+                            "filePath": "css/hardware.css",
+                            "mergeToParentFile": "hardware.css"
+                        }
+                    },
+                    // js
+                    "jsPrimary": {
+                        "bootstrap-grid-form-btn-res-icon-tooltip-popover.min.js": {
+                            "referenceOrder": 0,
+                            "filePath": "js/libs/bootstrap/bootstrap-grid-form-btn-res-icon-tooltip-popover.min.js",
+                            "mergeToParentFile": null
+                        },
+                        "awesomplete.min.js": {
+                            "referenceOrder": 1,
+                            "filePath": "plugins/awesomplete/awesomplete.min.js",
+                            "mergeToParentFile": null
+                        },
+                        "msgbox.js": {
+                            "referenceOrder": 2,
+                            "filePath": "js/msgbox.js",
+                            "mergeToParentFile": "hardware.js"
+                        },
+                        "hardware.js": {
+                            "referenceOrder": 3,
+                            "filePath": "js/hardware.js",
+                            "mergeToParentFile": "hardware.js"
+                        }
+                    }
+                },
+                "GetHardwareRoute": {
+                    "lastModify": "Tue Sep 11 2018 16:39:08 GMT+0800 (中国标准时间)",
+                    "lastModifyTime": "1536655148000",
+                    // css
+                    "cssPrimary": {
+                        "bootstrap-grid-form-btn-res-icon-tooltip-popover.min.css": {
+                            "referenceOrder": 0,
+                            "filePath": "css/libs/bootstrap-grid-form-btn-res-icon-tooltip-popover.min.css",
+                            "mergeToParentFile": null
+                        },
+                        "awesomplete_all-a2ac84f236.min.css": {
+                            "referenceOrder": 1,
+                            "filePath": "plugins/awesomplete/awesomplete_all-a2ac84f236.min.css",
+                            "mergeToParentFile": null
+                        },
+                        "global_table_style.css": {
+                            "referenceOrder": 2,
+                            "filePath": "css/global/global_table_style.css",
+                            "mergeToParentFile": "hardware.css"
+                        },
+                        "hardware.css": {
+                            "referenceOrder": 3,
+                            "filePath": "css/hardware.css",
+                            "mergeToParentFile": "hardware.css"
+                        }
+                    },
+                    // js
+                    "jsPrimary": {
+                        "bootstrap-grid-form-btn-res-icon-tooltip-popover.min.js": {
+                            "referenceOrder": 0,
+                            "filePath": "js/libs/bootstrap/bootstrap-grid-form-btn-res-icon-tooltip-popover.min.js",
+                            "mergeToParentFile": null
+                        },
+                        "awesomplete.min.js": {
+                            "referenceOrder": 1,
+                            "filePath": "plugins/awesomplete/awesomplete.min.js",
+                            "mergeToParentFile": null
+                        },
+                        "msgbox.js": {
+                            "referenceOrder": 2,
+                            "filePath": "js/msgbox.js",
+                            "mergeToParentFile": "hardware.js"
+                        },
+                        "hardware.js": {
+                            "referenceOrder": 3,
+                            "filePath": "js/hardware.js",
+                            "mergeToParentFile": "hardware.js"
+                        }
+                    }
+                },
+                // 装机进展页面结束
+                // 标准产品页面
+                "StandardProduct": {
+                    "lastModify": "Tue Sep 11 2018 17:04:24 GMT+0800 (中国标准时间)",
+                    "lastModifyTime": "1536656664000",
+                    // css
+                    "cssPrimary": {
+                        "bootstrap.min.css": {
+                            "referenceOrder": 0,
+                            "filePath": "css/libs/bootstrap.min.css",
+                            "mergeToParentFile": null
+                        },
+                        "eouluCustom.css": {
+                            "referenceOrder": 1,
+                            "filePath": "css/global/eouluCustom.css",
+                            "mergeToParentFile": "StandardProduct.css"
+                        },
+                        "StandardProduct.css": {
+                            "referenceOrder": 2,
+                            "filePath": "css/StandardProduct.css",
+                            "mergeToParentFile": "StandardProduct.css"
+                        }
+                    },
+                    // js
+                    "jsPrimary": {
+                        "bootstrap.min.js": {
+                            "referenceOrder": 0,
+                            "filePath": "js/libs/bootstrap.min.js",
+                            "mergeToParentFile": null
+                        },
+                        "responseLoading.js": {
+                            "referenceOrder": 1,
+                            "filePath": "js/global/responseLoading.js",
+                            "mergeToParentFile": "StandardProduct.js"
+                        },
+                        "StandardProduct.js": {
+                            "referenceOrder": 2,
+                            "filePath": "js/StandardProduct.js",
+                            "mergeToParentFile": "StandardProduct.js"
+                        }
+                    }
+                }
+                // 标准产品页面结束
             },
         // pageHrefImportFileMap 结束
         // compressFilePathMap 开始
@@ -490,6 +634,18 @@
                     "outBasePath": "./cfChicken8/WebContent/css/modules/personnel/",
                     "gulp-rev": "examination-3a846d3f0d.min.css",
                     "referencePath": "css/modules/personnel/examination-3a846d3f0d.min.css"
+                },
+                "hardware.css": {
+                    "originPath": ["./cfChicken8/WebContent/css/global/global_table_style.css", "./cfChicken8/WebContent/css/hardware.css"],
+                    "outBasePath": "./cfChicken8/WebContent/css/modules/serviced/",
+                    "gulp-rev": "hardware-b64078737b.min.css",
+                    "referencePath": "css/modules/serviced/hardware-b64078737b.min.css"
+                },
+                "StandardProduct.css": {
+                    "originPath": ["./cfChicken8/WebContent/css/global/eouluCustom.css", "./cfChicken8/WebContent/css/StandardProduct.css"],
+                    "outBasePath": "./cfChicken8/WebContent/css/modules/serviced/",
+                    "gulp-rev": "StandardProduct-855edafc10.min.css",
+                    "referencePath": "css/modules/serviced/StandardProduct-855edafc10.min.css"
                 }
             },
             "jsMerge": {
@@ -552,6 +708,18 @@
                     "outBasePath": "./cfChicken8/WebContent/js/modules/personnel/",
                     "gulp-rev": "examination-179cada3b8.min.js",
                     "referencePath": "js/modules/personnel/examination-179cada3b8.min.js"
+                },
+                "hardware.js": {
+                    "originPath": ["./cfChicken8/WebContent/js/msgbox.js", "./cfChicken8/WebContent/js/hardware.js"],
+                    "outBasePath": "./cfChicken8/WebContent/js/modules/serviced/",
+                    "gulp-rev": "hardware-c4e031e9dd.min.js",
+                    "referencePath": "js/modules/serviced/hardware-c4e031e9dd.min.js"
+                },
+                "StandardProduct.js": {
+                    "originPath": ["./cfChicken8/WebContent/js/global/responseLoading.js", "./cfChicken8/WebContent/js/StandardProduct.js"],
+                    "outBasePath": "./cfChicken8/WebContent/js/modules/serviced/",
+                    "gulp-rev": "StandardProduct-acbe9a200f.min.js",
+                    "referencePath": "js/modules/serviced/StandardProduct-acbe9a200f.min.js"
                 }
             }
         }
@@ -972,6 +1140,7 @@
         "服务部": {
             "机台统计": "MachineDetails",
             "装机进展": "Hardware",
+            "装机进展#": "GetHardwareRoute",
             "售后维修": "AfterSale",
             "例行拜访": "RoutineVisit",
             "标准产品": "StandardProduct",

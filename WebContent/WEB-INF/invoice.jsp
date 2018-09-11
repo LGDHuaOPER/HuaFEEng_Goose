@@ -490,8 +490,6 @@
 		</div>
 	</div>
 	
-	
-	
 	<!-- 修改发票信息 -->
 	<div class="contract_update" style="display: none;">
 		<div class="contract_title">修改发票信息</div>
@@ -1037,7 +1035,7 @@ $('#update_submit').click(function () {
 	var Manufacturer = $('.contract_update input[name="Manufacturer"]').val();
 	var ShippingMark=$('.contract_update input[name="ShippingMarkNo"]').val() +"&&"+$('.contract_update input[name="ShippingMarkAdd"]').val();
 	var AirPort = $('.contract_update input[name="AIRPORT"]').val();
-	var USD = $('.contract_update input[name="USD"]').val();
+	var USD = $('.contract_update input[name="USD"]').val().trim().replace(/,/g, '');
 	var installed_time = $('.contract_update input[name="installed_time"]').val() ==""?"0000-00-00":$('.contract_update input[name="installed_time"]').val();
 	var remarks = $('.contract_update input[name="remarks"]').val();
  	// var ninePaid = $('.contract_update input[name="ninePaid"]').val() == "" ? 0 : $('.contract_update .ninePaid').val();
@@ -1603,7 +1601,7 @@ $(function(){
 		$(".contract_update .ADDSelect").find("option").eq(AppIndex).attr("selected",true).siblings().attr("selected",false);
 		$(".contract_update #TEL1").val($(".contract_update .TELSelect").find("option:selected").text());
 		$(".contract_update #ADD1").val($(".contract_update .ADDSelect").find("option:selected").text());
-	})
+	});
 	
 	
 	/* 添加发票信息 */

@@ -80,6 +80,7 @@ public class StandardProductServlet extends HttpServlet {
 		String CheckingReport = request.getParameter("CheckingReport") == null?"":request.getParameter("CheckingReport");
 		String DocumentIntegrity = request.getParameter("DocumentIntegrity") == null?"":request.getParameter("DocumentIntegrity");
 		String ProductInstructions = request.getParameter("ProductInstructions")==null?"":request.getParameter("ProductInstructions");
+		String UpdateTime = request.getParameter("UpdateTime")==null?"":request.getParameter("UpdateTime");
 		StandardProduct product = new StandardProduct();
 		product.setID(ID);
 		product.setModel(Model);
@@ -91,6 +92,7 @@ public class StandardProductServlet extends HttpServlet {
 		product.setDocumentIntegrity(DocumentIntegrity);
 		product.setCheckingReport(CheckingReport);
 		product.setProductInstructions(ProductInstructions);
+		product.setUpdateTime(UpdateTime);
 	
 		StandardProductService service = new StandardProductServiceImpl();
 		LogInfoService service2 = new LogInfoServiceImpl();

@@ -1,3 +1,159 @@
+#global_table_style_wrapper, #glbal_table_page_wrapper {
+	min-width: 1000px;
+	width: 90%;
+	margin: 2px auto;
+}
+
+#global_table_style {
+	min-width: 1000px;
+    width: 100%;
+    box-sizing: border-box;
+    border-collapse: collapse;
+    /*如果定义两个 length 参数，那么第一个设置水平间距，而第二个设置垂直间距。*/
+    border-spacing: 0;
+    text-align: center;
+    font-size: 14px;
+    box-shadow: -3px 3px 10px 2px rgba(195,206,220,0.7), 3px 3px 10px 2px rgba(195,206,220,0.7);
+}
+
+/*超出隐藏*/
+#global_table_style .global_overflow_hide {
+	overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+#global_table_style td, #global_table_style th {
+	overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    padding: 1px 2px;
+}
+
+#global_table_style th {
+	text-align: center;
+	font-size: 15px;
+	font-weight: 600;
+}
+
+#global_table_style td:not(:first-child) {
+	border-left: 1px solid #999;
+}
+
+#global_table_style tbody tr:nth-child(odd) {
+	height: 40px;
+	background: #fff;
+}
+
+#global_table_style tbody tr:nth-child(even) {
+	height: 40px;
+	background: rgba(195,206,220,0.9);
+}
+
+#global_table_style thead tr {
+	height: 35px;
+	background: #b5b5b5;
+}
+
+/*翻页*/
+#glbal_table_page, #global_table_page {
+	margin-top: 8px;
+	/*display: table-cell;*/
+	width: 100%;
+	height: 32px;
+	line-height: 32px;
+	text-align: right;
+	padding-top: 1px;
+	padding-right: 10px;
+	font-size: 15px;
+}
+
+#glbal_table_page>.pageInfo, #glbal_table_page>.changePage, #global_table_page>.pageInfo, #global_table_page>.changePage {
+	display: inline-block;
+}
+
+
+
+/*
+*备份的样式 class命名*
+ */
+.gl_table_style_wrapper, .gl_table_page_wrapper {
+	min-width: 1000px;
+	width: 90%;
+	margin: 2px auto;
+}
+	/*可修改*/
+.gl_table_style_wrapper {
+	min-height: 446px;
+}
+
+.gl_table_style {
+	min-width: 1000px;
+    width: 100%;
+    box-sizing: border-box;
+    border-collapse: collapse;
+    /*如果定义两个 length 参数，那么第一个设置水平间距，而第二个设置垂直间距。*/
+    border-spacing: 0;
+    text-align: center;
+    font-size: 14px;
+    box-shadow: -3px 3px 10px 2px rgba(195,206,220,0.7), 3px 3px 10px 2px rgba(195,206,220,0.7);
+}
+
+/*超出隐藏*/
+.gl_table_style .gl_overflow_hide {
+	overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+.gl_table_style td, .gl_table_style th {
+	overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    padding: 1px 2px;
+}
+
+.gl_table_style th {
+	text-align: center;
+	font-size: 15px;
+	font-weight: 600;
+}
+
+.gl_table_style td:not(:first-child) {
+	border-left: 1px solid #999;
+}
+
+.gl_table_style tbody tr:nth-child(odd) {
+	height: 40px;
+	background: #fff;
+}
+
+.gl_table_style tbody tr:nth-child(even) {
+	height: 40px;
+	background: rgba(195,206,220,0.9);
+}
+
+.gl_table_style thead tr {
+	height: 35px;
+	background: #b5b5b5;
+}
+
+/*翻页*/
+.gl_table_page {
+	margin-top: 8px;
+	/*display: table-cell;*/
+	width: 100%;
+	height: 32px;
+	line-height: 32px;
+	text-align: right;
+	padding-top: 1px;
+	padding-right: 10px;
+	font-size: 15px;
+}
+
+.gl_table_page>.pageInfo, .gl_table_page>.changePage {
+	display: inline-block;
+}
 
 /*-------------------------------------闁跨喕绶濇潏鐐------------------------------------------------*/
 .upload{

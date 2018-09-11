@@ -341,5 +341,35 @@
 		});
 		outArr;
 	</script>
+	<script>
+		var originArr = new Array(100);
+		var newArr = _.map(originArr, function(v, i, arr){
+			return _.random(0, 5);
+		});
+		var newArrObjArr = _.map(newArr, function(v, i, arr){
+		    var item = {};
+		    item.Index = i;
+		    item.Value = v;
+		    return item;
+		});
+		var reduceObj = _.reduce(newArrObjArr, function(result, value, index, collection){
+			result[value.Value] || (result[value.Value] = []);
+			var curArr = result[value.Value];
+			if(curArr.length == 0){
+				var itemArr = [];
+				curArr.push(itemArr.push(value.Index) && itemArr);
+			}else{
+				var inLastVal = _.last(_.last(curArr));
+				if(value.Index - inLastVal == 1){
+					curArr[curArr.length - 1].push(value.Index);
+				}else{
+					var itemArr2 = [];
+					curArr.push(itemArr2.push(value.Index) && itemArr2);
+				}
+			}
+			return result;
+		},{});
+		reduceObj;
+	</script>
 </body>
 </html>

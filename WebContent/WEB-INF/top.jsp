@@ -36,11 +36,11 @@
 
 						<c:if test="${authoritiy=='SalesStatistics' || authoritiy=='HotProduct'}"><c:set var="xiaoshoutongji" value="1"></c:set></c:if>
 	
-						<c:if test="${authoritiy=='MachineDetails' || authoritiy=='Hardware' || authoritiy=='AfterSale' || authoritiy=='RoutineVisit'}"><c:set var="biaozhunfuwu" value="1"></c:set></c:if>
+						<c:if test="${authoritiy=='MachineDetails' || authoritiy=='Hardware' || authoritiy=='AfterSale'}"><c:set var="biaozhunfuwu" value="1"></c:set></c:if>
 
 						<c:if test="${authoritiy=='StandardProduct'}"><c:set var="yingyongfuwu" value="1"></c:set></c:if>
 					
-						<c:if test="${authoritiy=='NonStandardProject' || authoritiy=='ApplicationGallery'}"><c:set var="yingyongyanfa" value="1"></c:set></c:if>
+						<c:if test="${authoritiy=='ApplicationGallery'}"><c:set var="yingyongyanfa" value="1"></c:set></c:if>
 
 						<c:if test="${authoritiy=='Schedule'}"><c:set var="yuangongxingcheng" value="1"></c:set></c:if>
 						
@@ -246,9 +246,6 @@
         	                    		<c:if test="${authoritiy=='AfterSale'}">
         	                        	<h6 class="AfterSale"><a href="AfterSale">售后维修</a></h6>
         	                    		</c:if>
-        	                    		<c:if test="${authoritiy=='RoutineVisit'}">
-        	                        	<h6 class="RoutineVisit"><a href="RoutineVisit">例行拜访</a></h6>
-        	                    		</c:if>
         							</c:forEach>
         	                    </div>
 			                </c:if>
@@ -266,9 +263,6 @@
         	                    <div class="subTit subApplicationGallery">
         	                    <h5 class="ApplicationGallery"><a href="ApplicationGallery">应用研发</a></h5>
         							<c:forEach var="authoritiy" items="${authorities}">
-        								<c:if test="${authoritiy=='NonStandardProject'}">
-        								<h6 class="NonStandard"><a href="NonStandard">服务任务分配</a></h6>
-        								</c:if>
         								<c:if test="${authoritiy=='ApplicationGallery'}">
         								<h6 class="ApplicationGallery"><a href="ApplicationGallery">研发图库</a></h6>
         								</c:if>
@@ -418,7 +412,7 @@
 <!-- <script src="js/msgbox_unload.js"></script> -->
 <script src="js/libs/lodash.min.js"></script>
 <script src="js/modules/sharing/top-dbec435863.min.js"></script>
-<script src="js/global/myFunction.js?iv=201809071300" type="text/javascript" charset="utf-8"></script>
+<script src="js/global/myFunction.js?iv=201809111822" type="text/javascript" charset="utf-8"></script>
 <script>
 var ServiceUpdate =<%=request.getSession().getAttribute("startTime") %>
 
@@ -565,7 +559,7 @@ $(function(){
 	else if(href1 == "QuotationSystem" || href1 == "Price" ||  href1 == "Requirement" ||  href1 == "SalesStatistics" ||  href1 == "HotProduct" || href1 == "Quality" || href1 == "QuantityWeight" || href1 == "TestReport" || href1 == "Fumigation" || href1 == "Origin" || href1 == "Shipment" || href1 == "Receiving" || href1 == "Acceptance" || href1 == "Customer" || href1 == "Invoice" || href1 == "Keysight" || href1 == "OriginalQuotation" || href1 == "WorkReport" || href1 == "BiddingDocument"){
 	    href1 = "QuotationSystem0";
 	}
-	else if(href1 == "MachineDetails" || href1 == "Hardware" || href1 == "AfterSale" || href1 == "Schedule" || href1 == "RoutineVisit" || href1 == "NonStandard" || href1 == "ServiceReport" || href1 == "StandardProduct" || href1 == "DocumentUpload" || href1 == "ApplicationGallery"){
+	else if(href1 == "MachineDetails" || href1 == "Hardware" || href1 == "AfterSale" || href1 == "Schedule" || href1 == "ServiceReport" || href1 == "StandardProduct" || href1 == "DocumentUpload" || href1 == "ApplicationGallery"){
 	    href1 = "MachineDetails0";
 	}
 	else if(href1 == "SoftwareDocument" || href1 == "SoftwareProject" || href1 == "SoftwareProduct" || href1 == "CustomerInquiry"|| href1 == "SoftwareImplementation"){
