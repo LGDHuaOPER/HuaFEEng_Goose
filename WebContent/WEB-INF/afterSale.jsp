@@ -593,11 +593,17 @@ $(document).on("click",".contract-edit",function(){
 		      },
 		      dataType : 'json',
 		      success : function (data) {
-		    	  console.log(data);
-		      	
-		          $.MsgBox.Alert('提示','修改成功');
-		          $('.MailBar_cover_color').hide();
-		          $('.contract_add').hide();
+		      		var imessage;
+					if(data == true){
+						imessage = "修改成功";
+						$.MsgBox.Alert('提示', imessage);
+						return false;
+					}else if(data == false){
+						imessage = "修改失败";
+					}else{
+						imessage = data;
+					} 	
+		          $.MsgBox_Unload.Alert('提示', imessage);
 		      },
 		      error : function () {
 		          $.MsgBox.Alert("提示", "服务器繁忙，稍后重试！");

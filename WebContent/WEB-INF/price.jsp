@@ -14,7 +14,7 @@
 <link rel="stylesheet" type="text/css" href="font-awesome-4.5.0/css/font-awesome.min.css">
 <link rel="stylesheet" type="text/css" href="css/swiper-3.4.1.min.css" />
 <link rel="stylesheet" href="css/global/eouluCustom.css" type="text/css">
-<link rel="stylesheet" type="text/css" href="css/price.css">
+<link rel="stylesheet" type="text/css" href="css/price.css?iv=201809121309">
 <style>
 	.content {
 		padding-bottom: 10px !important;
@@ -102,7 +102,6 @@
 
 		</div> -->
 		<!-- 	=======================实时汇率  结束 ================================== -->
-
 					<div style="display: none">
 						<c:if test="${queryType=='common'}">
 							<input type="text" value="" name="classify1">
@@ -125,8 +124,7 @@
 						<input type="text" value="${queryType }" name="query_type">
 					</div>
 					<div class="prompt">
-						
-						<!----------新增窗口右侧提示效果-------------->
+						<!-- 新增窗口右侧提示效果 -->
 						<div class="prompt-alert">
 							<div class="swiper-wrapper">
 								<div class="swiper-slide">
@@ -141,36 +139,26 @@
 							</div>
 						</div>
 
-						<c:set var="totalTargetValue"
-							value="${AreaStatisticsByLastYear[1]['TargetValue']+AreaStatisticsByLastYear[2]['TargetValue']+AreaStatisticsByLastYear[3]['TargetValue']  }"></c:set>
-						<c:set var="totalCompleteValue"
-							value="${AreaStatisticsByYear[1]['CompletValue']+AreaStatisticsByYear[2]['CompletValue']+AreaStatisticsByYear[3]['CompletValue']  }"></c:set>
-						<c:set var="totalSurplusValue"
-							value="${(totalTargetValue-totalCompleteValue)>0?(totalTargetValue-totalCompleteValue):0}"></c:set>
+					<c:set var="totalTargetValue" value="${AreaStatisticsByLastYear[1]['TargetValue']+AreaStatisticsByLastYear[2]['TargetValue']+AreaStatisticsByLastYear[3]['TargetValue']}"></c:set>
+					<c:set var="totalCompleteValue" value="${AreaStatisticsByYear[1]['CompletValue']+AreaStatisticsByYear[2]['CompletValue']+AreaStatisticsByYear[3]['CompletValue']  }"></c:set>
+					<c:set var="totalSurplusValue" value="${(totalTargetValue-totalCompleteValue)>0?(totalTargetValue-totalCompleteValue):0}"></c:set>
 						<div class="add-div-top">
 							<span class="span span1">总目标值</span>
 							<div class="number">${totalTargetValue}M</div>
 							<span class="span span2">剩余目标值</span>
 							<div class="number number2">
-								<fmt:formatNumber type="number" value="${totalSurplusValue}"
-									pattern="#0.00" />M
+								<fmt:formatNumber type="number" value="${totalSurplusValue}" pattern="#0.00" />M
 							</div>
 						</div>
 						<div class="prompt-content">
 							<div class="prompt-top">
 								<ul>
-									<%-- <li class="prompt-top1"><b class="prompt-content1"><!-- 18年度总目标值： --></b><b>${totalTargetValue}M</b></li> --%>
-
 									<li class="prompt-top1"><b class="prompt-content1"></b>
 									<!-- 18年度总目标值： --><b>${totalTargetValue}M</b></li>
-
-									<li class="prompt-top2">剩余目标值：<b><fmt:formatNumber
-												type="number" value="${totalSurplusValue}" pattern="#0.00" />M</b></li>
+									<li class="prompt-top2">剩余目标值：<b><fmt:formatNumber type="number" value="${totalSurplusValue}" pattern="#0.00" />M</b></li>
 									<li class="prompt-top3">单位:USD</li>
 								</ul>
-								<ul >
-									<li class="pC-li5 jilu"><b class=" fa-hand-o-right"></b>&nbsp;详细记录</li>
-									</ul>
+								<ul class="absolute_ul"><li class="pC-li5 jilu"><b class=" fa-hand-o-right"></b>&nbsp;详细记录</li></ul>
 							</div>
 							<div class="prompt-middle">
 								<div class="proClick">
@@ -453,22 +441,13 @@
 									</c:if>
 								</div>
 								<div class="select-button">
-									<input type="button" value="搜索" class="bToggle"
-										onclick="selectSearch()"> <input type="button" value="取消"
-										class="bToggle" onclick="selectCancel()">
+									<input type="button" value="搜索" class="bToggle" onclick="selectSearch()"> <input type="button" value="取消" class="bToggle" onclick="selectCancel()">
 								</div>
 						</div>
 						<div class="choose">
-							<input type="button" value="添加" class="bToggle"
-								onclick="AddContract()">
-		<!-- 						导出功能                   开始                                                                       -->
-		<!-- 											 <input type="button" value="导出" -->
-		<!-- 											class="bToggle" id="export"> -->
-												<!-- <input type="button" value="导入" class="bToggle" id="upload">  -->
-													
-		<!-- 						导出功能                    结束                                                                     -->
+							<input type="button" value="添加" class="bToggle" onclick="AddContract()">
+							<input type="button" value="导出Excel" class="bToggle export_Excel">
 						</div>
-
 					</form>
 
 					<table border="1" cellspacing="0" cellspadding="0" id="table1">
@@ -483,9 +462,7 @@
 							<td class="tog_ContactTD">联系人</td>
 							<td class="tog_ContactInfoTD">联系方式</td>
 							<td class="tog_Area">合同地区</td>
-							<td id="contractName">合同名称 <a title="显示与隐藏"><i class="fa fa-plus-square"
-									id="fa-button2"></i></a>
-							</td>
+							<td id="contractName">合同名称 <a title="显示与隐藏"><i class="fa fa-plus-square" id="fa-button2"></i></a></td>
 							<td id="contractNum">合同号</td>
 							<td style="display:none;">合同类型</td>
 							<td class="tog_SalesRepresentative">销售代表</td>
@@ -582,10 +559,8 @@
 											</c:otherwise>
 										</c:choose>
 									</td>             
-									<td ><i class="fa fa-eye contract-show"
-										value="${orderInfo['ID']}" QuoteNumber="${orderInfo['QuoteNumber']}"></i></td>    
-									<td class="t1_Details"><i class="fa fa-eye supply-show"
-										value="${orderInfo['ID']}"></i></td>     
+									<td><i class="fa fa-eye contract-show" value="${orderInfo['ID']}" QuoteNumber="${orderInfo['QuoteNumber']}"></i></td>    
+									<td class="t1_Details"><i class="fa fa-eye supply-show" value="${orderInfo['ID']}"></i></td>     
 								    <td class="t1_isSend"  style="display:none;">${orderInfo['isSend']}</td>             
 								   	<td class="t1_WhetherToPay">${orderInfo['WhetherToPay']}</td>        
 								    <td class="t1_qNumber" style="display:none;" ID="${orderInfo['QuoteNumber']}">${orderInfo['Number']}</td>  
@@ -602,15 +577,12 @@
 						<div class="contract_title">上传文件</div>
 						<div class="upload_close">关闭</div>
 						<div class="file_content">
-							<a class="file"> <input type="file" name="file" id="fileField"
-								size="28" onchange="openFile()" /> <span>&nbsp;选择文件&nbsp;</span>
-							</a> <input id="file_name" type="text"><br>
-							<span class='error'></span>
+							<a class="file"><input type="file" name="file" id="fileField" size="28" onchange="openFile()" /> <span>&nbsp;选择文件&nbsp;</span></a>
+							<input id="file_name" type="text"><br><span class='error'></span>
 						</div>
 						<input type="button" name="upload" id="open" class="bToggle" value="上传" />
 						<div class='list'>
 							<ul>
-							
 							</ul>
 						</div>
 					</div>
@@ -620,7 +592,6 @@
 						<div class="contract_title">添加合同</div>
 						<div class="contractAdd_close">关闭</div>
 						   <div class="basic_info" >
-						   		
 					                <div class="table_title" style="margin-bottom:20px">合同基本信息</div>
 					                <!-- 修改添加 -->
 					                
@@ -660,11 +631,9 @@
 					                         <span class="L_sty">合同类型</span>
 					                         <span>
 						                         <select name="contract_category" class="mb10 contract_category"  style="width:164px;height:24px">
-													<c:forEach var="contractCategory" items="${contract_category}"
-														varStatus="status">
+													<c:forEach var="contractCategory" items="${contract_category}" varStatus="status">
 														<c:if test="${status.index>0}">
-															<option value="${contractCategory.ID}"
-																text="${contractCategory.Classify }">${contractCategory.Classify }</option>
+															<option value="${contractCategory.ID}" text="${contractCategory.Classify }">${contractCategory.Classify}</option>
 														</c:if>
 													</c:forEach>
 												</select>
@@ -732,7 +701,7 @@
 												</form>
 					                         </span>
 					                	</div>
-					                	<div  class="table_col5" style="float:left;width:30%;min-width:24%;padding-left:3%;padding-right:0%;margin-bottom:10px;border-left:1px solid #ccc;border-right:1px solid #ccc;">
+					                	<div class="table_col5" style="float:left;width:30%;min-width:24%;padding-left:3%;padding-right:0%;margin-bottom:10px;border-left:1px solid #ccc;border-right:1px solid #ccc;">
 					                         <span class="L_sty">收款日期1</span>
 					                         <span><input  class="mb10 receipt_date1" type="date" name="receipt_date1" value=""></span>
 					                          <span class="L_sty">收款金额1</span>
@@ -784,7 +753,6 @@
 									<input type="button" value="取消" class="bToggle btn" id="add_cancel" >
 								</div>
 						</div>
-						
 					<!--  修改   -->
 					<div class="contract_update" style="display: none;">
 						<div class="contract_title">修改合同信息</div>
@@ -793,7 +761,6 @@
 							<span style="display:none" class="order_id"></span>
 					                <div class="table_title" style="margin-bottom:20px">合同基本信息</div>
 					                <!-- 修改添加 -->
-					                
 					                	<div class="table_col1  table_col" style="padding-right:0%">
 					                		 <span class="L_sty"><i class="relevance"></i>客户名称</span>
 					                		 <span class="customerID_span" style="display:none"></span>
@@ -829,8 +796,7 @@
 					                         <span class="L_sty">合同类型</span>
 					                         <span>
 						                         <select name="contract_category" class="mb10 contract_category"  style="width:164px;height:24px">
-													<c:forEach var="contractCategory" items="${contract_category}"
-														varStatus="status">
+													<c:forEach var="contractCategory" items="${contract_category}" varStatus="status">
 														<c:if test="${status.index>0}">
 															<option value="${contractCategory.ID}"
 																text="${contractCategory.Classify }">${contractCategory.Classify }</option>
@@ -953,19 +919,18 @@
 									<input type="button" value="提交" class="bToggle btn" id="update_submit" >
 									<input type="button" value="取消" class="bToggle btn" id="update_cancel" >
 								</div>
-						
 						</div>
-		<iframe style="display:none;" name="myframe"></iframe>  <!-- 表单提交 -->
+					<iframe style="display:none;" name="myframe"></iframe>  <!-- 表单提交 -->
 
 					<div class="contract" style="display: none;">
 						<div class="contract_title">合同配置信息</div>
 						<div class="contract_close">关闭</div>
 						<div class="contarct_info">
-							<table border="1" cellspacing="0" cellpadding="0"
-								class="contractPage">
+							<table border="1" cellspacing="0" cellpadding="0" class="contractPage">
 								<thead>
 									<tr>
 										<th>订单号</th>
+										<th>序号</th>
 										<th>型号</th>
 										<th>描述</th>
 										<th>数量</th>
@@ -978,14 +943,13 @@
 									</tr>
 								</thead>
 								<tbody>
-
 								</tbody>
 							</table>
 						</div>
 						<div class="edit_btn">
 							<input type="text" id="order_id" style="display: none"> 
 							<input type="button" value="添加" class="bToggle" id="contract_apply_add" title="点击后在产品型号框输入型号按回车完成搜索">
-							<input type="button" value="导入" class="bToggle" id="upload"> 
+							<!-- <input type="button" value="导入" class="bToggle" id="upload"> -->
 							<input type="button" value="匹配报价单" class="bToggle" id="MatchQuotation" style="width: 80px;">
 						</div>
 						<div class="apply_add_info" style="display: none">
@@ -1319,14 +1283,15 @@
 </div>
 	
 </body>
-<script src="js/jquery-1.11.3.js" type="text/javascript" charset="utf-8"></script>
-<script src="plugins/cookie/jquery.cookie.js"></script>
+<script src="js/libs/integrationLibs/jquery-cookie-ajaxfile-77692a8173.min.js"></script>
+<!-- <script src="js/jquery-1.11.3.js" type="text/javascript" charset="utf-8"></script> -->
+<!-- <script src="plugins/cookie/jquery.cookie.js"></script> -->
 <script src="js/swiper-3.4.1.jquery.min.js" type="text/javascript" charset="utf-8"></script>
-<script src="js/ajaxfileupload.js" type="text/javascript" charset="utf-8"></script>
+<!-- <script src="js/ajaxfileupload.js" type="text/javascript" charset="utf-8"></script> -->
 <script src="js/msgbox.js"></script>
 <script src="js/msgbox_unload.js"></script>
-<script src="js/global/myFunction.js"></script>
-<script src="js/price.js"></script>
+<!-- <script src="js/global/myFunction.js"></script> -->
+<script src="js/price.js?iv=201809121749"></script>
 <!-- <script src="js/global/version-control.js?iv=201808240937" charset="utf-8"></script> -->
 <script type="text/javascript">
 // 全局响应式textarea
@@ -1370,15 +1335,13 @@
 		window.location.href = arg + jumpNumber+"&ActualDelivery="+currentHref;
 	}
 
-	$(function() {
+$(function() {
 		$('.cover-color').height($("#Price_sticker-con").height());
 		$('.invoice_topen_bg').height($("#Price_sticker-con").height());
 		var MyDate = new Date();
 		var Y =  MyDate.getFullYear();
 		var str = Y +"年度总目标值：";
-		/* alert(str) */
 		$(".prompt-content1").html("").html(str);
-		
 		
 		if ($('#currentPage').html() == 1) {
 			$('#fistPage').attr('disabled', 'true');
@@ -1392,20 +1355,28 @@
 			$('#nextPage').attr('disabled', 'true');
 			$('#nextPage').removeClass('bToggle');
 		}
-		if (
+	if (
 <%=request.getAttribute("queryType").equals("singleSelect")%>
 	||
 <%=request.getAttribute("queryType").equals("common")%>
 	) {
-			$('.select2').hide();
-		} else {
-			$('.select2').show();
-		}
+		$('.select2').hide();
+	} else {
+		$('.select2').show();
+	}
 
-		// globalCopyPos5();
-		// $(window).on("resize",globalCopyPos5);
+	// 未付款闪烁
+	// $(".t1_WhetherToPay:contains('未付款')")
+	$(".t1_WhetherToPay:contains(未付款)").each(function(){
+		var startDay = $(this).siblings(".t1_ExpectedReceiptDate").text();
+		if(startDay == "" || startDay == "--"){
+			startDay = globalGetToday(false);
+		}
+		var diffDays = parseFloat(globalCalcTimeDiff(startDay, globalGetToday(false), true));
+		diffDays <= 7 ? $(this).addClass("change") : null;
 	});
-	
+
+});
 	
         var html = document.documentElement;
         var htmlw = html.clientWidth;

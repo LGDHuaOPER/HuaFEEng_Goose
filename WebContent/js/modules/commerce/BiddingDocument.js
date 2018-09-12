@@ -290,7 +290,7 @@ $(function(){
 	    $.MsgBox_Unload.Alert("获取员工姓名提示","初始化失败！");
 	});
 
-	globalBuildYOptionStr(2016,$("select[name='search_Year']"));
+	globalBuildYOptionStr(2014,$("select[name='search_Year']"));
 });
 
 

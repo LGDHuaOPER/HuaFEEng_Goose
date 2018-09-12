@@ -502,9 +502,9 @@
 					<tr>
 						<td>发票类型</td>
 						<td><select name="area" class="InvoiceType">
-							<option value="0" selected="selected">100%</option>
-							<option value="1" >10%</option>
-							<option value="2" >90%</option>
+							<option value="0">100%</option>
+							<option value="1">10%</option>
+							<option value="2">90%</option>
 						</select></td>
 						<td class="pono">PO NO.</td>
 						<td class="pono"><input type="text" name="po_no" value=""  id="po_no1"></td>
@@ -939,6 +939,9 @@ $(document).on("click",".contract-edit",function(){
 	$('.contract_update').find('input[name="USD"]').val(Number(tr.find('td').eq(34).text()));  //
 	$('.contract_update').find('input[name="installed_time"]').val(tr.find('td').eq(25).text());//
 	$('.contract_update').find('input[name="remarks"]').val(tr.find('td').eq(26).text());
+	$('.contract_update').find('select.InvoiceType').val(tr.find('td').eq(27).text()).trigger("change");
+	$('.contract_update').find('input[name="ninePaid"]').val(tr.find('td').eq(31).text());
+	$('.contract_update').find('input[name="tenPaid"]').val(tr.find('td').eq(32).text());
 	
 	$(".contract_update .hideTD").show();
 	var  ID = tr.find('td').eq(0).attr("value");
@@ -953,55 +956,55 @@ $(document).on("click",".contract-edit",function(){
         },
         dataType : 'json',
         success : function (data) {
-        	console.log(data)
+        	$('.MailBar_cover_color, .contract_update').show();
         	var itemStr ="";
         	 for(var i = 1 ; i <data.length; i++ ){
         		 var GoodsCon = data[i].Goods;
         		 var Unitprice = fmoney(data[i].UnitUSDPrice,2)
         		 var TotalAmount = fmoney(data[i].TotalUSDAmount,2)
 					
-        			var sddStr = '<tr class="DIMTr DIMTrLen" value='+data[i].ID+'>'+
-        			'<td>Item</td>'+
-        			'<td><input type="text" name="Applicant" value="'+i+'"></td>'+
-        			'<td><span style="color:red;">*</span>Description of Goods</td>'+
-        			'<td class="GoodsTd">'+
-        				'<input type="text" name="Goods" value="'+GoodsCon+'" style="position:absolute;width:162px;" class="GoodsCon">'+
-        				'<span>'+
-        				'	<select   class="GoodsSel" >'+
-        						'<option value="No" selected="selected">--请选择--</option>'+
-        						'<option value="SUMMIT12000B-S">SUMMIT12000B-S_</option>'+
-        						'<option value="EPS150LT">EPS150LT_</option>'+
-        						'<option value="SUMMIT12000B-M">SUMMIT12000B-M_</option>'+
-        						'<option value="SUMMIT11000B-M">SUMMIT11000B-M_</option>'+
-        						'<option value="T200-STA-M">T200-STA-M_</option>	'+
-        						'<option value="PA200DS-BR-011">PA200DS-BR-011_</option>'+
-        						'<option value="PA200-BR-021">PA200-BR-021_</option>'+
-        						'<option value="EPS150MMW">EPS150MMW_</option>'+
-        						'<option value="CM300">CM300_</option>	'+									
-        					'</select>'+
-        				'</span>'+
-        			'</td>'+
-        			'<td >Unit</td>'+
-        			'<td class="UnitTd">'+
-        				'<input type="text" name="Unit" value="'+data[i].Unit+'" style="position:absolute;width:162px;" class="UnitCon">'+
-        				'<span>'+
-        					'<select   class="UnitSel" >'+
-        						'<option value="No" selected="selected">--请选择--</option>'+
-        						'<option value="SET">SET</option>'+
-        					'</select>'+
-        				'</span>'+
-        			'</td>'+
-        		'</tr>'+
-        		'<tr class="DIMTr">'+	
-        		'<td><span style="color:red;">*</span>Qty</td>'+
-        		'<td><input type="text" name="Qty" value="'+data[i].Qty+'"  class="QtyTd"></td>'+
-        		'<td><span style="color:red;">*</span>Unit price(USD)</td>'+
-        		'<td><input type="text" name="UnitPrice" value="'+Unitprice+'"  class="UnitPriceTd"   onblur = "this.value=outputmoney(this.value);"></td>'+
-        		'<td><span style="color:red;">*</span>Total amount(USD)</td>'+
-        		'<td><input type="text" name="TotalAmount" value="'+TotalAmount+'"  class="TotalAmountTd"   onblur = "this.value=outputmoney(this.value);"></td>'+
-        	'</tr>';	
+        		var sddStr = '<tr class="DIMTr DIMTrLen" value='+data[i].ID+'>'+
+	        			'<td>Item</td>'+
+	        			'<td><input type="text" name="Applicant" value="'+i+'"></td>'+
+	        			'<td><span style="color:red;">*</span>Description of Goods</td>'+
+	        			'<td class="GoodsTd">'+
+	        				'<input type="text" name="Goods" value="'+GoodsCon+'" style="position:absolute;width:162px;" class="GoodsCon">'+
+	        				'<span>'+
+	        				'	<select   class="GoodsSel" >'+
+	        						'<option value="No" selected="selected">--请选择--</option>'+
+	        						'<option value="SUMMIT12000B-S">SUMMIT12000B-S_</option>'+
+	        						'<option value="EPS150LT">EPS150LT_</option>'+
+	        						'<option value="SUMMIT12000B-M">SUMMIT12000B-M_</option>'+
+	        						'<option value="SUMMIT11000B-M">SUMMIT11000B-M_</option>'+
+	        						'<option value="T200-STA-M">T200-STA-M_</option>	'+
+	        						'<option value="PA200DS-BR-011">PA200DS-BR-011_</option>'+
+	        						'<option value="PA200-BR-021">PA200-BR-021_</option>'+
+	        						'<option value="EPS150MMW">EPS150MMW_</option>'+
+	        						'<option value="CM300">CM300_</option>	'+									
+	        					'</select>'+
+	        				'</span>'+
+	        			'</td>'+
+	        			'<td >Unit</td>'+
+	        			'<td class="UnitTd">'+
+	        				'<input type="text" name="Unit" value="'+data[i].Unit+'" style="position:absolute;width:162px;" class="UnitCon">'+
+	        				'<span>'+
+	        					'<select   class="UnitSel" >'+
+	        						'<option value="No" selected="selected">--请选择--</option>'+
+	        						'<option value="SET">SET</option>'+
+	        					'</select>'+
+	        				'</span>'+
+	        			'</td>'+
+	        		'</tr>'+
+	        		'<tr class="DIMTr">'+	
+	        		'<td><span style="color:red;">*</span>Qty</td>'+
+	        		'<td><input type="text" name="Qty" value="'+data[i].Qty+'"  class="QtyTd"></td>'+
+	        		'<td><span style="color:red;">*</span>Unit price(USD)</td>'+
+	        		'<td><input type="text" name="UnitPrice" value="'+Unitprice+'"  class="UnitPriceTd"   onblur = "this.value=outputmoney(this.value);"></td>'+
+	        		'<td><span style="color:red;">*</span>Total amount(USD)</td>'+
+	        		'<td><input type="text" name="TotalAmount" value="'+TotalAmount+'"  class="TotalAmountTd"   onblur = "this.value=outputmoney(this.value);"></td>'+
+	        	'</tr>';	
 					
-        	 $('.contract_update .contract_basic').append(sddStr);
+        	 	$('.contract_update .contract_basic').append(sddStr);
         	} 
         	
         },
@@ -1010,9 +1013,7 @@ $(document).on("click",".contract-edit",function(){
         }
     });  
     
-   $('.MailBar_cover_color').show();
-   $('.contract_update').show();
- });
+});
  
 /*  提交修改后的信息  */
 $('#update_submit').click(function () {
@@ -1039,9 +1040,9 @@ $('#update_submit').click(function () {
 	var installed_time = $('.contract_update input[name="installed_time"]').val() ==""?"0000-00-00":$('.contract_update input[name="installed_time"]').val();
 	var remarks = $('.contract_update input[name="remarks"]').val();
  	// var ninePaid = $('.contract_update input[name="ninePaid"]').val() == "" ? 0 : $('.contract_update .ninePaid').val();
- 	var ninePaid = $('.contract_update input[name="ninePaid"]').val() == "" ? 0 : $('.contract_update input[name="ninePaid"]').val();
+ 	var ninePaid = $('.contract_update input[name="ninePaid"]').val() == "" ? 0 : $('.contract_update input[name="ninePaid"]').val().trim().replace(/,/g, '');
 	// var tenPaid = $('.contract_update input[name="tenPaid"]').val()== "" ? 0 : $('.contract_update .tenPaid').val();
-	var tenPaid = $('.contract_update input[name="tenPaid"]').val()== "" ? 0 : $('.contract_update input[name="tenPaid"]').val();
+	var tenPaid = $('.contract_update input[name="tenPaid"]').val()== "" ? 0 : $('.contract_update input[name="tenPaid"]').val().trim().replace(/,/g, '');
 	
 	    var Goods = [];
 	    var itemID = [];
@@ -1509,24 +1510,24 @@ $(function(){
 	    }else{
 	    	$(".TelFax").hide();
 	    }
+
 	    if(thisList.eq(27).text() == 0){  //100%
-	    	 $(".news .PONO").text("").text(thisList.eq(28).text());//
+	    	$(".news .PONO").show();
+	    	$(".news .tenTr, .news .nineTr").hide();
+	    	$(".news .PONO").text("").text(thisList.eq(28).text());//
 	    }
 	    else if(thisList.eq(27).text() == 1){ //10%
-	    	$(".news .PONO").hide();
+	    	$(".news .PONO, .news .nineTr").hide();
 	    	$(".news .tenTr").show();
 	    	var tenPaid = fmoney(thisList.eq(32).text(),2)
-	 	     $(".news .tenPaid").text("").text(tenPaid);//
+	 	    $(".news .tenPaid").text("").text(tenPaid);//
 	    }
 	    else{
-	    	$(".news .PONO").hide();
+	    	$(".news .PONO, .news .tenTr").hide();
 	    	$(".news .nineTr").show();
 	    	var ninePaid = fmoney(thisList.eq(31).text(),2)
 	 	    $(".news .ninePaid").text("").text(ninePaid);//
 	    }
-	    /* if(DepartureDate =="NA"){
-		     
-		 } */
 	    
         $('.hidePdf').show();
 	    $(".MarkAdd").css("width",$(".Mark").width())
@@ -1563,12 +1564,13 @@ $(function(){
 	});
 	//PO
 	$(".InvoiceType").change(function(){
-		if($(this).find("option:selected").val() == "0"){
+		var iVal = $(this).val();
+		if(iVal == "0"){
 			$(".pono").show();
 			$(".TenPercent").hide();
 			$(".NinetyPercent").hide();
 		}
-		else if($(this).find("option:selected").val() == "1"){
+		else if(iVal == "1"){
 			$(".pono").hide();
 			$(".TenPercent").show();
 			$(".NinetyPercent").hide();
@@ -1670,7 +1672,6 @@ $(function(){
 			var str = parseFloat($(".contract_add .TotalAmountTd").eq(i).val().replace(/,/g,''));
 			TotalUSDAmountArr.push(str);
 		}
-		 
 		
 	    if(area == 0){  //100%
 	    	var PO_NO=$('.contract_add input[name="po_no"]').val();
@@ -1688,9 +1689,7 @@ $(function(){
 	   		var ninePaid= parseFloat(Number($('.contract_add input[name="ninePaid"]').val().replace(/,/g,'')));
 	   		var tenPaid = 0;
 	    }
-	   /*  alert(GoodsArr) */
 	    if(GoodsArr ==''){
-	    	/* alert(88) */
 	    	 $.MsgBox_Unload.Alert("提示","货物名称为必填项！"); 
 	    	 return; 
 	    }

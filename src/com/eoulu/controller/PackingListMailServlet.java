@@ -11,6 +11,7 @@ import javax.servlet.http.HttpServletResponse;
 import com.eoulu.entity.PackingList;
 import com.eoulu.service.PackingListService;
 import com.eoulu.service.impl.PackingListServiceImpl;
+import com.google.gson.Gson;
 
 /**
  * Servlet implementation class PackingListMailServlet
@@ -58,7 +59,7 @@ public class PackingListMailServlet extends HttpServlet {
 		pList.setAttachment(Attachment);
 		
 		PackingListService service = new PackingListServiceImpl();
-		response.getWriter().write(service.sendLogisticsMail(pList));
+		response.getWriter().write(new Gson().toJson(service.sendLogisticsMail(pList)));
 	}
 
 }

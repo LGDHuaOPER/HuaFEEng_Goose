@@ -660,6 +660,7 @@ $('.contract-show').click(function () {
                 var tr = '<tr>' +
                     '<td style="display: none">' + data[i].ID + '</td>' +
                     '<td>' + data[i].OrderID + '</td>' +
+                    '<td>' + i + '</td>' +
                     '<td>' + data[i].EquipmentModel + '</td>' +
                     '<td>' + data[i].Remarks + '</td>' +
                     '<td><input value="' + data[i].Number + '" type="text" style="width: 45px;" disabled="disabled"></td>' +
@@ -673,43 +674,39 @@ $('.contract-show').click(function () {
                 $('.contract .contractPage tbody').append(tr);
             }
             if(line.find('td').eq(1).html()=='该订单已完结'){
-            	$('.contract .contractPage thead tr').find('th').eq(8).hide();
             	$('.contract .contractPage thead tr').find('th').eq(9).hide();
-            	$('.contract .contractPage tbody tr').find('td').eq(9).hide();
+            	$('.contract .contractPage thead tr').find('th').eq(10).hide();
             	$('.contract .contractPage tbody tr').find('td').eq(10).hide();
+            	$('.contract .contractPage tbody tr').find('td').eq(11).hide();
             	$('.contract .edit_btn').hide();
             }else{
-            	$('.contract .contractPage thead tr').find('th').eq(8).show();
             	$('.contract .contractPage thead tr').find('th').eq(9).show();
-            	$('.contract .contractPage tbody tr').find('td').eq(9).show();
+            	$('.contract .contractPage thead tr').find('th').eq(10).show();
             	$('.contract .contractPage tbody tr').find('td').eq(10).show();
+            	$('.contract .contractPage tbody tr').find('td').eq(11).show();
             	$('.contract .edit_btn').show();
             }
             $('.contract input[name="search"]').val("");
             $('.contract input[name="equipment_counts"]').val("");
             $(".contract .apply_add_info").hide();
-            $('.cover-color').show();
-            $('.contract').show();
+            $('.cover-color, .contract').show();
         },
         error: function () {
              $.MsgBox.Alert("提示", "服务器繁忙，稍后重试！");
-           
         }
     });
-
 });
 $('.contract_close').click(function () {
     $('input[name="search"]').attr("placeholder","输入型号按回车搜索");
     $("#select").empty();
-    $('.cover-color').hide();
-    $('.contract').hide();
+    $('.cover-color, .contract').hide();
 });
 
 // --------------------------------------------修改合同配置信息页面-----------------------------------------------
 $(document).on("click", "input[name='contract-update']", function () {
-	$(this).parent().find('input[name="update-save"]').show()
+	$(this).parent().find('input[name="update-save"]').show();
 	$(this).parent().parent().find('input[type="text"]').attr("disabled",false);
-    $(this).hide();
+  $(this).hide();
 });
 
 //--------------------------------------------保存修改合同配置信息页面-----------------------------------------------
@@ -740,6 +737,7 @@ $(document).on("click", "input[name='update-save']", function () {
                         var tr = '<tr>' +
                             '<td style="display: none">' + data[i].ID + '</td>' +
                             '<td>' + data[i].OrderID + '</td>' +
+                            '<td>' + i + '</td>' +
                             '<td>' + data[i].EquipmentModel + '</td>' +
                             '<td>' + data[i].Remarks + '</td>' +
                             '<td><input value="' + data[i].Number + '" type="text" style="width: 45px;" disabled="disabled"></td>' +
@@ -752,8 +750,7 @@ $(document).on("click", "input[name='update-save']", function () {
                             '</tr>';
                         $('.contract .contractPage tbody').append(tr);
                     }
-                    $('.cover-color').show();
-                    $('.contract').show();
+                    $('.cover-color, .contract').show();
                 },
                 error: function () {
                     $.MsgBox.Alert("提示", "服务器繁忙，稍后重试！");
@@ -791,9 +788,10 @@ $(document).on("click", "input[name='contract-delete']", function () {
                         var tr = '<tr>' +
                             '<td style="display: none">' + data[i].ID + '</td>' +
                             '<td>' + data[i].OrderID + '</td>' +
+                            '<td>' + i + '</td>' +
                             '<td>' + data[i].EquipmentModel + '</td>' +
                             '<td>' + data[i].Remarks + '</td>' +
-                            '<td><input value="' + data[i].Number + '" type="text" style="width: 45px;"></td>' +
+                            '<td><input value="' + data[i].Number + '" type="text" style="width: 45px;" disabled></td>' +
                             '<td>' + data[i].Date + '</td>' +
                             '<td>' + data[i].ExceptDate + '</td>' +
                             '<td>' + data[i].DeliveryNumber + '</td>' +
@@ -803,8 +801,7 @@ $(document).on("click", "input[name='contract-delete']", function () {
                             '</tr>';
                         $('.contract .contractPage tbody').append(tr);
                     }
-                    $('.cover-color').show();
-                    $('.contract').show();
+                    $('.cover-color, .contract').show();
                 },
                 error: function () {
                     $.MsgBox.Alert("提示", "服务器繁忙，稍后重试！");
@@ -846,6 +843,7 @@ $(document).on("click", "input[name='add_submit']", function () {
                         var tr = '<tr>' +
                             '<td style="display: none">' + data[i].ID + '</td>' +
                             '<td>' + data[i].OrderID + '</td>' +
+                            '<td>' + i + '</td>' +
                             '<td>' + data[i].EquipmentModel + '</td>' +
                             '<td>' + data[i].Remarks + '</td>' +
                             '<td><input value="' + data[i].Number + '" type="text" style="width: 45px;"></td>' +
@@ -884,7 +882,6 @@ $('.delete_but').click(function () {
         },
         dataType: 'json',
         success: function (data) {
-//            window.location.href='http://www.baidu.com';
         	data = eval("("+data+")");
         	if(data.message=="success")
         	current.remove();
@@ -969,6 +966,7 @@ $('.upload_close').click(function () {
                 var tr = '<tr>' +
                     '<td style="display: none">' + data[i].ID + '</td>' +
                     '<td>' + data[i].OrderID + '</td>' +
+                    '<td>' + i + '</td>' +
                     '<td>' + data[i].EquipmentModel + '</td>' +
                     '<td>' + data[i].Remarks + '</td>' +
                     '<td><input value="' + data[i].Number + '" type="text" style="width: 45px;"></td>' +
@@ -981,8 +979,7 @@ $('.upload_close').click(function () {
                     '</tr>';
                 $('.contract .contractPage tbody').append(tr);
             }
-            $('.cover-color').show();
-            $('.contract').show();
+            $('.cover-color, .contract').show();
         },
         error: function () {
             $.MsgBox.Alert("提示", "服务器繁忙，稍后重试！");
@@ -993,8 +990,7 @@ $('.upload_close').click(function () {
 $('#open').click(function () {
 	var order_id = $('#order_id').val();
 	if(	$('#fileField').val()==''){
-    	$('.file_content .error').html('请选择上传的文件！')
-
+    	$('.file_content .error').html('请选择上传的文件！');
 	}else{
 		$.ajaxFileUpload({
     		type: 'post',
@@ -1034,9 +1030,7 @@ function openFile() {
     var fileName = "";
     fileName = $('#fileField').val().split("\\").pop();
     $('#file_name').val(fileName);
-
 }
-
 
 //--------------------------------------------导出-----------------------------------------------------
 $('#export').click(function () {
@@ -1070,7 +1064,6 @@ $(document).on("click", "#mb_btn_ok", function () {
     window.location.reload();
 });
 
-
 //------------------------------隐藏列-------------------------------------
 $('#fa-button1').bind('click',function(){
  $('#fa-button1').toggleClass('fa-minus-square');
@@ -1099,7 +1092,6 @@ var timer = setTimeout(function(){
     $(".proClick").slideDown(1000);
     $(".proTotal").fadeIn(400);
     $(".prompt-alert").css("visibility","visible");
-
 },3000);
 $(".pC-li1").click(function(){
     $(".proTotal").fadeIn(400);
@@ -1111,7 +1103,6 @@ $(".pC-li2").click(function(){
     $(".proSingal .sinSouth").fadeIn(400);
     $(".proSingal .sinNorth").fadeOut(400);
     $(".proSingal .sinSouthwest").fadeOut(400);
-
 });
 $(".pC-li3").click(function(){
     $(".proTotal").fadeOut(400);
@@ -1131,13 +1122,11 @@ $(".pC-li4").click(function(){
 
 $(".pC-li5").click(function(){
     window.open('Statistics');
-    /*window.location.href = 'Statistics';*/
 });
 //--------------------------------------------添加合同配置信息页面-----------------------------------------------
 $('#contract_apply_add').click(function() {
 	$('.apply_add_info').show();
 });
-
 
 //-------------------------------------------------判断数据统计区域图片和鼓励字体内容--------------------------------------------------
 function showJudge(data){
@@ -1185,15 +1174,12 @@ function Picture(south,north,southwest){
 			'</div>'+
 			'</div>');
 
-
 var mySwiper = new Swiper ('.prompt-alert', {
 autoplay: 3000,
 loop: true,
 autoplayDisableOnInteraction : false
 });
 }
-
-
 
 //--------------------------------------------点击    预计货期   触发事件-----------------------------------------------------
 
@@ -1367,16 +1353,13 @@ else if(currentVal == "All"){
 	var ContractNo = text1.getElementsByClassName("ContractNoTD")[0].innerText;
 	var ContractTitle = text1.getElementsByClassName("ContractTitleTD")[0].innerText;
 		if(value == "是"){
-			console.log("发送")
 			$('.cover-color').show();
 		    $('.contract_send').show();
 		    $('.contract_send').find('input[name="ConsigneeContacts"]').val(ConsigneeContacts);
 		    $('.contract_send').find('input[name="ConsigneeTel"]').val(ConsigneeTel);
 		    
-		    
 		  //点击确认按钮
 		    $(document).on("click","#send_submit",function(){
-		    	console.log("发送1")
 		    	/*var PriceId=$('.contract_send input[name="PriceId"]').val();
 		        var ContractNo=$('.contract_send input[name="ContractNo"]').val();
 		        var ContractTitle=$('.contract_send input[name="ContractTitle"]').val();*/
@@ -1384,14 +1367,7 @@ else if(currentVal == "All"){
 		        var ConsigneeAddress=$('.contract_send input[name="ConsigneeAddress"]').val();
 		        var ConsigneeContacts=$('.contract_send input[name="ConsigneeContacts"]').val();
 		        var ConsigneeTel=$('.contract_send input[name="ConsigneeTel"]').val();
-		        console.log("isSend"+value)
-		        console.log("PriceId"+PriceId)
-		        console.log("ContractNo"+ContractNo)
-		        console.log("ContractTitle"+ContractTitle)
-		        console.log("ConsigneeCompany"+ConsigneeCompany)
-		        console.log("ConsigneeAddress"+ConsigneeAddress)
-		        console.log("ConsigneeContacts"+ConsigneeContacts)
-		        console.log("ConsigneeTel"+ConsigneeTel)
+		        
 		    	   $.ajax({
 		            type : 'get',
 		            url : 'SendToLogistics',
@@ -1435,10 +1411,7 @@ else if(currentVal == "All"){
 	}
 
 
-
-
 $(function(){
-
 	//判断是否发货栏 状态   
 	for(var i = 1; i < $("#table1 tr").length ; i++){
 		var tdLength =  $("#table1 tr").eq(i).children().length;
@@ -1456,8 +1429,6 @@ $(function(){
 
 if(window.location.href.indexOf("column=")>-1 && window.location.href.indexOf("&condition=")>-1){
   var CurrentHref = window.location.href.split("column=")[1].split("&condition=");
-
-  console.log(CurrentHref[0]+"=="+CurrentHref[1]);
   if(CurrentHref[0] == "CargoPeriod"){   //合同货期
     $("#table1 tr .title_contract").find('select').find("option[value='"+CurrentHref[1]+"']").attr("selected",true).siblings().attr("selected",false);
   }
@@ -1517,8 +1488,6 @@ $(".rate_icon").click(function(){
       dataType: 'jsonp',
       crossDomain: true,
 			success:function(data){
-				console.log(data);
-				console.log(data.rates.CNY);
 				$(".part3_left").html(data.rates.CNY);
 			},
 			error:function(){
@@ -1586,7 +1555,6 @@ $(".add_quotation,.update_quotation").on("input propertychange",function(){
         },
         dataType : 'json',
         success : function (data) {            
-             console.log(data);
              var str = "";
              for(var i = 1 ; i < data.length ; i++){
             	 str += "<li ID="+data[i].ID+" class='addListLi'>"+data[i].Number+"</li>";
@@ -1625,8 +1593,6 @@ $(function(){
     crossDomain: true,
     // jsonp: "callBack",//服务端用于接收callback调用的function名的参数
 		success:function(data){
-			console.log(data);
-			console.log(data.rates.CNY);
 			$(".part1_three").html(data.rates.CNY);
 			$(".part3_left").html(data.rates.CNY);
 		},
@@ -1687,13 +1653,13 @@ $("#MatchQuotation").click(function(){
 	        },
 	        dataType : 'json',
 	        success : function (data) {            
-	             console.log(data);
 	             if(data != "null"){
 	            	 $('.contract .contractPage tbody').html('');
 	            	 for (var i = 1; i < data.length; i++) {
 	                     var tr = '<tr>' +
 	                         '<td style="display: none">' + data[i].ID + '</td>' +
-	                         '<td>' + data[i].OrderID + '</td>' +
+                           '<td>' + data[i].OrderID + '</td>' +
+	                         '<td>' + i + '</td>' +
 	                         '<td>' + data[i].EquipmentModel + '</td>' +
 	                         '<td>' + data[i].Remarks + '</td>' +
 	                         '<td><input value="' + data[i].Number + '" type="text" style="width: 45px;" disabled="disabled"></td>' +
@@ -1715,7 +1681,6 @@ $("#MatchQuotation").click(function(){
 	    });
 	}
 });
-
 
 $(document).on("click",".tab_href",function(){
 	var url = window.location.href;
@@ -2493,4 +2458,19 @@ $(document).on("focus", "input[name='search']", function () {
 $(document).on("click", "#select option", function () {
     $('#select').hide();
     $('input[name="search"]').val($('#select').val());
+});
+
+// 导出excel
+$(".export_Excel").click(function(){
+    $.ajax({
+        type: "POST",
+        url: "Price",
+        success: function(data){
+          window.open(data);
+        },
+        error: function(){
+            $.MsgBox_Unload.Alert("服务器繁忙提示", "Excel下载失败！");
+        }
+    });
+    // globalUrlDownloadFile("POST", "Price", "", {});
 });

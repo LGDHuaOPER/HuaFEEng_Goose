@@ -184,7 +184,7 @@
 									<th>客户</th>
 									<th>装机时间</th>
 									<th class="progress_td">项目状态</th>
-									<th>负责人及进展</th>
+									<th>负责人</th>
 									<th style="display:none;">删除数据</th>
 									<th>最新进展</th>
 								</tr>

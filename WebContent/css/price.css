@@ -57,29 +57,25 @@ a:hover{
 
 /*--------------------------------------��̬��������-----------------------------*/
 .prompt{
-    border: solid 3px #00AEEF;
-    width:90%;
-    height:140px;
+    box-sizing: border-box;
+    border: solid 3px #ccc;
+    width: 90%;
+    height: 140px;
     position: relative;
     left: 5%;
     top:25px;
     min-width: 1000px;
     overflow: hidden;
-
 }
 .prompt-top{
+    position: relative;
     width: 60%;
-    height:35px;
-    /*border: solid 1px red;*/
+    height: 35px;
     margin: 0 auto 8px;
     overflow: hidden;
-
 }
 .prompt-top ul li{
-    /*float: left;*/
     display: inline-block;
-    /*margin-left: 15%;*/
-   /*  font-size: 28px; */
    font-size:2.8rem;
     color: red;
     font-weight: bolder;
@@ -110,11 +106,9 @@ a:hover{
     left: -16.6%;
     text-align: center;
     display: none;
-   /*  font-size: 1.6rem; */
    font-size:16px;
 }
 .proClick ol li{
-    /*position: absolute;*/
     color:blue;
     cursor: pointer;
     margin-bottom: 2px;
@@ -125,8 +119,6 @@ a:hover{
 }
 .prompt-middle ul li{
     width: 13.1%;
-    /*border: solid 1px #00aeef;*/
-    //float: left;
     display:inline-block;
     font-size: 17px;
     text-align: center;
@@ -151,7 +143,6 @@ a:hover{
 .prompt .add-div-top{
     width: 50%;
     height: 120px;
-    /*border:1px solid #1987CF;*/
     margin:10px auto ;
     font-size: 28px;
     position:relative;
@@ -164,12 +155,7 @@ a:hover{
     position: absolute;
     top: -25px;
     left: 55%;
-    /*animation: myfirst 3s;*/
 }
-
-/*.add-div-top:hover span{
-    transform:skew(90deg);
-}*/
 
 .add-div-top span{
     position:absolute;
@@ -370,7 +356,6 @@ ul,li{
     position: relative;
     left: 42%;
     margin-bottom:10px;
-    
 }
 .file:hover{
     background: #fff;
@@ -387,19 +372,16 @@ ul,li{
     border: 1px solid #00aeef;
 }
 
-
 #table1{
     margin: 0 auto;
     width: 90%;
     height: auto;
-    /*background: #e4e8eb;*/
     background: #f8f8f8;
     color: #000;
     border: 1px solid #999;
     box-sizing: border-box;
     border-collapse: collapse;
 }
-
 
 #table1 td{
     text-align: center;
@@ -647,7 +629,6 @@ ul,li{
     height: 410px;
     background: rgba(10%,20%,30%,0.5);
     border: 1px solid #fff;
-    /*float: right;*/
     position: absolute;
     left:-290px;
     top:160px;
@@ -669,7 +650,6 @@ ul,li{
     color: #2badd4;
     display: block;
     transform: rotate(180deg);
-
 }
 #datalist b{
     display:inline-block;
@@ -678,7 +658,6 @@ ul,li{
     cursor:pointer;
     margin-left:20px;
 }
-
 
 #fDrag{
     position: absolute;
@@ -702,9 +681,7 @@ ul,li{
     color: #fff;
 }
 .flow .choose{
-
     height: 130px;
-    /*border: 1px solid red;*/
     display: block;
     display: inline-block;
 }
@@ -716,22 +693,15 @@ ul,li{
     text-align: center;
     line-height: 30px;
     margin-left: 30%;
-    /* margin-bottom: 1px solid gray; */
-
     color: #fff;
 }
 .choose ul{
     list-style: none;
     cursor: pointer;
-
 }
 .choose ul li{
-
     width: 160px;
-    /* border-bottom: 1px solid #567084; */
     color: #000;
-
-
 }
 .choose ul li:hover{
     color: #fff;
@@ -787,7 +757,6 @@ ul,li{
 
 .changePage{
     display:inline-block;
-
 }
 .changePage input[type="button"]{
     cursor:pointer;
@@ -873,21 +842,15 @@ ul,li{
 	}
 }
 
-
 .fa-hand-o-right:before {
     content: "" !important;
 }
 li.jilu {
 	color:red !important;
-	position: relative;
     font-family: Microsoft YaHei;
     font-size:15px!important;
     font-weight:bold;
-	 float:right;
-	 /*  width:20%; */
-	 right:10%;
-	 margin-top:-4%;
-	 cursor:pointer;
+	cursor:pointer;
 } 
 
 .exchangeRate{
@@ -979,7 +942,6 @@ li.jilu {
 	float:left;
 	width:400px;
 	height:100%;
-	/* background:yellow; */
 }
 .number1{
 	border:none;
@@ -1010,7 +972,6 @@ input:-ms-input-placeholder { /* Internet Explorer 10+ */
 	font-size:18px;
 	font-family:"微软雅黑";
 	font-weight:bold;
-	
 }
 .rateBox_L{
 	float:left;
@@ -1532,4 +1493,20 @@ i.relevance {
 .tax_rate_sel {
     width: 80px;
     height: 30px;
+}
+
+/*2018-09-12更新*/
+ul.absolute_ul {
+    position: absolute;
+    right: 100px;
+    bottom: 1px;
+}
+
+input.export_Excel {
+    width: auto !important;
+    padding: 5px;
+}
+
+div.choose>input+input {
+    margin-left: 10px !important;
 }

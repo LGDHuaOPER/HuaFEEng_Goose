@@ -1,22 +1,70 @@
-// 成本对比表定义全局请求
-// function costComparison(paramArr) {
-// 	$.ajax({
-// 		type : 'get',
-// 		url : 'GetCommodityInfo',
-// 		data : {
-// 			Type : 'singleSelect',
-// 			classify : '型号',
-// 			param : param
-// 		},
-// 		dataType : 'json',
-// 		success: function(){
+/*进入页面验证本地存储*/
+// storage.clear(); // 将localStorage的所有内容清除
+// storage.removeItem("a"); // 删除某个键值对
+// storage.key(i); // 使用key()方法，向其中出入索引即可获取对应的键
+var QuotelistAllStaffInfo;
+if(!window.localStorage){
+    alert("浏览器不支持localstorage");
+}else{
+    //主逻辑业务
+    var storage = window.localStorage;
+    var inow = Date.now();
+    var QuotelistAllStaffInfoStr = storage.getItem("QuotelistAllStaffInfo");
+    if(QuotelistAllStaffInfoStr == undefined){
+        // 第一次存
+        getQuotelistAllStaffInfo(function(res){
+            var iObj = {};
+            iObj.expires = inow + 5*60*1000;
+            iObj.data = _.drop(res);
+            console.log("iObj.data");
+            console.log(iObj.data);
+            QuotelistAllStaffInfo = iObj.data;
+            // _.cloneDeep(a)
+            var iStr = JSON.stringify(iObj);
+            // storage["InventoryAllCustomerInfo"] = iStr;
+            storage.setItem("QuotelistAllStaffInfo", iStr);
+        });
+    }else{
+        var iexpires = JSON.parse(QuotelistAllStaffInfoStr).expires;
+        if(iexpires < inow){
+            // 已超期
+            getQuotelistAllStaffInfo(function(res){
+                var iObj = {};
+                iObj.expires = inow + 5*60*1000;
+                iObj.data = _.drop(res);
+                QuotelistAllStaffInfo = iObj.data;
+                // _.cloneDeep(a)
+                var iStr = JSON.stringify(iObj);
+                // storage["InventoryAllCustomerInfo"] = iStr;
+                storage.setItem("QuotelistAllStaffInfo", iStr);
+            });
+        }else{
+            // 未超期
+            var QuotelistAllStaffInfoObj = JSON.parse(QuotelistAllStaffInfoStr);
+            QuotelistAllStaffInfo = QuotelistAllStaffInfoObj.data;
+        }
+    }
+}
+function getQuotelistAllStaffInfo(fn){
+	$.ajax({
+		type: "GET",
+		url: "GetStaffInfo",
+		data: {
+			Type: "common"
+		},
+		dataType: "json"
+	}).then(function(res){
+		fn && fn(res);
+	},function(){
+		$.MsgBox_Unload.Alert("员工信息获取提示", "网络繁忙！信息获取失败");
+	});
+}
+function getLocalStaffCode(iname){
+	var findItem = _.find(QuotelistAllStaffInfo, function(o) { return o.StaffName == iname; });
+	var StaffCode = findItem.StaffCode;
+	return StaffCode;
+}
 
-// 		},
-// 		error: function(){
-
-// 		}
-// 	});
-// }
 
 // 修改里删除用的报价单记录的ID
 var globalQuoteID;
@@ -29,7 +77,6 @@ var td_CustomerFax;
 	$(document).on("click","#view10 .OtherPOItemBtn",function() {
 		var delID = $(this).parent().parent().parent().find("td").eq(0).attr("value");
 		var that = $(this).parent().parent().parent();
-		
 				that.remove();
 				//其他供应商P0RMB计算总和
 					var totalNum = 0;
@@ -119,7 +166,6 @@ $('.CustomerInformation-edit').click(function(){
 	        dataType : 'json',
 	        success : function (data) {
 	        	$(".CustomerTab").find("tr").not(".CustomerTitle").remove();
-	        	console.log(data);
 	        	 for(var i = 1 ; i <data.length; i++ ){
 	        			var CustomerStr = 
 		        			'<tr class="CustomerData">'+
@@ -148,7 +194,7 @@ $('.CustomerInformation-edit').click(function(){
 //获取添加中客户资料中的信息放在表格1中,双击实现
 $(document).on("click",".CustomerStr_Add",function(){
 	var tr=$(this);
-	var  ID = tr.find('td').eq(0).attr("value");
+	var ID = tr.find('td').eq(0).attr("value");
 	$(".contract_add .contract_title").attr("value",ID);  //在修改页面保存当前行的ID信息	
 	$('.contract_add').find('input[name="CustomerCode"]').val(tr.find('td').eq(1).text());
 	$('.contract_add').find('input[name="CustomerCompany"]').val(tr.find('td').eq(2).text());
@@ -156,8 +202,7 @@ $(document).on("click",".CustomerStr_Add",function(){
 	$('.contract_add').find('input[name="CustomerTel"]').val(tr.find('td').eq(4).text());
 	$('.contract_add').find('input[name="CustomerFax"]').val(tr.find('td').eq(6).text());
 	$('.contract_add').find('input[name="CustomerMail"]').val(tr.find('td').eq(7).text());
-	 $('.MailBar_cover_color').show();
-	 $('.contract_add').show();
+	$('.MailBar_cover_color, .contract_add').show();
 });
 
 //获取修改中客户资料中的信息放在表格1中,双击实现
@@ -171,8 +216,7 @@ $(document).on("click",".CustomerStr_Update",function(){
 	$('.contract_update').find('input[name="CustomerTel"]').val(tr.find('td').eq(4).text());
 	$('.contract_update').find('input[name="CustomerFax"]').val(tr.find('td').eq(6).text());
 	$('.contract_update').find('input[name="CustomerMail"]').val(tr.find('td').eq(7).text());
-	$('.MailBar_cover_color').show();
-	$('.contract_update').show();
+	$('.MailBar_cover_color, .contract_update').show();
 });
 
 ////////客户资料的搜索放参数
@@ -187,9 +231,7 @@ $(document).on("click",".CustomerData",function(){
 	$('.contract_add').find('input[name="CustomerTel"]').val(tr.find('td').eq(4).text());
 	$('.contract_add').find('input[name="CustomerFax"]').val(tr.find('td').eq(6).text());
 	$('.contract_add').find('input[name="CustomerMail"]').val(tr.find('td').eq(7).text());
-	
-	 $('.MailBar_cover_color').show();
-	   $('.contract_add').show();
+    $('.MailBar_cover_color, .contract_add').show();
 });
 
 ////////客户资料的搜索放参数
@@ -204,8 +246,7 @@ $(document).on("click",".CustomerData1",function(){
 	$('.contract_update').find('input[name="CustomerTel"]').val(tr.find('td').eq(4).text());
 	$('.contract_update').find('input[name="CustomerFax"]').val(tr.find('td').eq(6).text());
 	$('.contract_update').find('input[name="CustomerMail"]').val(tr.find('td').eq(7).text());
-	$('.MailBar_cover_color').show();
-    $('.contract_update').show();
+	$('.MailBar_cover_color, .contract_update').show();
 });
 
 //关闭
@@ -225,7 +266,6 @@ $('.StaffInformation-search').click(function () {
 	        },
 	        dataType : 'json',
 	        success : function (data) {
-	        	console.log(data);
 	        	 for(var i = 1 ; i <data.length; i++ ){
 	        			var StaffStr = 
 		        			'<tr class="StaffStr_Add">'+
@@ -355,14 +395,13 @@ $(document).on("click",".StaffData",function(){
 	var EmpNO=tr.find('td').eq(3).text();
  	var NumberStr = "QU"+EmpNO+DatesentADD+"-"+priceNum;
 	$('.contract_add').find('input[name="Number"]').val(NumberStr);
-	 $('.MailBar_cover_color').show();
-	   $('.contract_add').show();
+	$('.MailBar_cover_color, .contract_add').show();
 });
 
 //获取修改中员工资料中的员工名称进行搜索时，把信息放在表格1中,双击实现
 $(document).on("click",".StaffData1",function(){
 	var tr=$(this);
-	var  ID = tr.find('td').eq(0).attr("value");
+	var ID = tr.find('td').eq(0).attr("value");
 	$(".contract_update .contract_title").attr("value",ID);  //在修改页面保存当前行的ID信息	
 	$('.contract_update').find('input[name="Department"]').val(tr.find('td').eq(1).text());
 	$('.contract_update').find('input[name="StaffName"]').val(tr.find('td').eq(4).text());
@@ -375,9 +414,7 @@ $(document).on("click",".StaffData1",function(){
 	var data = $(".contract_update #Number").val().split("-")[1];
  	var NumberStr = "QU"+EmpNO+DatesentADD+"-"+data;
 	$('.contract_update').find('input[name="Number"]').val(NumberStr);
-	
-	 $('.MailBar_cover_color').show();
-	   $('.contract_update').show();
+	$('.MailBar_cover_color, .contract_update').show();
 });
 
 //关闭
@@ -1037,7 +1074,7 @@ $('#OtherPORMB_close').click(function () {
  //修改报价单的功能（点击提交时）：
  $('#update_submit').click(function () {
 	 	var that = $(this);
-		$(this).attr("disabled",true);
+ 		eouluGlobal.C_btnDisabled(that, true, "正在提交...");
 		
 	    var Type="Modify";
 	 	var  ID = $(".contract_update .contract_title").attr("value");
@@ -1128,21 +1165,18 @@ $('#OtherPORMB_close').click(function () {
             dataType : 'json',
             success : function (data) {   
             	if(data){
-                	$.MsgBox.Alert('提示','修改成功',function(){
-    	            	that.removeAttr("disabled");
-    	            });
+                	$.MsgBox.Alert('提示','修改成功');
     	            $('.MailBar_cover_color').hide();
     	            $('.hidePdf').hide();
             	}else{
-            		$.MsgBox_Unload.Alert("提示", "添加失败，稍后重试！",function(){
-    	            	that.removeAttr("disabled");
-    	            });
+            		$.MsgBox_Unload.Alert("提示", "修改失败，稍后重试！");
             	}
             },
             error : function () {
-                $.MsgBox_Unload.Alert("提示", "服务器繁忙，稍后重试！",function(){
-	            	that.removeAttr("disabled");
-	            });
+                $.MsgBox_Unload.Alert("提示", "服务器繁忙，稍后重试！");
+            },
+            complete: function(XMLHttpRequest, textStatus){
+                eouluGlobal.C_btnAbled(that, true, "提交");
             }
         });
 	});
@@ -1283,33 +1317,24 @@ $('#searchContent2').keypress(function (event) {
 
 //报价单的添加商品管理的功能（点击提交时）：
 $(document).on("click","#add_submit",function(){
-	/*alert(88)*/
-	/*$("#add_submit").css({
-		"background":"#dddddd",
-		"color":"#808080",
-		"border":"none",
-		"box-shadow":"0 0 0 0 #f8fcfd"
-	});*/
+	var CustomerCompany = $('.contract_add input[name="CustomerCompany"]').val();
+	var ShipmentCost = $('.contract_add input[name="ShipmentCost"]').val();
+	var StaffName = $('.contract_add input[name="StaffName"]').val();
+	if(CustomerCompany == '' || ShipmentCost == '' || StaffName ==''){
+		 $.MsgBox_Unload.Alert('提示','客户名称，业务员，运输费用(USD)为必填项！');
+		 return false;
+	}
  	var that = $(this);
-	$(this).attr("disabled",true);
+ 	eouluGlobal.C_btnDisabled(that, true, "正在提交...");
 	
 	var Type="Add";
 	var CustomerCode = $('.contract_add input[name="CustomerCode"]').val();
-	var CustomerCompany = $('.contract_add input[name="CustomerCompany"]').val();
-	
 	var CustomerName = $('.contract_add input[name="CustomerName"]').val();
 	var CustomerTel = $('.contract_add input[name="CustomerTel"]').val();
 	var CustomerFax = $('.contract_add input[name="CustomerFax"]').val();
 	var LeadTime = $('.contract_add input[name="LeadTime"]').val();
 	var Payment = $('.contract_add input[name="Payment"]').val();
-	var StaffName = $('.contract_add input[name="StaffName"]').val();
-	
 	var Department = $('.contract_add input[name="Department"]').val();
-	var ShipmentCost = $('.contract_add input[name="ShipmentCost"]').val();
-	if(CustomerCompany == '' || ShipmentCost == '' || StaffName ==''){
-		 $.MsgBox.Alert('提示','客户名称，业务员，运输费用(USD)为必填项！');
-		 return;
-	}
 	var DeliveryWay = $('.contract_add input[name="DeliveryWay"]').val();
 	var ExchangeRate = $('.contract_add input[name="ExchangeRate"]').val();
 	var Valid = $('.contract_add input[name="Valid"]').val();
@@ -1317,7 +1342,7 @@ $(document).on("click","#add_submit",function(){
 	var TaxCategories = $('.contract_add input[name="TaxCategories"]').val();
 	var Versions = $('.contract_add input[name="Versions"]').val();
 	var Datesent = $('.contract_add input[name="Datesent"]').val();
-	var Number = $('.contract_add input[name="Number"]').val();
+	var iNumber = $('.contract_add input[name="Number"]').val();
 	var StaffMail = $('.contract_add input[name="StaffMail"]').val();
 	var StaffTel = $('.contract_add input[name="StaffTel"]').val();
 	var CustomerMail = $('.contract_add input[name="CustomerMail"]').val();
@@ -1364,7 +1389,7 @@ $(document).on("click","#add_submit",function(){
 	        	TaxCategories : TaxCategories,
 	        	Versions : Versions,
 	        	Datesent : Datesent,
-	            Number : Number,
+	            Number : iNumber,
 	            StaffMail : StaffMail,
 	            StaffTel : StaffTel,
 	            CustomerMail : CustomerMail,
@@ -1378,28 +1403,19 @@ $(document).on("click","#add_submit",function(){
 	        dataType : 'json',
 	        success : function (data) {
 	        	if(data){
-		            $.MsgBox.Alert('提示','添加成功',function(){
-		            	that.removeAttr("disabled");
-		            });
-		            $('.MailBar_cover_color').hide();
-		            $('.contract_add').hide();
+		            $.MsgBox.Alert('提示','添加成功');
+		            $('.MailBar_cover_color, .contract_add').hide();
 	        	}else{
-	        		 $.MsgBox_Unload.Alert("提示", "添加失败，稍后重试！",function(){
-	 	            	that.removeAttr("disabled");
-	 	            	 $('.MailBar_cover_color').hide();
-	 		            $('.contract_add').hide();
-	        		 });
+	        		$.MsgBox_Unload.Alert("提示", "添加失败，稍后重试！");
 	        	}
 	        },
 	        error : function () {
-	            $.MsgBox_Unload.Alert("提示", "服务器繁忙，稍后重试！",function(){
-	            	that.removeAttr("disabled");
-	            	 $('.MailBar_cover_color').hide();
-			            $('.contract_add').hide();
-	            });
+	            $.MsgBox_Unload.Alert("提示", "服务器繁忙，稍后重试！");
+	        },
+	        complete: function(XMLHttpRequest, textStatus){
+	            eouluGlobal.C_btnAbled(that, true, "提交");
 	        }
-	    }); 
-	    	    
+	    }); 	    
    });
 	$(document).on("scroll",function(){
 		if(scorllFlag){
@@ -1522,7 +1538,7 @@ $(document).on("click","#add_submit",function(){
          $('#view1').show();
          $('#view2,#view3,#view4,#EgoMachineView,#EgoAccessoriesView, #costComparisonView').hide(); 
          $("#RMBMachine").addClass("isHover").siblings().removeClass("isHover");
-         $(".MailBar_cover_color").css("height",$("#view1").height()+130);
+         // $(".MailBar_cover_color").css("height",$("#view1").height()+130);
 	});
 	
 	//整机 配件      切换模板 加载**************************************************
@@ -1540,7 +1556,7 @@ $(document).on("click","#add_submit",function(){
 	    $("#submit_n1").css("top","250px");
 	    
 		if(currentId=="RMBMachine"){
-			$(".MailBar_cover_color").css("height",$("#view1").height()+130);
+			// $(".MailBar_cover_color").css("height",$("#view1").height()+130);
 			$("#view1 .yejiao1").attr("value",ID);
 			var Type="CompleteRMB";
 		    /* 获取隐藏信息 */
@@ -1629,7 +1645,7 @@ $(document).on("click","#add_submit",function(){
 			 $('#view3,#view2,#view4,#EgoMachineView,#EgoAccessoriesView,#costComparisonView').hide();
 		}
 		else if(currentId=="USDMachine"){
-			$(".MailBar_cover_color").css("height",$("#view2").height()+130);
+			// $(".MailBar_cover_color").css("height",$("#view2").height()+130);
 			$("#view2 .yejiao1").attr("value",ID);
 			var Type="CompleteUSD";
 		    /* 获取隐藏信息 */
@@ -1713,7 +1729,7 @@ $(document).on("click","#add_submit",function(){
 			 $('#view1,#view4,#view3,#EgoMachineView,#EgoAccessoriesView,#costComparisonView').hide();
 		}
 		else if(currentId=="RMBAccessories"){
-			$(".MailBar_cover_color").css("height",$("#view3").height()+130);
+			// $(".MailBar_cover_color").css("height",$("#view3").height()+130);
 			$("#view3 .yejiao1").attr("value",ID);
 			var Type="PartsRMB";
 		    /* 获取隐藏信息 */
@@ -1821,7 +1837,7 @@ $(document).on("click","#add_submit",function(){
 			 $('#view1,#view2,#view4,#EgoMachineView,#EgoAccessoriesView,#costComparisonView').hide();
 		}
 		else if(currentId=="USDAccessories"){
-			$(".MailBar_cover_color").css("height",$("#view4").height()+130);
+			// $(".MailBar_cover_color").css("height",$("#view4").height()+130);
 			$("#view4 .yejiao1").attr("value",ID);
 			var Type = "PartsUSD";
 		    /* 获取隐藏信息 */
@@ -2696,7 +2712,7 @@ $(document).on("click","#add_submit",function(){
 		         $('#view5').show();
 		         $('#view6').hide(); 
 		         $("#USDContract").addClass("isHover").siblings().removeClass("isHover");
-		         $(".MailBar_cover_color").css("height",$("#view5").height()+130);
+		         // $(".MailBar_cover_color").css("height",$("#view5").height()+130);
 				 $(".MailBar_cover_color").show();
 	 })	
 	 
@@ -2709,7 +2725,7 @@ $(document).on("click","#add_submit",function(){
 		var ID = currentTr.find("td").eq(0).attr("value");
 	    console.log(ID);
 	    if(currentId =="USDContract"){
-	    	$(".MailBar_cover_color").css("height",$("#view5").height()+130);
+	    	// $(".MailBar_cover_color").css("height",$("#view5").height()+130);
 	    	$('#view5 .yemei').attr("value",ID);
 			var Type="USDContract";
 			$("#view5 .pdf_one_tr").remove();
@@ -2806,7 +2822,7 @@ $(document).on("click","#add_submit",function(){
 	         $('#view6').hide(); 
 	    }
 	    else{
-	    	$(".MailBar_cover_color").css("height",$("#view6").height()+130);
+	    	// $(".MailBar_cover_color").css("height",$("#view6").height()+130);
 	    	$("#view6 .yemei").attr("value",ID);
 			var Type="RMBContract";
 		$("#view6 .pdf_one_tr").remove();
@@ -3420,9 +3436,9 @@ $(document).on("click","#add_submit",function(){
 		console.log($("#view7").height())
 		$('.MailBar_cover_color').show();
 		$('.hidePdf7').show(); 
-		$(".MailBar_cover_color").css("height",$("#view7").height()+130);
-		
+		// $(".MailBar_cover_color").css("height",$("#view7").height()+130);
 	 })	
+
 		//备货清单模板 提交
 		 $(document).on("click","#submit_n7",function(){
 			var Type="Modify";
@@ -3839,7 +3855,7 @@ $(document).on("click","#add_submit",function(){
 		$('#view8').show();
         $('#view89,#view9,#view10').hide();
         $("#Sidebar_CascadePO").addClass("isHover").siblings().removeClass("isHover");
-        $(".MailBar_cover_color").css("height",$("#view8").height()+130);
+        // $(".MailBar_cover_color").css("height",$("#view8").height()+130);
 		$(".MailBar_cover_color").show();
 	})
  
@@ -4000,7 +4016,7 @@ $(document).on("click","#add_submit",function(){
 			$('#view8').show();
 	        $('#view89,#view9,#view10').hide();
 	        $("#Sidebar_CascadePO").addClass("isHover").siblings().removeClass("isHover");
-	        $(".MailBar_cover_color").css("height",$("#view8").height()+130);
+	        // $(".MailBar_cover_color").css("height",$("#view8").height()+130);
 	    }
 	    else if(currentId =="Sidebar_CascadePOMachine"){
 		    	$('#view89 .yemei').attr("currentID",ID);
@@ -4151,7 +4167,7 @@ $(document).on("click","#add_submit",function(){
 				$('#view89').show();
 		        $('#view8,#view9,#view10').hide();
 		        $("#Sidebar_CascadePOMachine").addClass("isHover").siblings().removeClass("isHover");
-		        $(".MailBar_cover_color").css("height",$("#view8").height()+130);
+		        // $(".MailBar_cover_color").css("height",$("#view8").height()+130);
 	    }
 	    else if(currentId =="Sidebar_OtherPO"){
 			$('#view9 .yemei').attr("currentID", ID);
@@ -4294,7 +4310,7 @@ $(document).on("click","#add_submit",function(){
 			$('#view9').show();
 	        $('#view8,#view89,#view10').hide();
 	        $("#Sidebar_OtherPO").addClass("isHover").siblings().removeClass("isHover");
-	        $(".MailBar_cover_color").css("height",$("#view9").height()+130);
+	        // $(".MailBar_cover_color").css("height",$("#view9").height()+130);
 	    }
 	    else{
 			 $('#view10 .yemei').attr("currentID",ID);
@@ -4436,7 +4452,7 @@ $(document).on("click","#add_submit",function(){
 			$('#view10').show();
 	        $('#view8,#view89,#view9').hide();
 	        $("#Sidebar_OtherPORMB").addClass("isHover").siblings().removeClass("isHover");
-	        $(".MailBar_cover_color").css("height",$("#view10").height()+130);
+	        // $(".MailBar_cover_color").css("height",$("#view10").height()+130);
 	    }
 	})
      //PO      切换模板     提交
@@ -5542,8 +5558,8 @@ $(document).on("click","#add_submit",function(){
 			});
 			
 			
-			 $(".MailBar_cover_color").css("min-height",$(window).height()+30);
-			 $(".MailBar_cover_color").css("height",$(".ShipnoticeBox").height()+130);
+			 // $(".MailBar_cover_color").css("min-height",$(window).height()+30);
+			 // $(".MailBar_cover_color").css("height",$(".ShipnoticeBox").height()+130);
 			$(".ShipnoticeBox").show();
 			$(".MailBar_cover_color").show();	
 		})
@@ -6107,10 +6123,28 @@ function POForwShipClose(){
 	$(".ShipToSel").fadeOut(200);
 }
 
-// 复制报价单
-$(document).on("click",".copy_quotelist_td i",function(){
-	$(".CustomerInformation, .StaffInformation, .CommodityInformation").hide();
+// 复制报价单点击切换
+var copy_quotelist_sel = '<select>'+
+							'<option value="0">请选择</option>'+
+							'<option value="1">复制客户和配置信息</option>'+
+							'<option value="2">仅复制客户信息</option>'+
+						'</select>';
+$(document).on("click", ".copy_quotelist_td>i", function(){
+	$(this).parent().empty().append(copy_quotelist_sel);
+});
+$(document).on("click", ".copy_quotelist_td>select", function(){
+	var iindex = $(".copy_quotelist_td").index($(this).parent());
+	$(".copy_quotelist_td:not(:eq("+iindex+"))").empty().append('<i class="fa fa-clone" aria-hidden="true"></i>');
+});
+$(document).on("click", ".copy_quotelist>.fa-reply", function(){
+	$(".copy_quotelist_td").empty().append('<i class="fa fa-clone" aria-hidden="true"></i>');
+});
+$(document).on("change", ".copy_quotelist_td>select", function(){
+	var iVal = $(this).val();
 	var tr=$(this).parent().parent();
+	if(iVal == "0") return false;
+	/*公共部分*/
+	$(".CustomerInformation, .StaffInformation, .CommodityInformation").hide();
 	$('.contract_add').find('input[name="CustomerCode"]').val(tr.find('td').eq(11).text());
 	$('.contract_add').find('input[name="CustomerCompany"]').val(tr.find('td').eq(2).text());
 	$('.contract_add').find('input[name="CustomerName"]').val(tr.find('td').eq(3).text());
@@ -6135,7 +6169,79 @@ $(document).on("click",".copy_quotelist_td i",function(){
 	// var  ID = tr.find('td.contract-edit').attr("value");
 	// $(".contract_update .contract_title").attr("value",ID);
 	$(".contract_add .ModelTr").remove();
-	$("div.choose input[value='添加']").trigger("click");
+	$.ajax({
+		type: 'get',
+		url: 'QuoteCurrentCount',
+		data: {},
+		dataType: 'json',
+		success: function(data) {
+			if (data < 10) {
+				priceNum = "0" + data;
+			} else {
+				priceNum = data;
+			}
+			var staffCode;
+			var iname = $(".contract_add input[name='StaffName']").val().trim();
+			if(iname == "" || iname == "--"){
+				staffCode = "";
+			}else{
+				staffCode = getLocalStaffCode(iname)
+			}
+			$(".contract_add #Datesent").val(globalGetToday(false));
+			$(".contract_add #Number").val("QU"+staffCode+globalGetToday(false).replace(/\-/g, "")+"-"+priceNum);
+			
+
+			if(iVal == "1"){
+				var ID = tr.find('td.contract-edit').attr("value");
+				$.ajax({
+		            type: 'get',
+		            url: "QuoteCommodity",
+		            data: {
+		            	ID: ID,
+		            },
+		            dataType: 'json',
+		            success: function (data) { 
+		            	for(var i = 1 ; i < data[0].item.length ; i++){
+		            		var tdStr =
+			            		'<tr class="ModelTr">'+
+			            			'<td value="'+data[0].item[i].Commodity+'">'+data[0].item[i].Description+'</td>'+
+			            			'<td class="id" value="'+data[0].item[i].CommodityID+'">'+data[0].item[i].Model+'</td>'+
+			            			'<td>'+data[0].item[i].Unit+' </td>'+
+			            			'<td>'+data[0].item[i].DeliveryPeriod+'</td>'+
+			            			'<td><span contenteditable="true" class="QtySpan">'+data[0].item[i].Qty+'</span></td>'+
+			            			'<td>'+data[0].item[i].UnitPrice+'</td>'+
+			            			'<td>'+parseFloat(data[0].item[i].UnitPrice*data[0].item[i].Qty).toFixed(2)+'</td>'+
+			            			'<td style="display:none;">'+data[0].item[i].CostPrice+'</td>'+ 
+			            			'<td style="display:none;"></td>'+
+			            			'<td style="display:none;"></td>'+
+			            			'<td style="display:none;"></td>'+
+			            			/*'<td><input type="button" class="update_del1" style="width:90%;height:90%;" value="删除"></td>'+*/
+			            			'<td  class="ModifyOper" >'+
+										'<span class="fa fa-long-arrow-up OperUp" ></span>'+
+										'<span class="fa fa-trash OperDel Serial_del" ></span>'+
+										'<span class="fa fa-long-arrow-down OperDown" ></span>'+
+									'</td>'+
+			            		'</tr>';
+			            		$(".contract_add .tableADD").append(tdStr);
+		            	} 	
+		            },
+		            error: function () {
+		                $.MsgBox_Unload.Alert("服务器繁忙提示", "获取配置信息失败！");
+		            },
+		            complete: function(XMLHttpRequest, textStatus){
+		                $('.MailBar_cover_color, .contract_add').slideDown(200);
+		            }
+			    });
+			}else if(iVal == "2"){
+				$('.MailBar_cover_color, .contract_add').slideDown(200);
+			}
+
+		},
+		error: function() {
+			$.MsgBox.Alert("服务器繁忙提示", "QuoteCurrentCount，稍后重试！");
+		}
+	});
+	/*公共部分结束*/
 });
 
 // RMB配件blur事件

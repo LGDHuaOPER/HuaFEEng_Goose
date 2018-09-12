@@ -507,7 +507,7 @@ $(function() {
           $(this).text(LatestProgress).attr("title", LatestProgress);
         }
       }else{
-        var str = LatestProgress[0].Date+"："+LatestProgress[0].CurrentProgress;
+        var str = LatestProgress[0].Date+(LatestProgress[0].Date == "" ? "" : "：")+LatestProgress[0].CurrentProgress;
         $(this).text(str).attr("title", str);
       }
     });

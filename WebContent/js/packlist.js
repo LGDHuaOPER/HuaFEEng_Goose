@@ -516,7 +516,8 @@ $("#BiddingDocumentUpload").on("change",function(){
 // 邮件发送
 $("#mail_template_submit").click(function(){
     var iThat = $(this);
-    iThat.css("cursor","not-allowed").prop("disabled","disabled");
+    // iThat.css("cursor","not-allowed").prop("disabled","disabled");
+    eouluGlobal.C_btnDisabled(iThat, true, "正在发送...");
     var ID = $(".mail_template_tit").attr("title");
     var LogisticsCompany = packListTransCom;
     var TrackingNO = packListTransNo;
@@ -552,12 +553,21 @@ $("#mail_template_submit").click(function(){
             Content: Content,
             Attachment: Attachment
         },
-        dataType: "text"
+        dataType: "json"
     }).then(function(data){
-        $.MsgBox.Alert("提示", data);
+    	var imessage;
+    	if(data == true){
+    		imessage = "邮件发送成功！";
+    	}else if(data == false){
+    		imessage = "邮件发送失败！";
+    	}else{
+    		imessage = data;
+    	}
+        $.MsgBox.Alert("提示", imessage);
     },function(){
         $.MsgBox_Unload.Alert("提示", "服务器繁忙，请稍后重试！");
     }).always(function(){
-        iThat.css("cursor","pointer").prop("disabled",false);
+        // iThat.css("cursor","pointer").prop("disabled",false);
+        eouluGlobal.C_btnAbled(iThat, true, "发送");
     });
 });

@@ -712,8 +712,8 @@
                 "hardware.js": {
                     "originPath": ["./cfChicken8/WebContent/js/msgbox.js", "./cfChicken8/WebContent/js/hardware.js"],
                     "outBasePath": "./cfChicken8/WebContent/js/modules/serviced/",
-                    "gulp-rev": "hardware-c4e031e9dd.min.js",
-                    "referencePath": "js/modules/serviced/hardware-c4e031e9dd.min.js"
+                    "gulp-rev": "hardware-f19ddd9986.min.js",
+                    "referencePath": "js/modules/serviced/hardware-f19ddd9986.min.js"
                 },
                 "StandardProduct.js": {
                     "originPath": ["./cfChicken8/WebContent/js/global/responseLoading.js", "./cfChicken8/WebContent/js/StandardProduct.js"],
@@ -1510,10 +1510,13 @@
     }
 
     // 计算时间差
-    function globalCalcTimeDiff(startDay,endDay){
+    function globalCalcTimeDiff(startDay,endDay,noAbsFlag){
         if(startDay!="" && endDay!=""){
             var startTime = new Date(startDay);
             var endTime = new Date(endDay);
+            if(noAbsFlag){
+                return ((startTime - endTime)/(1000*60*60*24))+"天";
+            }
             return Math.abs((startTime - endTime)/(1000*60*60*24))+"天";
         }
     }

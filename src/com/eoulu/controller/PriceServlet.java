@@ -1,7 +1,9 @@
 package com.eoulu.controller;
 
 import java.io.IOException;
+import java.text.SimpleDateFormat;
 import java.util.Calendar;
+import java.util.Date;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -120,7 +122,12 @@ public class PriceServlet extends HttpServlet {
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		doGet(request, response);
+		SimpleDateFormat format = new SimpleDateFormat("yyyyMMdd");
+		String path = request.getServletContext().getRealPath("/")+"down\\合同统计"+format.format(new Date())+".xlsx";
+		OrderService service = new OrderServiceImpl();
+		service.exportOrderExcel(path, 0);
+		response.getWriter().write(path);
+		
 	}
 
 }

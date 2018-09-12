@@ -81,9 +81,10 @@ public class OrderDao {
 		List<Map<String, Object>> ls = null;
 
 		DBUtil db = new DBUtil();
-		String sql = "select t_order.QuoteNumber,t_quote_system.Number,t_order.TechnologyPath,t_order.ContractPath,t_order.isSend,t_payment_status.Status WhetherToPay, t_order.ExpectedReceiptDate,t_order.ID,t_order.ExpectedReceiptDate,t_order.Customer,t_area.AreaName Area,t_order.ContractNo,t_order.ContractTitle,"
-				+ "t_sales_representative.Name SalesRepresentative,t_order.Contact,t_order.ContactInfo,t_order.DateOfSign,t_order.CargoPeriod"
-				+ ",t_order.ActualDelivery,t_order.ExpectedDeliveryPeriod,t_order.ActualPaymentTime,t_contract_status.Status Status,"
+		String sql = "select t_order.QuoteNumber,t_quote_system.Number,t_order.TechnologyPath,t_order.ContractPath,t_order.isSend,t_payment_status.Status WhetherToPay, "
+				+ "t_order.ExpectedReceiptDate,t_order.ID,t_order.ExpectedReceiptDate,t_order.Customer,t_area.AreaName Area,t_order.ContractNo,t_order.ContractTitle,"
+				+ "t_sales_representative.Name SalesRepresentative,t_order.Contact,t_order.ContactInfo,t_order.DateOfSign,t_order.CargoPeriod,"
+				+ "t_order.ActualDelivery,t_order.ExpectedDeliveryPeriod,t_order.ActualPaymentTime,t_contract_status.Status Status,"
 				+ "t_order.InstalledTime,t_order.InstalledSite,t_order.Remarks,t_order.PurchaseMail,t_requirement_classify.Classify ContractCategory,"
 				+ "DATEDIFF(t_order.ActualDelivery,t_order.CargoPeriod) D3_D2,DATEDIFF(t_order.ActualDelivery,t_order.ExpectedDeliveryPeriod) D3_D4,"
 				+ "DATEDIFF(t_order.ExpectedDeliveryPeriod,t_order.CargoPeriod) D4_D2,"
@@ -101,6 +102,39 @@ public class OrderDao {
 			parameter = new Object[] { type, (page.getCurrentPage() - 1) * page.getRows(), page.getRows() };
 		}
 		sql += "order by t_order.DateOfSign desc limit ?,?";
+
+		ls = db.QueryToList(sql, parameter);
+		return ls;
+	}
+	
+	public List<Map<String, Object>> getOrderExcel(int type) {
+		List<Map<String, Object>> ls = null;
+
+
+		DBUtil db = new DBUtil();
+		String sql = "select t_quote_system.Number,t_order.ExpectedReceiptDate,t_order.Customer,t_area.AreaName Area,t_order.ContractNo,t_order.ContractTitle,"
+				+ "t_sales_representative.Name SalesRepresentative,t_order.Contact,t_order.ContactInfo,t_order.DateOfSign,t_order.CargoPeriod,"
+				+ "t_order.ActualDelivery,t_order.ExpectedDeliveryPeriod,t_order.InstalledTime,t_order.InstalledSite,"
+				+ "t_requirement_classify.Classify ContractCategory,t_quotes.ReceiptDate1,t_quotes.ReceiptAmount1,t_quotes.ReceiptDate2,"
+				+ "t_quotes.ReceiptAmount2,t_quotes.ReceiptDate3,t_quotes.ReceiptAmount3,t_quotes.BillingDate,t_quotes.RMBQuotes,"
+				+ "t_quotes.USDQuotes,t_payment_terms.Condition PaymentTerms,t_payment_status.Status WhetherToPay,"
+				+ "t_duty_free.Status DutyFree,t_quotes.WhetherToInvoice,t_quotes.DutyFreeRemarks,"
+				+ "t_quotes.WhetherToInvoiceRemarks,t_quotes.PayDate,t_quotes.TrackingNo"
+				+ " from t_order left join t_area on t_order.Area=t_area.ID left join "
+				+ "t_sales_representative on t_order.SalesRepresentative=t_sales_representative.ID "
+				+ "left join  t_quotes on t_quotes.OrderID=t_order.ID "
+				+ "left join t_payment_status on t_quotes.WhetherToPay=t_payment_status.ID "
+				+ "left join t_requirement_classify on t_order.ContractCategory=t_requirement_classify.ID "
+				+ "left join t_quote_system on t_order.QuoteNumber=t_quote_system.ID "
+				+ "left join t_payment_terms on t_quotes.PaymentTerms=t_payment_terms.ID "
+				+ "left join t_duty_free on t_quotes.DutyFree=t_duty_free.ID ";
+		
+		Object[] parameter = new Object[] { type };
+		if (type != 3) {
+			sql += "where PageType=? ";
+			parameter = new Object[] { type };
+		}
+		sql += "order by t_order.DateOfSign desc";
 
 		ls = db.QueryToList(sql, parameter);
 		return ls;

@@ -789,7 +789,7 @@ public class PackingListServiceImpl implements PackingListService {
 	}
 
 	@Override
-	public String sendLogisticsMail(PackingList pList) {
+	public boolean sendLogisticsMail(PackingList pList) {
 		String sign = "jiangyaping@eoulu.com";
 		Properties properties = new Properties();
 		InputStream in = SendMailUtil.class.getResourceAsStream("email.properties");
@@ -832,8 +832,8 @@ public class PackingListServiceImpl implements PackingListService {
 		}
 			
 		content = new MethodUtil().getStaffEmailSign(content, name, tel, sign);
-		String result = new JavaMailToolsUtil(user,uname,pwd).sendHtmlEmail(pList.getSubject(), content, fileList, to, copyto);
-		if(result.equals("发送成功！")){
+		boolean result = new JavaMailToolsUtil(user,uname,pwd).doSendHtmlEmail(pList.getSubject(), content, fileList, to, copyto);
+		if(result){
 			dao.saveMail(pList);
 	
 		}

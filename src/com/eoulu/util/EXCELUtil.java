@@ -946,6 +946,92 @@ public class EXCELUtil {
 		}
 
 	}
+	
+	public static void buildOrderExcel(List<Map<String, Object>> list,String path){
+		//创建xls文件对象
+		XSSFWorkbook xwk = new XSSFWorkbook();
+		//创建一个名为 one 的sheet
+		XSSFSheet xsheet = xwk.createSheet("合同统计");
+		
+		String[] colName = new String[]{
+				"客户名称","联系人","联系方式","合同地区","合同名称","合同号","合同类型","销售代表","合同签订日期","合同货期","实际货期","预计货期","预计收款日期",
+				"装机地点","装机时间","合同金额USD", "合同金额RMB", "付款条件","对应报价单","收款日期1", "收款金额1", "收款日期2", "收款金额2", "收款日期3", "收款金额3", 
+				"是否付款","付款时间","是否开具发票","发票快递单号","开票日期","是否办理免税信用证","备注"
+		};
+		String[] dataName = new String[]{
+			"Customer","Contact","ContactInfo","Area", "ContractTitle","ContractNo","ContractCategory" ,"SalesRepresentative",
+			"DateOfSign", "CargoPeriod","ActualDelivery","ExpectedDeliveryPeriod","ExpectedReceiptDate",
+			"InstalledSite","InstalledTime","USDQuotes","RMBQuotes","PaymentTerms","Number",
+			"ReceiptDate1","ReceiptAmount1", "ReceiptDate2", "ReceiptAmount2", "ReceiptDate3", "ReceiptAmount3",
+			"WhetherToPay","PayDate","WhetherToInvoice","TrackingNo","BillingDate","DutyFree","DutyFreeRemarks"
+			
+		};
+		
+		int rowsCount = list.size();
+		//列数 
+		int colsCount = colName.length; 
+	
+		//创建第一行
+		XSSFRow xrow = xsheet.createRow(0);
+		for(int i=0;i<colsCount; i++){
+			//创建单元格
+			XSSFCell xcell = xrow.createCell(i);
+			//在单元格中添加数据
+			xcell.setCellValue(colName[i]);
+		}
+		for(int i=1; i<rowsCount; i++){
+			XSSFRow dataRow = xsheet.createRow(i);
+			for(int j=0; j<colsCount; j++){
+				
+				XSSFCell dataCell = dataRow.createCell(j);
+				Map<String, Object> map = list.get(i);
+				String val = "";
+				
+				if(colName[j].contains("金额")){
+					String mString = map.get(dataName[j]).toString();
+					if(mString.equals("--")){
+						dataCell.setCellValue("");
+					}else{
+					double money = Double.parseDouble(mString);
+					dataCell.setCellValue(money);	
+					}
+					
+				}else if(colName[j].equals("是否开具发票")){
+					val = map.get(dataName[j]).toString();;
+					switch (val) {
+					case "1":
+						dataCell.setCellValue("是");
+						break;
+
+					case "0":
+						dataCell.setCellValue("否");
+						break;
+					}
+				}else{
+					val = map.get(dataName[j]).toString();
+					dataCell.setCellValue(val);	
+				}
+			}
+
+		}
+
+		FileOutputStream fo;
+		try {
+			fo = new FileOutputStream(path);
+			xwk.write(fo);
+
+			fo.flush();
+			fo.close();
+			xwk.close();
+			
+		} catch (FileNotFoundException e) {
+			e.printStackTrace();
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+
+	}
+	
 	public static void main(String[] args) {
 		OrderInfoDao dao = new OrderInfoDao();
 //		List<Map<String, Object>> ls = dao.getModelAndNumber();

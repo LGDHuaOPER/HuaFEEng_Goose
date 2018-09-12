@@ -1049,7 +1049,7 @@
 <!-- <script src="js/msgbox_unload.js"></script> -->
 <!-- <script src="js/global/myFunction.js"></script> -->
 <script src="js/global/responseLoading.js"></script>
-<script src="js/packlist.js"></script>
+<script src="js/packlist.js?iv=201809120958"></script>
 <!-- <script type="text/javascript" src="js/html2canvas.js"></script> -->
 <!-- <script type="text/javascript" src="js/jsPdf.debug.js"></script> -->
 <script>
@@ -1069,81 +1069,61 @@ function pageStyle(currentPage,pageCounts){
 }
 
 $(".contract_add #add_search").click(function(){
-		var contractNo = $(".contract_add #contract_no").val();
-		var PONO = $(".contract_add input[name='PONO']").val();
-		console.log(contractNo)
-		console.log(PONO)
-		$.ajax({
-            type : 'get',
-            url : "GetContractConfigure",
-            data : {
-            	ContractNO : contractNo,
-            	PONOAll   :  PONO
-            },
-            dataType : 'json',
-            success : function (data) {  
-	           	 if(data){
+	var contractNo = $(".contract_add #contract_no").val();
+	var PONO = $(".contract_add input[name='PONO']").val();
+	$.ajax({
+        type : 'get',
+        url : "GetContractConfigure",
+        data : {
+        	ContractNO : contractNo,
+        	PONOAll   :  PONO
+        },
+        dataType : 'json',
+        success : function (data) {  
+           	 if(data){
+           		$.MsgBox_Unload.Alert('提示','合同匹配成功！');
+           	} 
+           	 else{
+           		$.MsgBox_Unload.Alert('提示','无匹配合同！');
+           	 }
+        },
+        error : function () {
+           
+        }
+    });
+});
+
+$(".contract_update #update_search").click(function(){
+	var contractNo = $(".contract_update #contract_no1").val();
+	var PONO; 
+	$(".contract_update input[name='PONO']").val()==""?PONO="NA" :PONO=$(".contract_update input[name='PONO']").val();
+	$.ajax({
+        type : 'get',
+        url : "GetContractConfigure",
+        data : {
+        	ContractNO : contractNo,
+        	PONOAll   :  PONO
+        },
+        dataType : 'json',
+        success : function (data) {  
+        	 if(data){
 	           		$.MsgBox_Unload.Alert('提示','合同匹配成功！');
 	           	} 
 	           	 else{
 	           		$.MsgBox_Unload.Alert('提示','无匹配合同！');
 	           	 }
-            },
-            error : function () {
-               
-            }
-        });
-})
-
-$(".contract_update #update_search").click(function(){
-		var contractNo = $(".contract_update #contract_no1").val();
-		var PONO ; 
-			$(".contract_update input[name='PONO']").val()==""?PONO="NA" :PONO=$(".contract_update input[name='PONO']").val();
-		console.log(contractNo)
-		console.log(PONO)
-		$.ajax({
-            type : 'get',
-            url : "GetContractConfigure",
-            data : {
-            	ContractNO : contractNo,
-            	PONOAll   :  PONO
-            },
-            dataType : 'json',
-            success : function (data) {  
-            	 if(data){
- 	           		$.MsgBox_Unload.Alert('提示','合同匹配成功！');
- 	           	} 
- 	           	 else{
- 	           		$.MsgBox_Unload.Alert('提示','无匹配合同！');
- 	           	 }
-            },
-            error : function () {
-               
-            }
-        });
-})
+        },
+        error : function () {
+           
+        }
+    });
+});
 
 var todayCounts = <%=request.getAttribute("todayCounts")%>;  //箱单号的第几条
 console.log(todayCounts);
 //点击添加
 function AddContract(){
-	/*默认当前日期 */
-	var ddd = new Date();
-	var day =ddd.getDate();
-	var month=ddd.getMonth()+1;
-	if(ddd.getMonth()<10){
-		month = "0"+month; 
-	}else{
-		month=month;
-	}
-	if(day<10){
-	 	day = "0"+day; 
-	}else{
-		day=day;
-	}
-	var datew = ddd.getFullYear()+"-"+month+"-"+day;
-	datew = datew.toString();
-	$("#Date").val(datew);
+	$("#Date").val(globalGetToday(false));
 	/*自动生成想单号  */
 	todayCounts = todayCounts+1;
 	var packingListNoStr = "PL"+ ddd.getFullYear()+month+day+"-"+todayCounts;
@@ -1172,7 +1152,6 @@ $(".contract_add .addItem").click(function(){
 		'<td class="Quantity"><input type="text" name="Quantity" value=""></td>'+
 		'<td><input type="button" name="DelitemThisTr"  class="DelitemThisTr bToggle"  value="删除本行尺寸信息" ></td>'+
 	'</tr>';
-	 
 	$(".contract_add .contract_basic").append(sddStr);
 })
 
@@ -1198,7 +1177,6 @@ $(".contract_update .addItem").click(function(){
 })
 
 //添加里的Model尺寸
-
 $(".contract_add .addModel").click(function(){
 	var sddStr1 = '<tr class="ModelTr">'+
 		'<td>DESCRIPTION OF GOODS</td>'+
@@ -1226,7 +1204,7 @@ $(".contract_update .addModel").click(function(){
 	'<td><input type="button" name="DelgoodsThisTr"  class="DelgoodsThisTr bToggle"  value="删除本行货物信息" ></td>'+
 '</tr>';
 	$(".contract_update .contract_basic").append(sddStr1);
-})
+});
 
 $(document).on("click",".DelgoodsThisTr",function(){
 	$(this).parent().parent().remove();
@@ -1266,15 +1244,11 @@ $(document).on("click",".contract-edit",function(){
 	$('.contract_update input[name="PackingCondition"]').val(tr.find('td').eq(27).text());
 	$('.contract_update input[name="ToContact"]').val(tr.find('td').eq(36).text());
 	
-	
 	var  ID = tr.find('td').eq(0).attr("value");
 	
 	var ContractNO = tr.find('td').eq(18).text();
 	
 	$(".contract_update .contract_title").attr("value",ID);  //在修改页面保存当前行的ID信息
-	
-	
-	console.log("ID"+ID)
 	
 	$.ajax({
         type : 'get',
@@ -1284,8 +1258,6 @@ $(document).on("click",".contract-edit",function(){
         },
         dataType : 'json',
         success : function (data) {
-        	console.log(data);
-        	
         	$(".contract_update .addItemTr").remove();
         	$(".contract_update .PackageTr").remove();
         	$(".contract_update .addSizeTr").remove();
@@ -1311,54 +1283,44 @@ $(document).on("click",".contract-edit",function(){
             			'<td class="Quantity"><input type="text" name="Quantity" value="'+data.size[i].Quantity+'"></td>'+
             			'<td><input type="button" name="DelsizeThisTr"  class="DelsizeThisTr bToggle"  value="删除本行尺寸信息" ></td>'+
             		'</tr>';
-
 				$(".contract_update .contract_basic").append(sddStr); 
-        		 
-        		 
         	 }
         	 
         	 /* 配置 */
 			 for(var i = 1; i < data.item.length ; i++){
-					 var sddStr1 = '<tr class="addItemTr" value="'+data.item[i].itemID+'">'+
-                     '<td>DESCRIPTION OF GOODS</td>'+
-					'<td><input type="text" name="Description" value="'+data.item[i].itemDescription+'"></td>'+
-					'<td>MODEL</td>'+
-					'<td class="ModelTd"><input type="text" name="Model" value="'+data.item[i].Goods+'" class="ModelUpdate"></td>'+
-					'<td>QTY</td>'+
-					'<td><input type="text" name="Qty" value="'+data.item[i].Quantity+'" style="width:162px;" id="Qty1">'+
-					'</td>'+
-					'<td><input type="button" name="DelitemThisTr"  class="DelitemThisTr bToggle"  value="删除本行配置信息" ></td>'+
+				 var sddStr1 = '<tr class="addItemTr" value="'+data.item[i].itemID+'">'+
+                 '<td>DESCRIPTION OF GOODS</td>'+
+				'<td><input type="text" name="Description" value="'+data.item[i].itemDescription+'"></td>'+
+				'<td>MODEL</td>'+
+				'<td class="ModelTd"><input type="text" name="Model" value="'+data.item[i].Goods+'" class="ModelUpdate"></td>'+
+				'<td>QTY</td>'+
+				'<td><input type="text" name="Qty" value="'+data.item[i].Quantity+'" style="width:162px;" id="Qty1">'+
+				'</td>'+
+				'<td><input type="button" name="DelitemThisTr"  class="DelitemThisTr bToggle"  value="删除本行配置信息" ></td>'+
 				'</tr>';
-					$(".contract_update .addItemCont").after(sddStr1);
-				  
+				$(".contract_update .addItemCont").after(sddStr1);
         	 }
         	 /*尺寸 ----  货物  */
 			for(var i = 1; i < data.goods.length ; i++){
-				console.log(data.goods[i])
-				
-					var sddStr1 = '<tr class="ModelTr" value="'+data.goods[i].goodsID+'">'+
-                        '<td>DESCRIPTION OF GOODS</td>'+
-						'<td><input type="text" name="Description" value="'+data.goods[i].goodsDescription+'"></td>'+
-						'<td>MODEL</td>'+
-						'<td class="ModelTd"><input type="text" name="Model" value="'+data.goods[i].Model+'" class="ModelUpdate"></td>'+
-						'<td>QTY</td>'+
-						'<td><input type="text" name="Qty" value="'+data.goods[i].Qty+'" style="width:162px;" id="Qty1">'+
-						'</td>'+
-						'<td><input type="button" name="DelgoodsThisTr"  class="DelgoodsThisTr bToggle"  value="删除本行货物信息" ></td>'+
-					'</tr>';
-						$(".contract_update .contract_basic").append(sddStr1);
-				
+				var sddStr1 = '<tr class="ModelTr" value="'+data.goods[i].goodsID+'">'+
+                    '<td>DESCRIPTION OF GOODS</td>'+
+					'<td><input type="text" name="Description" value="'+data.goods[i].goodsDescription+'"></td>'+
+					'<td>MODEL</td>'+
+					'<td class="ModelTd"><input type="text" name="Model" value="'+data.goods[i].Model+'" class="ModelUpdate"></td>'+
+					'<td>QTY</td>'+
+					'<td><input type="text" name="Qty" value="'+data.goods[i].Qty+'" style="width:162px;" id="Qty1">'+
+					'</td>'+
+					'<td><input type="button" name="DelgoodsThisTr"  class="DelgoodsThisTr bToggle"  value="删除本行货物信息" ></td>'+
+				'</tr>';
+				$(".contract_update .contract_basic").append(sddStr1);
         	 }
-
         },
         error : function () {
             $.MsgBox.Alert("提示", "获取尺寸信息错误！");
         }
     }); 
 
-   $('.MailBar_cover_color').show();
-   $('.contract_update').show();
-	    	    
+   $('.MailBar_cover_color, .contract_update').show();
  });
  
    	
@@ -1406,14 +1368,11 @@ $(document).on("click",".contract-edit",function(){
 				else{
 					itemID.push(0);
 				}
-			
-				
 			}
 		}
 		else{
 			isExistItem = "no"
 		}
-	    
 	    
 	    /* 尺寸信息 */
 	    var isExistSize;
@@ -1438,20 +1397,16 @@ $(document).on("click",".contract-edit",function(){
 				
 				if($(".contract_update .addSizeTr").eq(i).attr("value")){
 					sizeID.push($(".contract_update .addSizeTr").eq(i).attr("value"));
-					
 				}
 				else{
 					sizeID.push(0);
 				}
-				
-				
 			}
 			console.log('size:'+sizeID);
 		}
 		else{
 			isExistSize = "no"
 		}
-	    
 	    
 	    /*尺寸-- 货物---内容  */
 	     var isExistGoods;
@@ -1539,7 +1494,6 @@ $(document).on("click",".contract-edit",function(){
 			      },
 			      dataType : 'json',
 			      success : function (data) {
-			      	
 			          $.MsgBox.Alert('提示','修改成功');
 			          $('.MailBar_cover_color').hide();
 			          $('.contract_add').hide();
@@ -1548,8 +1502,7 @@ $(document).on("click",".contract-edit",function(){
 			    	  $.MsgBox_Unload.Alert("提示", "服务器繁忙，稍后重试！");
 			      }
 			  }); 
-  
-		})    
+		});    
     
 
 
@@ -1730,7 +1683,6 @@ $('.contract-show').click(function () {
     	$(".news .PoNO").text($(this).parent().parent().find('.PONOAll').text());
     	$(".Co_PONO").text("CONTRACT /PO NO.")
     }
-
     
     //ATT是否存在
 	 if(thisList.eq(16).text() =="NA"){
@@ -1819,11 +1771,6 @@ $('#contract_close1').click(function () {
 		    }
 	    }
 		var isExistSize ;
-	    // console.log(Dimension)
-	    // console.log(GrossWeight)
-	    // console.log(NetWeight)
-	    // console.log(Quantity)
-	    // console.log(TotalGrossWeight);console.log(TotalNetWeight);
 		var isNull ;
 
 		if(id.length == "0"){
@@ -1898,7 +1845,6 @@ $('#contract_close1').click(function () {
     });
 		
 		/* ************删除***************** */
-
  $(document).on("click",".DelgoodsThisTr",function(){
 	  var goodsID = $(this).parent().parent().attr("value"); 
 	$(this).parent().parent().remove();
@@ -1917,7 +1863,7 @@ $('#contract_close1').click(function () {
         	$.MsgBox_Unload.Alert("提示", "服务器繁忙，稍后重试！");
         }
     });
-}) 
+});
 
 $(document).on("click"," .DelitemThisTr",function(){
 	 var itemID = $(this).parent().parent().attr("value");  
@@ -1937,8 +1883,7 @@ $(document).on("click"," .DelitemThisTr",function(){
         	$.MsgBox_Unload.Alert("提示", "服务器繁忙，稍后重试！");
         }
     });
-	
-}) 
+});
 
 $(document).on("click"," .DelsizeThisTr",function(){
 	var sizeID = $(this).parent().parent().attr("value"); 
@@ -1958,8 +1903,7 @@ $(document).on("click"," .DelsizeThisTr",function(){
         	$.MsgBox_Unload.Alert("提示", "服务器繁忙，稍后重试！");
         }
     });
-	
-}) 
+});
 
 //点击确定刷新页面
 $(document).on("click", "#mb_btn_ok", function () {
@@ -1996,7 +1940,7 @@ $(".contract_add .FromAppSelect").change(function(){
 	$(".contract_add .FromAddSelect").find("option").eq(AppIndex).attr("selected",true).siblings().attr("selected",false);
 	$(".contract_add #FromTel").val($(".contract_add .FromTelSelect").find("option:selected").text());
 	$(".contract_add #FromAdd").val($(".contract_add .FromAddSelect").find("option:selected").text());
-})
+});
 $(".contract_add .ToAppSelect").change(function(){
 	var ApplicantVal = $(this).find("option:selected").text();
 	$(".contract_add #ToApp").val(ApplicantVal);
@@ -2006,7 +1950,7 @@ $(".contract_add .ToAppSelect").change(function(){
 	$(".contract_add .ToAddSelect").find("option").eq(AppIndex).attr("selected",true).siblings().attr("selected",false);
 	$(".contract_add #ToTel").val($(".contract_add .ToTelSelect").find("option:selected").text());
 	$(".contract_add #ToAdd").val($(".contract_add .ToAddSelect").find("option:selected").text());
-})
+});
 
 //Applicant联动，修改部分的联动
 $(".contract_update .FromAppSelect").change(function(){
@@ -2018,7 +1962,7 @@ $(".contract_update .FromAppSelect").change(function(){
 	$(".contract_update .FromAddSelect").find("option").eq(AppIndex).attr("selected",true).siblings().attr("selected",false);
 	$(".contract_update #FromTel1").val($(".contract_update .FromTelSelect").find("option:selected").text());
 	$(".contract_update #FromAdd1").val($(".contract_update .FromAddSelect").find("option:selected").text());
-})
+});
 $(".contract_update .ToAppSelect").change(function(){
 	var ApplicantVal = $(this).find("option:selected").text();
 	$(".contract_update #ToApp1").val(ApplicantVal);
@@ -2028,10 +1972,7 @@ $(".contract_update .ToAppSelect").change(function(){
 	$(".contract_update .ToAddSelect").find("option").eq(AppIndex).attr("selected",true).siblings().attr("selected",false);
 	$(".contract_update #ToTel1").val($(".contract_update .ToTelSelect").find("option:selected").text());
 	$(".contract_update #ToAdd1").val($(".contract_update .ToAddSelect").find("option:selected").text());
-})
-
-
-
+});
 
 $(document).on("blur",".ConfigBlur",function(){
 	var TOTALGROSS = 0;
@@ -2045,43 +1986,36 @@ $(document).on("blur",".ConfigBlur",function(){
 	}
 	$(".TotalGrossWeight").text("").text(TOTALGROSS);
 	$(".TotalNetW").text("").text(TOTALNET);
-})
-
-
+});
 
 
 /****************** 跳页 **********************/
-
 function FistPage(arg) {
-/* 	window.location.href = arg + "1"; */
 	if(arg.split('?')[0]=='GetPackingListRoute'){
-		 $('#search').val('search');
-		 $("#top_text_from").attr("action", arg + "1");
-		  $('#top_text_from').submit();
+		$('#search').val('search');
+		$("#top_text_from").attr("action", arg + "1");
+		$('#top_text_from').submit();
 	}else{ 
 		window.location.href = arg + "1";
-	 } 
+	} 
 }
 function UpPage(arg) {
 	if(arg.split('?')[0]=='GetPackingListRoute'){
-		 $('#search').val('search');
-		 $("#top_text_from").attr("action", arg);
-		  $('#top_text_from').submit();
+		$('#search').val('search');
+		$("#top_text_from").attr("action", arg);
+		$('#top_text_from').submit();
 	}else{ 
-		
 		window.location.href = arg;
-	 } 
+	} 
 }
 function NextPage(arg) {
-	
 	if(arg.split('?')[0]=='GetPackingListRoute'){
-			 $('#search').val('search');
-			 $("#top_text_from").attr("action", arg);
-			  $('#top_text_from').submit();
-		}else{ 
-			
-			window.location.href = arg;
-		 } 
+		$('#search').val('search');
+		$("#top_text_from").attr("action", arg);
+		$('#top_text_from').submit();
+	}else{ 
+		window.location.href = arg;
+	} 
 }
 function PageJump(arg) {
 	var jumpNumber = document.getElementById("jumpNumber").value;
@@ -2090,7 +2024,6 @@ function PageJump(arg) {
 	} else if (jumpNumber > parseInt($('#allPage').html())) {
 		jumpNumber = $('#allPage').html();
 	}
-	/* window.location.href = arg + jumpNumber; */
 	if(arg.split('?')[0]=='GetPackingListRoute'){
 		 $('#search').val('search');
 		 $("#top_text_from").attr("action", arg + jumpNumber);
@@ -2105,25 +2038,12 @@ function LastPage(arg) {
 	if(arg.split('?')[0]=='GetPackingListRoute'){
 		 $('#search').val('search');
 		 $("#top_text_from").attr("action", arg + jumpNumber);
-		  $('#top_text_from').submit();
+		 $('#top_text_from').submit();
 	}else{ 
-		
 		window.location.href = arg + jumpNumber;
-	 } 
+	} 
 }
 $(function() {
-	// if ($('#currentPage').html() == 1) {
-	// 	$('#fistPage').attr('disabled', 'true');
-	// 	$('#fistPage').removeClass('bToggle');
-	// 	$('#upPage').attr('disabled', 'true');
-	// 	$('#upPage').removeClass('bToggle');
-	// }
-	// if ($('#allPage').html() == $('#currentPage').html()) {
-	// 	$('#lastPage').attr('disabled', 'true');
-	// 	$('#lastPage').removeClass('bToggle');
-	// 	$('#nextPage').attr('disabled', 'true');
-	// 	$('#nextPage').removeClass('bToggle');
-	// }
 	pageStyle(Number($('#currentPage').text()),Number($('#allPage').text()));
 	if (<%=request.getAttribute("queryType").equals("common")%>) 
 	{

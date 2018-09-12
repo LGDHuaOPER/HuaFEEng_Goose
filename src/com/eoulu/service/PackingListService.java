@@ -98,5 +98,5 @@ public interface PackingListService {
 	
 	public boolean getContractConfigure(HttpServletRequest request);
 	
-	public String sendLogisticsMail(PackingList pList);
+	public boolean sendLogisticsMail(PackingList pList);
 }

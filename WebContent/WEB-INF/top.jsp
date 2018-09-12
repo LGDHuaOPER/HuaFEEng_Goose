@@ -412,7 +412,7 @@
 <!-- <script src="js/msgbox_unload.js"></script> -->
 <script src="js/libs/lodash.min.js"></script>
 <script src="js/modules/sharing/top-dbec435863.min.js"></script>
-<script src="js/global/myFunction.js?iv=201809111822" type="text/javascript" charset="utf-8"></script>
+<script src="js/global/myFunction.js?iv=201809120946" type="text/javascript" charset="utf-8"></script>
 <script>
 var ServiceUpdate =<%=request.getSession().getAttribute("startTime") %>
 

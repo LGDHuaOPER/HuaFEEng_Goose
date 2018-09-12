@@ -4,18 +4,11 @@
 package com.eoulu.dao;
 
 import java.sql.SQLException;
-import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-import org.junit.Test;
-
-import com.eoulu.entity.Order;
-import com.eoulu.entity.OrderStatus;
 import com.eoulu.entity.Quotes;
 import com.eoulu.util.DBUtil;
-
-import jdk.nashorn.internal.ir.RuntimeNode.Request;
 
 /**
  * @author zhangkai
@@ -56,7 +49,8 @@ public class QuotesDao {
 		List<Map<String, Object>> ls = null;
 
 		DBUtil db = new DBUtil();
-		String sql="select t_quotes.ReceiptDate1,t_quotes.ReceiptAmount1,t_quotes.ReceiptDate2,t_quotes.ReceiptAmount2,t_quotes.ReceiptDate3,t_quotes.ReceiptAmount3,t_quotes.BillingDate,t_quotes.RMBQuotes,t_payment_terms.ID PaymentTermsID,t_quotes.USDQuotes,t_payment_terms.Condition PaymentTerms,t_payment_status.Status WhetherToPay,t_duty_free.Status DutyFree,t_quotes.WhetherToInvoice,t_quotes.WhetherToPayRemarks,t_quotes.DutyFreeRemarks,t_quotes.WhetherToInvoiceRemarks,t_quotes.PayDate,t_quotes.TrackingNo from t_quotes left join t_payment_terms on t_quotes.PaymentTerms=t_payment_terms.ID left join t_payment_status on t_quotes.WhetherToPay=t_payment_status.ID left join "
+		String sql="select t_quotes.ReceiptDate1,t_quotes.ReceiptAmount1,t_quotes.ReceiptDate2,t_quotes.ReceiptAmount2,t_quotes.ReceiptDate3,t_quotes.ReceiptAmount3,"
+				+ "t_quotes.BillingDate,t_quotes.RMBQuotes,t_payment_terms.ID PaymentTermsID,t_quotes.USDQuotes,t_payment_terms.Condition PaymentTerms,t_payment_status.Status WhetherToPay,t_duty_free.Status DutyFree,t_quotes.WhetherToInvoice,t_quotes.WhetherToPayRemarks,t_quotes.DutyFreeRemarks,t_quotes.WhetherToInvoiceRemarks,t_quotes.PayDate,t_quotes.TrackingNo from t_quotes left join t_payment_terms on t_quotes.PaymentTerms=t_payment_terms.ID left join t_payment_status on t_quotes.WhetherToPay=t_payment_status.ID left join "
 				+ "t_duty_free on t_quotes.DutyFree=t_duty_free.ID  where OrderID=?";
 		Object[] parameter = new Object[]{id};
 

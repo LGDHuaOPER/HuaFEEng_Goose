@@ -314,5 +314,6 @@ public interface OrderService {
 	
 	public String sendInvoiceEmail(HttpServletRequest req);
 	
+	public boolean exportOrderExcel(String path,int type);
 
 }

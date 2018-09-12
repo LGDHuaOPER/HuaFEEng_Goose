@@ -3896,7 +3896,22 @@ System.out.println("obj="+Arrays.toString(obj2));
 		
 		return new OrderDao().getShippedDetail(page,type, startTime, endTime);
 	}
+
+	@Override
+	public boolean exportOrderExcel(String path, int type) {
+		OrderDao dao = new OrderDao();
+		List<Map<String, Object>> list = dao.getOrderExcel(type);
+		boolean result = false;
+		try{
+			EXCELUtil.buildOrderExcel(list, path);
+			result = true;
+		}catch(Exception e){
+			e.printStackTrace();
+		}
+		return result;
+	}
 	
+	/*
 	public boolean splitCurrency(){
 		boolean flag = false;
 		OrderDao dao = new OrderDao();
@@ -3924,9 +3939,42 @@ System.out.println("obj="+Arrays.toString(obj2));
 		
 	}
 	
+	public boolean splitProgress(){
+		boolean flag = false;
+		HardwareAdvancesDao dao = new HardwareAdvancesDao();
+		List<Map<String, Object>> map = dao.getAllHardwareAdvances();
+		for(int i = 1;i < map.size();i ++){
+			String responsible = map.get(i).get("ResponsibleAndProcess").toString();
+			if(!responsible.equals("")){
+				String man = null;
+				String progress = null;
+				if(responsible.contains("：")){
+					man = responsible.split("：",2)[0];
+					progress = responsible.split("：",2)[1];
+					
+					
+				}else{
+					man = "";
+					progress = responsible;
+				}
+				
+				System.out.println("currency:"+man);
+				System.out.println("money:"+progress);
+				int ID = Integer.parseInt(map.get(i).get("ID").toString());
+				System.out.println("ID:"+ID+"   "+dao.updateProgress(ID, progress, man));
+				System.out.println("ID:"+ID+"   "+dao.insertProgress(ID, progress));
+			}
+		}
+		flag = true;
+		return flag;
+		
+	}
+	*/
 	@Test
 	public void test(){
-		splitCurrency();
+		String path = "E:\\合同统计2018.xlsx";
+		OrderService service = new OrderServiceImpl();
+		service.exportOrderExcel(path, 0);
 	}
 
 

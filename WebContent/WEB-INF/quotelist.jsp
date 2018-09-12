@@ -11,8 +11,8 @@
 <link rel="shortcut icon" href="image/eoulu.ico" />
 <link rel="bookmark" href="image/eoulu.ico" />
 <link rel="stylesheet" type="text/css" href="font-awesome-4.5.0/css/font-awesome.min.css">
-<link rel="stylesheet" type="text/css" href="css/swiper-3.4.1.min.css" />
-<link rel="stylesheet" type="text/css" href="css/quotelist.css">
+<!-- <link rel="stylesheet" type="text/css" href="css/swiper-3.4.1.min.css" /> -->
+<link rel="stylesheet" type="text/css" href="css/quotelist.css?iv=201809121311">
 </head>
 <body>
 	<!-- 	头部开始 -->
@@ -247,7 +247,7 @@
 							<td style="min-width: 70px;" class="sales_hide4">发货通知</td>
 						</c:if>
 					</c:forEach>
-					<td class="copy_quotelist" style="min-width: 45px;">复制报价单</td>
+					<td class="copy_quotelist" style="min-width: 45px;">复制报价单<i class="fa fa-reply" aria-hidden="true"></i></td>
 				</tr>
 				
 				<c:forEach var="orderInfo" items="${quotes}" varStatus="status">
@@ -401,8 +401,8 @@
 							class="fa fa-search-plus CustomerInformation-search" value=""></i></td>
 					</tr>
 					<tr>
-						<td>客户名称</td>
-						<td><input type="text" name="CustomerCompany" value=""></td>
+						<td><span class="must_fill">*</span>客户名称</td>
+						<td><input type="text" name="CustomerCompany" value="" placeholder="必填项"></td>
 						<td style="display: none;">部门编号</td>
 						<td style="display: none;"><input type="text"
 							name="Department" value=""></td>
@@ -422,11 +422,8 @@
 						<td><input type="text" name="LeadTime" value=""
 							style="width: 136px;">weeks</td>
 						<td>结账方式</td>
-						<td class="Payment"><input type="text" name="Payment"
-							value="" style="position: absolute; width: 162px;" id="Payment"
-							class="InfoPayment"> <select
-							onchange="document.getElementById('Payment').value=this.options[this.selectedIndex].text"
-							class="PaymentSelect">
+						<td class="Payment"><input type="text" name="Payment" value="" style="position: absolute; width: 162px;" id="Payment" class="InfoPayment">
+						<select onchange="document.getElementById('Payment').value=this.options[this.selectedIndex].text" class="PaymentSelect">
 								<option value="">请选择</option>
 								<option value="GERMANY">100% TT in advance</option>
 								<option value="USA">100% Irrevocable LC at sight, 90%
@@ -435,10 +432,9 @@
 					</tr>
 
 					<tr>
-						<td>业务员</td>
-						<td><input type="text" name="StaffName" value=""></td>
-						<td style="text-align: left;"><i
-							class="fa fa-search-plus StaffInformation-search" value=""></i></td>
+						<td><span class="must_fill">*</span>业务员</td>
+						<td><input type="text" name="StaffName" value="" placeholder="必填项"></td>
+						<td style="text-align: left;"><i class="fa fa-search-plus StaffInformation-search" value=""></i></td>
 					</tr>
 
 					<tr>
@@ -483,17 +479,14 @@
 								<option value="USD">USD</option>
 						</select></td>
 						<td>课税类别</td>
-						<td class="TaxCategories"><input type="text"
-							name="TaxCategories" value=""
-							style="position: absolute; width: 162px;" id="TaxCategories">
+						<td class="TaxCategories"><input type="text" name="TaxCategories" value="" style="position: absolute; width: 162px;" id="TaxCategories">
 							<select onchange="document.getElementById('TaxCategories').value=this.options[this.selectedIndex].text">
 								<option value="">请选择</option>
 								<!-- <option value="">1.17</option> -->
 								<option value="">1.16</option>
 						</select></td>
 						<td>报价版本号</td>
-						<td><input type="text" name="Versions" value=""
-							class="Versions"></td>
+						<td><input type="text" name="Versions" value="" class="Versions"></td>
 					</tr>
 					<tr>
 						<td>报价日期</td>
@@ -502,8 +495,8 @@
 						<td>报价单号</td>
 						<td><input type="text" name="Number" value="" class="Number"
 							id="Number" disabled="disabled"></td>
-						<td>运输费用(USD)</td>
-						<td><input type="text" name="ShipmentCost" value=""></td>
+						<td><span class="must_fill">*</span>运输费用(USD)</td>
+						<td><input type="text" name="ShipmentCost" value="" placeholder="必填项"></td>
 					</tr>
 					<tr style="display: none;">
 						<td>业务员邮件</td>
@@ -1127,10 +1120,8 @@
 				<!-- 页脚 -->
 				<div class="yejiao1 cf" style="margin-top: 20px; height: 214px;">
 					<div class="" style="margin-bottom: 20px;">
-						<img src="image/yejiaoChina.png"
-							style="width: 90%; height: auto; margin-left: 5%;">
+						<img src="image/yejiaoChina.png" style="width: 90%; height: auto; margin-left: 5%;">
 					</div>
-	
 				</div>
 			</div>
 			
@@ -1181,17 +1172,13 @@
 						<!-- <p class="s14">China (People’s Republic)</p>
 						<br> <br> -->
 						<p>
-							<img src="image/people.png"
-								style="width: 20px; margin-right: 5px;"><span
-								class="CustomerName s10">Wang Shengrong</span>
+							<img src="image/people.png" style="width: 20px; margin-right: 5px;"><span class="CustomerName s10">Wang Shengrong</span>
 						</p>
 						<p>
-							<img src="image/tel.png" style="width: 20px; margin-right: 5px;"><span
-								class="CustomerTel s10">+86-21-61751348</span>
+							<img src="image/tel.png" style="width: 20px; margin-right: 5px;"><span class="CustomerTel s10">+86-21-61751348</span>
 						</p>
 						<p>
-							<img src="image/email.png" style="width: 20px; margin-right: 5px;"><span
-								class="CustomerMail s10">wangshengrong@hisilicon.com</span>
+							<img src="image/email.png" style="width: 20px; margin-right: 5px;"><span class="CustomerMail s10">wangshengrong@hisilicon.com</span>
 						</p>
 	
 					</div>
@@ -1200,17 +1187,13 @@
 						<!-- <p class="s14">ROOM 1708 NAN FUNG TOWER</p>
 						<br> <br> -->
 						<p>
-							<img src="image/people.png"
-								style="width: 20px; margin-right: 5px;"><span
-								class="StaffName s10">赵文珍</span>
+							<img src="image/people.png" style="width: 20px; margin-right: 5px;"><span class="StaffName s10">赵文珍</span>
 						</p>
 						<p>
-							<img src="image/tel.png" style="width: 20px; margin-right: 5px;"><span
-								class="StaffTel s10">86-18566664208</span>
+							<img src="image/tel.png" style="width: 20px; margin-right: 5px;"><span class="StaffTel s10">86-18566664208</span>
 						</p>
 						<p>
-							<img src="image/email.png" style="width: 20px; margin-right: 5px;"><span
-								class="StaffMail s10">zhaowenzhen@eoulu.com</span>
+							<img src="image/email.png" style="width: 20px; margin-right: 5px;"><span class="StaffMail s10">zhaowenzhen@eoulu.com</span>
 						</p>
 					</div>
 	
@@ -2517,10 +2500,7 @@
 							<td>重量</td>
 							<td class="Weight">
 								<p>
-									<label> <input type="radio" name="Weight" class="yes"
-										value="是">是 <input type="radio" name="Weight"
-										class="no" value="否">否
-									</label>
+									<label><input type="radio" name="Weight" class="yes" value="是">是 <input type="radio" name="Weight" class="no" value="否">否</label>
 								</p>
 							</td>
 						</tr>
@@ -2529,9 +2509,7 @@
 							<td>产品图片</td>
 							<td class="ProductImg">
 								<p>
-									<label> <input type="radio" name="ProductImg" value="是">是
-										<input type="radio" name="ProductImg" value="否">否
-									</label>
+									<label><input type="radio" name="ProductImg" value="是">是<input type="radio" name="ProductImg" value="否">否</label>
 								</p>
 							</td>
 						</tr>
@@ -3624,7 +3602,7 @@ Thanks for your support！
 <script type="text/javascript" src="js/jquery.wordexport.quotelist.js"></script>
 <script src="js/msgbox.js"></script>
 <!-- <script src="js/msgbox_unload.js"></script> -->
-<script src="js/quotelist.js"></script>
+<script src="js/quotelist.js?iv=201809121314"></script>
 <script src="js/quotelist_submit.js"></script>
 <script type="text/javascript" src="js/html2canvas.js"></script>
 <script type="text/javascript" src="js/jsPdf.debug.js"></script>
@@ -3635,16 +3613,7 @@ Thanks for your support！
 	var priceNum = 0;
 	//点击添加
 	function AddContract() {
-		var ddd = new Date();
-		var day = ddd.getDate();
-		if (day < 10) {
-			day = "0" + day;
-		} else {
-			day = day;
-		}
-		var month = ddd.getMonth() + 1;
-		var datew = ddd.getFullYear() + "-" + month + "-" + day;
-		$("#Datesent").val(datew);
+		$("#Datesent").val(globalGetToday(false));
 
 		$.ajax({
 			type : 'get',
@@ -3658,16 +3627,14 @@ Thanks for your support！
 				} else {
 					priceNum = data;
 				}
+				$('.MailBar_cover_color, .contract_add').show();
 			},
 			error : function() {
 				$.MsgBox.Alert("提示", "服务器繁忙，稍后重试！");
 			}
 		});
-		$('.MailBar_cover_color').show();
-		$('.contract_add').show();
-		$(".MailBar_cover_color").css("height",$(".contain").height()+80);   
-	};
-
+		// $(".MailBar_cover_color").css("height",$(".contain").height()+80);
+	}
 
 	//点击确定刷新页面
 	$(document).on("click", "#mb_btn_ok", function() {
@@ -3690,40 +3657,34 @@ Thanks for your support！
 	// 	$('.contract_update').hide();
 	// });
 	$('.contractMerch_close').click(function() {
-		$('.MailBar_cover_color').hide();
-		$('.merchandise_add').hide();
+		$('.MailBar_cover_color, .merchandise_add').hide();
 	});
 
 	//备货取消
 	$('#send_cancel').click(function() {
-		$('.MailBar_cover_color').hide();
-		$('.contract_send').hide();
+		$('.MailBar_cover_color, .contract_send').hide();
 		window.location.reload();
 	});
 
 	//点击取消
 	$('#add_cancel').click(function() {
-		$('.MailBar_cover_color').hide();
-		$('.contract_add').hide();
+		$('.MailBar_cover_color, .contract_add').hide();
 		$(".contract_add #tableADD_one input").val("");
 	});
 
 	$('#merchandise_cancel').click(function() {
-		$('.MailBar_cover_color').hide();
-		$('.merchandise_add').hide();
+		$('.MailBar_cover_color, .merchandise_add').hide();
 	});
 
 	$('#OtherPO_close').click(function() {
-		$('.MailBar_cover_color').hide();
-		$('.OtherPOPdf').hide();
+		$('.MailBar_cover_color, .OtherPOPdf').hide();
 	});
 
 	//点击取消
 	$('#CascadePO_close').click(function() {
 		$(".ForwarderSel").fadeOut(200);
 		$(".ShipToSel").fadeOut(200);
-		$('.MailBar_cover_color').hide();
-		$('.CascadePOPdf').hide();
+		$('.MailBar_cover_color, .CascadePOPdf').hide();
 	});
 	/****************** 跳页 **********************/
 	function FistPage(arg) {
@@ -3837,65 +3798,42 @@ $(function(){
 				console.log($(this).parent().parent().parent().find("td").eq(0).attr("value"))
 				var delID = $(this).parent().parent().parent().find("td").eq(0).attr("value");
 				var that = $(this).parent().parent().parent();
-				console.log(delID)
-			
-				/* $.ajax({
-					type : 'get',
-					url : "QuoteCascadeDelete",
-					data : {
-						ID : delID,
-					},
-					dataType : 'json',
-					success : function(data) {
-						console.log(data); */
-						that.remove();
-							//计算PO美元部分的总价
-							 if($(".CascadePOPdf #view8 .CascadePOItemTr").length > 0 ){
-								var totalNum = 0;
-								for (var i = 0; i < $(".CascadePOPdf #view8 .CascadePOItemTr").length; i++) {
-									totalNum += ($(".CascadePOPdf #view8 .CascadePOItemTr").eq(i).find(".Qty").text())* rmoney(fmoney($(".CascadePOPdf #view8 .CascadePOItemTr").eq(i).find(".UnitPrice").text()));
-								}
-							}else{
-								var totalNum = 0;
-								
-							} 
-							console.log("totalNum"+totalNum)
-							$(".CascadePOPdf #view8 .SubTotal").text("").text(fmoney(totalNum.toFixed(2))); 
-							$(".CascadePOPdf #view8 .FinalTotal").text("").text(fmoney(totalNum.toFixed(2))); 
+				that.remove();
+					//计算PO美元部分的总价
+					 if($(".CascadePOPdf #view8 .CascadePOItemTr").length > 0 ){
+						var totalNum = 0;
+						for (var i = 0; i < $(".CascadePOPdf #view8 .CascadePOItemTr").length; i++) {
+							totalNum += ($(".CascadePOPdf #view8 .CascadePOItemTr").eq(i).find(".Qty").text())* rmoney(fmoney($(".CascadePOPdf #view8 .CascadePOItemTr").eq(i).find(".UnitPrice").text()));
+						}
+					}else{
+						var totalNum = 0;
+						
+					} 
+					console.log("totalNum"+totalNum)
+					$(".CascadePOPdf #view8 .SubTotal").text("").text(fmoney(totalNum.toFixed(2))); 
+					$(".CascadePOPdf #view8 .FinalTotal").text("").text(fmoney(totalNum.toFixed(2))); 
 			})
 
 			//CascadePO 整机 删除
 	$(document).on("click",".CascadePOPdf #view89 .CascadePOItemBtn",function() {
-		/*  alert(999) ;
-		 return; */
 				console.log($(this).parent().parent().parent().find("td").eq(0).attr("value"))
 				var delID = $(this).parent().parent().parent().find("td").eq(0).attr("value");
 				var that = $(this).parent().parent().parent();
-				console.log(delID)
-			
-				/* $.ajax({
-					type : 'get',
-					url : "QuoteCascadeDelete",
-					data : {
-						ID : delID,
-					},
-					dataType : 'json',
-					success : function(data) {
-						console.log(data); */
-						that.remove();
-							//计算PO美元部分的总价
-							 if($(".CascadePOPdf #view89 .CascadePOItemTr").length > 0 ){
-								var totalNum = 0;
-								for (var i = 0; i < $(".CascadePOPdf #view89 .CascadePOItemTr").length; i++) {
-									totalNum += ($(".CascadePOPdf #view89 .CascadePOItemTr").eq(i).find(".Qty").text())* rmoney(fmoney($(".CascadePOPdf  #view89 .CascadePOItemTr").eq(i).find(".UnitPrice").text()));
-								}
-							}else{
-								var totalNum = 0;
-								
-							} 
-							console.log("totalNum"+totalNum)
-							$(".CascadePOPdf #view89 .SubTotal").text("").text(fmoney(totalNum.toFixed(2))); 
-							$(".CascadePOPdf #view89 .FinalTotal").text("").text(fmoney(totalNum.toFixed(2))); 
+				
+				that.remove();
+					//计算PO美元部分的总价
+					 if($(".CascadePOPdf #view89 .CascadePOItemTr").length > 0 ){
+						var totalNum = 0;
+						for (var i = 0; i < $(".CascadePOPdf #view89 .CascadePOItemTr").length; i++) {
+							totalNum += ($(".CascadePOPdf #view89 .CascadePOItemTr").eq(i).find(".Qty").text())* rmoney(fmoney($(".CascadePOPdf  #view89 .CascadePOItemTr").eq(i).find(".UnitPrice").text()));
+						}
+					}else{
+						var totalNum = 0;
+						
+					} 
+					console.log("totalNum"+totalNum)
+					$(".CascadePOPdf #view89 .SubTotal").text("").text(fmoney(totalNum.toFixed(2))); 
+					$(".CascadePOPdf #view89 .FinalTotal").text("").text(fmoney(totalNum.toFixed(2))); 
 			})
 			
 	//计算折扣后的值
@@ -4182,16 +4120,6 @@ $(function(){
 		console.log($(this).parent().parent().parent().find("td").eq(0).attr("value"))
 		var delID = $(this).parent().parent().parent().find("td").eq(0).attr("value");
 		var that = $(this).parent().parent().parent();
-						
-		/* $.ajax({
-			type : 'get',
-			url : "QuoteOtherDelete",
-			data : {
-				ID : delID,
-			},
-			dataType : 'json',
-			success : function(data) {
-				console.log(data); */
 		that.remove();
 			//计算other部分的总价
 			 if($("#view9 .OtherPOItemTr").length > 0 ){
