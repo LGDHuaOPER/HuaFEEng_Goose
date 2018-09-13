@@ -30,7 +30,7 @@ var searchPartModelIndex = -1;
 var curFileupload;
 var curModel;
 // 维护实验室地点
-var LaboratoryArr = ["北京","石家庄","苏州","厦门","深圳"];
+var LaboratoryArr = ["北京","石家庄","苏州","厦门","深圳","成都"];
 // var regDate1 = /^[1-9]\d{3}-(0[1-9]|1[0-2])-(0[1-9]|[1-2][0-9]|3[0-1])$/;
 // var regDate2 = /^[1-9]\d{3}-(0[1-9]|1[0-2])$/;
 // var regDate3 = /^(0[1-9]|1[0-2])-(0[1-9]|[1-2][0-9]|3[0-1])$/;
@@ -44,6 +44,11 @@ var serviceReportStr = '<tr>'+
 		                    '<td class="service_Description"></td>'+
 		                    '<td class="service_Qty">1</td>'+
 	                	'</tr>';
+
+// 定义状态集
+var LabState = new Object();
+LabState.uploadFileNo = 0;
+LabState.uploadFileList = {};
 
 function pageStyle(currentPage,pageCounts){
     if(pageCounts == 1){
@@ -79,9 +84,9 @@ function buttonAbled(jClass) {
 }
 
 // 获取图片文件blob文件流
-function getImageBlob(){
+// function getImageBlob(){
 
-}
+// }
 
 // 插入缩略图
 function insertThumbnails(){
@@ -119,6 +124,8 @@ function tableRender(icurPage,pageCounts,data){
 	            '<td class="hastd_Number" title="'+data[i].Number+'">'+data[i].Number+'</td>'+
 	            '<td class="hastd_Laboratory" title="'+data[i].Laboratory+'">'+data[i].Laboratory+'</td>'+
 	            '<td class="hastd_Picture" title="'+data[i].Picture+'"><img src="image/loading/Spinner-1s-50px.gif" alt="产品图片"></td>'+
+	            '<td class="detailed_part" title="详细配置"><span class="glyphicon glyphicon-eye-open"></span></td>'+
+	            '<td class="detailed_part" title="详细配置"><span class="glyphicon glyphicon-eye-open"></span></td>'+
 	            '<td class="detailed_part" title="详细配置"><span class="glyphicon glyphicon-eye-open"></span></td>'+
 	        '</tr>';
 	}
@@ -197,8 +204,7 @@ function uploadFiles(){
                     var newWidthFloat =  globalToPoint(percent);  
                     var newWidth = newWidthFloat*400;
                     console.log("进度条宽度："+newWidth);   
-                    $(".progressIn").css("width",newWidth+"px");
-                    $(".progressIn").text(percent);
+                    $(".progressIn").css("width",newWidth+"px").text(percent);
                 }, false); // for handling the progress of the upload
             }
             return myXhr;
@@ -207,26 +213,17 @@ function uploadFiles(){
         	if(data.indexOf("上传成功")>-1){
         		$("span.isUpload").text("上传成功！");
 		    	var fileName_add = $("input.serFinRepUploadName").val();
-			    var curFileuploadArr;
-			    if(curFileupload.indexOf("++")>-1){
-			    	curFileuploadArr = curFileupload.split("++");
-			    }else{
-			    	curFileuploadArr = ["",""];
-			    } 
-			    $("."+curFileuploadArr[0]+" ."+curFileuploadArr[1]).val(fileName_add);
-			    $("."+curFileuploadArr[0]+" ."+curFileuploadArr[1]).attr("title",fileName_add);
+			    $(curFileupload).val(fileName_add).attr("title",fileName_add);
 			    $(".dropFileTit span").trigger("click");
         	}else{
     			$("span.isUpload").text("上传失败！");
-    			$(".progressIn").css("width","30px");
-    			$(".progressIn").text("0%");
+    			$(".progressIn").css("width","30px").text("0%");
         	}
         	$.MsgBox_Unload.Alert("提示",data);
         },
         error:function(){
         	$("span.isUpload").text("");
-        	$(".progressIn").css("width","30px");
-        	$(".progressIn").text("0%");
+        	$(".progressIn").css("width","30px").text("0%");
             $.MsgBox_Unload.Alert("上传提示","网络繁忙！上传失败！");
         }
     });                             
@@ -241,7 +238,7 @@ $(function(){
 	LaboratoryArr.map(function(currentValue,index,arr){
 		LaboratoryStr+='<option value="'+currentValue+'">'+currentValue+'</option>';
 	});
-	$(".info_Laboratory").empty().append(LaboratoryStr);
+	$("select[name='Laboratory_sel']").empty().append(LaboratoryStr);
 	// 表格列宽调整
 	setTimeout(function(){
 		$(".m_table table").colResizable({
@@ -258,59 +255,80 @@ $(function(){
 *****/
 // 打开
 $(".m_button_l input[value='添加']").on("click",function(){
-	$(".add_NonStandard_body_in [class^='info_']").each(function(){
+	$(".bg_cover, .add_NonStandard").slideDown(350);
+	$(".add_NonStandard_body_in [id^='add_info_']").each(function(){
 		// if($(this).prop("tagName")=="SELECT"||$(this).prop("tagName")=="select"){
 		// 	$(this).val("0");
 		// }else{
 		// 	$(this).val("");
 		// }
 		$(this).val("");
-		if($(this).is(".info_Description") || $(this).is(".info_Picture")){
+		if($(this).is("#add_info_Picture")){
 			$(this).attr("title","");
 		}
 	});
-	$(".bg_cover").slideDown(350);
-	$(".add_NonStandard").slideDown(350);
 });
 
 $(document).on("click",".update_td",function(){
+	$(".bg_cover, .update_NonStandard").slideDown(350);
 	// jQuery.data($(this), "customerId");
 	updateSubmitObj.ID = Number($(this).data("iid")).toString();
-	updateSubmitObj.CommodityID = Number($(this).data("commodityid")).toString();
+	// updateSubmitObj.CommodityID = Number($(this).data("commodityid")).toString();
 	var that = $(this);
-	$(".update_NonStandard_body_in [class^='info_']").each(function(){
-		var subClassName = $(this).attr("class").split(" ")[0].replace("info_","hastd_");
+	$(".update_NonStandard_body_in [id^='update_info_']").each(function(){
+		var subClassName = $(this).attr("id").replace("update_info_","hastd_");
 		var oldVal;
-		if($(this).is(".info_Picture")){
+		if($(this).is("#update_info_Picture")){
 			oldVal = that.siblings("."+subClassName).attr("title");
 		}else{
 			oldVal = that.siblings("."+subClassName).text();
 		}
 		var newVal = globalDataHandle(oldVal,"");
 		$(this).val(newVal);
-		if($(this).is(".info_Description") || $(this).is(".info_Picture")){
+		if($(this).is("#update_info_Picture")){
 			$(this).attr("title",newVal);
 		}
 	});
-	$(".bg_cover").slideDown(350);
-	$(".update_NonStandard").slideDown(350);
 });
 
 // 关闭
 $("#NonStandard_addclose, .add_NonStandard_tit_r").on("click",function(){
+	$(".bg_cover, .add_NonStandard").slideUp(300);
+	if($('div.add_fileList_info').is(':visible')){
+		$('div.add_fileList_info').slideUp(150, function(){
+			$("div.add_fileList_info>div>div.progress-bar").attr("aria-valuenow","0").css("width","0%").text("0%");
+		});
+	}
+	$("#add_fileList_ul").empty();
+	
 	for(var k in addSubmitObj){
 		addSubmitObj[k] = null;
 	}
-	$(".bg_cover").slideUp(350);
-	$(".add_NonStandard").slideUp(350);
+	LabState.uploadFileNo = 0;
+	for(var kk in LabState.uploadFileList){
+		delete LabState.uploadFileList[kk];
+	}
+	$("#add_file_Upload").val("");
 });
 
 $("#NonStandard_updateclose, .update_NonStandard_tit_r").on("click",function(){
+	$(".bg_cover, .update_NonStandard").slideUp(300);
+	if($('div.update_fileList_info').is(':visible')){
+		$('div.update_fileList_info').slideUp(150, function(){
+			$("div.update_fileList_info>div>div.progress-bar").attr("aria-valuenow","0").css("width","0%").text("0%");
+		});
+	}
+	$("#update_fileList_ul").empty();
+
 	for(var k in updateSubmitObj){
 		updateSubmitObj[k] = null;
 	}
-	$(".bg_cover").slideUp(350);
-	$(".update_NonStandard").slideUp(350);
+	
+	LabState.uploadFileNo = 0;
+	for(var kk in LabState.uploadFileList){
+		delete LabState.uploadFileList[kk];
+	}
+	$("#update_file_Upload").val("");
 });
 
 // 翻页功能
@@ -379,7 +397,7 @@ $("#NonStandard_addsubmit").on("click",function(){
 	for(var kkk in addSubmitObj){
 		addSubmitObj[kkk] = globalDataHandle(addSubmitObj[kkk],"").trim();
 		if(kkk=="CommodityID" && addSubmitObj[kkk]==""){
-			$.MsgBox_Unload.Alert("提示","未选择型号！");
+			$.MsgBox_Unload.Alert("提示","未选择系统名称！");
 			return false;
 		}
 	}
@@ -431,7 +449,7 @@ $("#NonStandard_updatesubmit").on("click",function(){
 	for(var kkk in updateSubmitObj){
 		updateSubmitObj[kkk] = globalDataHandle(updateSubmitObj[kkk],"").trim();
 		if(kkk=="CommodityID" && updateSubmitObj[kkk]==""){
-			$.MsgBox_Unload.Alert("提示","未选择型号！");
+			$.MsgBox_Unload.Alert("提示","未选择系统名称！");
 			return false;
 		}
 	}
@@ -466,10 +484,10 @@ $("#NonStandard_updatesubmit").on("click",function(){
 
 // 搜索型号
 function addSearchModelHandle(){
-	var param = $(".add_NonStandard .info_Model").val().trim();
+	var param = $(".add_NonStandard #add_info_Model").val().trim();
 	var item = "#add_Commodity";
 	if(param == ""){
-		$(".add_NonStandard .info_Model").val("");
+		$(".add_NonStandard #add_info_Model").val("");
 	}else if(param == "--"){
 		$.MsgBox_Unload.Alert("提示", "搜索值格式错误！");
 	}else{
@@ -478,13 +496,13 @@ function addSearchModelHandle(){
 	}
 }
 var addThrottle = ecDo.delayFn(addSearchModelHandle, 700, 1000);
-$(".add_NonStandard .info_Model").on("input propertychange",addThrottle);
+$(".add_NonStandard #add_info_Model").on("input propertychange",addThrottle);
 
 function updateSearchModelHandle(){
-	var param = $(".update_NonStandard .info_Model").val().trim();
+	var param = $(".update_NonStandard #update_info_Model").val().trim();
 	var item = "#update_Commodity";
 	if(param == ""){
-		$(".update_NonStandard .info_Model").val("");
+		$(".update_NonStandard #update_info_Model").val("");
 	}else if(param == "--"){
 		$.MsgBox_Unload.Alert("提示", "搜索值格式错误！");
 	}else{
@@ -493,23 +511,21 @@ function updateSearchModelHandle(){
 	}
 }
 var updateThrottle = ecDo.delayFn(updateSearchModelHandle, 700, 1000);
-$(".update_NonStandard .info_Model").on("input propertychange",updateThrottle);
+$(".update_NonStandard #update_info_Model").on("input propertychange",updateThrottle);
 
 // 搜索后点击option
 $(document).on("click","#add_Commodity option, #update_Commodity option",function(e){
 	e.stopPropagation();
 	if($(this).parents("#add_Commodity").length){
-		$(".add_NonStandard .info_Model").val($("#add_Commodity").val());
-		$(".add_NonStandard .info_Description").val($(this).attr("commodityname"));
-		$(".add_NonStandard .info_Description").attr("title",$(this).attr("commodityname"));
+		$(".add_NonStandard #add_info_Model").val($("#add_Commodity").val());
+		$(".add_NonStandard #add_info_Description").val($(this).attr("commodityname"));
 		$("#add_Commodity").fadeOut(200);
-		addSubmitObj.CommodityID = $(this).attr("text");
+		// addSubmitObj.CommodityID = $(this).attr("text");
 	}else if($(this).parents("#update_Commodity").length){
-		$(".update_NonStandard .info_Model").val($("#update_Commodity").val());
-		$(".update_NonStandard .info_Description").val($(this).attr("commodityname"));
-		$(".update_NonStandard .info_Description").attr("title",$(this).attr("commodityname"));
+		$(".update_NonStandard #update_info_Model").val($("#update_Commodity").val());
+		$(".update_NonStandard #update_info_Description").val($(this).attr("commodityname"));
 		$("#update_Commodity").fadeOut(200);
-		updateSubmitObj.CommodityID = $(this).attr("text");
+		// updateSubmitObj.CommodityID = $(this).attr("text");
 	}
 });
 
@@ -693,7 +709,6 @@ $(document).on("blur",".service_Qty",function(){
 	}
 });
 
-
 // 详细配置下载
 $(".serviceReport_top_down").click(function(){
 	// $.MsgBox_Unload.Alert("提示", "下载前请记得保存！");
@@ -769,14 +784,12 @@ $(".showPic_top_m span").click(function(){
 });
 
 // 上传图片打开
-$(".line_relative input[type='button']").on("click",function(){
-	var curClassifyHook;
+$(".add_upload_Picture, .update_upload_Picture").on("click",function(){
 	if($(this).parents(".add_NonStandard").length){
-		curClassifyHook = "add_NonStandard";
+		curFileupload = "#add_info_Picture";
 	}else if($(this).parents(".update_NonStandard").length){
-		curClassifyHook = "update_NonStandard";
+		curFileupload = "#update_info_Picture";
 	}
-	curFileupload = curClassifyHook+"++"+$(this).siblings("input[type='text']").attr("class");
 	$(".upload_bgcover, .dropFileBox").slideDown(300);
 });
 
@@ -875,23 +888,24 @@ $("input.dropUp2").on("click",function(){
 // 点击浏览
 $("#serFinRepUpload").on("change",function(){
 	$("span.isUpload").text("");
-	$(".progressIn").css("width","30px");
-	$(".progressIn").text("0%");
+	$(".progressIn").css("width","30px").text("0%");
 	console.log("文件上传改变值"+$(this).val());
 	var newFileName1 = $(this).val().indexOf("\\fakepath\\")>-1?$(this).val().split("\\fakepath\\")[1]:$(this).val().split("\\").pop();
 	console.log("赋给input的值"+newFileName1);
-	$("input.serFinRepUploadName").val(newFileName1);
-	$("input.serFinRepUploadName").attr("title",newFileName1);
+	$("input.serFinRepUploadName").val(newFileName1).attr("title",newFileName1);
 });
 
 // 关闭上传
 $(".dropFileTit span").on("click",function(){
-	$(".upload_bgcover").slideUp(300);
-	$(".dropFileBox").slideUp(300);
+	$(".upload_bgcover, .dropFileBox").slideUp(300);
 	$("span.isUpload").text("");
-	$(".progressIn").css("width","30px");
-	$(".progressIn").text("0%");
-	$("input.serFinRepUploadName").val("");
-	$("input.serFinRepUploadName").attr("title","");
+	$(".progressIn").css("width","30px").text("0%");
+	$("input.serFinRepUploadName").val("").attr("title","");
 	$("#serFinRepUpload").val("");
+});
+
+// input file域触发点击
+$(".trigger_click").click(function(e){
+	e.preventDefault();
+	$(this).next().trigger("click");
 });

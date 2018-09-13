@@ -68,6 +68,7 @@
                     "发货通知": "Shipment",
                     "FAT": "Acceptance",
                     "客户信息表": "Customer",
+                    "客户信息表#": "GetCustomerInfo2",
                     "原厂报价单": "OriginalQuotation",
                     "工作汇报": "WorkReport",
                     "招标文件": "BiddingDocument"
@@ -598,8 +599,70 @@
                             "mergeToParentFile": "StandardProduct.js"
                         }
                     }
-                }
+                },
                 // 标准产品页面结束
+                // 客户信息表页面
+                "Customer": {
+                    "lastModify": "Thu Sep 13 2018 13:19:23 GMT+0800 (中国标准时间)",
+                    "lastModifyTime": "1536815963000",
+                    // css
+                    "cssPrimary": {
+                        "bootstrap-grid-table-form-btn-res-icon-advancedbtn.min.css": {
+                            "referenceOrder": 0,
+                            "filePath": "css/libs/bootstrap-grid-table-form-btn-res-icon-advancedbtn.min.css",
+                            "mergeToParentFile": null
+                        },
+                        "customer.css": {
+                            "referenceOrder": 1,
+                            "filePath": "css/modules/commerce/customer.css",
+                            "mergeToParentFile": "customer.css"
+                        }
+                    },
+                    // js
+                    "jsPrimary": {
+                        "bootstrap-grid-table-form-btn-res-icon-advancedbtn.min.js": {
+                            "referenceOrder": 0,
+                            "filePath": "js/libs/bootstrap/bootstrap-grid-table-form-btn-res-icon-advancedbtn.min.js",
+                            "mergeToParentFile": null
+                        },
+                        "customer.js": {
+                            "referenceOrder": 1,
+                            "filePath": "js/modules/commerce/customer.js",
+                            "mergeToParentFile": "customer.js"
+                        }
+                    }
+                },
+                "GetCustomerInfo2": {
+                    "lastModify": "Thu Sep 13 2018 13:19:23 GMT+0800 (中国标准时间)",
+                    "lastModifyTime": "1536815963000",
+                    // css
+                    "cssPrimary": {
+                        "bootstrap-grid-table-form-btn-res-icon-advancedbtn.min.css": {
+                            "referenceOrder": 0,
+                            "filePath": "css/libs/bootstrap-grid-table-form-btn-res-icon-advancedbtn.min.css",
+                            "mergeToParentFile": null
+                        },
+                        "customer.css": {
+                            "referenceOrder": 1,
+                            "filePath": "css/modules/commerce/customer.css",
+                            "mergeToParentFile": "customer.css"
+                        }
+                    },
+                    // js
+                    "jsPrimary": {
+                        "bootstrap-grid-table-form-btn-res-icon-advancedbtn.min.js": {
+                            "referenceOrder": 0,
+                            "filePath": "js/libs/bootstrap/bootstrap-grid-table-form-btn-res-icon-advancedbtn.min.js",
+                            "mergeToParentFile": null
+                        },
+                        "customer.js": {
+                            "referenceOrder": 1,
+                            "filePath": "js/modules/commerce/customer.js",
+                            "mergeToParentFile": "customer.js"
+                        }
+                    }
+                }
+                // 客户信息表页面结束
             },
         // pageHrefImportFileMap 结束
         // compressFilePathMap 开始
@@ -646,6 +709,12 @@
                     "outBasePath": "./cfChicken8/WebContent/css/modules/serviced/",
                     "gulp-rev": "StandardProduct-855edafc10.min.css",
                     "referencePath": "css/modules/serviced/StandardProduct-855edafc10.min.css"
+                },
+                "customer.css": {
+                    "originPath": ["./cfChicken8/WebContent/css/modules/commerce/customer.css"],
+                    "outBasePath": "./cfChicken8/WebContent/css/modules/commerce/",
+                    "gulp-rev": "customer-2d46b78604.min.css",
+                    "referencePath": "css/modules/commerce/customer-2d46b78604.min.css"
                 }
             },
             "jsMerge": {
@@ -720,6 +789,12 @@
                     "outBasePath": "./cfChicken8/WebContent/js/modules/serviced/",
                     "gulp-rev": "StandardProduct-acbe9a200f.min.js",
                     "referencePath": "js/modules/serviced/StandardProduct-acbe9a200f.min.js"
+                },
+                "customer.js": {
+                    "originPath": ["./cfChicken8/WebContent/js/modules/commerce/customer.js"],
+                    "outBasePath": "./cfChicken8/WebContent/js/modules/commerce/",
+                    "gulp-rev": "customer-a03b5a60b3.min.js",
+                    "referencePath": "js/modules/commerce/customer-a03b5a60b3.min.js"
                 }
             }
         }
@@ -1046,7 +1121,6 @@
 })();
 
 
-
 /***************************全局变量配置类****************************/
     var globalProjectName = "cfChicken8";
     var globalBaseUrl = window.location.href.split(globalProjectName)[0]+globalProjectName;
@@ -1055,7 +1129,7 @@
     // 版本号排除关键词、文件名或路径名，全文匹配
     var globalVersionExceptFileName = ["eoulu.ico","bootstrap","swiper-3.4.1.min.css","eouluCustom.css","reset.css","css/libs","css/extends","echarts","jquery","msgbox","ajaxfileupload.js","html2canvas.js","fullcalendar.min.js","jsPdf.debug.js","underscore-min.js","ProvinceandCity.js","dispatchScript-079ece4932.min.js","js/libs","plugins/"];
     // 版本号
-    var globalVersionNo = "1535094652344";
+    var globalVersionNo = "1536802190237";
 
     // echarts自定义渐变色
     // 用法：series[i].itemStyle.normal.color =
@@ -1133,6 +1207,7 @@
             "发货通知": "Shipment",
             "FAT": "Acceptance",
             "客户信息表": "Customer",
+            "客户信息表#": "GetCustomerInfo2",
             "原厂报价单": "OriginalQuotation",
             "工作汇报": "WorkReport",
             "招标文件": "BiddingDocument"

@@ -1126,7 +1126,7 @@ function AddContract(){
 	$("#Date").val(globalGetToday(false));
 	/*自动生成想单号  */
 	todayCounts = todayCounts+1;
-	var packingListNoStr = "PL"+ ddd.getFullYear()+month+day+"-"+todayCounts;
+	var packingListNoStr = "PL"+ globalGetToday(false).replace(/-/g, "") +"-"+todayCounts;
 	$("#PackingListNO").val(packingListNoStr);
     $('.MailBar_cover_color').show();
     $('.contract_add').show();

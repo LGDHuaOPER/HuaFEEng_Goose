@@ -1608,50 +1608,12 @@ $(function(){
 	
 	/* 添加发票信息 */
 	$(document).on("click","#add_submit",function(){
-	    var area=$('.contract_add select[name="area"]').val();
-	    var contract_no=$('.contract_add input[name="contract_no"]').val();
-	    
-	    var INVOICE_NO=$('.contract_add input[name="INVOICE_NO"]').val();
-	    var DC_NO=$('.contract_add input[name="DC_NO"]').val();
-	    var Applicant=$('.contract_add input[name="Applicant"]').val();
-	    var ADD=$('.contract_add input[name="ADD"]').val();
-	    var TheEndUser=$('.contract_add input[name="TheEndUser"]').val();
-	    var OtherReference=$('.contract_add input[name="OtherReference"]').val();
-	    
-	    var Departure_date=$('.contract_add input[name="Departure_date"]').val()== "" ? "0000-00-00" :$('.contract_add input[name="Departure_date"]').val() ;
-	    
-	    var Vessel_flight=$('.contract_add input[name="Vessel_flight"]').val();
-	    var From=$('.contract_add input[name="From"]').val();
-	    var To=$('.contract_add input[name="To"]').val();
-	    var Packing=$('.contract_add input[name="Packing"]').val();
-	    var CountryofOrigin=$('.contract_add input[name="CountryofOrigin"]').val();
-	    var Manufacturer=$('.contract_add input[name="Manufacturer"]').val();
-	    var ShippingMark=$('.contract_add input[name="ShippingMarkNo"]').val() +"&&"+$('.contract_add input[name="ShippingMarkAdd"]').val();
-	    var AIRPORT=$('.contract_add input[name="AIRPORT"]').val();
-	    var TotalAmount=parseFloat($('.contract_add input[name="USD"]').val().replace(/,/g,''));
-	     /* alert(TotalAmount)
-	    alert(typeof(TotalAmount))   */
-	   
-	    if(isNaN(TotalAmount)){ 
-	    	TotalAmount = '0';
-	    }
-	    /* if(TotalAmount = 'NaN'){
-	    
-	    	TotalAmount = '0';
-	    } */
-	    
-	    var Date=$('.contract_add input[name="installed_time"]').val()== "" ? "0000-00-00" :$('.contract_add input[name="installed_time"]').val();
-	    
-	    var TelFax=$('.contract_add input[name="TEL"]').val();
-	    var remarks = $('.contract_add input[name="remarks"]').val();
-	 
 	    var GoodsArr = [];
 	    var UnitArr = [];
 	    var QtyArr = [];
 	    var TotalUSDAmountArr = [];
 	    var UnitPriceArr = [];
 	    
-	    var Product = $(".contract_add .GoodsTd").eq(0).find('input').val();
 	    for(var i = 0 ; i < $(".contract_add .GoodsTd").length ; i++){
 	    	var str = $(".contract_add .GoodsTd").eq(i).find('input').val();
 	    	GoodsArr.push(str);
@@ -1673,22 +1635,6 @@ $(function(){
 			TotalUSDAmountArr.push(str);
 		}
 		
-	    if(area == 0){  //100%
-	    	var PO_NO=$('.contract_add input[name="po_no"]').val();
-	   		var ninePaid = 0;
-	   		var tenPaid = 0;
-	    }
-	    else if(area == 1){ //10%
-	    	var PO_NO="NA";
-	   		// var tenPaid= $('.contract_add input[name="tenPaid"]').val();
-	   		var tenPaid = parseFloat(Number($('.contract_add input[name="tenPaid"]').val().replace(/,/g,'')));
-	   		var ninePaid = 0;
-	    }
-	    else{
-	    	var PO_NO="NA";
-	   		var ninePaid= parseFloat(Number($('.contract_add input[name="ninePaid"]').val().replace(/,/g,'')));
-	   		var tenPaid = 0;
-	    }
 	    if(GoodsArr ==''){
 	    	 $.MsgBox_Unload.Alert("提示","货物名称为必填项！"); 
 	    	 return; 
@@ -1697,10 +1643,63 @@ $(function(){
 	    	$.MsgBox_Unload.Alert("提示","数量和单价（美元）和总价（美元）为必填项！");
 	    	return;
 	    }
+
+		var iThat = $(this);
+		eouluGlobal.C_btnDisabled(iThat, true, "提交中...");
+
+	    var area=$('.contract_add select[name="area"]').val();
+	    var contract_no=$('.contract_add input[name="contract_no"]').val();
+	    var INVOICE_NO=$('.contract_add input[name="INVOICE_NO"]').val();
+	    var DC_NO=$('.contract_add input[name="DC_NO"]').val();
+	    var Applicant=$('.contract_add input[name="Applicant"]').val();
+	    var ADD=$('.contract_add input[name="ADD"]').val();
+	    var TheEndUser=$('.contract_add input[name="TheEndUser"]').val();
+	    var OtherReference=$('.contract_add input[name="OtherReference"]').val();
+	    var Departure_date=$('.contract_add input[name="Departure_date"]').val()== "" ? "0000-00-00" :$('.contract_add input[name="Departure_date"]').val() ;
+	    var Vessel_flight=$('.contract_add input[name="Vessel_flight"]').val();
+	    var From=$('.contract_add input[name="From"]').val();
+	    var To=$('.contract_add input[name="To"]').val();
+	    var Packing=$('.contract_add input[name="Packing"]').val();
+	    var CountryofOrigin=$('.contract_add input[name="CountryofOrigin"]').val();
+	    var Manufacturer=$('.contract_add input[name="Manufacturer"]').val();
+	    var ShippingMark=$('.contract_add input[name="ShippingMarkNo"]').val() +"&&"+$('.contract_add input[name="ShippingMarkAdd"]').val();
+	    var AIRPORT=$('.contract_add input[name="AIRPORT"]').val();
+	    var TotalAmount=parseFloat($('.contract_add input[name="USD"]').val().replace(/,/g,''));
+	   
+	    if(isNaN(TotalAmount)){ 
+	    	TotalAmount = '0';
+	    }
+	    
+	    var iDate=$('.contract_add input[name="installed_time"]').val()== "" ? "0000-00-00" :$('.contract_add input[name="installed_time"]').val();
+	    
+	    var TelFax=$('.contract_add input[name="TEL"]').val();
+	    var remarks = $('.contract_add input[name="remarks"]').val();
+	 	var Product = $(".contract_add .GoodsTd").eq(0).find('input').val();
+ 	 	var PO_NO = "";
+ 		var ninePaid = 0;
+ 		var tenPaid = 0;
+
+	    if(area == 0){  //100%
+	    	PO_NO=$('.contract_add input[name="po_no"]').val();
+	   		ninePaid = 0;
+	   		tenPaid = 0;
+	    }
+	    else if(area == 1){ //10%
+	    	PO_NO="NA";
+	   		tenPaid = parseFloat(Number($('.contract_add input[name="tenPaid"]').val().replace(/,/g,'')));
+	   		ninePaid = 0;
+	    }
+	    else{
+	    	PO_NO="NA";
+	   		ninePaid= parseFloat(Number($('.contract_add input[name="ninePaid"]').val().replace(/,/g,'')));
+	   		tenPaid = 0;
+	    }
+
 	    PO_NO = Trim(PO_NO);
 	    contract_no = Trim(contract_no);
 	    INVOICE_NO = Trim(INVOICE_NO);
 	    DC_NO = Trim(DC_NO);
+	    
 	    $.ajax({
 	        // type : 'get',
 	        type : 'POST',
@@ -1709,7 +1708,7 @@ $(function(){
 	            ContractNO : contract_no,
 	            AirPort : AIRPORT,
 	            Applicant : Applicant,
-	            Date : Date,
+	            Date : iDate,
 	            DCNO : DC_NO,
 	            Departure : From,
 	            DepartureDate : Departure_date,
@@ -1751,6 +1750,9 @@ $(function(){
 	        },
 	        error: function () {
 	        	$.MsgBox_Unload.Alert("提示", "服务器繁忙，稍后重试！");
+	        },
+	        complete: function(XMLHttpRequest, textStatus){
+	            eouluGlobal.C_btnAbled(iThat, true, "提交");
 	        }
 	    });    
 	    

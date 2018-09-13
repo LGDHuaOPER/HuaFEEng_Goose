@@ -16,6 +16,7 @@
         <link rel="stylesheet" href="css/libs/bootstrap.min.css" type="text/css">
         <link rel="stylesheet" href="css/global/eouluCustom.css" type="text/css">
         <link rel="stylesheet" href="css/Lab.css" type="text/css">
+        <link rel="stylesheet" href="css/global/eoulu_ul_reset.css" type="text/css">
         <style>
             .u-admin a {
                 vertical-align: top !important;
@@ -90,7 +91,7 @@
                             <div class="g_body">
                                 <div class="m_button">
                                     <div class="m_button_l">
-                                        <input type="button" class="eou-button eou-button-radius eou-button-30 eou-button-w60" value="添加"><!-- <input type="button" class="eou-button eou-button-radius eou-button-30 eou-button-w60" id="keysight_export" value="导出"> -->
+                                        <input type="button" class="btn btn-info" value="添加">
                                     </div>
                                     <div class="m_button_r" style="display: none;">
                                         <div class="m_button_r_top">
@@ -145,21 +146,135 @@
                                 </div>
                                 <!-- 页面表格主体 -->
                                 <div class="m_table">
-                                    <table class="eou-table-collapse">
-                                        <thead>
-                                            <tr>
-                                                <th class="t1">序号</th>
-                                                <th class="t2">产品型号</th>
-                                                <th class="t3">产品描述</th>
-                                                <th class="t4">数量</th>
-                                                <th class="t5">实验室</th>
-                                                <th class="t6">产品图片</th>
-                                                <th class="t7">详细配置</th>
-                                            </tr>
-                                        </thead>
-                                        <tbody>
-                                        </tbody>
-                                    </table>
+                                    <div class="tab_wrapper">
+                                        <!-- Nav tabs -->
+                                        <ul class="nav nav-tabs" role="tablist">
+                                            <li role="presentation" class="active"><a href="#suzhou_a" aria-controls="suzhou_a" role="tab" data-toggle="tab">苏州</a></li>
+                                            <li role="presentation"><a href="#xiameng_a" aria-controls="xiameng_a" role="tab" data-toggle="tab">厦门</a></li>
+                                            <li role="presentation"><a href="#shenzhen_a" aria-controls="shenzhen_a" role="tab" data-toggle="tab">深圳</a></li>
+                                            <li role="presentation"><a href="#beijing_a" aria-controls="beijing_a" role="tab" data-toggle="tab">北京</a></li>
+                                            <li role="presentation"><a href="#shijiazhuang_a" aria-controls="shijiazhuang_a" role="tab" data-toggle="tab">石家庄</a></li>
+                                            <li role="presentation"><a href="#chengdu_a" aria-controls="chengdu_a" role="tab" data-toggle="tab">成都</a></li>
+                                        </ul><!-- Nav tabs end -->
+
+                                        <!-- Tab panes -->
+                                        <div class="tab-content">
+                                            <div role="tabpanel" class="tab-pane fade in active" id="suzhou_a">
+                                                <table>
+                                                    <thead>
+                                                        <tr>
+                                                            <th class="t1">序号</th>
+                                                            <th class="t2">系统名称</th>
+                                                            <th class="t3">系统描述</th>
+                                                            <th class="t4">数量</th>
+                                                            <th class="t5 t_hide">实验室</th>
+                                                            <th class="t6">产品图片</th>
+                                                            <th class="t7">详细配置</th>
+                                                            <th class="t8">应用文档</th>
+                                                            <th class="t9">更新时间</th>
+                                                        </tr>
+                                                    </thead>
+                                                    <tbody>
+                                                    </tbody>
+                                                </table>
+                                            </div>
+                                            <div role="tabpanel" class="tab-pane fade" id="xiameng_a">
+                                                <table>
+                                                    <thead>
+                                                        <tr>
+                                                            <th class="t1">序号</th>
+                                                            <th class="t2">系统名称</th>
+                                                            <th class="t3">系统描述</th>
+                                                            <th class="t4">数量</th>
+                                                            <th class="t5 t_hide">实验室</th>
+                                                            <th class="t6">产品图片</th>
+                                                            <th class="t7">详细配置</th>
+                                                            <th class="t8">应用文档</th>
+                                                            <th class="t9">更新时间</th>
+                                                        </tr>
+                                                    </thead>
+                                                    <tbody>
+                                                    </tbody>
+                                                </table>
+                                            </div><!-- xiameng_a end -->
+                                            <div role="tabpanel" class="tab-pane fade" id="shenzhen_a">
+                                                <table>
+                                                    <thead>
+                                                        <tr>
+                                                            <th class="t1">序号</th>
+                                                            <th class="t2">系统名称</th>
+                                                            <th class="t3">系统描述</th>
+                                                            <th class="t4">数量</th>
+                                                            <th class="t5 t_hide">实验室</th>
+                                                            <th class="t6">产品图片</th>
+                                                            <th class="t7">详细配置</th>
+                                                            <th class="t8">应用文档</th>
+                                                            <th class="t9">更新时间</th>
+                                                        </tr>
+                                                    </thead>
+                                                    <tbody>
+                                                    </tbody>
+                                                </table>
+                                            </div>
+                                            <div role="tabpanel" class="tab-pane fade" id="beijing_a">
+                                                <table>
+                                                    <thead>
+                                                        <tr>
+                                                            <th class="t1">序号</th>
+                                                            <th class="t2">系统名称</th>
+                                                            <th class="t3">系统描述</th>
+                                                            <th class="t4">数量</th>
+                                                            <th class="t5 t_hide">实验室</th>
+                                                            <th class="t6">产品图片</th>
+                                                            <th class="t7">详细配置</th>
+                                                            <th class="t8">应用文档</th>
+                                                            <th class="t9">更新时间</th>
+                                                        </tr>
+                                                    </thead>
+                                                    <tbody>
+                                                    </tbody>
+                                                </table>
+                                            </div>
+                                            <div role="tabpanel" class="tab-pane fade" id="shijiazhuang_a">
+                                                <table>
+                                                    <thead>
+                                                        <tr>
+                                                            <th class="t1">序号</th>
+                                                            <th class="t2">系统名称</th>
+                                                            <th class="t3">系统描述</th>
+                                                            <th class="t4">数量</th>
+                                                            <th class="t5 t_hide">实验室</th>
+                                                            <th class="t6">产品图片</th>
+                                                            <th class="t7">详细配置</th>
+                                                            <th class="t8">应用文档</th>
+                                                            <th class="t9">更新时间</th>
+                                                        </tr>
+                                                    </thead>
+                                                    <tbody>
+                                                    </tbody>
+                                                </table>
+                                            </div><!-- shijiazhuang_a end -->
+                                            <div role="tabpanel" class="tab-pane fade" id="chengdu_a">
+                                                <table>
+                                                    <thead>
+                                                        <tr>
+                                                            <th class="t1">序号</th>
+                                                            <th class="t2">系统名称</th>
+                                                            <th class="t3">系统描述</th>
+                                                            <th class="t4">数量</th>
+                                                            <th class="t5 t_hide">实验室</th>
+                                                            <th class="t6">产品图片</th>
+                                                            <th class="t7">详细配置</th>
+                                                            <th class="t8">应用文档</th>
+                                                            <th class="t9">更新时间</th>
+                                                        </tr>
+                                                    </thead>
+                                                    <tbody>
+                                                    </tbody>
+                                                </table>
+                                            </div>
+                                        </div><!-- Tab panes end-->
+                                    </div><!-- tab_wrapper end -->
                                 </div>
                                 <!-- 翻页 -->
                                 <div class="m_page">
@@ -188,55 +303,82 @@
                         </div>
                         <div class="add_NonStandard_body">
                             <div class="add_NonStandard_body_in">
-                                <div class="add_NonStandard_body_tit">设备清单</div>
-                                <div class="add_NonStandard_body_main">
-                                    <div class="add_NonStandard_body_main_l">
-                                        <div class="line_0">
-                                            <div class="line_01"><span class="glyphicon glyphicon-search" aria-hidden="true"></span>产品型号</div>
-                                            <div class="line_02" style="position:relative">
-                                                <input type="text" class="info_Model">
-                                                <select name="" id="add_Commodity" multiple style="display:none">
-                                                </select>
+                                <fieldset><legend>基本信息</legend>
+                                    <div class="container-fluid">
+                                        <div class="row">
+                                            <div class="col-md-6 col-lg-6">
+                                                <div class="form-horizontal">
+                                                    <div class="form-group">
+                                                        <label class="col-sm-3 control-label" for="add_info_Model"><span class="glyphicon glyphicon-search" aria-hidden="true"></span>系统名称</label>
+                                                        <div class="col-sm-9">
+                                                            <input type="text" class="form-control" id="add_info_Model">
+                                                            <select id="add_Commodity" multiple>
+                                                            </select>
+                                                        </div>
+                                                    </div>
+                                                    <div class="form-group">
+                                                        <label class="col-sm-3 control-label" for="add_info_Description"><span class="glyphicon glyphicon-paperclip" aria-hidden="true"></span>系统描述</label>
+                                                        <div class="col-sm-9">
+                                                            <input type="text" class="form-control" id="add_info_Description">
+                                                        </div>
+                                                    </div>
+                                                    <div class="form-group">
+                                                        <label class="col-sm-3 control-label">产品图片</label>
+                                                        <div class="col-sm-9 relative_div">
+                                                            <input type="text" class="form-control" id="add_info_Picture" readonly="readonly" disabled="disabled"><input type="button" class="btn btn-info add_upload_Picture" value="上传">
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="col-md-6 col-lg-6">
+                                                <div class="form-horizontal">
+                                                    <div class="form-group">
+                                                        <label for="add_info_Number" class="col-sm-3 control-label">数量</label>
+                                                        <div class="col-sm-9">
+                                                            <input type="text" class="form-control" id="add_info_Number">
+                                                        </div>
+                                                    </div>
+                                                    <div class="form-group">
+                                                        <label for="add_info_Laboratory" class="col-sm-3 control-label">实验室</label>
+                                                        <div class="col-sm-9">
+                                                            <select id="add_info_Laboratory" class="form-control" name="Laboratory_sel"></select>
+                                                        </div>
+                                                    </div>
+                                                </div>
                                             </div>
                                         </div>
-                                        <div class="line_0">
-                                            <div class="line_01"><span class="glyphicon glyphicon-paperclip" aria-hidden="true"></span>产品描述</div>
-                                            <div class="line_02">
-                                                <input type="text" class="info_Description" readonly="readonly" disabled="disabled">
-                                            </div>
-                                        </div>
-                                        <div class="line_0">
-                                            <div class="line_01">产品图片</div>
-                                            <div class="line_02 line_relative">
-                                                <input type="text" class="info_Picture" readonly="readonly" disabled="disabled"><input type="button" class="eou-button eou-button-radius eou-button-30 eou-button-w50" value="上传">
-                                            </div>
-                                        </div>
+                                    </div><!-- container-fluid end -->
+                                </fieldset>
+                                <fieldset><legend>应用文档</legend>
+                                    <div class="form-group">
+                                        <label for="add_file_Upload" class="trigger_click"><button type="button" class="btn btn-info"><span class="glyphicon glyphicon-folder-open" aria-hidden="true"></span>&nbsp;选择文件</button></label>
+                                        <input type="file" id="add_file_Upload" multiple="multiple" accept="application/msword, application/pdf, image/*, application/vnd.ms-powerpoint, text/plain, application/vnd.openxmlformats-officedocument.presentationml.presentation, application/vnd.openxmlformats-officedocument.wordprocessingml.document">
+                                        <label class="add_label_upload"><button type="button" class="btn btn-info"><span class="glyphicon glyphicon-cloud-upload" aria-hidden="true"></span>&nbsp;上传</button></label>
                                     </div>
-                                    <!-- 右部 -->
-                                    <div class="add_NonStandard_body_main_r">
-                                        <div class="line_0">
-                                            <div class="line_01">数量</div>
-                                            <div class="line_02">
-                                            	<input type="text" class="info_Number">
+                                    <div class="add_fileList_ul_wrapper">
+                                        <div class="add_fileList_info">
+                                            上传总进度：
+                                            <div class="progress">
+                                                <div class="progress-bar progress-bar-info progress-bar-striped active" role="progressbar" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100" style="min-width: 2em;">0%</div>
                                             </div>
+                                            上传成功数占比：
+                                            <div class="progress">
+                                                <div class="progress-bar progress-bar-success progress-bar-striped active" role="progressbar" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100" style="min-width: 2em;">0%</div>
+                                            </div>  
                                         </div>
-                                        <div class="line_0">
-                                            <div class="line_01">实验室</div>
-                                            <div class="line_02">
-                                                <select id="addLaboratory" class="info_Laboratory">
-                                                    
-                                                </select>
-                                            </div>
-                                        </div>
-                                    <!-- 右部结束   -->
+                                        <ul class="list-group" id="add_fileList_ul">
+                                            <!-- <li class="list-group-item list-group-item-success"><span class="badge">14</span>Cras justo odio</li>
+                                            <li class="list-group-item list-group-item-danger"><span class="badge">14</span>Dapibus ac facilisis in</li>
+                                            <li class="list-group-item"><span class="badge">14</span>Morbi leo risus</li> -->
+                                        </ul>
                                     </div>
-                                </div>
-                            </div>
+                                </fieldset>
+                            </div><!-- add_NonStandard_body_in end -->
                         </div>
                         <div class="add_NonStandard_foot">
                             <div class="add_NonStandard_foot_in">
-                                <input type="button" class="eou_new_btn eou_new_radius eou-button-30 eou-button-w60" id="NonStandard_addsubmit" value="提交">
-                                <input type="button" class="eou_new_btn eou_new_radius eou-button-30 eou-button-w60" id="NonStandard_addclose" value="取消">
+                                <input type="button" class="btn btn-success" id="NonStandard_addsubmit" value="提交">
+                                <input type="button" class="btn btn-warning" id="NonStandard_addclose" value="取消">
                             </div>
                         </div>
                     </div>
@@ -249,58 +391,85 @@
                         </div>
                         <div class="update_NonStandard_body">
                             <div class="update_NonStandard_body_in">
-                                <div class="update_NonStandard_body_tit">设备清单</div>
-                                <div class="update_NonStandard_body_main">
-                                    <div class="update_NonStandard_body_main_l">
-                                        <div class="line_0">
-                                            <div class="line_01"><span class="glyphicon glyphicon-search" aria-hidden="true"></span>产品型号</div>
-                                            <div class="line_02" style="position:relative">
-                                                <input type="text" class="info_Model">
-                                                <select name="" id="update_Commodity" multiple style="display:none">
-                                                </select>
+                                <fieldset><legend>基本信息</legend>
+                                    <div class="container-fluid">
+                                        <div class="row">
+                                            <div class="col-md-6 col-lg-6">
+                                                <div class="form-horizontal">
+                                                    <div class="form-group">
+                                                        <label class="col-sm-3 control-label" for="update_info_Model"><span class="glyphicon glyphicon-search" aria-hidden="true"></span>系统名称</label>
+                                                        <div class="col-sm-9">
+                                                            <input type="text" class="form-control" id="update_info_Model">
+                                                            <select id="update_Commodity" multiple>
+                                                            </select>
+                                                        </div>
+                                                    </div>
+                                                    <div class="form-group">
+                                                        <label class="col-sm-3 control-label" for="update_info_Description"><span class="glyphicon glyphicon-paperclip" aria-hidden="true"></span>系统描述</label>
+                                                        <div class="col-sm-9">
+                                                            <input type="text" class="form-control" id="update_info_Description">
+                                                        </div>
+                                                    </div>
+                                                    <div class="form-group">
+                                                        <label class="col-sm-3 control-label">产品图片</label>
+                                                        <div class="col-sm-9 relative_div">
+                                                            <input type="text" class="form-control" id="update_info_Picture" readonly="readonly" disabled="disabled"><input type="button" class="btn btn-info update_upload_Picture" value="上传">
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="col-md-6 col-lg-6">
+                                                <div class="form-horizontal">
+                                                    <div class="form-group">
+                                                        <label for="update_info_Number" class="col-sm-3 control-label">数量</label>
+                                                        <div class="col-sm-9">
+                                                            <input type="text" class="form-control" id="update_info_Number">
+                                                        </div>
+                                                    </div>
+                                                    <div class="form-group">
+                                                        <label for="update_info_Laboratory" class="col-sm-3 control-label">实验室</label>
+                                                        <div class="col-sm-9">
+                                                            <select id="update_info_Laboratory" class="form-control" name="Laboratory_sel"></select>
+                                                        </div>
+                                                    </div>
+                                                </div>
                                             </div>
                                         </div>
-                                        <div class="line_0">
-                                            <div class="line_01"><span class="glyphicon glyphicon-paperclip" aria-hidden="true"></span>产品描述</div>
-                                            <div class="line_02">
-                                                <input type="text" class="info_Description" readonly="readonly" disabled="disabled">
-                                            </div>
-                                        </div>
-                                        <div class="line_0">
-                                            <div class="line_01">产品图片</div>
-                                            <div class="line_02 line_relative">
-                                                <input type="text" class="info_Picture" readonly="readonly" disabled="disabled"><input type="button" class="eou-button eou-button-radius eou-button-30 eou-button-w50" value="上传">
-                                            </div>
-                                        </div>
+                                    </div><!-- container-fluid end -->
+                                </fieldset>
+                                <fieldset><legend>应用文档</legend>
+                                    <div class="form-group">
+                                        <label for="update_file_Upload" class="trigger_click"><button type="button" class="btn btn-info"><span class="glyphicon glyphicon-folder-open" aria-hidden="true"></span>&nbsp;选择文件</button></label>
+                                        <input type="file" id="update_file_Upload" multiple="multiple" accept="application/msword, application/pdf, image/*, application/vnd.ms-powerpoint, text/plain, application/vnd.openxmlformats-officedocument.presentationml.presentation, application/vnd.openxmlformats-officedocument.wordprocessingml.document">
+                                        <label class="update_label_upload"><button type="button" class="btn btn-info"><span class="glyphicon glyphicon-cloud-upload" aria-hidden="true"></span>&nbsp;上传</button></label>
                                     </div>
-                                    <!-- 右部 -->
-                                    <div class="update_NonStandard_body_main_r">
-                                        <div class="line_0">
-                                            <div class="line_01">数量</div>
-                                            <div class="line_02">
-                                            	<input type="text" class="info_Number">
+                                    <div class="update_fileList_ul_wrapper">
+                                        <div class="update_fileList_info">
+                                            上传总进度：
+                                            <div class="progress">
+                                                <div class="progress-bar progress-bar-info progress-bar-striped active" role="progressbar" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100" style="min-width: 2em;">0%</div>
                                             </div>
+                                            上传成功数占比：
+                                            <div class="progress">
+                                                <div class="progress-bar progress-bar-success progress-bar-striped active" role="progressbar" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100" style="min-width: 2em;">0%</div>
+                                            </div>  
                                         </div>
-                                        <div class="line_0">
-                                            <div class="line_01">实验室</div>
-                                            <div class="line_02">
-                                                <select id="updateLaboratory" class="info_Laboratory">
-                                                    
-                                                </select>
-                                            </div>
-                                        </div>
-                                    <!-- 右部结束   -->
+                                        <ul class="list-group" id="update_fileList_ul">
+                                            <!-- <li class="list-group-item list-group-item-success"><span class="badge">14</span>Cras justo odio</li>
+                                            <li class="list-group-item list-group-item-danger"><span class="badge">14</span>Dapibus ac facilisis in</li>
+                                            <li class="list-group-item"><span class="badge">14</span>Morbi leo risus</li> -->
+                                        </ul>
                                     </div>
-                                </div>
-                            </div>
+                                </fieldset>
+                            </div><!-- update_NonStandard_body_in end -->
                         </div>
                         <div class="update_NonStandard_foot">
                             <div class="update_NonStandard_foot_in">
-                                <input type="button" class="eou_new_btn eou_new_radius eou-button-30 eou-button-w60" id="NonStandard_updatesubmit" value="提交">
-                                <input type="button" class="eou_new_btn eou_new_radius eou-button-30 eou-button-w60" id="NonStandard_updateclose" value="取消">
+                                <input type="button" class="btn btn-success" id="NonStandard_updatesubmit" value="提交">
+                                <input type="button" class="btn btn-warning" id="NonStandard_updateclose" value="取消">
                             </div>
                         </div>
-                    </div>
+                    </div><!-- 修改结束 -->
 
 					<!-- 详细配置 -->
                     <div class="cover_bg2"></div>
@@ -373,7 +542,7 @@
                             <div class="dropFileCon">
                                 <div class="dropFileConMid">
                                     <div class="dropFileConMidTop">
-                                        <input type="button" class="eou-button eou-button-radius eou-button-20 eou-button-w60 preUpload1" value="浏览..." title="选择文件">
+                                        <input type="button" class="btn btn-info preUpload1" value="浏览..." title="选择文件">
                                         <input type="text" readonly="readonly" class="serFinRepUploadName" placeholder="未选择文件"><span class="isUpload"></span>
                                         <!-- accept="image/gif, image/jpeg" -->
                                         <input type="file" id="serFinRepUpload" accept="image/*">
@@ -383,7 +552,7 @@
                                         <div class="progressIn">0%</div>
                                     </div>
                                     <div class="dropFileConMidbot">
-                                        <input type="button" class="eou-button eou-button-radius eou-button-30 eou-button-w60 dropUp2" value="上传">
+                                        <input type="button" class="btn btn-info dropUp2" value="上传">
                                     </div>
                                 </div>
                             </div>
@@ -410,8 +579,8 @@
 
         <!-- <script src="js/libs/jquery-3.3.1.min.js"></script> -->
         <script src="js/libs/bootstrap.min.js"></script>
-        <script src="js/global/myFunction.js"></script>
-        <script src="js/msgbox_unload.js"></script>
+        <!-- <script src="js/global/myFunction.js"></script> -->
+        <!-- <script src="js/msgbox_unload.js"></script> -->
         <!-- <script src="js/libs/jSignature.min.js"></script> -->
         <script src="plugins/colResizable/colResizable-1.6.min.js"></script>
         <script src="js/Lab.js"></script>

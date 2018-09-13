@@ -1,6 +1,8 @@
 package com.eoulu.service.impl;
 
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -19,17 +21,25 @@ import net.sf.json.JSONObject;
 public class LabServiceImpl implements LabService{
 
 	@Override
-	public List<Map<String, Object>> getDataByPage(Page page) {
-		return new LabDao().getDataByPage(page);
+	public List<Map<String, Object>> getDataByPage(String Laboratory,Page page) {
+		return new LabDao().getDataByPage(Laboratory,page);
 	}
 
 	@Override
 	public boolean insert(Laboratory lab) {
+		SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+		String updateTime = format.format(new Date());
+		lab.setUpdateTime(updateTime);
+		
 		return new LabDao().insert(lab);
 	}
 
 	@Override
 	public boolean update(Laboratory lab) {
+		SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+		String updateTime = format.format(new Date());
+		lab.setUpdateTime(updateTime);
+		
 		return new LabDao().update(lab);
 	}
 

@@ -1,3 +1,159 @@
+#global_table_style_wrapper, #glbal_table_page_wrapper {
+	min-width: 1000px;
+	width: 90%;
+	margin: 2px auto;
+}
+
+#global_table_style {
+	min-width: 1000px;
+    width: 100%;
+    box-sizing: border-box;
+    border-collapse: collapse;
+    /*如果定义两个 length 参数，那么第一个设置水平间距，而第二个设置垂直间距。*/
+    border-spacing: 0;
+    text-align: center;
+    font-size: 14px;
+    box-shadow: -3px 3px 10px 2px rgba(195,206,220,0.7), 3px 3px 10px 2px rgba(195,206,220,0.7);
+}
+
+/*超出隐藏*/
+#global_table_style .global_overflow_hide {
+	overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+#global_table_style td, #global_table_style th {
+	overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    padding: 1px 2px;
+}
+
+#global_table_style th {
+	text-align: center;
+	font-size: 15px;
+	font-weight: 600;
+}
+
+#global_table_style td:not(:first-child) {
+	border-left: 1px solid #999;
+}
+
+#global_table_style tbody tr:nth-child(odd) {
+	height: 40px;
+	background: #fff;
+}
+
+#global_table_style tbody tr:nth-child(even) {
+	height: 40px;
+	background: rgba(195,206,220,0.9);
+}
+
+#global_table_style thead tr {
+	height: 35px;
+	background: #b5b5b5;
+}
+
+/*翻页*/
+#glbal_table_page, #global_table_page {
+	margin-top: 8px;
+	/*display: table-cell;*/
+	width: 100%;
+	height: 32px;
+	line-height: 32px;
+	text-align: right;
+	padding-top: 1px;
+	padding-right: 10px;
+	font-size: 15px;
+}
+
+#glbal_table_page>.pageInfo, #glbal_table_page>.changePage, #global_table_page>.pageInfo, #global_table_page>.changePage {
+	display: inline-block;
+}
+
+
+
+/*
+*备份的样式 class命名*
+ */
+.gl_table_style_wrapper, .gl_table_page_wrapper {
+	min-width: 1000px;
+	width: 90%;
+	margin: 2px auto;
+}
+	/*可修改*/
+.gl_table_style_wrapper {
+	min-height: 446px;
+}
+
+.gl_table_style {
+	min-width: 1000px;
+    width: 100%;
+    box-sizing: border-box;
+    border-collapse: collapse;
+    /*如果定义两个 length 参数，那么第一个设置水平间距，而第二个设置垂直间距。*/
+    border-spacing: 0;
+    text-align: center;
+    font-size: 14px;
+    box-shadow: -3px 3px 10px 2px rgba(195,206,220,0.7), 3px 3px 10px 2px rgba(195,206,220,0.7);
+}
+
+/*超出隐藏*/
+.gl_table_style .gl_overflow_hide {
+	overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+.gl_table_style td, .gl_table_style th {
+	overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    padding: 1px 2px;
+}
+
+.gl_table_style th {
+	text-align: center;
+	font-size: 15px;
+	font-weight: 600;
+}
+
+.gl_table_style td:not(:first-child) {
+	border-left: 1px solid #999;
+}
+
+.gl_table_style tbody tr:nth-child(odd) {
+	height: 40px;
+	background: #fff;
+}
+
+.gl_table_style tbody tr:nth-child(even) {
+	height: 40px;
+	background: rgba(195,206,220,0.9);
+}
+
+.gl_table_style thead tr {
+	height: 35px;
+	background: #b5b5b5;
+}
+
+/*翻页*/
+.gl_table_page {
+	margin-top: 8px;
+	/*display: table-cell;*/
+	width: 100%;
+	height: 32px;
+	line-height: 32px;
+	text-align: right;
+	padding-top: 1px;
+	padding-right: 10px;
+	font-size: 15px;
+}
+
+.gl_table_page>.pageInfo, .gl_table_page>.changePage {
+	display: inline-block;
+}
 
 
 /*------------------------------------ɸѡ-----------------------------------*/
@@ -105,52 +261,6 @@
 .file:hover{
     background: #fff;
     color:#00aeef ;
-}
-
-/*----------------------------------ҳ��������---------------------------------*/
-
-.table{
-    margin: 0 auto;
-    width: 90%;
-    height: auto;
-    background: #e4e8eb;
-    color: #000;
-    table-layout: fixed;
-    border: 1px solid #000;
-}
-
-
-#table1{
-    margin: 0 auto;
-    width: 90%;
-    height: auto;
-    background: #f8f8f8;
-    color: #000;
-    border: 1px solid #999;
-    box-sizing: border-box;
-    border-collapse: collapse;
-}
-
-
-#table1 td{
-    text-align: center;
-    height: 30px;
-    min-width:50px;
-    max-width:150px;
-  /*   word-break: break-all; */
-    font-size: 15px;
-    color: #000;
-    font-weight: normal;
-    overflow: hidden;
-    text-overflow: ellipsis;
-    white-space: nowrap;
-}
-#table1 td a{
-    color: #000;
-}
-
-.fa{
-    cursor: pointer;
 }
 
 /*------------------------������------------------------------*/
@@ -319,15 +429,19 @@
     right: 5px;
     cursor: pointer;
 }
-.cover-color{
-    width: 100%;
-    height:100%;
+.cover-color, .export_cover {
+    width: 100vw;
+    height: 100vh;
     background-color: rgba(10%,20%,30%,0.7);
     position: absolute;
     top: -10px;
     left: 0;
     display: none;
     overflow: hidden;
+}
+
+.export_cover {
+    z-index: 10;
 }
 
 .flow{
@@ -464,35 +578,6 @@
     cursor: pointer;
 }
 
-/*----------------------------------------��ҳ----------------------------------------*/
-.content #page{
-    height: 50px;
-    float:right;
-    margin-top: 20px;
-    margin-right:60px;
-}
-
-.changePage{
-    display:inline-block;
-
-}
-.changePage input[type="button"]{
-    cursor:pointer;
-    border:none;
-    border-radius:3px;
-    width:50px;
-    height:30px;
-}
-
-.changePage input[type="text"]{
-    width:60px;
-    height:20px;
-}
-.pageInfo{
-    display:inline-block;
-    color:#000;
-}
-
 /*------------------------------�ײ�----------------------------------*/
 .footer{
     width: 100%;
@@ -505,10 +590,6 @@
 }
 .footer #p1{
     margin-top: 12px;
-}
-#table1 td{
-	min-width:40px!important;
-	max-width:100px!important;
 }
 
 .input_css{
@@ -602,6 +683,8 @@
     width: 100%;
     text-align: left;
     border: 1px solid #00aeef;
+    box-sizing: border-box;
+    border-collapse: collapse;
 }
 
 .customer_info_table td {
@@ -623,5 +706,150 @@
 }
 
 .edit {
+    cursor: pointer;
+}
+
+/*2018-09-13更新*/
+/*覆盖样式*/
+.table_col1, .table_col2, .table_col3 {
+    box-sizing: content-box;
+}
+
+.content .select-content {
+    padding-top: 10px !important;
+}
+
+.content .choose {
+    margin-bottom: 10px !important;
+}
+
+.content .choose input[type="button"], .content .select-button input[type="button"] {
+    width: auto !important;
+    height: auto !important;
+    border: 1px solid transparent !important;
+}
+
+.content {
+    padding-bottom: 5px !important;
+}
+
+.g-nav-ul li {
+    height: 80px !important;
+    line-height: 80px !important;
+}
+
+hr {
+    margin-top: 1px;
+    margin-bottom: 1px;
+}
+
+.u-admin img {
+    vertical-align: top;
+}
+
+/*布局*/
+html,body{
+    width:100%;
+    height:100%;
+}
+
+#Transport_wrapper {
+    position:fixed;
+    overflow:auto;
+    width:100%;
+    height:100%;
+    box-sizing:border-box;
+}
+
+#Transport_sticker {
+    width:100%;
+    min-height:100%;
+    box-sizing:border-box;
+}
+
+#Transport_sticker-con {
+    padding-bottom:40px;
+    box-sizing:border-box;
+}
+
+#Transport_footer {
+    margin-top:-40px;
+}
+
+/*导出模板*/
+.export_div {
+    position: absolute;
+    top: 50px;
+    left: calc(50% - 420px);
+    width: 840px;
+    display: none;
+    z-index: 12;
+    background: #fff;
+}
+
+.export_div_tit {
+    position: relative;
+    height: 40px;
+    line-height: 40px;
+    background-color: #707070;
+    color: #fff;
+    text-indent: 20px;
+    font-size: 18px;
+}
+
+.export_div_tit>span.glyphicon {
+    position: absolute;
+    top: 8px;
+    right: 20px;
+    font-size: 22px;
+}
+
+.export_div_body_in {
+    margin: 20px;
+}
+
+.export_div_body_in legend {
+    margin-bottom: 10px;
+    font-size: 18px;
+    color: #00aeef;
+    font-weight: 500;
+}
+
+.export_div_body_in table td:nth-child(1) {
+    max-width: 110px;
+    width: 110px;
+    text-align: right;
+}
+
+.export_div_foot {
+    padding-bottom: 10px;
+    text-align: center;
+}
+
+.export_div_foot_in {
+    display: inline-block;
+}
+
+.export_div_foot_in>input+input {
+    margin-left: 40px;
+}
+/*导出模板end*/
+
+#global_table_style th, #global_table_style td {
+    max-width: 150px;
+    min-width: 60px;
+}
+
+th.th2, td.CustomerName {
+    max-width: 230px;
+}
+
+/*维护隐藏元素*/
+.th12, .th13, .th14, .th15, .th16, .th17, .th18, td.CustomerClassify, td.ZipCode, td.FaxNumber, td.ShorthandCoding, td.Website, td.DepartmentEnglish, td.EnglishName {
+    display: none;
+}
+
+/*维护鼠标悬浮样式*/
+span.glyphicon {
     cursor: pointer;
 }

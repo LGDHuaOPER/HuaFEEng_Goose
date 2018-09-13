@@ -3,8 +3,18 @@
  */
 package com.eoulu.service.impl;
 
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
+import java.io.IOException;
 import java.util.List;
 import java.util.Map;
+
+import org.apache.poi.xssf.usermodel.XSSFCell;
+import org.apache.poi.xssf.usermodel.XSSFCellStyle;
+import org.apache.poi.xssf.usermodel.XSSFFont;
+import org.apache.poi.xssf.usermodel.XSSFRow;
+import org.apache.poi.xssf.usermodel.XSSFSheet;
+import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 
 import com.eoulu.commonality.Page;
 import com.eoulu.dao.CustomerDao;
@@ -13,6 +23,7 @@ import com.eoulu.entity.Customer;
 import com.eoulu.entity.Equipment;
 import com.eoulu.entity.TaxInfo;
 import com.eoulu.service.InformationBankService;
+
 
 /**
  * @author zhangkai
@@ -181,4 +192,76 @@ public class InformationBankServiceImpl implements InformationBankService{
 		return new CustomerDao().getTaxInfoForBill(customerName, contact);
 	}
 
+	@Override
+	public void exportExcel(Customer customer, String path) {
+		XSSFWorkbook xwk = new XSSFWorkbook();
+		//创建一个名为 one 的sheet
+		XSSFSheet xsheet = xwk.createSheet("客户信息");
+		
+		String[] colName = new String[]{"客户名称","客户英文名称","联系人","客户部门","联系方式","电子邮箱","联系地址"};
+		
+		XSSFCellStyle style = xwk.createCellStyle();
+		XSSFFont font = xwk.createFont();
+		font.setFontName("微软雅黑");
+		style.setFont(font);
+		xsheet.setColumnWidth(0, (int) 3000);
+		xsheet.setColumnWidth(1, (int) 12000);
+		
+		short height = 30*20;
+		xsheet.setDefaultRowHeight(height);
+		
+
+		int rowCount = colName.length; 
+	
+
+		for(int i=0;i<rowCount; i++){
+			//创建单元格
+			XSSFRow dataRow = xsheet.createRow(i);
+			XSSFCell colCell = dataRow.createCell(0);
+			colCell.setCellStyle(style);
+			colCell.setCellValue(colName[i]);
+			XSSFCell dataCell = dataRow.createCell(1);
+			dataCell.setCellStyle(style);
+			switch (colName[i]) {
+			case "客户名称":
+				dataCell.setCellValue(customer.getCustomerName());
+				break;
+
+			case "客户英文名称":
+				dataCell.setCellValue(customer.getEnglishName());
+				break;
+			case "联系人":
+				dataCell.setCellValue(customer.getContact());
+				break;
+			case "客户部门":
+				dataCell.setCellValue(customer.getCustomerDepartment());
+				break;
+			case "联系方式":
+				dataCell.setCellValue(customer.getContactInfo1());
+				break;
+			case "电子邮箱":
+				dataCell.setCellValue(customer.getEmail());
+				break;
+			case "联系地址":
+				dataCell.setCellValue(customer.getContactAddress());
+				break;
+			
+			}
+		}
+		
+		FileOutputStream fo;
+		try {
+			fo = new FileOutputStream(path);
+			xwk.write(fo);
+			fo.flush();
+			fo.close();
+			xwk.close();
+		} catch (FileNotFoundException e) {
+			e.printStackTrace();
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+	}
+			
+		
 }

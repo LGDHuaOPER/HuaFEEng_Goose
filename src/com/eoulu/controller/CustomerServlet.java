@@ -1,6 +1,7 @@
 package com.eoulu.controller;
 
 import java.io.IOException;
+
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -8,14 +9,10 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import com.eoulu.commonality.Page;
-import com.eoulu.entity.UserAccess;
+import com.eoulu.entity.Customer;
 import com.eoulu.log.AccessStatistics;
 import com.eoulu.service.InformationBankService;
-import com.eoulu.service.LogInfoService;
-import com.eoulu.service.UserAccessService;
 import com.eoulu.service.impl.InformationBankServiceImpl;
-import com.eoulu.service.impl.LogInfoServiceImpl;
-import com.eoulu.service.impl.UserAccessServiceImpl;
 
 /**
  * Servlet implementation class CustomerServlet
@@ -61,8 +58,27 @@ public class CustomerServlet extends HttpServlet {
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
-		doGet(request, response);
+		String CustomerName = request.getParameter("CustomerName");
+		String EnglishName = request.getParameter("EnglishName");
+		String Contact = request.getParameter("Contact");
+		String ContactInfo = request.getParameter("ContactInfo");
+		String CustomerDepartment = request.getParameter("CustomerDepartment");
+		String Email = request.getParameter("Email");
+		String ContactAddress = request.getParameter("ContactAddress");
+		
+		Customer customer = new Customer();
+		customer.setCustomerName(CustomerName);
+		customer.setEnglishName(EnglishName);
+		customer.setContact(Contact);
+		customer.setContactInfo1(ContactInfo);
+		customer.setCustomerDepartment(CustomerDepartment);
+		customer.setEmail(Email);
+		customer.setContactAddress(ContactAddress);
+		String path = request.getServletContext().getRealPath("/")+"down\\客户信息-"+CustomerName+".xlsx";
+		InformationBankService service = new InformationBankServiceImpl();
+		service.exportExcel(customer, path);
+		response.getWriter().write("down/客户信息-"+CustomerName+".xlsx");
+		
 	}
 
 }

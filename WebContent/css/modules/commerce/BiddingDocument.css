@@ -92,24 +92,37 @@ ul.dropdown-menu li {
 	height: 40px;
 }
 
-.m_table .inormal .t1 {
-	min-width: 50px;
-	width: 5%;
+.m_table th, .m_table td {
+	max-width: 160px;
+	min-width: 70px;
 }
 
-.m_table .jurisdiction .t1 {
-	min-width: 50px;
-	width: 5%;
+.m_table .inormal .t1, .m_table .inormal .update_td {
+	max-width: 55px;
+	min-width: 55px;
+	width: 55px;
 }
 
-.m_table .inormal th:not(.t1) {
-	min-width: 158px;
-	width: 15.83%;
+.m_table .jurisdiction .t1, .m_table .jurisdiction .update_td {
+	max-width: 55px;
+	min-width: 55px;
+	width: 55px;
 }
 
-.m_table .jurisdiction th:not(.t1) {
-	min-width: 135px;
-	width: 13.57%;
+.m_table .inormal th:not(.t1):not(.t2) {
+	width: calc(25% - 138px);
+}
+
+.m_table .jurisdiction th:not(.t1):not(.t2) {
+	width: calc(25% - 138px);
+}
+
+.m_table .inormal .t2, .m_table .inormal .hastd_FileName {
+	max-width: 500px;
+}
+
+.m_table .jurisdiction .t2, .m_table .jurisdiction .hastd_FileName {
+	max-width: 500px;
 }
 
 .hastd_downloadFile {

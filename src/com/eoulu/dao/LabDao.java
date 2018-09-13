@@ -18,12 +18,16 @@ public class LabDao {
 		
 		DBUtil dbUtil = new DBUtil();
 		
-		String sql = "insert into t_laboratory(CommodityID,Number,Laboratory,Picture) values(?,?,?,?)";
-		Object[] param = new Object[4];
-		param[0] = lab.getCommodityID();
-		param[1] = lab.getNumber();
-		param[2] = lab.getLaboratory();
-		param[3] = lab.getPicture();
+		String sql = "insert into t_laboratory(Model,Description,Number,Laboratory,Picture,Document,UpdateTime) values(?,?,?,?,?,?,?)";
+		Object[] param = new Object[7];
+		param[0] = lab.getModel();
+		param[1] = lab.getDescription();
+		param[2] = lab.getNumber();
+		param[3] = lab.getLaboratory();
+		param[4] = lab.getPicture();
+		param[5] = lab.getDocument();
+		param[6] = lab.getUpdateTime();
+		
 
 	
 		int result = dbUtil.executeUpdate(sql, param);
@@ -32,27 +36,29 @@ public class LabDao {
 	
 	public boolean update(Laboratory lab){
 		DBUtil dbUtil = new DBUtil();
-		String sql = "update t_laboratory set CommodityID=?,Number=?,Laboratory=?,Picture=? where ID=?";
-		Object[] param = new Object[5];
-		param[0] = lab.getCommodityID();
-		param[1] = lab.getNumber();
-		param[2] = lab.getLaboratory();
-		param[3] = lab.getPicture();
-		param[4] = lab.getID();
+		String sql = "update t_laboratory set Model=?,Description=?,Number=?,Laboratory=?,Picture=?,Document=?,UpdateTime=? where ID=?";
+		Object[] param = new Object[8];
+		param[0] = lab.getModel();
+		param[1] = lab.getDescription();
+		param[2] = lab.getNumber();
+		param[3] = lab.getLaboratory();
+		param[4] = lab.getPicture();
+		param[5] = lab.getDocument();
+		param[6] = lab.getUpdateTime();
+		param[7] = lab.getID();
 
 	
 		int result = dbUtil.executeUpdate(sql, param);
 		return result > 0?true:false;
 		
 	}
-	public List<Map<String, Object>> getDataByPage(Page page){
+	public List<Map<String, Object>> getDataByPage(String Laboratory,Page page){
 		DBUtil dbUtil = new DBUtil();
-		String sql = "select t_laboratory.ID,t_laboratory.CommodityID,t_commodity_info.Model,"
-				+ "t_commodity_info.CommodityName Description,t_laboratory.Laboratory,"
-				+ "t_laboratory.Number,t_laboratory.Picture from t_laboratory "
+		String sql = "select t_laboratory.ID,t_laboratory.Model,t_laboratory.Description,"
+				+ "t_laboratory.Laboratory,t_laboratory.Number,t_laboratory.Picture from t_laboratory "
 				+ "left join t_commodity_info on t_laboratory.CommodityID=t_commodity_info.ID "
-				+ "order by t_laboratory.ID desc limit ?,?" ;
-		Object[] parameter = new Object[]{(page.getCurrentPage()-1)*page.getRows(),page.getRows()};
+				+ "where Laboratory=? order by t_laboratory.ID desc limit ?,?" ;
+		Object[] parameter = new Object[]{Laboratory,(page.getCurrentPage()-1)*page.getRows(),page.getRows()};
 		List<Map<String, Object>> list = dbUtil.QueryToList(sql, parameter);
 		return list;
 	}

@@ -8,7 +8,7 @@ import com.eoulu.entity.Laboratory;
 
 public interface LabService {
 	
-	public List<Map<String, Object>> getDataByPage(Page page);
+	public List<Map<String, Object>> getDataByPage(String Laboratory,Page page);
 	
 	public boolean insert(Laboratory lab);
 	

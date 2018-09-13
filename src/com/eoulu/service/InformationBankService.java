@@ -3,9 +3,6 @@ package com.eoulu.service;
 import java.util.List;
 import java.util.Map;
 
-import org.apache.poi.hwpf.model.SavedByEntry;
-import org.junit.validator.PublicClassValidator;
-
 import com.eoulu.commonality.Page;
 import com.eoulu.entity.Customer;
 import com.eoulu.entity.Equipment;
@@ -97,5 +94,7 @@ public interface InformationBankService {
 	public List<Map<String, Object>> getTaxInfo(int ID);
 	
 	public List<Map<String, Object>> getTaxInfoForBill(String customerName,String contact);
+	
+	public void exportExcel(Customer customer,String path);
 	
 }

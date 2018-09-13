@@ -78,6 +78,8 @@
 	.content .choose input[type="button"] {
 		margin-top: 20px !important;
 		width: auto !important;
+		height: auto !important;
+	    border: 1px solid transparent !important;
 	}
 
 	.changePage .btn {

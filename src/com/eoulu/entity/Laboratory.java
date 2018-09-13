@@ -2,10 +2,14 @@ package com.eoulu.entity;
 
 public class Laboratory {
 	private int ID;
-	private int CommodityID;
+	private String Model;
+	private String Description;
 	private String Number;
 	private String Laboratory;
 	private String Picture;
+	private String Document;
+	private String UpdateTime;
+
 	
 	
 
@@ -16,11 +20,18 @@ public class Laboratory {
 	public void setID(int iD) {
 		ID = iD;
 	}
-	public int getCommodityID() {
-		return CommodityID;
+	
+	public String getModel() {
+		return Model;
 	}
-	public void setCommodityID(int commodityID) {
-		CommodityID = commodityID;
+	public void setModel(String model) {
+		Model = model;
+	}
+	public String getDescription() {
+		return Description;
+	}
+	public void setDescription(String description) {
+		Description = description;
 	}
 	public String getNumber() {
 		return Number;
@@ -40,6 +51,19 @@ public class Laboratory {
 	public void setPicture(String picture) {
 		Picture = picture;
 	}
+	public String getDocument() {
+		return Document;
+	}
+	public void setDocument(String document) {
+		Document = document;
+	}
+	public String getUpdateTime() {
+		return UpdateTime;
+	}
+	public void setUpdateTime(String updateTime) {
+		UpdateTime = updateTime;
+	}
+	
 
 
 }

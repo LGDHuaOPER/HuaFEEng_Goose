@@ -39,12 +39,13 @@ public class LabServlet extends HttpServlet {
 		String loadType = request.getParameter("LoadType") == null?"":request.getParameter("LoadType");
 		if(loadType.equals("data")){
 			String currentPage = request.getParameter("CurrentPage");
+			String Laboratory = request.getParameter("Laboratory")==null?"苏州":request.getParameter("Laboratory");
 			LabService service = new LabServiceImpl();
 			Page page = new Page();
 			page.setCurrentPage(currentPage==null?1:Integer.parseInt(currentPage));
 			page.setRows(10);
 			page.setRecordCounts(service.getCounts());
-			List<Map<String, Object>> list = service.getDataByPage(page);
+			List<Map<String, Object>> list = service.getDataByPage(Laboratory,page);
 			Map<String, Object> map = new HashMap<>();
 			map.put("data", list);
 			map.put("pageCount", page.getPageCounts());
@@ -62,18 +63,21 @@ public class LabServlet extends HttpServlet {
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		String type = request.getParameter("Type") == null?"":request.getParameter("Type");
 		int ID = request.getParameter("ID") == null?0:Integer.parseInt(request.getParameter("ID"));
-		int CommodityID = request.getParameter("CommodityID") == null?0:Integer.parseInt(request.getParameter("CommodityID"));
+		String Model = request.getParameter("Model");
+		String Description = request.getParameter("Description");
 		String Number = request.getParameter("Number") == null?"":request.getParameter("Number");
 		String Laboratory = request.getParameter("Laboratory") == null?"":request.getParameter("Laboratory");
 		String Picture = request.getParameter("Picture")== null?"":request.getParameter("Picture");
-		//String configJson = request.getParameter("ConfigJson") == null?"":request.getParameter("ConfigJson");
+		String Document = request.getParameter("Document");
 		
 		Laboratory lab = new Laboratory();
 		lab.setID(ID);
-		lab.setCommodityID(CommodityID);
+		lab.setModel(Model);
+		lab.setDescription(Description);
 		lab.setLaboratory(Laboratory);
 		lab.setNumber(Number);
 		lab.setPicture(Picture);
+		lab.setDocument(Document);
 		
 		LabService service = new LabServiceImpl();
 		boolean result = false;

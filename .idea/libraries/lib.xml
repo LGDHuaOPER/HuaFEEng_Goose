@@ -64,7 +64,6 @@
       <root url="jar://$PROJECT_DIR$/WebContent/WEB-INF/lib/unoil-3.2.1.jar!/" />
       <root url="jar://$PROJECT_DIR$/WebContent/WEB-INF/lib/fastjson-1.2.2.jar!/" />
     </CLASSES>
-    <JAVADOC />
     <SOURCES />
   </library>
 </component>

@@ -126,7 +126,7 @@ public class PriceServlet extends HttpServlet {
 		String path = request.getServletContext().getRealPath("/")+"down\\合同统计"+format.format(new Date())+".xlsx";
 		OrderService service = new OrderServiceImpl();
 		service.exportOrderExcel(path, 0);
-		response.getWriter().write(path);
+		response.getWriter().write("down/合同统计"+format.format(new Date())+".xlsx");
 		
 	}
 

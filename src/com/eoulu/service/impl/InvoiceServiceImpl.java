@@ -90,11 +90,13 @@ public class InvoiceServiceImpl implements InvoiceService{
 		int length = obj.length;                 
 		
 
-		sql = "select A.ContractTitle,A.Customer CustomerName,t_invoice.ID,t_invoice.ContractNO,t_invoice.InvoiceNO,t_invoice.PONO,t_invoice.DCNO,t_invoice.Applicant, "
-				+ "t_invoice.EndUser,t_invoice.OtherReference,t_invoice.DepartureDate,t_invoice.Vessel,t_invoice.Departure,"
-				+ "t_invoice.Destination,t_invoice.PaymentRemark,t_invoice.Packing,t_invoice.Origin,t_invoice.Manufacturer,"
-				+ "t_invoice.ShippingMark,t_invoice.OperatingTime,t_invoice.Type,t_invoice.AirPort,t_invoice.Date,t_invoice.Product"
-				+ " from t_invoice "
+		sql = "select A.Customer CustomerName,A.ContractTitle,t_invoice.ID,t_invoice.AddInfo,t_invoice.AirPort,t_invoice.Applicant,"
+				+ "t_invoice.ContractNO,t_invoice.Date,t_invoice.DCNO,t_invoice.Departure,"
+				+ "t_invoice.DepartureDate,t_invoice.Destination,t_invoice.EndUser,t_invoice.InvoiceNO,"
+				+ "t_invoice.Manufacturer,t_invoice.NinePaid,t_invoice.OperatingTime,t_invoice.Origin,"
+				+ "t_invoice.OtherReference,t_invoice.Packing,t_invoice.PaymentRemark,t_invoice.PONO,"
+				+ "t_invoice.Product,t_invoice.ShippingMark,t_invoice.TelFax,t_invoice.TenPaid,t_invoice.TotalAmount,"
+				+ "t_invoice.Type,t_invoice.Vessel from t_invoice "
 				+ " left join t_order A on t_invoice.ContractNO=A.ContractNo where ";
 		if(classify.equals("发票类型")||classify.equals("总费用")||classify.equals("90%金额")||classify.equals("10%金额")){
 			sql+="t_invoice."+classify_MAP.get(classify)+" = ?";
@@ -508,11 +510,14 @@ public class InvoiceServiceImpl implements InvoiceService{
 		default: obj1=new Object[1]; obj1[0]="%"+parameter1+"%";
 		}
 		int length1 = obj1.length;
-		sql1 = "select A.ContractTitle,A.Customer CustomerName,t_invoice.ID,t_invoice.ContractNO,t_invoice.InvoiceNO,t_invoice.PONO,t_invoice.DCNO,t_invoice.Applicant, "
-				+ "t_invoice.EndUser,t_invoice.OtherReference,t_invoice.DepartureDate,t_invoice.Vessel,t_invoice.Departure,"
-				+ "t_invoice.Destination,t_invoice.PaymentRemark,t_invoice.Packing,t_invoice.Origin,t_invoice.Manufacturer,"
-				+ "t_invoice.ShippingMark,t_invoice.OperatingTime,t_invoice.Type,t_invoice.AirPort,t_invoice.Date,t_invoice.Product "
-				+ " from t_invoice  left join t_order A on t_invoice.ContractNO=A.ContractNo where  ";
+		sql1 = "select A.Customer CustomerName,A.ContractTitle,t_invoice.ID,t_invoice.AddInfo,t_invoice.AirPort,t_invoice.Applicant,"
+				+ "t_invoice.ContractNO,t_invoice.Date,t_invoice.DCNO,t_invoice.Departure,"
+				+ "t_invoice.DepartureDate,t_invoice.Destination,t_invoice.EndUser,t_invoice.InvoiceNO,"
+				+ "t_invoice.Manufacturer,t_invoice.NinePaid,t_invoice.OperatingTime,t_invoice.Origin,"
+				+ "t_invoice.OtherReference,t_invoice.Packing,t_invoice.PaymentRemark,t_invoice.PONO,"
+				+ "t_invoice.Product,t_invoice.ShippingMark,t_invoice.TelFax,t_invoice.TenPaid,t_invoice.TotalAmount,"
+				+ "t_invoice.Type,t_invoice.Vessel from t_invoice "
+				+ " left join t_order A on t_invoice.ContractNO=A.ContractNo where ";
 
 		
 
