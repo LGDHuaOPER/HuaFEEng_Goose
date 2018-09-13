@@ -1,17 +1,23 @@
 /*****函数定义与变量定义*****/
 var addSubmitObj = new Object();
 addSubmitObj.Type = null;
-addSubmitObj.CommodityID = null;
+// addSubmitObj.CommodityID = null;
+addSubmitObj.Model = null;
+addSubmitObj.Description = null;
 addSubmitObj.Number = null;
 addSubmitObj.Laboratory = null;
 addSubmitObj.Picture = null;
+addSubmitObj.Document = null;
 var updateSubmitObj = new Object();
 updateSubmitObj.ID = null;
 updateSubmitObj.Type = null;
-updateSubmitObj.CommodityID = null;
+// updateSubmitObj.CommodityID = null;
+updateSubmitObj.Model = null;
+updateSubmitObj.Description = null;
 updateSubmitObj.Number = null;
 updateSubmitObj.Laboratory = null;
 updateSubmitObj.Picture = null;
+updateSubmitObj.Document = null;
 var downloadObj = new Object();
 downloadObj.Number = null;
 downloadObj.Project = null;
@@ -50,37 +56,21 @@ var LabState = new Object();
 LabState.uploadFileNo = 0;
 LabState.uploadFileList = {};
 
-function pageStyle(currentPage,pageCounts){
+// 翻页组件按钮逻辑
+// flag 为按钮ID后缀  如 pageStyle(CurrentPage, pageCount, "2");
+function pageStyle(currentPage, pageCounts, flag){
+    flag = flag || "";
     if(pageCounts == 1){
-        $("#fistPage").attr("disabled","disabled");
-        $("#upPage").attr("disabled","disabled");
-        $("#nextPage").attr("disabled","disabled");
-        $("#lastPage").attr("disabled","disabled");
-        buttonDisabled("#fistPage, #upPage, #nextPage, #lastPage");
+        $("#fistPage"+flag+", #upPage"+flag+", #nextPage"+flag+", #lastPage"+flag+", #Gotojump"+flag).prop("disabled","disabled").removeClass("btn-primary").addClass("btn-default");
     }else if(currentPage == 1){
-        $("#fistPage").attr("disabled","disabled");
-        $("#upPage").attr("disabled","disabled");
-        $("#lastPage").attr("disabled",false);
-        $("#nextPage").attr("disabled",false);
-        buttonDisabled("#fistPage, #upPage");
-        buttonAbled("#nextPage, #lastPage");
+        $("#fistPage"+flag+", #upPage"+flag).prop("disabled","disabled").removeClass("btn-primary").addClass("btn-default");
+        $("#lastPage"+flag+", #nextPage"+flag+", #Gotojump"+flag).prop("disabled",false).removeClass("btn-default").addClass("btn-primary");
     }else if(currentPage == pageCounts){
-        $("#lastPage").attr("disabled","disabled");
-        $("#nextPage").attr("disabled","disabled");
-        $("#fistPage").attr("disabled",false);
-        $("#upPage").attr("disabled",false);
-        buttonDisabled("#nextPage, #lastPage");
-        buttonAbled("#fistPage, #upPage");
+        $("#lastPage"+flag+", #nextPage"+flag).prop("disabled","disabled").removeClass("btn-primary").addClass("btn-default");
+        $("#fistPage"+flag+", #upPage"+flag+", #Gotojump"+flag).prop("disabled",false).removeClass("btn-default").addClass("btn-primary");
     }else{
-        $("#lastPage, #nextPage, #fistPage, #upPage").attr("disabled",false);
-        buttonAbled("#lastPage, #nextPage, #fistPage, #upPage");
+        $("#lastPage"+flag+", #nextPage"+flag+", #fistPage"+flag+", #upPage"+flag+", #Gotojump"+flag).prop("disabled",false).removeClass("btn-default").addClass("btn-primary");
     }
-}
-function buttonDisabled(iClass) {
-    return $(iClass).removeClass("buttonDisabled buttonAbled").addClass("buttonDisabled");
-}
-function buttonAbled(jClass) {
-    return $(jClass).removeClass("buttonDisabled buttonAbled").addClass("buttonAbled");
 }
 
 // 获取图片文件blob文件流
@@ -89,8 +79,8 @@ function buttonAbled(jClass) {
 // }
 
 // 插入缩略图
-function insertThumbnails(){
-	$("td.hastd_Picture").each(function(){
+function insertThumbnails(Laboratory){
+	$(".m_table table[data-itable='"+Laboratory+"'] td.hastd_Picture").each(function(){
 		var ThumbnailsFilename = $(this).attr("title");
 		if(ThumbnailsFilename=="" || ThumbnailsFilename=="--"){
 			$(this).empty().text("未上传图片");
@@ -114,9 +104,40 @@ function insertThumbnails(){
 }
 
 // 表格渲染
-function tableRender(icurPage,pageCounts,data){
+function tableRender(Laboratory, icurPage, pageCounts, data){
 	var str = '';
 	for(var i =1;i<data.length;i++){
+		var iNO = parseInt((icurPage-1)*10 + i);
+		var iCADdrawingsStr = "";
+		var iCADdrawings = globalDataHandle(data[i].Document, "");
+		var iCADdrawingsArr = iCADdrawings.split("::");
+		iCADdrawingsArr = $.grep(iCADdrawingsArr,function(jcurrentValue,jindex){
+			return jcurrentValue != "";
+		});
+		if(iCADdrawingsArr.length == 0){
+			iCADdrawingsStr+="未上传";
+		}else if(iCADdrawingsArr.length < 3){
+			iCADdrawingsArr.map(function(currentValue, index, arr){
+				if(index != iCADdrawingsArr.length){
+					iCADdrawingsStr+="<span class='td_download_file' title='"+currentValue+"'>"+currentValue+"</span><br>";
+				}else{
+					iCADdrawingsStr+="<span class='td_download_file' title='"+currentValue+"'>"+currentValue+"</span>";
+				}
+			});
+		}else{
+			var iCADconStr = '<div class="container-fluid" style="padding-left: 1px;padding-right: 1px;padding-bottom:5px;">';
+			iCADconStr+='<ol>';
+			iCADdrawingsArr.map(function(icurrentValue, iindex, iarr){
+				iCADconStr+='<li title="'+icurrentValue+'">'+icurrentValue+'</li>';
+			});
+			iCADconStr+='</ol>';
+			iCADconStr+='</div>';
+
+			iCADdrawingsStr+="<span class='td_download_file' title='"+iCADdrawingsArr[0]+"'>"+iCADdrawingsArr[0]+"</span><br>";
+			iCADdrawingsStr+="<span class='td_download_file' title='"+iCADdrawingsArr[1]+"'>"+iCADdrawingsArr[1]+"</span><br>";
+			iCADdrawingsStr+="<a tabindex='0' class='btn btn-info' role='button' data-toggle='popover' data-trigger='focus' data-placement='left' title='第"+iNO+"条记录--应用文档' data-content='"+iCADconStr+"'>显示更多...</a>";
+		}
+
 	    str+='<tr>'+
 	            '<td class="update_td" data-iid="'+data[i].ID+'" data-commodityid="'+data[i].CommodityID+'">'+parseInt((icurPage-1)*10 + i)+'</td>'+
 	            '<td class="hastd_Model" title="'+data[i].Model+'">'+data[i].Model+'</td>'+
@@ -125,40 +146,43 @@ function tableRender(icurPage,pageCounts,data){
 	            '<td class="hastd_Laboratory" title="'+data[i].Laboratory+'">'+data[i].Laboratory+'</td>'+
 	            '<td class="hastd_Picture" title="'+data[i].Picture+'"><img src="image/loading/Spinner-1s-50px.gif" alt="产品图片"></td>'+
 	            '<td class="detailed_part" title="详细配置"><span class="glyphicon glyphicon-eye-open"></span></td>'+
-	            '<td class="detailed_part" title="详细配置"><span class="glyphicon glyphicon-eye-open"></span></td>'+
-	            '<td class="detailed_part" title="详细配置"><span class="glyphicon glyphicon-eye-open"></span></td>'+
+	            '<td class="Document_part" data-ivalue="'+data[i].Document+'">'+iCADdrawingsStr+'</td>'+
+	            '<td class="UpdateTime_part">'+data[i].UpdateTime+'</td>'+
 	        '</tr>';
 	}
-	$(".m_table table tbody").empty().append(str);
+	$(".m_table table[data-itable='"+Laboratory+"'] tbody").empty().append(str);
 	$(".m_page #currentPage").text(icurPage);
 	$(".m_page #allPage").text(pageCounts);
-	insertThumbnails();
+	$("td.Document_part>a").popover({
+		title: "请预览",
+		html: true
+	});
+	resizeTableCol(Laboratory);
+	pageStyle(icurPage, pageCounts, "");
+	insertThumbnails(Laboratory);
 }
 
 // 表格渲染ajax请求
-function tableRenderAjax(icurPage){
+function tableRenderAjax(Laboratory, icurPage){
 	$.ajax({
 		type: "GET",
 		url: "Lab",
 		data: {
+			Laboratory: Laboratory,
 			LoadType: "data",
 			CurrentPage: icurPage
 		},
 		dataType: 'json',
 		success: function(res){
-			console.log(typeof res);
 			var pageCounts = res.pageCount;
 			var data = res.data;
-			tableRender(icurPage,pageCounts,data);
-			pageStyle(icurPage,pageCounts);
+			tableRender(Laboratory, icurPage, pageCounts, data);
 		},
 		error:function(){
 			$.MsgBox_Unload.Alert("提示","服务器繁忙！");
 		},
 		complete: function(XMLHttpRequest, textStatus){
-		    // var newInfo1 = transportInfo();
-		    // $(".g_container_body_info_l").text(newInfo1);
-		    // tdDateHandle(".DateOfSign, .CargoPeriod, .ExpectedDeliveryPeriod, .ActualDelivery","","#000");
+		    
 		}
 	});
 }
@@ -229,24 +253,114 @@ function uploadFiles(){
     });                             
 }
 
+//上传文件
+function uploadFiles2(classify, Folder, iThat){                                               
+    var formData = new FormData();
+    formData.enctype="multipart/form-data";
+    formData.append("Folder",Folder);
+    // formData.append("ID",ID);
+    var fileList = LabState.uploadFileList;
+    $.each(fileList, function(iname, ivalue){
+    	formData.append("file",ivalue);
+    });
+    //formData.append("file",$("#serFinRepUpload")[0].files[0]);//append()里面的第一个参数file对应permission/upload里面的参数file         
+    // formData.append("Operate","upload");
+    $.ajax({
+        type: "POST",
+        async: true,  //这里要设置异步上传，才能成功调用myXhr.upload.addEventListener('progress',function(e){}),progress的回掉函数
+        // accept: 'text/html;charset=UTF-8',
+        accept: 'application/json; charset=utf-8',
+        data: formData,
+        // contentType:"multipart/form-data",
+        url: "BatchUpload",
+        processData: false, // 告诉jQuery不要去处理发送的数据
+        contentType: false, // 告诉jQuery不要去设置Content-Type请求头
+        cache: false,
+        dataType: "json",
+        xhr: function(){                        
+            myXhr = $.ajaxSettings.xhr();
+            if(myXhr.upload){ // check if upload property exists
+                myXhr.upload.addEventListener('progress',function(e){                           
+                    var loaded = e.loaded;                  //已经上传大小情况 
+                    var total = e.total;                      //附件总大小 
+                    var percent = (Math.floor(1000*loaded/total)/10)+"%";     //已经上传的百分比  
+                    console.log("已经上传了："+percent);
+                    var newWidthFloat =  globalToPoint(percent);
+                    var newWidth = (newWidthFloat*100).toFixed(0);
+                    $("div."+classify+"_fileList_info>div:nth-child(1)>div.progress-bar").attr("aria-valuenow",newWidth).css("width",percent).text(percent);
+                    // console.log("进度条宽度："+newWidth); 
+                    // $(".progressIn").css("width",newWidth+"px");
+                    // $(".progressIn").text(percent);
+                }, false); // for handling the progress of the upload
+            }
+            return myXhr;
+        },                    
+        success: function(data){
+        	if(data.length > 0){
+        		var LiStr = '';
+        		var successNO = 0;
+        		data.map(function(currentValue, index, arr){
+        			if(currentValue.Message.indexOf("成功")>-1){
+        				LiStr+='<li class="list-group-item list-group-item-success" title="'+currentValue.FileName+'"><span class="badge">成功</span>'+currentValue.FileName+'</li>';
+        				successNO++;
+        			}else if(currentValue.Message.indexOf("失败")>-1){
+        				LiStr+='<li class="list-group-item list-group-item-danger" title="'+currentValue.FileName+'"><span class="badge">失败</span>'+currentValue.FileName+'</li>';
+        			}else{
+        				LiStr+='<li class="list-group-item list-group-item-warning" title="'+currentValue.FileName+'"><span class="badge">文件已存在</span>'+currentValue.FileName+'</li>';
+        			}
+        		});
+        		$("#"+classify+"_fileList_ul>li>span:contains('删除')").parent().remove();
+        		$("#"+classify+"_fileList_ul").append(LiStr);
+        		var successFloat = (successNO/(data.length)).toFixed(3);
+        		var successValueNow = successFloat*100;
+        		var successPercent = successValueNow+"%";
+        		$("div."+classify+"_fileList_info>div:nth-child(2)>div.progress-bar").attr("aria-valuenow",successValueNow).css("width",successPercent).text(successPercent);
+        		LabState.uploadFileNo = 0;
+        		for(var kk in LabState.uploadFileList){
+        			delete LabState.uploadFileList[kk];
+        		}
+        		$("#"+classify+"_file_Upload").val("");
+        	}else if(data.length == 0){
+        		$.MsgBox_Unload.Alert("上传提示","文件读取至服务器失败！");
+        	}
+        },
+        error: function(){
+        	$("div."+classify+"_fileList_info>div>div.progress-bar").prop("aria-valuenow","0").css("width","0%").text("0%");
+            $.MsgBox_Unload.Alert("上传提示","网络繁忙！上传失败！");
+        },
+		beforeSend: function(XMLHttpRequest){
+            eouluGlobal.C_btnDisabled(iThat, false);
+        },
+		complete: function(XMLHttpRequest, textStatus){
+		    if(textStatus=="success"){
+		    }
+		    eouluGlobal.C_btnAbled(iThat, false);
+		}
+    });                             
+}
+
+
+function resizeTableCol(laboratory){
+	// 表格列宽调整
+	setTimeout(function(){
+		$(".m_table .JCLRgrips").remove();
+		$(".m_table table[data-itable='"+laboratory+"']").colResizable({
+		    gripInnerHtml: '<span class="glyphicon glyphicon-resize-horizontal" aria-hidden="true"></span>',
+		    partialRefresh: true,
+		    minWidth: 62
+		});
+	}, 50);
+}
 
 /*****页面加载完成*****/
 $(function(){
-	tableRenderAjax(1);
+	tableRenderAjax("苏州", 1);
 	// 插入实验室
 	var LaboratoryStr = '<option value="" disabled="disabled">请选择</option>';
 	LaboratoryArr.map(function(currentValue,index,arr){
 		LaboratoryStr+='<option value="'+currentValue+'">'+currentValue+'</option>';
 	});
 	$("select[name='Laboratory_sel']").empty().append(LaboratoryStr);
-	// 表格列宽调整
-	setTimeout(function(){
-		$(".m_table table").colResizable({
-		    gripInnerHtml: '<span class="glyphicon glyphicon-resize-horizontal" aria-hidden="true"></span>',
-		    partialRefresh: true,
-		    minWidth: 62
-		});
-	},100);
 });
 
 
@@ -262,7 +376,11 @@ $(".m_button_l input[value='添加']").on("click",function(){
 		// }else{
 		// 	$(this).val("");
 		// }
-		$(this).val("");
+		if($(this).is("#add_info_Laboratory")){
+			$(this).val($("div.tab_wrapper>ul>li.active").data("laboratory"));
+		}else{
+			$(this).val("");
+		}
 		if($(this).is("#add_info_Picture")){
 			$(this).attr("title","");
 		}
@@ -289,6 +407,17 @@ $(document).on("click",".update_td",function(){
 			$(this).attr("title",newVal);
 		}
 	});
+	// 回显文件列表
+	var iAttachment = $(this).siblings(".Document_part").data("ivalue").toString();
+	var iAttachmentArr = iAttachment.split("::");
+	iAttachmentArr = $.grep(iAttachmentArr,function(currentValue,index){
+	    return currentValue != "";
+	});
+	var iAttachmentStr = '';
+	iAttachmentArr.map(function(currentValue, index, arr){
+		iAttachmentStr+='<li class="list-group-item list-group-item-info" title="'+currentValue+'"><span class="badge">已上传</span>'+currentValue+'</li>';
+	});
+	$("#update_fileList_ul").empty().append(iAttachmentStr);
 });
 
 // 关闭
@@ -340,12 +469,12 @@ $("#jumpNumber").on("input propertychange",function(){
 	// 翻页
 $("#fistPage").click(function(){
     var currentPage =1;
-    tableRenderAjax(currentPage);
+    tableRenderAjax($("div.tab_wrapper>ul>li.active").data("laboratory"), currentPage);
 });
 
 $("#lastPage").click(function(){
     var currentPage =Number($("#allPage").text());
-    tableRenderAjax(currentPage);
+    tableRenderAjax($("div.tab_wrapper>ul>li.active").data("laboratory"), currentPage);
 });
 
 $("#upPage").click(function(){
@@ -354,7 +483,7 @@ $("#upPage").click(function(){
         return;
     }else{
         currentPage--;
-        tableRenderAjax(currentPage);
+        tableRenderAjax($("div.tab_wrapper>ul>li.active").data("laboratory"), currentPage);
     }
 });
 
@@ -365,7 +494,7 @@ $("#nextPage").click(function(){
         return;
     }else{
         currentPage++;
-        tableRenderAjax(currentPage);
+        tableRenderAjax($("div.tab_wrapper>ul>li.active").data("laboratory"), currentPage);
     }
 });
 	//跳页
@@ -377,7 +506,7 @@ $("#Gotojump").click(function(){
         $("#jumpNumber").val('');
         return;
     }else{
-        tableRenderAjax(currentPage);
+        tableRenderAjax($("div.tab_wrapper>ul>li.active").data("laboratory"), currentPage);
     }
 });
 
@@ -388,31 +517,54 @@ $("#NonStandard_addsubmit").on("click",function(){
 			addSubmitObj[kk] = "add";
 			continue;
 		}
-		if(kk=="CommodityID"){
+		if(kk=="Document"){
 			continue;
 		}
-		addSubmitObj[kk] = $(".add_NonStandard").find(".info_"+kk).val();
+		addSubmitObj[kk] = $("#add_info_"+kk).val();
 	}
 	// 表单验证
 	for(var kkk in addSubmitObj){
 		addSubmitObj[kkk] = globalDataHandle(addSubmitObj[kkk],"").trim();
-		if(kkk=="CommodityID" && addSubmitObj[kkk]==""){
+		if(kkk=="Model" && addSubmitObj[kkk]==""){
 			$.MsgBox_Unload.Alert("提示","未选择系统名称！");
 			return false;
 		}
+		if(kkk=="Laboratory" && addSubmitObj[kkk]==""){
+			$.MsgBox_Unload.Alert("提示","未选择实验室！");
+			return false;
+		}
 	}
+	// 文件信息保存
+	var fileArray = [];
+	$("#add_fileList_ul>li.list-group-item-success").each(function(){
+		fileArray.push($(this).attr("title"));
+	});
+	var newfileArray = globalArrStrUnique(fileArray);
+	var fileStr = newfileArray.length == 0 ? "" : (newfileArray.join("::")+"::");
+	addSubmitObj.Document = fileStr;
+
 	console.log("add我执行了吗");
 	console.log(addSubmitObj);
+	var iLaboratory = addSubmitObj.Laboratory;
+	var iThat = $(this);
 	$.ajax({
 		type: "POST",
 		url: "Lab",
 		dataType: 'text',
 		data: addSubmitObj,
+		beforeSend: function(XMLHttpRequest){
+		    eouluGlobal.C_btnDisabled(iThat, true, "正在提交...");
+		},
 		success: function(data){
 			// console.log(typeof data);
 			if(data=="true"){
 				$.MsgBox_Unload.Alert("提示","添加成功！");
 				$("#NonStandard_addclose").trigger("click");
+				if($("div.tab_wrapper>ul>li.active").data("laboratory") == iLaboratory){
+					tableRenderAjax(iLaboratory, 1);
+				}else{
+					$("div.tab_wrapper>ul>li[data-laboratory='"+iLaboratory+"']>a").trigger("click");
+				}
 			}else if(data=="false"){
 				$.MsgBox_Unload.Alert("提示","添加失败！");
 			}
@@ -422,10 +574,8 @@ $("#NonStandard_addsubmit").on("click",function(){
 		},
 		complete: function(XMLHttpRequest, textStatus){
 		    if(textStatus=="success"){
-				tableRenderAjax(1);
-				// hasSearch = 0;
-    // 			sosuoInit();
 		    }
+		    eouluGlobal.C_btnAbled(iThat, true, "提交");
 		}
 	});
 });
@@ -440,21 +590,35 @@ $("#NonStandard_updatesubmit").on("click",function(){
 		if(kk=="ID"){
 			continue;
 		}
-		if(kk=="CommodityID"){
+		if(kk=="Document"){
 			continue;
 		}
-		updateSubmitObj[kk] = $(".update_NonStandard").find(".info_"+kk).val();
+		updateSubmitObj[kk] = $("#update_info_"+kk).val();
 	}
 	// 表单验证
 	for(var kkk in updateSubmitObj){
 		updateSubmitObj[kkk] = globalDataHandle(updateSubmitObj[kkk],"").trim();
-		if(kkk=="CommodityID" && updateSubmitObj[kkk]==""){
+		if(kkk=="Model" && updateSubmitObj[kkk]==""){
 			$.MsgBox_Unload.Alert("提示","未选择系统名称！");
 			return false;
 		}
+		if(kkk=="Laboratory" && updateSubmitObj[kkk]==""){
+			$.MsgBox_Unload.Alert("提示","未选择实验室！");
+			return false;
+		}
 	}
+	// 文件信息保存
+	var fileArray = [];
+	$("#update_fileList_ul>li.list-group-item-success").each(function(){
+		fileArray.push($(this).attr("title"));
+	});
+	var newfileArray = globalArrStrUnique(fileArray);
+	var fileStr = newfileArray.length == 0 ? "" : (newfileArray.join("::")+"::");
+	updateSubmitObj.Document = fileStr;
+
 	console.log("update我执行了吗");
 	console.log(updateSubmitObj);
+	var iLaboratory = updateSubmitObj.Laboratory;
 	$.ajax({
 		type: "POST",
 		url: "Lab",
@@ -465,6 +629,11 @@ $("#NonStandard_updatesubmit").on("click",function(){
 			if(data=="true"){
 				$.MsgBox_Unload.Alert("提示","修改成功！");
 				$("#NonStandard_updateclose").trigger("click");
+				if($("div.tab_wrapper>ul>li.active").data("laboratory") == iLaboratory){
+					tableRenderAjax(iLaboratory, 1);
+				}else{
+					$("div.tab_wrapper>ul>li[data-laboratory='"+iLaboratory+"']>a").trigger("click");
+				}
 			}else if(data=="false"){
 				$.MsgBox_Unload.Alert("提示","修改失败！");
 			}
@@ -474,9 +643,6 @@ $("#NonStandard_updatesubmit").on("click",function(){
 		},
 		complete: function(XMLHttpRequest, textStatus){
 		    if(textStatus=="success"){
-				tableRenderAjax(1);
-				// hasSearch = 0;
-    // 			sosuoInit();
 		    }
 		}
 	});
@@ -536,10 +702,10 @@ $(document).on("click",function(){
 
 // 表格悬浮
 $(document).on("mouseenter",".m_table tbody td",function(){
-	$(this).parent().css({"border":"2px solid red"});
+	$(this).parent().css({"-webkit-filter": "brightness(0.8)","filter": "brightness(0.8)"});
 });
 $(document).on("mouseleave",".m_table tbody td",function(){
-	$(this).parent().css({"border":"1px solid transparent"});
+	$(this).parent().css({"-webkit-filter": "brightness(1)","filter": "brightness(1)"});
 });
 
 // 详细配置
@@ -571,8 +737,7 @@ $(document).on("click",".detailed_part span",function(){
 		$(".serviceReport_table tbody").empty().append(str);
 		calcServiceNo();
 		canFillItem();
-		$(".serviceReport_div").slideDown(200);
-		$(".cover_bg2").slideDown(200);
+		$(".serviceReport_div, .cover_bg2").slideDown(200);
 	},function(){
 		$.MsgBox_Unload.Alert("提示", "网络繁忙！");
 	}).always(function(){
@@ -904,8 +1069,102 @@ $(".dropFileTit span").on("click",function(){
 	$("#serFinRepUpload").val("");
 });
 
+
 // input file域触发点击
 $(".trigger_click").click(function(e){
 	e.preventDefault();
 	$(this).next().trigger("click");
+});
+
+// 点击浏览切换文件
+$("#add_file_Upload, #update_file_Upload").on("change",function(){
+	var hideShowDOM;
+	var insertDOM;
+	var curFileInput;
+	var classify;
+	if($(this).is("#add_file_Upload")){
+		curFileInput = $("#add_file_Upload");
+		hideShowDOM = $(".add_fileList_info");
+		insertDOM = $("#add_fileList_ul");
+		classify = "add";
+	}else if($(this).is("#update_file_Upload")){
+		curFileInput = $("#update_file_Upload");
+		hideShowDOM = $(".update_fileList_info");
+		insertDOM = $("#update_fileList_ul");
+		classify = "update";
+	}
+	if(!hideShowDOM.is(':visible')){
+		hideShowDOM.slideDown(150);
+	}
+	// 保存file，渲染列表
+	console.log($(this));
+	console.log($(this)[0]);
+	console.log($(this)[0].files);
+	var curFileList = $(this)[0].files;
+	var curFileListStr = '';
+	$.each(curFileList, function(iname, ivalue){
+		LabState.uploadFileNo++;
+		curFileListStr+='<li class="list-group-item" title="'+ivalue.name+'" value="'+LabState.uploadFileNo+'"><span class="badge">删除</span>'+ivalue.name+'</li>';
+		LabState.uploadFileList[LabState.uploadFileNo] = ivalue;
+	});
+	insertDOM.append(curFileListStr);
+	$("div."+classify+"_fileList_info>div>div.progress-bar").prop("aria-valuenow","0").css("width","0%").text("0%");
+	// console.log("文件上传改变值"+$(this).val());
+	// var newFileName1 = $(this).val().indexOf("\\fakepath\\")>-1?$(this).val().split("\\fakepath\\")[1]:$(this).val().split("\\").pop();
+	// console.log("赋给input的值"+newFileName1);
+});
+
+// 添加修改文件删除
+$(document).on("click","[id$='_fileList_ul']>li>span:contains('删除')",function(){
+	var iValue = $(this).parent().attr("value");
+	delete LabState.uploadFileList[iValue];
+	var emptyFileInput;
+	if($(this).parents("#add_fileList_ul").length){
+		emptyFileInput = $("#add_file_Upload");
+	}else if($(this).parents("#update_fileList_ul").length){
+		emptyFileInput = $("#update_file_Upload");
+	}
+	emptyFileInput.val("");
+	$(this).parent().remove();
+});
+
+// 添加修改文件上传
+$(".add_label_upload>button, .update_label_upload>button").click(function(){
+	if(Object.keys(LabState.uploadFileList).length == 0){
+		$.MsgBox_Unload.Alert("上传提示","请选择文件！");
+		return false;
+	}
+	var classify;
+	if($(this).parent().is(".add_label_upload")){
+		classify = "add";
+	}else if($(this).parent().is(".update_label_upload")){
+		classify = "update";
+	}
+	var Folder = "LabDocument";
+	var iThat = $(this);
+	uploadFiles2(classify, Folder, iThat);
+});
+
+// 添加修改和预览里的文件下载
+$(document).on("click","li.list-group-item-success, li.list-group-item-info, ol>li, span.td_download_file",function(){
+	var fileName = $(this).attr("title");
+	if(!fileName){
+		$.MsgBox_Unload.Alert("下载提示","无数据或文件已被删除！");
+		return false;
+	}
+	var downloadURL = globalHostName+'/LogisticsFile/File/LabDocument/'+fileName;
+	window.open(downloadURL);
+});
+
+// 分页标签切换
+$('.tab_wrapper>ul>li>a').click(function(e) {
+  	e.preventDefault();
+  	$(this).tab('show');
+});
+$('.tab_wrapper>ul>li>a').on('shown.bs.tab', function (e) {
+    // console.log(e.target); // newly activated tab
+    // console.log(e.relatedTarget); // previous active tab
+    // console.log($(e.target));
+    var laboratory = $(e.target).parent().data("laboratory").toString();
+    tableRenderAjax(laboratory, 1);
 });

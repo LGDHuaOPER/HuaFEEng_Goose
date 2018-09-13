@@ -14,7 +14,7 @@
         <link rel="shortcut icon" href="image/eoulu.ico" />
         <link rel="bookmark" href="image/eoulu.ico" />
         <link rel="stylesheet" href="css/libs/bootstrap.min.css" type="text/css">
-        <link rel="stylesheet" href="css/global/eouluCustom.css" type="text/css">
+        <!-- <link rel="stylesheet" href="css/global/eouluCustom.css" type="text/css"> -->
         <link rel="stylesheet" href="css/Lab.css" type="text/css">
         <link rel="stylesheet" href="css/global/eoulu_ul_reset.css" type="text/css">
         <style>
@@ -138,8 +138,8 @@
                                                 </div><!-- /input-group -->
                                             </div>
                                             <div class="m_button_r_r">
-                                                <input type="button" class="eou-button eou-button-radius eou-button-30 eou-button-w60" id="NonStandard_search" value="搜索">
-                                                <input type="button" class="eou-button eou-button-radius eou-button-30 eou-button-w60" id="NonStandard_cancel" value="取消">
+                                                <input type="button" class="btn btn-info" id="NonStandard_search" value="搜索">
+                                                <input type="button" class="btn btn-warning" id="NonStandard_cancel" value="取消">
                                             </div>
                                         </div>
                                     </div>
@@ -149,18 +149,18 @@
                                     <div class="tab_wrapper">
                                         <!-- Nav tabs -->
                                         <ul class="nav nav-tabs" role="tablist">
-                                            <li role="presentation" class="active"><a href="#suzhou_a" aria-controls="suzhou_a" role="tab" data-toggle="tab">苏州</a></li>
-                                            <li role="presentation"><a href="#xiameng_a" aria-controls="xiameng_a" role="tab" data-toggle="tab">厦门</a></li>
-                                            <li role="presentation"><a href="#shenzhen_a" aria-controls="shenzhen_a" role="tab" data-toggle="tab">深圳</a></li>
-                                            <li role="presentation"><a href="#beijing_a" aria-controls="beijing_a" role="tab" data-toggle="tab">北京</a></li>
-                                            <li role="presentation"><a href="#shijiazhuang_a" aria-controls="shijiazhuang_a" role="tab" data-toggle="tab">石家庄</a></li>
-                                            <li role="presentation"><a href="#chengdu_a" aria-controls="chengdu_a" role="tab" data-toggle="tab">成都</a></li>
+                                            <li role="presentation" class="active" data-laboratory="苏州"><a href="#suzhou_a" aria-controls="suzhou_a" role="tab" data-toggle="tab">苏州</a></li>
+                                            <li role="presentation" data-laboratory="厦门"><a href="#xiameng_a" aria-controls="xiameng_a" role="tab" data-toggle="tab">厦门</a></li>
+                                            <li role="presentation" data-laboratory="深圳"><a href="#shenzhen_a" aria-controls="shenzhen_a" role="tab" data-toggle="tab">深圳</a></li>
+                                            <li role="presentation" data-laboratory="北京"><a href="#beijing_a" aria-controls="beijing_a" role="tab" data-toggle="tab">北京</a></li>
+                                            <li role="presentation" data-laboratory="石家庄"><a href="#shijiazhuang_a" aria-controls="shijiazhuang_a" role="tab" data-toggle="tab">石家庄</a></li>
+                                            <li role="presentation" data-laboratory="成都"><a href="#chengdu_a" aria-controls="chengdu_a" role="tab" data-toggle="tab">成都</a></li>
                                         </ul><!-- Nav tabs end -->
 
                                         <!-- Tab panes -->
                                         <div class="tab-content">
                                             <div role="tabpanel" class="tab-pane fade in active" id="suzhou_a">
-                                                <table>
+                                                <table data-itable="苏州">
                                                     <thead>
                                                         <tr>
                                                             <th class="t1">序号</th>
@@ -179,7 +179,7 @@
                                                 </table>
                                             </div>
                                             <div role="tabpanel" class="tab-pane fade" id="xiameng_a">
-                                                <table>
+                                                <table data-itable="厦门">
                                                     <thead>
                                                         <tr>
                                                             <th class="t1">序号</th>
@@ -198,7 +198,7 @@
                                                 </table>
                                             </div><!-- xiameng_a end -->
                                             <div role="tabpanel" class="tab-pane fade" id="shenzhen_a">
-                                                <table>
+                                                <table data-itable="深圳">
                                                     <thead>
                                                         <tr>
                                                             <th class="t1">序号</th>
@@ -217,7 +217,7 @@
                                                 </table>
                                             </div>
                                             <div role="tabpanel" class="tab-pane fade" id="beijing_a">
-                                                <table>
+                                                <table data-itable="北京">
                                                     <thead>
                                                         <tr>
                                                             <th class="t1">序号</th>
@@ -236,7 +236,7 @@
                                                 </table>
                                             </div>
                                             <div role="tabpanel" class="tab-pane fade" id="shijiazhuang_a">
-                                                <table>
+                                                <table data-itable="石家庄">
                                                     <thead>
                                                         <tr>
                                                             <th class="t1">序号</th>
@@ -255,7 +255,7 @@
                                                 </table>
                                             </div><!-- shijiazhuang_a end -->
                                             <div role="tabpanel" class="tab-pane fade" id="chengdu_a">
-                                                <table>
+                                                <table data-itable="成都">
                                                     <thead>
                                                         <tr>
                                                             <th class="t1">序号</th>
@@ -280,14 +280,10 @@
                                 <div class="m_page">
                                     <div class="pageInfo">当前是第&nbsp;<span id="currentPage">1</span>&nbsp;页,&nbsp;总计&nbsp;<span id="allPage"></span>页</div>
                                     <div class="changePage">
-                                        <input type="button" class="eou-button eou-button-radius eou-button-30 eou-button-w50" value="首页" id="fistPage" name="fistPage">
-                                        <input type="button" class="eou-button eou-button-radius eou-button-30 eou-button-w50" value="上一页" id="upPage">
-                                        <input type="button" class="eou-button eou-button-radius eou-button-30 eou-button-w50" value="下一页" id="nextPage"> 跳到第 <input
-                                            type="text" id="jumpNumber" name="jumpNumber" class="jumpNumber"
-                                            style="width: 30px; color: #000"> 页 
-                                        <input type="button" class="eou-button eou-button-radius eou-button-30 eou-button-w50" value="GO" id="Gotojump"
-                                            name="Gotojump">
-                                        <input type="button" class="eou-button eou-button-radius eou-button-30 eou-button-w50" value="尾页" id="lastPage" name="lastPage">
+                                        <input type="button" class="btn btn-primary" value="首页" id="fistPage" name="fistPage">
+                                        <input type="button" class="btn btn-primary" value="上一页" id="upPage">
+                                        <input type="button" class="btn btn-primary" value="下一页" id="nextPage"> 跳到第 <input type="text" id="jumpNumber" name="jumpNumber" class="jumpNumber" style="width: 30px; color: #000"> 页 <input type="button" class="btn btn-primary" value="GO" id="Gotojump" name="Gotojump">
+                                        <input type="button" class="btn btn-primary" value="尾页" id="lastPage" name="lastPage">
                                     </div>
                                 </div>
                             </div>
@@ -311,7 +307,7 @@
                                                     <div class="form-group">
                                                         <label class="col-sm-3 control-label" for="add_info_Model"><span class="glyphicon glyphicon-search" aria-hidden="true"></span>系统名称</label>
                                                         <div class="col-sm-9">
-                                                            <input type="text" class="form-control" id="add_info_Model">
+                                                            <input type="text" class="form-control" id="add_info_Model" placeholder="必填项">
                                                             <select id="add_Commodity" multiple>
                                                             </select>
                                                         </div>
@@ -399,7 +395,7 @@
                                                     <div class="form-group">
                                                         <label class="col-sm-3 control-label" for="update_info_Model"><span class="glyphicon glyphicon-search" aria-hidden="true"></span>系统名称</label>
                                                         <div class="col-sm-9">
-                                                            <input type="text" class="form-control" id="update_info_Model">
+                                                            <input type="text" class="form-control" id="update_info_Model" placeholder="必填项">
                                                             <select id="update_Commodity" multiple>
                                                             </select>
                                                         </div>
@@ -481,7 +477,7 @@
                             <div class="serviceReport_top_r">关闭</div>
                         </div>
                         <div class="serviceReport_table">
-                            <table class="eou-table-collapse">
+                            <table>
                                 <thead>
                                     <tr>
                                         <th>Item</th>
@@ -495,7 +491,7 @@
                             </table>
                         </div>
                         <div class="serviceReport_body">
-                            <input type="button" class="eou_new_btn eou_new_radius eou-button-30 eou-button-w80" id="add_serviceReport" value="添加一条">
+                            <input type="button" class="btn btn-primary" id="add_serviceReport" value="添加一条">
                         </div>
                     </div>
 

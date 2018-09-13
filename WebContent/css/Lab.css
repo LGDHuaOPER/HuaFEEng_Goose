@@ -446,16 +446,6 @@ body {
 }
 /*搜索请求的select结束*/
 
-/*维护悬浮指针样式*/
-.preUpload1, .delete_item, .serviceReport_top_r, .wrapper_sign_tit_r, .download_filename_tit_r, .serviceReport_top_down, .serviceReport_top_save, .service_Model, .part_search_top_r, .hastd_Picture, .add_NonStandard_tit_r, .update_NonStandard_tit_r, .update_td {
-    cursor: pointer;
-}
-
-/*维护隐藏元素*/
-.t_hide, .hastd_Laboratory, #add_file_Upload, #update_file_Upload {
-	display: none;
-}
-
 /*详细配置*/
 	/*配置搜索*/
 .part_search_div {
@@ -590,11 +580,6 @@ body {
 	padding-left: 380px;
 }
 /*详细配置结束*/
-
-/*图标悬浮*/
-span.glyphicon {
-	cursor: pointer;
-}
 
 /*删除*/
 .delete_report_td input {
@@ -825,6 +810,50 @@ div.JCLRgrip {
 
 div.JCLRgrip {
 	z-index: 2 !important;
+}
+
+.serviceReport_table table {
+	box-sizing: border-box;
+    border-collapse: collapse;
+}
+
+/*文件列表样式*/
+legend {
+	margin-bottom: 8px;
+}
+
+.form-group {
+	margin-bottom: 7px;
+}
+
+li.list-group-item-success, li.list-group-item-info, ol>li {
+	text-decoration: underline;
+	cursor: pointer;
+}
+
+ol {
+	list-style-type: decimal;
+}
+
+ol>li {
+	list-style-type: decimal;
+	list-style-position:inside;
+	color: #00aeef;
+}
+
+ol>li+li {
+	margin-top: 3px;
+}
+/*文件列表样式结束*/
+
+/*维护悬浮指针样式*/
+.preUpload1, .delete_item, .serviceReport_top_r, .wrapper_sign_tit_r, .download_filename_tit_r, .serviceReport_top_down, .serviceReport_top_save, .service_Model, .part_search_top_r, .hastd_Picture, .add_NonStandard_tit_r, .update_NonStandard_tit_r, .update_td, #add_fileList_ul .badge, #update_fileList_ul .badge, span.glyphicon {
+    cursor: pointer;
+}
+
+/*维护隐藏元素*/
+.t_hide, .hastd_Laboratory, #add_file_Upload, #update_file_Upload, .add_fileList_info, .update_fileList_info {
+	display: none;
 }
 
 @media screen and (max-width: 768px) {
