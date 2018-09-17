@@ -10,7 +10,7 @@
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <!-- 为移动设备添加 viewport -->
         <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, minimum-scale=1, user-scalable=no">
-        <title>设备清单</title>
+        <title>所有设备清单</title>
         <link rel="shortcut icon" href="image/eoulu.ico" />
         <link rel="bookmark" href="image/eoulu.ico" />
         <link rel="stylesheet" href="css/libs/bootstrap.min.css" type="text/css">
@@ -150,117 +150,17 @@
                                     </div>
                                 </div>
                                 <!-- 页面表格主体 -->
-                                <div class="m_table">
+                                <div class="m_table m_table_all">
                                     <div class="tab_wrapper">
                                         <!-- Nav tabs -->
                                         <ul class="nav nav-tabs" role="tablist">
-                                            <li role="presentation" class="active" data-laboratory="苏州"><a href="#suzhou_a" aria-controls="suzhou_a" role="tab" data-toggle="tab">苏州</a></li>
-                                            <li role="presentation" data-laboratory="厦门"><a href="#xiameng_a" aria-controls="xiameng_a" role="tab" data-toggle="tab">厦门</a></li>
-                                            <li role="presentation" data-laboratory="深圳"><a href="#shenzhen_a" aria-controls="shenzhen_a" role="tab" data-toggle="tab">深圳</a></li>
-                                            <li role="presentation" data-laboratory="北京"><a href="#beijing_a" aria-controls="beijing_a" role="tab" data-toggle="tab">北京</a></li>
-                                            <li role="presentation" data-laboratory="石家庄"><a href="#shijiazhuang_a" aria-controls="shijiazhuang_a" role="tab" data-toggle="tab">石家庄</a></li>
-                                            <li role="presentation" data-laboratory="成都"><a href="#chengdu_a" aria-controls="chengdu_a" role="tab" data-toggle="tab">成都</a></li>
+                                            <li role="presentation" class="active" data-laboratory="all"><a href="#all_a" aria-controls="all_a" role="tab" data-toggle="tab">所有实验室</a></li>
                                         </ul><!-- Nav tabs end -->
 
                                         <!-- Tab panes -->
                                         <div class="tab-content">
-                                            <div role="tabpanel" class="tab-pane fade in active" id="suzhou_a">
-                                                <table data-itable="苏州">
-                                                    <thead>
-                                                        <tr>
-                                                            <th class="t1">序号</th>
-                                                            <th class="t2">系统名称</th>
-                                                            <th class="t3">系统描述</th>
-                                                            <th class="t4">数量</th>
-                                                            <th class="t5 t_hide">实验室</th>
-                                                            <th class="t6">产品图片</th>
-                                                            <th class="t7">详细配置</th>
-                                                            <th class="t8">应用文档</th>
-                                                            <th class="t9">更新时间</th>
-                                                        </tr>
-                                                    </thead>
-                                                    <tbody>
-                                                    </tbody>
-                                                </table>
-                                            </div>
-                                            <div role="tabpanel" class="tab-pane fade" id="xiameng_a">
-                                                <table data-itable="厦门">
-                                                    <thead>
-                                                        <tr>
-                                                            <th class="t1">序号</th>
-                                                            <th class="t2">系统名称</th>
-                                                            <th class="t3">系统描述</th>
-                                                            <th class="t4">数量</th>
-                                                            <th class="t5 t_hide">实验室</th>
-                                                            <th class="t6">产品图片</th>
-                                                            <th class="t7">详细配置</th>
-                                                            <th class="t8">应用文档</th>
-                                                            <th class="t9">更新时间</th>
-                                                        </tr>
-                                                    </thead>
-                                                    <tbody>
-                                                    </tbody>
-                                                </table>
-                                            </div><!-- xiameng_a end -->
-                                            <div role="tabpanel" class="tab-pane fade" id="shenzhen_a">
-                                                <table data-itable="深圳">
-                                                    <thead>
-                                                        <tr>
-                                                            <th class="t1">序号</th>
-                                                            <th class="t2">系统名称</th>
-                                                            <th class="t3">系统描述</th>
-                                                            <th class="t4">数量</th>
-                                                            <th class="t5 t_hide">实验室</th>
-                                                            <th class="t6">产品图片</th>
-                                                            <th class="t7">详细配置</th>
-                                                            <th class="t8">应用文档</th>
-                                                            <th class="t9">更新时间</th>
-                                                        </tr>
-                                                    </thead>
-                                                    <tbody>
-                                                    </tbody>
-                                                </table>
-                                            </div>
-                                            <div role="tabpanel" class="tab-pane fade" id="beijing_a">
-                                                <table data-itable="北京">
-                                                    <thead>
-                                                        <tr>
-                                                            <th class="t1">序号</th>
-                                                            <th class="t2">系统名称</th>
-                                                            <th class="t3">系统描述</th>
-                                                            <th class="t4">数量</th>
-                                                            <th class="t5 t_hide">实验室</th>
-                                                            <th class="t6">产品图片</th>
-                                                            <th class="t7">详细配置</th>
-                                                            <th class="t8">应用文档</th>
-                                                            <th class="t9">更新时间</th>
-                                                        </tr>
-                                                    </thead>
-                                                    <tbody>
-                                                    </tbody>
-                                                </table>
-                                            </div>
-                                            <div role="tabpanel" class="tab-pane fade" id="shijiazhuang_a">
-                                                <table data-itable="石家庄">
-                                                    <thead>
-                                                        <tr>
-                                                            <th class="t1">序号</th>
-                                                            <th class="t2">系统名称</th>
-                                                            <th class="t3">系统描述</th>
-                                                            <th class="t4">数量</th>
-                                                            <th class="t5 t_hide">实验室</th>
-                                                            <th class="t6">产品图片</th>
-                                                            <th class="t7">详细配置</th>
-                                                            <th class="t8">应用文档</th>
-                                                            <th class="t9">更新时间</th>
-                                                        </tr>
-                                                    </thead>
-                                                    <tbody>
-                                                    </tbody>
-                                                </table>
-                                            </div><!-- shijiazhuang_a end -->
-                                            <div role="tabpanel" class="tab-pane fade" id="chengdu_a">
-                                                <table data-itable="成都">
+                                            <div role="tabpanel" class="tab-pane fade in active" id="all_a">
+                                                <table data-itable="all">
                                                     <thead>
                                                         <tr>
                                                             <th class="t1">序号</th>

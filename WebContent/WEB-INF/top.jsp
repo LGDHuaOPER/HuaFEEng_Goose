@@ -60,7 +60,7 @@
 						
 						<c:if test="${authoritiy=='Customer' || authoritiy=='OriginalQuotation'}"><c:set var="shangwubuziliaoku" value="1"></c:set></c:if>
 
-						<c:if test="${authoritiy=='Lab'}"><c:set var="shiyanshi" value="1"></c:set></c:if>
+						<c:if test="${authoritiy=='Lab' || authoritiy=='AllLab'}"><c:set var="shiyanshi" value="1"></c:set></c:if>
 					</c:forEach>
 					
                     <c:if test="${wuliubu==1 }">
@@ -277,7 +277,7 @@
         	                    <h5 class="ServiceReport"><a href="ServiceReport">文档制作</a></h5>
         							<c:forEach var="authoritiy" items="${authorities}">
         								<c:if test="${authoritiy=='ServiceReport'}">
-        								<h6 class="ServiceReport"><a href="ServiceReport">服务完成报告</a></h6>
+        								<h6 class="ServiceReport"><a href="ServiceReport" style="font-size: 13px;">服务完成报告</a></h6>
         								</c:if>
         							</c:forEach>
         	                    </div>
@@ -300,16 +300,16 @@
 					            <h5 class="SoftwareDocument"><a href="SoftwareDocument">软件部文档</a></h5>
 					            </c:if>
 					            <c:if test="${authoritiy=='SoftwareProject'}">
-					            <h5 class="SoftwareProject"><a href="SoftwareProject" style="font-size:14px;">开发项目管理</a></h5>
+					            <h5 class="SoftwareProject"><a href="SoftwareProject" style="font-size:13px;">开发项目管理</a></h5>
 					            </c:if>
 					            <c:if test="${authoritiy=='SoftwareProduct'}">
-					            <h5 class="SoftwareProduct"><a href="SoftwareProduct" style="font-size:14px;">软件产品管理</a></h5>
+					            <h5 class="SoftwareProduct"><a href="SoftwareProduct" style="font-size:13px;">软件产品管理</a></h5>
 					            </c:if>
 					            <c:if test="${authoritiy=='CustomerInquiry'}">
-					            <h5 class="CustomerInquiry"><a href="CustomerInquiry" style="font-size:14px;">客户询价记录</a></h5>
+					            <h5 class="CustomerInquiry"><a href="CustomerInquiry" style="font-size:13px;">客户询价记录</a></h5>
 					            </c:if>
 					            <c:if test="${authoritiy=='SoftwareImplementation'}">
-					            <h5 class="SoftwareImplementation"><a href="SoftwareImplementation" style="font-size:14px;">软件实施管理</a></h5>
+					            <h5 class="SoftwareImplementation"><a href="SoftwareImplementation" style="font-size:13px;">软件实施管理</a></h5>
 					            </c:if>
 					        </c:forEach>
 					        </div>
@@ -329,7 +329,7 @@
 					            <h5 class="LeaveApplication"><a href="LeaveApplication">请假申请</a></h5>
 					            </c:if>
 					            <c:if test="${authoritiy=='Tasks'}">
-					            <h5 class="Tasks"><a href="Tasking" class="post_tasking">人事任务分配</a></h5>
+					            <h5 class="Tasks"><a href="Tasking" class="post_tasking" style="font-size: 13px;">人事任务分配</a></h5>
 					            </c:if>
 					            <c:if test="${authoritiy=='ExaminationDetails'}">
 					            <h5 class="AssessmentStatistics"><a href="AssessmentStatistics">考核明细</a></h5>
@@ -354,7 +354,7 @@
 						        <div class="m-nav-div" style="overflow:hidden;">
 						        <c:forEach var="authoritiy" items="${authorities}">
 						        	<c:if test="${authoritiy=='SalesQuotationSystem'}">
-						            <h5 class="SalesQuotationSystem"><a href="SalesQuotationSystem">销售报价系统</a></h5>
+						            <h5 class="SalesQuotationSystem"><a href="SalesQuotationSystem" style="font-size: 13px;">销售报价系统</a></h5>
 						            </c:if>
 						        </c:forEach>
 						        </div>
@@ -364,10 +364,13 @@
                 	</c:forEach>
 
                 	<c:if test="${shiyanshi==1}">
-			        <li class="m-li Lab0"><a href="Lab">实验室</a><span></span>
+			        <li class="m-li AllLab0"><a href="AllLab">实验室</a><span></span>
 						<div class="m-nav-div0">
 					        <div class="m-nav-div" style="overflow:hidden;">
 					        <c:forEach var="authoritiy" items="${authorities}">
+					        	<c:if test="${authoritiy=='AllLab'}">
+					        	<h5 class="AllLab"><a href="AllLab" style="font-size: 13px;">所有设备清单</a></h5>
+					        	</c:if>
 					        	<c:if test="${authoritiy=='Lab'}">
 					            <h5 class="Lab"><a href="Lab">设备清单</a></h5>
 					            </c:if>
@@ -412,7 +415,7 @@
 <!-- <script src="js/msgbox_unload.js"></script> -->
 <script src="js/libs/lodash.min.js"></script>
 <script src="js/modules/sharing/top-dbec435863.min.js"></script>
-<script src="js/global/myFunction.js?iv=201809131328" type="text/javascript" charset="utf-8"></script>
+<script src="js/global/myFunction.js?iv=201809141827" type="text/javascript" charset="utf-8"></script>
 <script>
 var ServiceUpdate =<%=request.getSession().getAttribute("startTime") %>
 
@@ -428,7 +431,7 @@ function versionControlFlag2(str){
 	return versionControlFlag;
 }
 
-var vControlExceptHrefArr = ["PaymentRequest","top"];
+var vControlExceptHrefArr = ["top", "ApplicationGallery", "SoftwareDocument", "Transport", "GetOrderRoute", "GetOrderByPageOne", "PaymentRequest", "ServiceReport", "AssessmentStatistics", "Hardware", "GetHardwareRoute", "StandardProduct", "Customer", "GetCustomerInfo2"];
 var curVControlExceptHref = window.location.href.split(globalProjectName+"/")[1].indexOf("?") > -1 ? window.location.href.split(globalProjectName+"/")[1].split("?")[0] : window.location.href.split(globalProjectName+"/")[1];
 // 加版本号控制函数
 (function(){
@@ -571,8 +574,8 @@ $(function(){
 	else if(href1 == "SalesQuotationSystem"){
 	    href1 = "SalesQuotationSystem0";
 	}
-	else if(href1 == "Lab"){
-		href1 = "Lab0";
+	else if(href1 == "Lab" || href1 == "AllLab"){
+		href1 = "AllLab0";
 	}
 	else if(href1 == "Index" || href1 == "Login"){
 		$("div.eou-container-m").css("opacity",0);
@@ -648,6 +651,7 @@ $(function(){
     globalNavResponse(".m-li.MachineDetails0","h5","h5.ServiceReport","ServiceReport");
     globalNavResponse(".m-li.SoftwareProject0","h5","h5.SoftwareProject","SoftwareProject");
     globalNavResponse(".m-li.LeaveApplication0","h5","h5.LeaveApplication","LeaveApplication");
+    globalNavResponse(".m-li.AllLab0","h5","h5.AllLab","AllLab");
 
 	var originFLen = $("li.Inventory0").find("h5").length;
 

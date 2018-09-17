@@ -29,6 +29,27 @@ public class ReimburseDao {
 		List<Map<String, Object>> ls = db.QueryToList(sql, param);
 		return ls;
 	}
+	
+	public List<Map<String, Object>> getOnlyData(Page page,String startTime,String endTime,String email) {
+		DBUtil db = new DBUtil();
+		Object[] param = null;
+	
+	
+		String sql = "select ID,Name,Department,TotalAmount,FilingDate,Pass,BillScreenshot,"
+				+ "ElectronicInvoice,TravelPaper,Others from t_reimburse where Name = (select StaffName "
+				+ "from t_staff where StaffMail = ?)";
+		if(!startTime.equals("")){
+			sql += " and DATE_FORMAT(FilingDate,'%Y-%m') between ? and ? order by ID DESC limit ?,?";
+			param = new Object[] { email,startTime,endTime,(page.getCurrentPage() - 1)*10, page.getRows() };
+		}else{
+			sql += " order by ID DESC limit ?,?";
+			param = new Object[] {email,(page.getCurrentPage() - 1)*10, page.getRows() };
+
+		}
+		
+		List<Map<String, Object>> ls = db.QueryToList(sql, param);
+		return ls;
+	}
 
 	public int getCounts(String startTime,String endTime) {
 		DBUtil db = new DBUtil();
@@ -37,6 +58,24 @@ public class ReimburseDao {
 		if(!startTime.equals("")){
 			sql += "where DATE_FORMAT(FilingDate,'%Y-%m') between ? and ? ";
 			param = new Object[] { startTime,endTime};
+		}
+	
+		List<Map<String, Object>> ls = db.QueryToList(sql, param);
+		int count = 0;
+		if (ls.size() > 1) {
+			count = Integer.parseInt(ls.get(1).get("Count").toString());
+		}
+		return count;
+	}
+	
+	public int getOnlyCounts(String startTime,String endTime,String email) {
+		DBUtil db = new DBUtil();
+		Object[] param = new Object[]{email};
+		String sql = "select count(ID) Count from t_reimburse where Name = (select StaffName "
+				+ "from t_staff where StaffMail = ?)";
+		if(!startTime.equals("")){
+			sql += " and DATE_FORMAT(FilingDate,'%Y-%m') between ? and ? ";
+			param = new Object[] { email,startTime,endTime};
 		}
 	
 		List<Map<String, Object>> ls = db.QueryToList(sql, param);
@@ -65,36 +104,27 @@ public class ReimburseDao {
 	}
 	
 	public int insertRequest(Reimburse reimburse, DBUtil db) throws NumberFormatException, Exception{
-		String sql = "insert into t_reimburse(Name,Department,TotalAmount,FilingDate,Pass,BillScreenshot,"
-				+ "ElectronicInvoice,TravelPaper,Others) values(?,?,?,?,?,?,?,?,?)";
-		Object[] param = new Object[9];
+		String sql = "insert into t_reimburse(Name,Department,TotalAmount,FilingDate,Pass) values(?,?,?,?,?)";
+		Object[] param = new Object[5];
 		param[0] = reimburse.getName();
 		param[1] = reimburse.getDepartment();
 		param[2] = reimburse.getTotalAmount();
 		param[3] = reimburse.getFilingDate();
 		param[4] = "未审核";
-		param[5] = reimburse.getBillScreenshot();
-		param[6] = reimburse.getElectronicInvoice();
-		param[7] = reimburse.getTravelPaper();
-		param[8] = reimburse.getOthers();
+
 		int result = Integer.parseInt(db.insertGetIdNotClose(sql, param).toString());
 		return result;
 	
 	}
 	
 	public boolean updateRequest(Reimburse reimburse, DBUtil db) throws SQLException{
-		String sql = "update t_reimburse set Name=?,Department=?,TotalAmount=?,Pass=?,BillScreenshot=?,"
-				+ "ElectronicInvoice=?,TravelPaper=?,Others=? where ID=?";
+		String sql = "update t_reimburse set Name=?,Department=?,TotalAmount=?,Pass=? where ID=?";
 		Object[] param = new Object[9];
 		param[0] = reimburse.getName();
 		param[1] = reimburse.getDepartment();
 		param[2] = reimburse.getTotalAmount();
 		param[3] = reimburse.getPass();
-		param[4] = reimburse.getBillScreenshot();
-		param[5] = reimburse.getElectronicInvoice();
-		param[6] = reimburse.getTravelPaper();
-		param[7] = reimburse.getOthers();
-		param[8] = reimburse.getID();
+		param[4] = reimburse.getID();
 		int result = db.executeUpdateNotClose(sql, param);
 		if (result > 0){
 			return true;
@@ -160,17 +190,16 @@ public class ReimburseDao {
 		}
 	}
 	
-	public boolean saveFileName(Reimburse reimburse){
-		String sql = "update t_reimburse set BillScreenshot=?,ElectronicInvoice=?,TravelPaper=?,Others=?"
+	public boolean saveFileName(Reimburse reimburse,DBUtil db) throws SQLException{
+		String sql = "update t_reimburse set ElectronicInvoice=?,TravelPaper=?,Others=?"
 				+ " where ID = ?";
-		DBUtil dbUtil = new DBUtil();
-		Object[] param = new Object[5];
-		param[0] = reimburse.getBillScreenshot();
-		param[1] = reimburse.getElectronicInvoice();
-		param[2] = reimburse.getTravelPaper();
-		param[3] = reimburse.getOthers();
-		param[4] = reimburse.getID();
-		int result = dbUtil.executeUpdate(sql,param);
+		Object[] param = new Object[4];
+
+		param[0] = reimburse.getElectronicInvoice();
+		param[1] = reimburse.getTravelPaper();
+		param[2] = reimburse.getOthers();
+		param[3] = reimburse.getID();
+		int result = db.executeUpdateNotClose(sql,param);
 		if (result > 0){
 			return true;
 		}else{
@@ -221,6 +250,14 @@ public class ReimburseDao {
 		}
 		DBUtil dbUtil = new DBUtil();
 		return dbUtil.QueryToList(sql, param);
+	}
+	
+	
+	public boolean updateAttachment(int detailID,String fileName,DBUtil db) throws SQLException{
+		String sql = "update t_reimburse_details set Attachment = ? where ID=?";
+		int result = db.executeUpdateNotClose(sql, new Object[]{fileName,detailID});
+		return result > 0?true:false;
+		
 	}
 
 

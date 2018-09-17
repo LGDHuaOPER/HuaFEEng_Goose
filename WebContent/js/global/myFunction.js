@@ -23,13 +23,13 @@
     // 定义一些默认参数
     var _DefaultParam = {
         projectName: "cfChicken8",
-        versionNO: "1535094652344",
+        versionNO: "1536897675561",
         versionExceptArr: ["eoulu.ico","bootstrap","swiper-3.4.1.min.css","eouluCustom.css","reset.css","css/libs","css/extends","echarts","jquery","msgbox","ajaxfileupload.js","html2canvas.js","fullcalendar.min.js","jsPdf.debug.js","underscore-min.js","ProvinceandCity.js","dispatchScript-079ece4932.min.js","js/libs","plugins/"],
         chartColorArr: [
               '#DE3656','#D6395B','#C93F64','#C0436C','#B64873','#A35283','#9D5588','#885F98','#7468A6','#6C6BA6','#5F72B6','#5A74B9','#5077BE','#4B7BC5','#467DC9','#4081CE','#3A83D3','#3183DA','#2A8BDF','#248EE3','#1E91E8','#1993EC','#1396F0','#0F98F4','#0B9AF7','#069CFA','#019FFF'
             ],
         allDepartArr: ["软件部","财务部","人事部","商务部","销售部","市场部","服务部","物流部","硬件部","应用部","标准服务部","研发部","厦门办事处"],
-        canDispatchPageArr_href: ["ApplicationGallery"],
+        canDispatchPageArr_href: ["ApplicationGallery", "SoftwareDocument", "Transport", "GetOrderRoute", "GetOrderByPageOne", "PaymentRequest", "ServiceReport", "AssessmentStatistics", "Hardware", "GetHardwareRoute", "StandardProduct", "Customer", "GetCustomerInfo2"],
         depart2PageObj: {
                 "物流部": {
                     // "物流统计": "Transport?ActualDelivery=no&column=DateOfSign&condition=All",
@@ -105,6 +105,7 @@
                     "销售报价系统": "SalesQuotationSystem"
                 },
                 "实验室": {
+                    "所有设备清单": "AllLab",
                     "设备清单": "Lab"
                 }
             },
@@ -661,8 +662,72 @@
                             "mergeToParentFile": "customer.js"
                         }
                     }
-                }
+                },
                 // 客户信息表页面结束
+                // 所有设备清单页面
+                "AllLab": {
+                    "lastModify": "Fri Sep 14 2018 13:25:39 GMT+0800 (中国标准时间)",
+                    "lastModifyTime": "1536902739000",
+                    // css
+                    "cssPrimary": {
+                        "bootstrap.min.css": {
+                            "referenceOrder": 0,
+                            "filePath": "css/libs/bootstrap.min.css",
+                            "mergeToParentFile": null
+                        },
+                        "Lab.css": {
+                            "referenceOrder": 1,
+                            "filePath": "css/modules/laboratory/Lab.css",
+                            "mergeToParentFile": "Lab.css"
+                        }
+                    },
+                    // js
+                    "jsPrimary": {
+                        "bootstrap.min.js": {
+                            "referenceOrder": 0,
+                            "filePath": "js/libs/bootstrap.min.js",
+                            "mergeToParentFile": null
+                        },
+                        "Lab.js": {
+                            "referenceOrder": 1,
+                            "filePath": "js/modules/laboratory/Lab.js",
+                            "mergeToParentFile": "Lab.js"
+                        }
+                    }
+                },
+                // 所有设备清单页面结束
+                // 设备清单页面
+                "Lab": {
+                    "lastModify": "Fri Sep 14 2018 13:25:39 GMT+0800 (中国标准时间)",
+                    "lastModifyTime": "1536902739000",
+                    // css
+                    "cssPrimary": {
+                        "bootstrap.min.css": {
+                            "referenceOrder": 0,
+                            "filePath": "css/libs/bootstrap.min.css",
+                            "mergeToParentFile": null
+                        },
+                        "Lab.css": {
+                            "referenceOrder": 1,
+                            "filePath": "css/modules/laboratory/Lab.css",
+                            "mergeToParentFile": "Lab.css"
+                        }
+                    },
+                    // js
+                    "jsPrimary": {
+                        "bootstrap.min.js": {
+                            "referenceOrder": 0,
+                            "filePath": "js/libs/bootstrap.min.js",
+                            "mergeToParentFile": null
+                        },
+                        "Lab.js": {
+                            "referenceOrder": 1,
+                            "filePath": "js/modules/laboratory/Lab.js",
+                            "mergeToParentFile": "Lab.js"
+                        }
+                    }
+                }
+                // 设备清单页面结束
             },
         // pageHrefImportFileMap 结束
         // compressFilePathMap 开始
@@ -715,6 +780,12 @@
                     "outBasePath": "./cfChicken8/WebContent/css/modules/commerce/",
                     "gulp-rev": "customer-2d46b78604.min.css",
                     "referencePath": "css/modules/commerce/customer-2d46b78604.min.css"
+                },
+                "Lab.css": {
+                    "originPath": ["./cfChicken8/WebContent/css/modules/laboratory/Lab.css"],
+                    "outBasePath": "./cfChicken8/WebContent/css/modules/laboratory/",
+                    "gulp-rev": "Lab-d0d0edd961.min.css",
+                    "referencePath": "css/modules/laboratory/Lab-d0d0edd961.min.css"
                 }
             },
             "jsMerge": {
@@ -795,6 +866,12 @@
                     "outBasePath": "./cfChicken8/WebContent/js/modules/commerce/",
                     "gulp-rev": "customer-a03b5a60b3.min.js",
                     "referencePath": "js/modules/commerce/customer-a03b5a60b3.min.js"
+                },
+                "Lab.js": {
+                    "originPath": ["./cfChicken8/WebContent/js/modules/laboratory/Lab.js"],
+                    "outBasePath": "./cfChicken8/WebContent/js/modules/laboratory/",
+                    "gulp-rev": "Lab-0fcdac365a.min.js",
+                    "referencePath": "js/modules/laboratory/Lab-0fcdac365a.min.js"
                 }
             }
         }
@@ -1129,7 +1206,7 @@
     // 版本号排除关键词、文件名或路径名，全文匹配
     var globalVersionExceptFileName = ["eoulu.ico","bootstrap","swiper-3.4.1.min.css","eouluCustom.css","reset.css","css/libs","css/extends","echarts","jquery","msgbox","ajaxfileupload.js","html2canvas.js","fullcalendar.min.js","jsPdf.debug.js","underscore-min.js","ProvinceandCity.js","dispatchScript-079ece4932.min.js","js/libs","plugins/"];
     // 版本号
-    var globalVersionNo = "1536802190237";
+    var globalVersionNo = "1536897675561";
 
     // echarts自定义渐变色
     // 用法：series[i].itemStyle.normal.color =
@@ -1244,6 +1321,7 @@
             "销售报价系统": "SalesQuotationSystem"
         },
         "实验室": {
+            "所有设备清单": "AllLab",
             "设备清单": "Lab"
         }
     };

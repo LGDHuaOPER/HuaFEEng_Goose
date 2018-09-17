@@ -427,12 +427,12 @@
 			<div class="m-add-schedule-m">
         		<span style="margin-right:19%;margin-bottom:30px;margin-left:4%;">出发地</span>
         		<div id="city_1"  name="StartAdd" style="display:inline-block;margin-bottom:30px;">
-					<input class="startArea" type="text" readonly="readonly" style="width:130px;">
+					<input class="startArea" type="text" style="width:130px;">
 				</div>
                 <br>
         		<span style="margin-right:19%;margin-bottom:30px;margin-left:4%">目的地</span>
         		<div id="city_2"  name="EndAdd" style="display:inline-block;margin-bottom:30px;">
-					<input class="arriveArea" type="text" readonly="readonly" style="width:130px;">
+					<input class="arriveArea" type="text" style="width:130px;">
 				</div>
                 <br>
         		<span style="margin-right:15%;margin-bottom:30px;margin-left:4%">出发时间</span>
@@ -503,12 +503,12 @@
         	<div class="m-add-schedule-m">
         		<span style="margin-right:19%;margin-bottom:30px;margin-left:4%;">出发地</span>
         		<div id="city_3"  name="StartAdd" style="display:inline-block;margin-bottom:30px;">
-					<input class="startArea2" type="text" readonly="readonly" style="width:130px;">
+					<input class="startArea2" type="text" style="width:130px;">
 				</div>
                 <br>
         		<span style="margin-right:19%;margin-bottom:30px;margin-left:4%">目的地</span>
         		<div id="city_4"  name="EndAdd" style="display:inline-block;margin-bottom:30px;">
-					<input class="arriveArea2" type="text" readonly="readonly" style="width:130px;">
+					<input class="arriveArea2" type="text" style="width:130px;">
 				</div>
                 <br>
         		<span style="margin-right:15%;margin-bottom:30px;margin-left:4%;">出发时间</span>
@@ -763,34 +763,26 @@ $(function(){
 
 	$(document).on("click",".startArea",function(){
 		$(".mybtn1").fadeIn(100);
-		$(".startArea").removeAttr("readonly");
 		$("#allmap").fadeIn(100);
 		initMap("allmap",$(".startArea"),".arriveArea","#tempDistance1");
-		$(".startArea").attr("readonly","readonly");
 	});
 
 	$(document).on("click",".arriveArea",function(){
 		$(".mybtn1").fadeIn(100);
-		$(".arriveArea").removeAttr("readonly");
 		$("#allmap").fadeIn(100);
 		initMap("allmap",$(".arriveArea"),".startArea","#tempDistance1");
-		$(".arriveArea").attr("readonly","readonly");
 	});
 	
 	$(document).on("click",".startArea2",function(){
 		$(".mybtn2").fadeIn(100);
-		$(".startArea2").removeAttr("readonly");
 		$("#allmap").fadeIn(100);
 		initMap("allmap",$(".startArea2"),".arriveArea2","#tempDistance2");
-		$(".startArea2").attr("readonly","readonly");
 	});
 
 	$(document).on("click",".arriveArea2",function(){
 		$(".mybtn2").fadeIn(100);
-		$(".arriveArea2").removeAttr("readonly");
 		$("#allmap").fadeIn(100);
 		initMap("allmap",$(".arriveArea2"),".startArea2","#tempDistance2");
-		$(".arriveArea2").attr("readonly","readonly");
 	});
 
 	//	map.getDistance(pointA,pointB)/1000).toFixed(2);   //获取两地距离 pointA  pointB分别为两地坐标点
@@ -1958,7 +1950,7 @@ function echartsExpenseStatistics(ExpenseStatistics_Destination,ExpenseStatistic
 	        ],
 	        series : [
 	            {
-	                name:'次数',
+	                name:'差旅费',
 	                type:'bar',
 	                data:ExpenseStatistics_Expense,
 	                markPoint : {

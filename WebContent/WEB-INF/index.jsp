@@ -94,7 +94,7 @@
 
                     <c:if test="${authoritiy=='SalesQuotationSystem'}"><c:set var="xiaoshoubuz" value="1"></c:set></c:if>
 
-                    <c:if test="${authoritiy=='Lab'}"><c:set var="shiyanshiz" value="1"></c:set></c:if>
+                    <c:if test="${authoritiy=='Lab' || authoritiy=='AllLab'}"><c:set var="shiyanshiz" value="1"></c:set></c:if>
                 </c:forEach>
 
                     <c:if test="${ruanjianbuz==1}">
@@ -142,7 +142,7 @@
                     </c:if>
 
                     <c:if test="${shiyanshiz==1}">
-                    <div class="u-img"><div class="m-authority hasSubTit" value="Lab"><a href="Lab">实验室</a><img src="" alt=""></div></div>
+                    <div class="u-img"><div class="m-authority hasSubTit" value="AllLab"><a href="AllLab">实验室</a><img src="" alt=""></div></div>
                     </c:if>
                 </div>
             </div>
@@ -158,7 +158,8 @@
         "SalesStatistics":["SalesStatistics","HotProduct"],
         "LeaveApplication":["LeaveApplication","StaffInfo","Tasks","ExaminationDetails","Reimburse","PaymentRequest"],
         "Requirement":["Requirement","Keysight"],
-        "SalesQuotationSystem":["SalesQuotationSystem"]
+        "SalesQuotationSystem":["SalesQuotationSystem"],
+        "AllLab":["AllLab","Lab"],
     }
 
     $(function(){
@@ -279,8 +280,8 @@
     	%>
     	console.log(a+":"+aCount+","+b+":"+bCount+","+c+":"+cCount+","+d+":"+dCount+","+e+":"+eCount);
     	function staticDepart() {}
-        staticDepart.department = ["员工行程","软件部","商务部","物流统计","箱单制作","发票制作","资料库","FORMFACTOR","物流部","合同统计","需求统计","库存页面","服务部","销售统计","人事部","文档管理","报价系统","库存采购","运输指令","运输保险","箱单制作","热销产品","商品管理","质量证明","数量重量","测试报告","熏蒸证明","原产地证明","发货通知","验收报告","FAT","客户信息表","机台统计","装机进展","售后维修","员工行程","软件部文档","开发项目管理","软件产品管理","客户询价记录","软件实施管理","员工信息","请假申请","软件实施记录","人事任务分配","Keysight","原厂报价单","考核明细","服务完成报告","供应商管理","标准产品","销售报价系统","设备清单","报销申请","工作汇报","招标文件","付款申请","研发图库"];
-        staticDepart.departhref = ["Schedule","SoftwareProduct","QuotationSystem","Transport?ActualDelivery=no&column=DateOfSign&condition=All","PackingList","Invoice","Equipment","OriginFactory","Inventory","Price?ActualDelivery=no&column=DateOfSign&condition=All","Requirement","Inventory","MachineDetails","SalesStatistics","LeaveApplication","DocumentUpload?queryType=common&Area=south&catalog=Manual&Year=2018&Type=Cascade","QuotationSystem","StockPurchasing?ActualDelivery=no&column=DateOfSign&condition=All","Insurance","Proposal","PackingList","HotProduct","Commodity","Quality","QuantityWeight","TestReport","Fumigation","Origin","Shipment","Receiving","Acceptance","Customer","MachineDetails","Hardware","AfterSale","Schedule","SoftwareDocument","SoftwareProject","SoftwareProduct","CustomerInquiry","SoftwareImplementation","StaffInfo","LeaveApplication","SoftwareImplementation","Tasking","Keysight","OriginalQuotation","AssessmentStatistics","ServiceReport","Supplier","StandardProduct","SalesQuotationSystem","Lab","Reimburse","WorkReport","BiddingDocument","PaymentRequest","ApplicationGallery"];
+        staticDepart.department = ["员工行程","软件部","商务部","物流统计","箱单制作","发票制作","资料库","FORMFACTOR","物流部","合同统计","需求统计","库存页面","服务部","销售统计","人事部","文档管理","报价系统","库存采购","运输指令","运输保险","箱单制作","热销产品","商品管理","质量证明","数量重量","测试报告","熏蒸证明","原产地证明","发货通知","验收报告","FAT","客户信息表","机台统计","装机进展","售后维修","员工行程","软件部文档","开发项目管理","软件产品管理","客户询价记录","软件实施管理","员工信息","请假申请","软件实施记录","人事任务分配","Keysight","原厂报价单","考核明细","服务完成报告","供应商管理","标准产品","销售报价系统","设备清单","报销申请","工作汇报","招标文件","付款申请","研发图库","所有设备清单"];
+        staticDepart.departhref = ["Schedule","SoftwareProduct","QuotationSystem","Transport?ActualDelivery=no&column=DateOfSign&condition=All","PackingList","Invoice","Equipment","OriginFactory","Inventory","Price?ActualDelivery=no&column=DateOfSign&condition=All","Requirement","Inventory","MachineDetails","SalesStatistics","LeaveApplication","DocumentUpload?queryType=common&Area=south&catalog=Manual&Year=2018&Type=Cascade","QuotationSystem","StockPurchasing?ActualDelivery=no&column=DateOfSign&condition=All","Insurance","Proposal","PackingList","HotProduct","Commodity","Quality","QuantityWeight","TestReport","Fumigation","Origin","Shipment","Receiving","Acceptance","Customer","MachineDetails","Hardware","AfterSale","Schedule","SoftwareDocument","SoftwareProject","SoftwareProduct","CustomerInquiry","SoftwareImplementation","StaffInfo","LeaveApplication","SoftwareImplementation","Tasking","Keysight","OriginalQuotation","AssessmentStatistics","ServiceReport","Supplier","StandardProduct","SalesQuotationSystem","Lab","Reimburse","WorkReport","BiddingDocument","PaymentRequest","ApplicationGallery","AllLab"];
         if (a!='no'){
         	var firstpos = staticDepart.department.indexOf(a);
         	if(firstpos!= -1){

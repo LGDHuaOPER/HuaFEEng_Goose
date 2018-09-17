@@ -55,19 +55,33 @@ public class LabDao {
 	public List<Map<String, Object>> getDataByPage(String Laboratory,Page page){
 		DBUtil dbUtil = new DBUtil();
 		String sql = "select t_laboratory.ID,t_laboratory.Model,t_laboratory.Description,"
-				+ "t_laboratory.Laboratory,t_laboratory.Number,t_laboratory.Picture from t_laboratory "
-				+ "left join t_commodity_info on t_laboratory.CommodityID=t_commodity_info.ID "
-				+ "where Laboratory=? order by t_laboratory.ID desc limit ?,?" ;
-		Object[] parameter = new Object[]{Laboratory,(page.getCurrentPage()-1)*page.getRows(),page.getRows()};
+				+ "t_laboratory.Laboratory,t_laboratory.Number,t_laboratory.Picture,t_laboratory.Document,"
+				+ "t_laboratory.UpdateTime from t_laboratory ";
+		Object[] parameter = null;
+		if(Laboratory.equals("all")){
+			parameter = new Object[]{(page.getCurrentPage()-1)*page.getRows(),page.getRows()};
+
+		}else{
+			sql += "where Laboratory=? ";
+			parameter = new Object[]{Laboratory,(page.getCurrentPage()-1)*page.getRows(),page.getRows()};
+
+		}
+				
+		sql += "order by t_laboratory.ID desc limit ?,?" ;
 		List<Map<String, Object>> list = dbUtil.QueryToList(sql, parameter);
 		return list;
 	}
 	
-	public int getCounts(){
+	public int getCounts(String Laboratory){
 		DBUtil dbUtil = new DBUtil();
 		String sql = "select COUNT(t_laboratory.ID) Count from t_laboratory ";
+		Object[] parameter = null;
+		if(!Laboratory.equals("all")){
+			sql += "where Laboratory=? ";
+			parameter = new Object[]{Laboratory};
+		}
 		
-		List<Map<String, Object>> list = dbUtil.QueryToList(sql,null);
+		List<Map<String, Object>> list = dbUtil.QueryToList(sql,parameter);
 		return Integer.parseInt(list.get(1).get("Count").toString());
 	}
 	

@@ -8,10 +8,6 @@ body {
 	margin: 0 auto;
 }
 
-.g_body {
-	min-height: 400px;
-}
-
 .m_button {
 	width: 100%;
 	height: 50px;
@@ -22,7 +18,7 @@ body {
 
 .m_button_l, .m_button_r {
 	display: inline-block;
-	height: 85px;
+	height: 50px;
 	vertical-align: middle;
 }
 
@@ -108,17 +104,15 @@ body {
 	height: 45px;
 }
 
-.m_table .t1 {
-	min-width: 53px;
-	width: 5.3%;
+.m_table .t1, .m_table .update_td {
+	max-width: 60px;
+	min-width: 60px;
+	width: 60;
 }
-/*删除 .t9, .t10*/
-.t2, .t3, .t4, .t5, .t6, .t7, .t8 {
-	min-width: 135px;
-	width: 13.5%;
-	overflow: hidden;
-    text-overflow: ellipsis;
-    white-space: nowrap;
+
+.t2, .t3, .t4, .t5, .t6, .t7, .t8, .t9 {
+	min-width: 118px;
+	width: calc(12.5% - 7px);
 }
 
 .tab_wrapper .tab-content {
@@ -141,13 +135,6 @@ body {
 .pageInfo, .changePage {
 	display: inline-block;
 }
-
-/* .u_page {
-// 	width: 575px;
-// 	height: 32px;
-// 	margin-top: 8px;
-// 	margin-left: calc(100% - 580px);
-// }*/
 
 /*弹出类*/
 .bg_cover {
@@ -386,12 +373,6 @@ body {
     cursor: pointer;
 }
 
-// .add_NonStandard_body_in input[disabled], .update_NonStandard_body_in input[disabled] {
-// 	cursor: not-allowed;
-// 	background-color: #eee;
-//     opacity: 1;
-// }
-
 #part_search_input, #part_search_select {
 	padding: 2px 3px;
 	font-size: 14px;
@@ -430,6 +411,7 @@ body {
 
 #add_Commodity, #update_Commodity {
 	top: 30px;
+	left: 15px;
 	width: 40vw;
 	z-index: 10;
 	display: none;
@@ -476,8 +458,8 @@ body {
 	width: 100%;
 	height: 50px;
 }
-
 	/*配置搜索结束*/
+	
 .serviceReport_div {
 	position: absolute;
 	top: 80px;
@@ -826,7 +808,7 @@ legend {
 	margin-bottom: 7px;
 }
 
-li.list-group-item-success, li.list-group-item-info, ol>li {
+li.list-group-item-success, li.list-group-item-info, ol>li, span.td_download_file {
 	text-decoration: underline;
 	cursor: pointer;
 }
@@ -838,11 +820,14 @@ ol {
 ol>li {
 	list-style-type: decimal;
 	list-style-position:inside;
-	color: #00aeef;
 }
 
 ol>li+li {
 	margin-top: 3px;
+}
+
+span.td_download_file, ol>li {
+	color: #00aeef;
 }
 /*文件列表样式结束*/
 
@@ -856,9 +841,39 @@ ol>li+li {
 	display: none;
 }
 
+.m_table_all .t_hide, .m_table_all .hastd_Laboratory {
+	display: table-cell;
+}
+
+.m_table_all .t2, .m_table_all .t3, .m_table_all .t4, .m_table_all .t5, .m_table_all .t6, .m_table_all .t7, .m_table_all .t8, .m_table_all .t9 {
+	min-width: 104px;
+	width: calc(11.1% - 7px);
+}
+
 @media screen and (max-width: 768px) {
     .add_NonStandard, .update_NonStandard, .serviceReport_div, .wrapper_sign, .download_filename {
 		left: 0;
 		margin-left: 0;
     }
 }
+/*bs组件 nav 去除项目样式*/
+ul.nav {
+	clear: none !important;
+	min-width: 1px !important;
+	width: auto !important;
+	height: auto !important;
+	line-height: 1.42857143 !important;
+	margin: 0 0 !important;
+	background: transparent !important;
+}
+
+ul.nav li a {
+	color: #337ab7 !important;
+	cursor: pointer !important;
+}
+
+ul.nav li.active a {
+	color: #555 !important;
+	cursor: default !important;
+}
+/*bs组件 nav 去除项目样式 end*/

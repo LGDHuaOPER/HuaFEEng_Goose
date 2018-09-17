@@ -1,4 +1,9 @@
+// colResizable 1.6 - a jQuery plugin by Alvaro Prieto Lauroba http://www.bacubacu.com/colresizable/
+
+!function(t){var e,i=t(document),r=t("head"),o=null,s={},d=0,n="id",a="px",l="JColResizer",c="JCLRFlex",f=parseInt,h=Math,p=navigator.userAgent.indexOf("Trident/4.0")>0;try{e=sessionStorage}catch(g){}r.append("<style type='text/css'>  .JColResizer{table-layout:fixed;} .JColResizer > tbody > tr > td, .JColResizer > tbody > tr > th{overflow:hidden;padding-left:0!important; padding-right:0!important;}  .JCLRgrips{ height:0px; position:relative;} .JCLRgrip{margin-left:-5px; position:absolute; z-index:5; } .JCLRgrip .JColResizer{position:absolute;background-color:red;filter:alpha(opacity=1);opacity:0;width:10px;height:100%;cursor: e-resize;top:0px} .JCLRLastGrip{position:absolute; width:1px; } .JCLRgripDrag{ border-left:1px dotted black;	} .JCLRFlex{width:auto!important;} .JCLRgrip.JCLRdisabledGrip .JColResizer{cursor:default; display:none;}</style>");var u=function(e,i){var o=t(e);if(o.opt=i,o.mode=i.resizeMode,o.dc=o.opt.disabledColumns,o.opt.disable)return w(o);var a=o.id=o.attr(n)||l+d++;o.p=o.opt.postbackSafe,!o.is("table")||s[a]&&!o.opt.partialRefresh||("e-resize"!==o.opt.hoverCursor&&r.append("<style type='text/css'>.JCLRgrip .JColResizer:hover{cursor:"+o.opt.hoverCursor+"!important}</style>"),o.addClass(l).attr(n,a).before('<div class="JCLRgrips"/>'),o.g=[],o.c=[],o.w=o.width(),o.gc=o.prev(),o.f=o.opt.fixed,i.marginLeft&&o.gc.css("marginLeft",i.marginLeft),i.marginRight&&o.gc.css("marginRight",i.marginRight),o.cs=f(p?e.cellSpacing||e.currentStyle.borderSpacing:o.css("border-spacing"))||2,o.b=f(p?e.border||e.currentStyle.borderLeftWidth:o.css("border-left-width"))||1,s[a]=o,v(o))},w=function(t){var e=t.attr(n),t=s[e];t&&t.is("table")&&(t.removeClass(l+" "+c).gc.remove(),delete s[e])},v=function(i){var r=i.find(">thead>tr:first>th,>thead>tr:first>td");r.length||(r=i.find(">tbody>tr:first>th,>tr:first>th,>tbody>tr:first>td, >tr:first>td")),r=r.filter(":visible"),i.cg=i.find("col"),i.ln=r.length,i.p&&e&&e[i.id]&&m(i,r),r.each(function(e){var r=t(this),o=-1!=i.dc.indexOf(e),s=t(i.gc.append('<div class="JCLRgrip"></div>')[0].lastChild);s.append(o?"":i.opt.gripInnerHtml).append('<div class="'+l+'"></div>'),e==i.ln-1&&(s.addClass("JCLRLastGrip"),i.f&&s.html("")),s.bind("touchstart mousedown",J),o?s.addClass("JCLRdisabledGrip"):s.removeClass("JCLRdisabledGrip").bind("touchstart mousedown",J),s.t=i,s.i=e,s.c=r,r.w=r.width(),i.g.push(s),i.c.push(r),r.width(r.w).removeAttr("width"),s.data(l,{i:e,t:i.attr(n),last:e==i.ln-1})}),i.cg.removeAttr("width"),i.find("td, th").not(r).not("table th, table td").each(function(){t(this).removeAttr("width")}),i.f||i.removeAttr("width").addClass(c),C(i)},m=function(t,i){var r,o,s=0,d=0,n=[];if(i){if(t.cg.removeAttr("width"),t.opt.flush)return void(e[t.id]="");for(r=e[t.id].split(";"),o=r[t.ln+1],!t.f&&o&&(t.width(o*=1),t.opt.overflow&&(t.css("min-width",o+a),t.w=o));d<t.ln;d++)n.push(100*r[d]/r[t.ln]+"%"),i.eq(d).css("width",n[d]);for(d=0;d<t.ln;d++)t.cg.eq(d).css("width",n[d])}else{for(e[t.id]="";d<t.c.length;d++)r=t.c[d].width(),e[t.id]+=r+";",s+=r;e[t.id]+=s,t.f||(e[t.id]+=";"+t.width())}},C=function(t){t.gc.width(t.w);for(var e=0;e<t.ln;e++){var i=t.c[e];t.g[e].css({left:i.offset().left-t.offset().left+i.outerWidth(!1)+t.cs/2+a,height:t.opt.headerOnly?t.c[0].outerHeight(!1):t.outerHeight(!1)})}},b=function(t,e,i){var r=o.x-o.l,s=t.c[e],d=t.c[e+1],n=s.w+r,l=d.w-r;s.width(n+a),t.cg.eq(e).width(n+a),t.f?(d.width(l+a),t.cg.eq(e+1).width(l+a)):t.opt.overflow&&t.css("min-width",t.w+r),i&&(s.w=n,d.w=t.f?l:d.w)},R=function(e){var i=t.map(e.c,function(t){return t.width()});e.width(e.w=e.width()).removeClass(c),t.each(e.c,function(t,e){e.width(i[t]).w=i[t]}),e.addClass(c)},x=function(t){if(o){var e=o.t,i=t.originalEvent.touches,r=i?i[0].pageX:t.pageX,s=r-o.ox+o.l,d=e.opt.minWidth,n=o.i,l=1.5*e.cs+d+e.b,c=n==e.ln-1,f=n?e.g[n-1].position().left+e.cs+d:l,p=e.f?n==e.ln-1?e.w-l:e.g[n+1].position().left-e.cs-d:1/0;if(s=h.max(f,h.min(p,s)),o.x=s,o.css("left",s+a),c){var g=e.c[o.i];o.w=g.w+s-o.l}if(e.opt.liveDrag){c?(g.width(o.w),!e.f&&e.opt.overflow?e.css("min-width",e.w+s-o.l):e.w=e.width()):b(e,n),C(e);var u=e.opt.onDrag;u&&(t.currentTarget=e[0],u(t))}return!1}},y=function(r){if(i.unbind("touchend."+l+" mouseup."+l).unbind("touchmove."+l+" mousemove."+l),t("head :last-child").remove(),o){if(o.removeClass(o.t.opt.draggingClass),o.x-o.l!=0){var s=o.t,d=s.opt.onResize,n=o.i,a=n==s.ln-1,c=s.g[n].c;a?(c.width(o.w),c.w=o.w):b(s,n,!0),s.f||R(s),C(s),d&&(r.currentTarget=s[0],d(r)),s.p&&e&&m(s)}o=null}},J=function(e){var d=t(this).data(l),n=s[d.t],a=n.g[d.i],c=e.originalEvent.touches;if(a.ox=c?c[0].pageX:e.pageX,a.l=a.position().left,a.x=a.l,i.bind("touchmove."+l+" mousemove."+l,x).bind("touchend."+l+" mouseup."+l,y),r.append("<style type='text/css'>*{cursor:"+n.opt.dragCursor+"!important}</style>"),a.addClass(n.opt.draggingClass),o=a,n.c[d.i].l)for(var f,h=0;h<n.ln;h++)f=n.c[h],f.l=!1,f.w=f.width();return!1},L=function(){for(var t in s)if(s.hasOwnProperty(t)){t=s[t];var i,r=0;if(t.removeClass(l),t.f){for(t.w=t.width(),i=0;i<t.ln;i++)r+=t.c[i].w;for(i=0;i<t.ln;i++)t.c[i].css("width",h.round(1e3*t.c[i].w/r)/10+"%").l=!0}else R(t),"flex"==t.mode&&t.p&&e&&m(t);C(t.addClass(l))}};t(window).bind("resize."+l,L),t.fn.extend({colResizable:function(e){var i={resizeMode:"fit",draggingClass:"JCLRgripDrag",gripInnerHtml:"",liveDrag:!1,minWidth:15,headerOnly:!1,hoverCursor:"e-resize",dragCursor:"e-resize",postbackSafe:!1,flush:!1,marginLeft:null,marginRight:null,disable:!1,partialRefresh:!1,disabledColumns:[],onDrag:null,onResize:null},e=t.extend(i,e);switch(e.fixed=!0,e.overflow=!1,e.resizeMode){case"flex":e.fixed=!1;break;case"overflow":e.fixed=!1,e.overflow=!0}return this.each(function(){u(this,e)})}})}(jQuery);
 /*****函数定义与变量定义*****/
+var LabPageMainDataObj = {};
+
 var addSubmitObj = new Object();
 addSubmitObj.Type = null;
 // addSubmitObj.CommodityID = null;
@@ -55,6 +60,8 @@ var serviceReportStr = '<tr>'+
 var LabState = new Object();
 LabState.uploadFileNo = 0;
 LabState.uploadFileList = {};
+
+var thisPageHref = eouluGlobal.S_getCurPageHref();
 
 // 翻页组件按钮逻辑
 // flag 为按钮ID后缀  如 pageStyle(CurrentPage, pageCount, "2");
@@ -135,7 +142,7 @@ function tableRender(Laboratory, icurPage, pageCounts, data){
 
 			iCADdrawingsStr+="<span class='td_download_file' title='"+iCADdrawingsArr[0]+"'>"+iCADdrawingsArr[0]+"</span><br>";
 			iCADdrawingsStr+="<span class='td_download_file' title='"+iCADdrawingsArr[1]+"'>"+iCADdrawingsArr[1]+"</span><br>";
-			iCADdrawingsStr+="<a tabindex='0' class='btn btn-info' role='button' data-toggle='popover' data-trigger='focus' data-placement='left' title='第"+iNO+"条记录--应用文档' data-content='"+iCADconStr+"'>显示更多...</a>";
+			iCADdrawingsStr+="<a tabindex='0' class='btn btn-info' role='button' data-container='body' data-toggle='popover' data-trigger='focus' data-placement='left' title='第"+iNO+"条记录--应用文档' data-content='"+iCADconStr+"'>显示更多...</a>";
 		}
 
 	    str+='<tr>'+
@@ -163,7 +170,7 @@ function tableRender(Laboratory, icurPage, pageCounts, data){
 }
 
 // 表格渲染ajax请求
-function tableRenderAjax(Laboratory, icurPage){
+function tableRenderAjax(Laboratory, icurPage, fn){
 	$.ajax({
 		type: "GET",
 		url: "Lab",
@@ -177,6 +184,7 @@ function tableRenderAjax(Laboratory, icurPage){
 			var pageCounts = res.pageCount;
 			var data = res.data;
 			tableRender(Laboratory, icurPage, pageCounts, data);
+			fn && fn(res);
 		},
 		error:function(){
 			$.MsgBox_Unload.Alert("提示","服务器繁忙！");
@@ -185,6 +193,65 @@ function tableRenderAjax(Laboratory, icurPage){
 		    
 		}
 	});
+}
+
+// 获取主页面数据整体函数
+function getPageMainData(immediate, Laboratory, icurPage){
+	var searchObj = {
+	    Laboratory: Laboratory,
+	    icurPage: icurPage
+	};
+
+	var searchParam = $.param(searchObj);
+
+	var immediateFn = function(curTime){
+		tableRenderAjax(Laboratory, icurPage, function(ires){
+			LabPageMainDataObj[searchParam] = {};
+			var searchParamVal = LabPageMainDataObj[searchParam];
+			searchParamVal[icurPage] = {};
+			searchParamVal[icurPage].searchObj = $.extend(true, {}, searchObj);
+			searchParamVal[icurPage].expire = curTime + (1000*60*2);
+			searchParamVal[icurPage].resp = $.extend(true, {}, ires);
+		});
+	};
+
+	var expireFalseFn = function(resp){
+	    resp = resp || {};
+	    var pageCounts = resp.pageCount;
+	    var data = resp.data;
+	    tableRender(Laboratory, icurPage, pageCounts, data);
+	};
+
+	var expireTrueFn = function(curTime){
+		tableRenderAjax(Laboratory, icurPage, function(ires){
+			var searchParamVal = LabPageMainDataObj[searchParam];
+			searchParamVal[icurPage].expire = curTime + (1000*60*2);
+			searchParamVal[icurPage].resp = $.extend(true, {}, ires);
+		});
+	};
+
+	var pageNotExistFn = function(curTime){
+		tableRenderAjax(Laboratory, icurPage, function(ires){
+			var searchParamVal = LabPageMainDataObj[searchParam];
+			searchParamVal[icurPage] = {};
+			searchParamVal[icurPage].searchObj = $.extend(true, {}, searchObj);
+			searchParamVal[icurPage].expire = curTime + (1000*60*2);
+			searchParamVal[icurPage].resp = $.extend(true, {}, ires);
+		});
+	};
+
+	var searchParamNotExistFn = function(curTime){
+		tableRenderAjax(Laboratory, icurPage, function(ires){
+			LabPageMainDataObj[searchParam] = {};
+			var searchParamVal = LabPageMainDataObj[searchParam];
+			searchParamVal[icurPage] = {};
+			searchParamVal[icurPage].searchObj = $.extend(true, {}, searchObj);
+			searchParamVal[icurPage].expire = curTime + (1000*60*2);
+			searchParamVal[icurPage].resp = $.extend(true, {}, ires);
+		});
+	};
+
+	globalInertLoadNoSearch(immediate, immediateFn, LabPageMainDataObj, searchParam, icurPage, expireFalseFn, expireTrueFn, pageNotExistFn, searchParamNotExistFn);
 }
 
 // 计算服务完成报告item序号
@@ -204,8 +271,8 @@ function canFillItem(){
 function uploadFiles(){                                           
     var formData = new FormData();
     formData.enctype="multipart/form-data";
-    formData.append("file",$("#serFinRepUpload")[0].files[0]);//append()里面的第一个参数file对应permission/upload里面的参数file         
     formData.append("Category","labPicture");
+    formData.append("file",$("#serFinRepUpload")[0].files[0]);//append()里面的第一个参数file对应permission/upload里面的参数file         
     $.ajax({
         type: "POST",
         async: true,  //这里要设置异步上传，才能成功调用myXhr.upload.addEventListener('progress',function(e){}),progress的回掉函数
@@ -227,7 +294,7 @@ function uploadFiles(){
                     console.log("已经上传了："+percent);  
                     var newWidthFloat =  globalToPoint(percent);  
                     var newWidth = newWidthFloat*400;
-                    console.log("进度条宽度："+newWidth);   
+                    // console.log("进度条宽度："+newWidth);
                     $(".progressIn").css("width",newWidth+"px").text(percent);
                 }, false); // for handling the progress of the upload
             }
@@ -354,7 +421,13 @@ function resizeTableCol(laboratory){
 
 /*****页面加载完成*****/
 $(function(){
-	tableRenderAjax("苏州", 1);
+	if(thisPageHref == "Lab"){
+		getPageMainData(true, "苏州", 1);
+	}else if(thisPageHref == "AllLab"){
+		getPageMainData(true, "all", 1);
+	}
+	
+	// tableRenderAjax("苏州", 1);
 	// 插入实验室
 	var LaboratoryStr = '<option value="" disabled="disabled">请选择</option>';
 	LaboratoryArr.map(function(currentValue,index,arr){
@@ -369,7 +442,7 @@ $(function(){
 *****/
 // 打开
 $(".m_button_l input[value='添加']").on("click",function(){
-	$(".bg_cover, .add_NonStandard").slideDown(350);
+	$(".bg_cover, .add_NonStandard").slideDown(300);
 	$(".add_NonStandard_body_in [id^='add_info_']").each(function(){
 		// if($(this).prop("tagName")=="SELECT"||$(this).prop("tagName")=="select"){
 		// 	$(this).val("0");
@@ -377,7 +450,11 @@ $(".m_button_l input[value='添加']").on("click",function(){
 		// 	$(this).val("");
 		// }
 		if($(this).is("#add_info_Laboratory")){
-			$(this).val($("div.tab_wrapper>ul>li.active").data("laboratory"));
+			if(thisPageHref == "Lab"){
+				$(this).val($("div.tab_wrapper>ul>li.active").data("laboratory"));
+			}else if(thisPageHref == "AllLab"){
+				$(this).val("");
+			}
 		}else{
 			$(this).val("");
 		}
@@ -388,7 +465,7 @@ $(".m_button_l input[value='添加']").on("click",function(){
 });
 
 $(document).on("click",".update_td",function(){
-	$(".bg_cover, .update_NonStandard").slideDown(350);
+	$(".bg_cover, .update_NonStandard").slideDown(300);
 	// jQuery.data($(this), "customerId");
 	updateSubmitObj.ID = Number($(this).data("iid")).toString();
 	// updateSubmitObj.CommodityID = Number($(this).data("commodityid")).toString();
@@ -468,13 +545,13 @@ $("#jumpNumber").on("input propertychange",function(){
 
 	// 翻页
 $("#fistPage").click(function(){
-    var currentPage =1;
-    tableRenderAjax($("div.tab_wrapper>ul>li.active").data("laboratory"), currentPage);
+	getPageMainData(false, $("div.tab_wrapper>ul>li.active").data("laboratory"), 1);
+    // tableRenderAjax($("div.tab_wrapper>ul>li.active").data("laboratory"), 1);
 });
 
 $("#lastPage").click(function(){
-    var currentPage =Number($("#allPage").text());
-    tableRenderAjax($("div.tab_wrapper>ul>li.active").data("laboratory"), currentPage);
+    var currentPage = Number($("#allPage").text());
+    getPageMainData(false, $("div.tab_wrapper>ul>li.active").data("laboratory"), currentPage);
 });
 
 $("#upPage").click(function(){
@@ -483,7 +560,7 @@ $("#upPage").click(function(){
         return;
     }else{
         currentPage--;
-        tableRenderAjax($("div.tab_wrapper>ul>li.active").data("laboratory"), currentPage);
+        getPageMainData(false, $("div.tab_wrapper>ul>li.active").data("laboratory"), currentPage);
     }
 });
 
@@ -494,7 +571,7 @@ $("#nextPage").click(function(){
         return;
     }else{
         currentPage++;
-        tableRenderAjax($("div.tab_wrapper>ul>li.active").data("laboratory"), currentPage);
+        getPageMainData(false, $("div.tab_wrapper>ul>li.active").data("laboratory"), currentPage);
     }
 });
 	//跳页
@@ -506,7 +583,7 @@ $("#Gotojump").click(function(){
         $("#jumpNumber").val('');
         return;
     }else{
-        tableRenderAjax($("div.tab_wrapper>ul>li.active").data("laboratory"), currentPage);
+        getPageMainData(false, $("div.tab_wrapper>ul>li.active").data("laboratory"), currentPage);
     }
 });
 
@@ -561,9 +638,14 @@ $("#NonStandard_addsubmit").on("click",function(){
 				$.MsgBox_Unload.Alert("提示","添加成功！");
 				$("#NonStandard_addclose").trigger("click");
 				if($("div.tab_wrapper>ul>li.active").data("laboratory") == iLaboratory){
-					tableRenderAjax(iLaboratory, 1);
+					getPageMainData(true, iLaboratory, 1);
+					// tableRenderAjax(iLaboratory, 1);
 				}else{
-					$("div.tab_wrapper>ul>li[data-laboratory='"+iLaboratory+"']>a").trigger("click");
+					if(thisPageHref == "Lab"){
+						$("div.tab_wrapper>ul>li[data-laboratory='"+iLaboratory+"']>a").trigger("click");
+					}else if(thisPageHref == "AllLab"){
+						getPageMainData(true, "all", 1);
+					}
 				}
 			}else if(data=="false"){
 				$.MsgBox_Unload.Alert("提示","添加失败！");
@@ -609,7 +691,7 @@ $("#NonStandard_updatesubmit").on("click",function(){
 	}
 	// 文件信息保存
 	var fileArray = [];
-	$("#update_fileList_ul>li.list-group-item-success").each(function(){
+	$("#update_fileList_ul>li.list-group-item-success, #update_fileList_ul>li.list-group-item-info").each(function(){
 		fileArray.push($(this).attr("title"));
 	});
 	var newfileArray = globalArrStrUnique(fileArray);
@@ -630,9 +712,13 @@ $("#NonStandard_updatesubmit").on("click",function(){
 				$.MsgBox_Unload.Alert("提示","修改成功！");
 				$("#NonStandard_updateclose").trigger("click");
 				if($("div.tab_wrapper>ul>li.active").data("laboratory") == iLaboratory){
-					tableRenderAjax(iLaboratory, 1);
+					getPageMainData(true, iLaboratory, 1);
 				}else{
-					$("div.tab_wrapper>ul>li[data-laboratory='"+iLaboratory+"']>a").trigger("click");
+					if(thisPageHref == "Lab"){
+						$("div.tab_wrapper>ul>li[data-laboratory='"+iLaboratory+"']>a").trigger("click");
+					}else if(thisPageHref == "AllLab"){
+						getPageMainData(true, "all", 1);
+					}
 				}
 			}else if(data=="false"){
 				$.MsgBox_Unload.Alert("提示","修改失败！");
@@ -907,11 +993,11 @@ $(document).on("click",".hastd_Picture img",function(){
                 img.onload = function (e) {
                     window.URL.revokeObjectURL(img.src);
                     if(img.width>760){
-                    	console.log("1");
+                    	// console.log("1");
                     	img.width = 760;
                     }
                     if(img.height>1000){
-                    	console.log("2");
+                    	// console.log("2");
                     	img.height = 1000;
                     }
                 };
@@ -960,8 +1046,6 @@ $(".add_upload_Picture, .update_upload_Picture").on("click",function(){
 
 // 上传图片
 $("input.dropUp2").on("click",function(){
-
-
 
 	// console.log($("#serFinRepUpload")[0].files[0]); // 属性name为文件名，size为大小
 	// 
@@ -1109,9 +1193,6 @@ $("#add_file_Upload, #update_file_Upload").on("change",function(){
 	});
 	insertDOM.append(curFileListStr);
 	$("div."+classify+"_fileList_info>div>div.progress-bar").prop("aria-valuenow","0").css("width","0%").text("0%");
-	// console.log("文件上传改变值"+$(this).val());
-	// var newFileName1 = $(this).val().indexOf("\\fakepath\\")>-1?$(this).val().split("\\fakepath\\")[1]:$(this).val().split("\\").pop();
-	// console.log("赋给input的值"+newFileName1);
 });
 
 // 添加修改文件删除
@@ -1166,5 +1247,6 @@ $('.tab_wrapper>ul>li>a').on('shown.bs.tab', function (e) {
     // console.log(e.relatedTarget); // previous active tab
     // console.log($(e.target));
     var laboratory = $(e.target).parent().data("laboratory").toString();
-    tableRenderAjax(laboratory, 1);
+    getPageMainData(true, laboratory, 1);
+    // tableRenderAjax(laboratory, 1);
 });

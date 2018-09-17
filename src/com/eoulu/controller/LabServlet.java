@@ -15,7 +15,9 @@ import com.eoulu.commonality.Page;
 import com.eoulu.entity.Laboratory;
 import com.eoulu.log.AccessStatistics;
 import com.eoulu.service.LabService;
+import com.eoulu.service.LogInfoService;
 import com.eoulu.service.impl.LabServiceImpl;
+import com.eoulu.service.impl.LogInfoServiceImpl;
 import com.google.gson.Gson;
 
 /**
@@ -39,12 +41,12 @@ public class LabServlet extends HttpServlet {
 		String loadType = request.getParameter("LoadType") == null?"":request.getParameter("LoadType");
 		if(loadType.equals("data")){
 			String currentPage = request.getParameter("CurrentPage");
-			String Laboratory = request.getParameter("Laboratory")==null?"苏州":request.getParameter("Laboratory");
+			String Laboratory = request.getParameter("Laboratory")==null?"all":request.getParameter("Laboratory");
 			LabService service = new LabServiceImpl();
 			Page page = new Page();
 			page.setCurrentPage(currentPage==null?1:Integer.parseInt(currentPage));
 			page.setRows(10);
-			page.setRecordCounts(service.getCounts());
+			page.setRecordCounts(service.getCounts(Laboratory));
 			List<Map<String, Object>> list = service.getDataByPage(Laboratory,page);
 			Map<String, Object> map = new HashMap<>();
 			map.put("data", list);
@@ -84,10 +86,22 @@ public class LabServlet extends HttpServlet {
 		switch (type) {
 		case "add":
 			result = service.insert(lab);
+			if(result){
+				LogInfoService log = new LogInfoServiceImpl();
+				String JspInfo = "实验室";
+				String description = "新增-"+Model;
+				log.insert(request, JspInfo, description);
+			}
 			break;
 
 		case "update":
 			result = service.update(lab);
+			if(result){
+				LogInfoService log = new LogInfoServiceImpl();
+				String JspInfo = "实验室";
+				String description = "修改-"+Model;
+				log.insert(request, JspInfo, description);
+			}
 			break;
 		}
 		response.getWriter().write(new Gson().toJson(result));

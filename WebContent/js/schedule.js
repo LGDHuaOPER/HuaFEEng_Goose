@@ -245,15 +245,11 @@ $(document).on("click",".xiugai",function(){
     
     //出发地
     var addr1 = tr.find('td').eq(7).text().trim();
-    $(".startArea2").removeAttr("readonly");
     $(".startArea2").val(addr1);
-    $(".startArea2").attr("readonly","readonly");
    
     //目的地
     var addr2 = tr.find('td').eq(8).text().trim();
-    $(".arriveArea2").removeAttr("readonly");
     $(".arriveArea2").val(addr2);
-    $(".arriveArea2").attr("readonly","readonly");
     alterDistance(addr1,addr2);
 
     $('.contract_update #Service').text(tr.find('td').eq(4).text());
@@ -477,12 +473,8 @@ $('#update_submit').click(function () {
 //点击添加
 function AddContract() {
     $("#tempDistance1").val("");
-    $(".startArea").removeAttr("readonly");
     $(".startArea").val("");
-    $(".startArea").attr("readonly","readonly");
-    $(".arriveArea").removeAttr("readonly");
     $(".arriveArea").val("");
-    $(".arriveArea").attr("readonly","readonly");
     $(".startArea").removeAttr("lngAndlat");
     $(".arriveArea").removeAttr("lngAndlat");
 	var engineer = $("span.engineer").html();
@@ -752,35 +744,35 @@ $(function(){
             $("#travelCost").append(Traffic1option);
         }else if(Traffic1Val==1){
             $("#travelCost").html("");
-            for(var i = 2;i<11;i++){
+            for(var i = 2;i<21;i++){
                 var b1 = i*200;
                 Traffic1option2+="<option value="+b1+">"+b1+"元</option>";
             }
             $("#travelCost").append(Traffic1option2);
         }else if(Traffic1Val==2){
             $("#travelCost").html("");
-            for(var i = 1;i<21;i++){
+            for(var i = 1;i<41;i++){
                 var b1 = i*50;
                 Traffic1option2+="<option value="+b1+">"+b1+"元</option>";
             }
             $("#travelCost").append(Traffic1option2);
         }else if(Traffic1Val==3){
             $("#travelCost").html("");
-            for(var i = 1;i<31;i++){
+            for(var i = 1;i<61;i++){
                 var b1 = i*50;
                 Traffic1option2+="<option value="+b1+">"+b1+"元</option>";
             }
             $("#travelCost").append(Traffic1option2);
         }else if(Traffic1Val==4){
             $("#travelCost").html("");
-            for(var i = 1;i<11;i++){
+            for(var i = 1;i<21;i++){
                 var b1 = i*50;
                 Traffic1option2+="<option value="+b1+">"+b1+"元</option>";
             }
             $("#travelCost").append(Traffic1option2);
         }else if(Traffic1Val==5){
         	$("#travelCost").html("");
-            for(var i = 1;i<101;i++){
+            for(var i = 1;i<201;i++){
                 var b1 = i*10;
                 Traffic1option2+="<option value="+b1+">"+b1+"元</option>";
             }
@@ -811,35 +803,35 @@ $(function(){
             $("#travelCost2").append(Traffic1option);
         }else if(Traffic1Val==1){
             $("#travelCost2").html("");
-            for(var i = 2;i<11;i++){
+            for(var i = 2;i<21;i++){
                 var b1 = i*200;
                 Traffic1option1+="<option value="+b1+">"+b1+"元</option>";
             }
             $("#travelCost2").append(Traffic1option1);
         }else if(Traffic1Val==2){
             $("#travelCost2").html("");
-            for(var i = 1;i<21;i++){
+            for(var i = 1;i<41;i++){
                 var b1 = i*50;
                 Traffic1option1+="<option value="+b1+">"+b1+"元</option>";
             }
             $("#travelCost2").append(Traffic1option1);
         }else if(Traffic1Val==3){
             $("#travelCost2").html("");
-            for(var i = 1;i<31;i++){
+            for(var i = 1;i<61;i++){
                 var b1 = i*50;
                 Traffic1option1+="<option value="+b1+">"+b1+"元</option>";
             }
             $("#travelCost2").append(Traffic1option1);
         }else if(Traffic1Val==4){
             $("#travelCost2").html("");
-            for(var i = 1;i<11;i++){
+            for(var i = 1;i<21;i++){
                 var b1 = i*50;
                 Traffic1option1+="<option value="+b1+">"+b1+"元</option>";
             }
             $("#travelCost2").append(Traffic1option1);
         }else if(Traffic1Val==5){
         	$("#travelCost2").html("");
-            for(var i = 1;i<101;i++){
+            for(var i = 1;i<201;i++){
                 var b1 = i*10;
                 Traffic1option1+="<option value="+b1+">"+b1+"元</option>";
             }

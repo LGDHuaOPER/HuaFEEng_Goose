@@ -8,9 +8,11 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import com.eoulu.entity.Reimburse;
 import com.eoulu.service.ReimburseService;
 import com.eoulu.service.impl.ReimburseServiceImpl;
 import com.eoulu.util.DownloadUrl;
+import com.google.gson.Gson;
 
 /**
  * Servlet implementation class ReimburseAttachmentServlet
@@ -60,8 +62,23 @@ public class ReimburseAttachmentServlet extends HttpServlet {
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		String ElectronicInvoice = request.getParameter("ElectronicInvoice")==null?"":request.getParameter("ElectronicInvoice");
+		String TravelPaper = request.getParameter("TravelPaper")==null?"":request.getParameter("TravelPaper");
+		String Others = request.getParameter("Others")==null?"":request.getParameter("Others");	
+		String AttachmentJson = request.getParameter("AttachmentJson")==null?"":request.getParameter("AttachmentJson");
+		String folder = request.getParameter("Folder");
+		String deleteFile = request.getParameter("DeleteFile");
+		Reimburse reimburse = new Reimburse();
+		reimburse.setElectronicInvoice(ElectronicInvoice);
+		reimburse.setTravelPaper(TravelPaper);
+		reimburse.setOthers(Others);
+		reimburse.setAttachmentJson(AttachmentJson);
+		
 		ReimburseService service = new ReimburseServiceImpl();
-		response.getWriter().write(service.batchUpload(request));
+		response.getWriter().write(new Gson().toJson(service.saveAttachment(reimburse, folder,deleteFile)));
+		
+		
 	}
+	
 
 }

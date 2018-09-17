@@ -4,8 +4,6 @@ import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
-import java.io.InputStream;
-import java.io.UnsupportedEncodingException;
 import java.sql.Connection;
 import java.sql.SQLException;
 import java.text.SimpleDateFormat;
@@ -17,12 +15,6 @@ import java.util.List;
 import java.util.Map;
 import java.util.Properties;
 
-import javax.servlet.http.HttpServletRequest;
-
-import org.apache.commons.fileupload.FileItem;
-import org.apache.commons.fileupload.FileUploadException;
-import org.apache.commons.fileupload.disk.DiskFileItemFactory;
-import org.apache.commons.fileupload.servlet.ServletFileUpload;
 import org.apache.commons.io.FileUtils;
 import org.apache.poi.hssf.usermodel.HSSFCellStyle;
 import org.apache.poi.hssf.util.HSSFColor;
@@ -45,7 +37,6 @@ import com.eoulu.util.JavaMailToolsUtil;
 import com.eoulu.util.MethodUtil;
 import com.eoulu.util.SendMailUtil;
 import com.eoulu.util.ZipUtils;
-import com.google.gson.Gson;
 
 import net.sf.json.JSONArray;
 import net.sf.json.JSONObject;
@@ -62,6 +53,18 @@ public class ReimburseServiceImpl implements ReimburseService{
 	public int getCounts(String startTime, String endTime) {
 	
 		return new ReimburseDao().getCounts(startTime, endTime);
+	}
+	
+	@Override
+	public List<Map<String, Object>> getOnlyData(Page page, String startTime, String endTime,String email) {
+		
+		return new ReimburseDao().getOnlyData(page, startTime, endTime,email);
+	}
+
+	@Override
+	public int getOnlyCounts(String startTime, String endTime,String email) {
+	
+		return new ReimburseDao().getOnlyCounts(startTime, endTime,email);
 	}
 
 	@Override
@@ -239,123 +242,8 @@ public class ReimburseServiceImpl implements ReimburseService{
 	
 	}
 
-	@Override
-	public String batchUpload(HttpServletRequest request) {
-	
-		String message = batchUploadAttachment(request).get("Response");
-		return message;
-	}
-	
-	//上传报销申请附件
-	public Map<String,String> batchUploadAttachment(HttpServletRequest request){
-		String tempPath = "D:\\tempZipFile";
-        File tmpFile = new File(tempPath);
-        Map<String,String> map = new HashMap<>();
-        if (!tmpFile.exists()) {
-            tmpFile.mkdir();
-        }
-       
-      
-        DiskFileItemFactory factory = new DiskFileItemFactory();
-        factory.setSizeThreshold(1024 * 100);
-        factory.setRepository(tmpFile);
-        ServletFileUpload upload = new ServletFileUpload(factory);
-   
-        upload.setHeaderEncoding("UTF-8");
-        upload.setFileSizeMax(1024 * 1024*100);
-        upload.setSizeMax(1024 * 1024 * 10*100);
-       
-        List<FileItem> list;
-		try {
-			list = upload.parseRequest(request);
-			
-	        System.out.println(list);
-	        Map<String,String> message = new HashMap<>();
-	        String error = "";
-	        String success = "";
-	        String staffName = "";
-	        String ID = "";
-	        String Month = "";
-	        for (FileItem item : list) {
-	            if (item.isFormField()) {
-	                String name = item.getFieldName();
-	                if(name.equals("ID")){
-	                	ID = item.getString("UTF-8");
-	                }
-	                if(name.equals("StaffName")){
-	                	staffName = item.getString("UTF-8");
-	                }
-	                if(name.equals("Month")){
-	                	Month = item.getString("UTF-8");
-	                }
-	                String value = item.getString("UTF-8");
-	                map.put(name, value);
-	 
-	            } else {
-	            	String savePath = "E:\\LogisticsFile\\File\\报销申请"+Month+"-"+staffName+"-"+ID;
-	            	File saveFile = new File(savePath);
-	            	if(!saveFile.exists()){
-	            		saveFile.mkdirs();
-	            	}
-	           
-	            	InputStream in = null;;
-	            	FileOutputStream out = null;
-	            	String filename = null;
-	            		
-	            	try{
-		                filename = item.getName();
-		                System.out.println(filename);
-		                if (filename == null || filename.trim().equals("")) {
-		                    continue;
-		                }
-		                filename = filename
-	                            .substring(filename.lastIndexOf("\\") + 1);
-		                in = item.getInputStream();
-		            
-		                out = new FileOutputStream(savePath
-		                        + "\\" + filename);
-		                map.put("Path", savePath + "\\" + filename);
-		                byte buffer[] = new byte[1024];
-		                int len = 0;
-		                while ((len = in.read(buffer)) > 0) {
-		                    out.write(buffer, 0, len);
-		                }
-		                success+=filename;
-		                success+="::";
-	            	}catch(Exception e){
-	            		error+=filename;
-	            		error+="::";
-	            		
-	            	}finally {
-	            		try {
-							in.close();
-							out.close();
-						} catch (IOException e) {
-							e.printStackTrace();
-						} 
-	                    item.delete();
-					}
-	            }
-	        }
-	        message.put("error", error);
-	        message.put("success", success);
-	        map.put("Response", new Gson().toJson(message));
-	            	
-        } catch(FileUploadException e){
-        	map.put("Response", "文件上传失败！");
-        } catch (UnsupportedEncodingException e) {
-			e.printStackTrace();
-		}
-       
-        return map;
- 
-    }
 
-	@Override
-	public boolean saveFileName(Reimburse reimburse) {
-		ReimburseDao dao = new ReimburseDao();
-		return dao.saveFileName(reimburse);	
-	}
+	
 
 	@Override
 	public Map<String, Object> getApplication(int RequestID) {
@@ -701,6 +589,87 @@ public class ReimburseServiceImpl implements ReimburseService{
 		ReimburseDao dao = new ReimburseDao();
 		return Integer.parseInt(dao.getListCount().get(1).get("Count").toString());
 	}
+
+	@Override
+	public boolean saveAttachment(Reimburse reimburse,String folder,String deleteFile) {
+		boolean flag = false;
+		String path = "E:\\LogisticsFile\\File\\"+folder+"\\";
+		ReimburseDao dao = new ReimburseDao();
+		DBUtil db = new DBUtil();
+		String attachmentJson = reimburse.getAttachmentJson();
+		List<Map<String, String>> list = new ArrayList<>();
+		if(!attachmentJson.equals("")){
+			JSONArray array = JSONArray.fromObject(attachmentJson);
+			JSONObject object = null;
+			Map<String,String> updateMap = null;	
+			for(int i = 0;i < array.size();i ++){
+				object = array.getJSONObject(i);
+				updateMap = new HashMap<>();
+				updateMap.put("ID",(String)object.get("ID"));
+				String OperateType = (String)object.get("OperateType");
+				String Attachment = null;
+				String OldAttachment = null;
+	
+		
+				switch (OperateType) {
+				case "update":
+					Attachment = (String)object.get("Attachment");
+					OldAttachment = (String)object.get("OldAttachment");
+					if(!OldAttachment.equals(Attachment)){
+						deleteFile += (OldAttachment + "::");
+					}
+					updateMap.put("Attachment", Attachment);
+					break;
+
+				case "delete":
+					OldAttachment = (String)object.get("OldAttachment");
+					deleteFile += (OldAttachment + "::");
+					updateMap.put("Attachment", null);
+					break;
+				case "add":
+					Attachment = (String)object.get("Attachment");
+					updateMap.put("Attachment", Attachment);
+					break;
+				}
+				
+				list.add(updateMap);
+			}
+		}
+		Connection conn = db.getConnection();
+		try {
+			conn.setAutoCommit(false);
+			dao.saveFileName(reimburse, db);
+			for(int i = 0;i < list.size();i ++){
+				dao.updateAttachment(Integer.parseInt(list.get(i).get("ID")), list.get(i).get("Attachment"), db);
+			}
+			
+			conn.commit();
+			flag = true;
+			
+		} catch (SQLException e) {
+			try {
+				conn.rollback();
+			} catch (SQLException e1) {
+				e1.printStackTrace();
+			}
+			flag = false;
+		}finally {
+			db.closed();
+		}
+		
+		String[] file = deleteFile.split("::");
+		for(int i = 0;i < file.length;i ++){
+			try {
+				FileUtils.forceDelete(new File(path+file));
+			} catch (IOException e) {
+				e.printStackTrace();
+			}
+		}
+		return flag;
+		
+	}
+	
+	
 	
 
 

@@ -467,13 +467,77 @@
                     </div> -->
 					<!-- 报销详情模态框 -->
 					<div class="modal fade" id="reimburseModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel">
-					  <div class="modal-dialog" role="document">
+					  <div class="modal-dialog modal-lg" role="document">
 					    <div class="modal-content">
 					      <div class="modal-header">
 					        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
 					        <h4 class="modal-title" id="exampleModalLabel"></h4>
 					      </div>
 					      <div class="modal-body">
+                            <div class="container-fluid">
+                                <div class="row">
+                                    <div class="col-md-4 col-lg-4">
+                                        <fieldset class="iParent" data-iclassify="a"><legend>滴滴电子发票</legend>
+                                            <div class="form-group">
+                                                <label for="add_file_Upload" class="trigger_click"><button type="button" class="btn btn-info btn-sm"><span class="glyphicon glyphicon-folder-open" aria-hidden="true"></span>&nbsp;选择文件</button></label>
+                                                <input type="file" id="add_file_Upload" multiple="multiple" accept="application/msword, application/pdf, image/*, application/vnd.ms-powerpoint, text/plain, application/vnd.openxmlformats-officedocument.presentationml.presentation, application/vnd.openxmlformats-officedocument.wordprocessingml.document">
+                                                <label class="add_info_upload"><button type="button" class="btn btn-info btn-sm"><span class="glyphicon glyphicon-cloud-upload" aria-hidden="true"></span>&nbsp;上传</button></label>
+                                            </div>
+                                            <div class="add_fileList_ul_wrapper">
+                                                <div class="add_fileList_info">
+                                                    上传总进度：
+                                                    <div class="progress">
+                                                        <div class="progress-bar progress-bar-info progress-bar-striped active" role="progressbar" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100" style="min-width: 2em;">0%</div>
+                                                    </div>
+                                                </div>
+                                                <ul class="list-group" id="add_fileList_ul">
+                                                    <!-- <li class="list-group-item list-group-item-success"><span class="badge">14</span>Cras justo odio</li>
+                                                    <li class="list-group-item list-group-item-danger"><span class="badge">14</span>Dapibus ac facilisis in</li>
+                                                    <li class="list-group-item"><span class="badge">14</span>Morbi leo risus</li> -->
+                                                </ul>
+                                            </div>
+                                        </fieldset>
+                                    </div>
+                                    <div class="col-md-4 col-lg-4">
+                                        <fieldset class="iParent" data-iclassify="b"><legend>滴滴行程单</legend>
+                                            <div class="form-group">
+                                                <label for="add_file_Upload2" class="trigger_click"><button type="button" class="btn btn-info btn-sm"><span class="glyphicon glyphicon-folder-open" aria-hidden="true"></span>&nbsp;选择文件</button></label>
+                                                <input type="file" id="add_file_Upload2" multiple="multiple" accept="application/msword, application/pdf, image/*, application/vnd.ms-powerpoint, text/plain, application/vnd.openxmlformats-officedocument.presentationml.presentation, application/vnd.openxmlformats-officedocument.wordprocessingml.document">
+                                                <label class="add_info_upload2"><button type="button" class="btn btn-info btn-sm"><span class="glyphicon glyphicon-cloud-upload" aria-hidden="true"></span>&nbsp;上传</button></label>
+                                            </div>
+                                            <div class="add_fileList_ul_wrapper">
+                                                <div class="add_fileList_info">
+                                                    上传总进度：
+                                                    <div class="progress">
+                                                        <div class="progress-bar progress-bar-info progress-bar-striped active" role="progressbar" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100" style="min-width: 2em;">0%</div>
+                                                    </div>
+                                                </div>
+                                                <ul class="list-group" id="add_fileList_ul2">
+                                                </ul>
+                                            </div>
+                                        </fieldset>
+                                    </div>
+                                    <div class="col-md-4 col-lg-4">
+                                        <fieldset class="iParent" data-iclassify="c"><legend>其他</legend>
+                                            <div class="form-group">
+                                                <label for="add_file_Upload3" class="trigger_click"><button type="button" class="btn btn-info btn-sm"><span class="glyphicon glyphicon-folder-open" aria-hidden="true"></span>&nbsp;选择文件</button></label>
+                                                <input type="file" id="add_file_Upload3" multiple="multiple" accept="application/msword, application/pdf, image/*, application/vnd.ms-powerpoint, text/plain, application/vnd.openxmlformats-officedocument.presentationml.presentation, application/vnd.openxmlformats-officedocument.wordprocessingml.document">
+                                                <label class="add_info_upload3"><button type="button" class="btn btn-info btn-sm"><span class="glyphicon glyphicon-cloud-upload" aria-hidden="true"></span>&nbsp;上传</button></label>
+                                            </div>
+                                            <div class="add_fileList_ul_wrapper">
+                                                <div class="add_fileList_info">
+                                                    上传总进度：
+                                                    <div class="progress">
+                                                        <div class="progress-bar progress-bar-info progress-bar-striped active" role="progressbar" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100" style="min-width: 2em;">0%</div>
+                                                    </div>
+                                                </div>
+                                                <ul class="list-group" id="add_fileList_ul3">
+                                                </ul>
+                                            </div>
+                                        </fieldset>
+                                    </div>
+                                </div>
+                            </div>
 					      	<div class="modal-body_detail">
 					      		<table class="table table-bordered table-hover table-condensed">
 					      			<thead>
@@ -483,7 +547,8 @@
 											<th>事由</th>
 											<th>客户名</th>
 											<th>往返城市</th>
-											<th>往返时间</th>
+                                            <th>往返时间</th>
+											<th>报销附件<br>（票据截图）</th>
 										</tr>
 					      			</thead>
 					      			<tbody></tbody>
@@ -508,6 +573,7 @@
 					      	</div>
 					      </div>
 					      <div class="modal-footer">
+                            <button type="button" class="btn btn-success">提交</button>
 					        <button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
 					      </div>
 					    </div>
@@ -531,12 +597,8 @@
         <!-- NonStandard_wrapper结束 -->
         </div>
 
-        <!-- <script src="js/libs/jquery-3.3.1.min.js"></script> -->
         <script src="js/libs/bootstrap.min.js"></script>
-        <!-- <script src="js/global/myFunction.js"></script> -->
-        <!-- <script src="js/global/responseLoading.js"></script> -->
-        <!-- <script src="js/msgbox_unload.js"></script> -->
-        <!-- <script type="text/javascript" src="plugins/webuploader/webuploader.min.js"></script> -->
+        <script src="js/global/responseLoading.js"></script>
         <script src="js/reimburse.js"></script>
     </body>
 </html>

@@ -44,8 +44,8 @@ public class LabServiceImpl implements LabService{
 	}
 
 	@Override
-	public int getCounts() {
-		return new LabDao().getCounts();
+	public int getCounts(String Laboratory) {
+		return new LabDao().getCounts(Laboratory);
 	}
 
 	@Override

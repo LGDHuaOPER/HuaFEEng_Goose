@@ -14,7 +14,7 @@ public interface LabService {
 	
 	public boolean update(Laboratory lab);
 	
-	public int getCounts();
+	public int getCounts(String Laboratory);
 	
 	public boolean saveConfig(String configJson,int LabID);
 	

@@ -35,7 +35,7 @@ public class UploadLabPictureServlet extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		int LabID = request.getParameter("LabID")==null?0:Integer.parseInt(request.getParameter("LabID"));
 		String Model = request.getParameter("Model");
-		String path = request.getServletContext().getRealPath("/") + "down\\"+Model+"-实验室配置.pdf";
+		String path = request.getServletContext().getRealPath("/") + "down\\实验室配置.pdf";
 		LabService service = new LabServiceImpl();
 		service.exportConfig(LabID, Model, path);
 		File file = new File(path);
@@ -44,7 +44,7 @@ public class UploadLabPictureServlet extends HttpServlet {
 		}else{
 			response.setContentType("application/x-msdownload");  
 			//fileName = new String(fileName.getBytes(), "ISO-8859-1");
-			String fileName = Model+"-实验室配置.pdf";
+			String fileName = "实验室配置.pdf";
 			response.setHeader("content-disposition", "attachment;filename=" + new String(fileName.getBytes(), "ISO-8859-1"));
 		    FileInputStream in = new FileInputStream(path);
 		    OutputStream out = response.getOutputStream();

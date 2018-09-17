@@ -12,6 +12,7 @@ public class Reimburse {
 	private String ElectronicInvoice;
 	private String TravelPaper;
 	private String Others;
+	private String AttachmentJson;
 	
 	public int getID() {
 		return ID;
@@ -73,6 +74,12 @@ public class Reimburse {
 	}
 	public void setOthers(String others) {
 		Others = others;
+	}
+	public String getAttachmentJson() {
+		return AttachmentJson;
+	}
+	public void setAttachmentJson(String attachmentJson) {
+		AttachmentJson = attachmentJson;
 	}
 	
 }

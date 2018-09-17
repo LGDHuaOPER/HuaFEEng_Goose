@@ -42,7 +42,7 @@
 							</li>
 						</ul>
 						<div class="check7">
-							<span class="checkspan"><input type="checkbox" checked="checked" id="check7"><label for="check7"></label></span><span class="checktxt">Rember Me（7 Days）</span><span title="上一版本号：v1.2.1.180912" style="margin-left: 2px;cursor: pointer;">v1.3.1.180913</span>
+							<span class="checkspan"><input type="checkbox" checked="checked" id="check7"><label for="check7"></label></span><span class="checktxt">Rember Me（7 Days）</span><span title="上一版本号：v1.3.1.180913" style="margin-left: 2px;cursor: pointer;">v2.0.0.180914</span>
 						</div>
 						<div class="sub-res">
 							<input type="submit" value="登录" class="sub"> <input

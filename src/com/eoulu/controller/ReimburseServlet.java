@@ -10,6 +10,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import com.eoulu.commonality.AuthorityResource;
 import com.eoulu.commonality.Page;
 import com.eoulu.entity.Reimburse;
 import com.eoulu.log.AccessStatistics;
@@ -57,15 +58,26 @@ public class ReimburseServlet extends HttpServlet {
 				}
 					
 			}
+			boolean auth = AuthorityResource.isExist(request,"AllReimburse");
+			
 			ReimburseService service = new ReimburseServiceImpl();
 
 			Page page = new Page();
+			Map<String, Object> map = new HashMap<>();
 			page.setCurrentPage(currentPage);
 			page.setRows(10);
-			page.setRecordCounts(service.getCounts(startTime,endTime));
-			Map<String, Object> map = new HashMap<>();
+			if(auth){
+				page.setRecordCounts(service.getCounts(startTime,endTime));
+				map.put("datas", service.getAllData(page, startTime, endTime));
+			}else{
+				String email = request.getSession().getAttribute("email").toString();
+				page.setRecordCounts(service.getOnlyCounts(startTime, endTime,email));
+				map.put("datas", service.getOnlyData(page, startTime, endTime,email));
+			}
+			
+		
 			map.put("currentPage",currentPage);
-			map.put("datas", service.getAllData(page, startTime, endTime));
+			
 			map.put("pageCount", page.getPageCounts());
 			response.getWriter().write(new Gson().toJson(map));
 		}else{
@@ -88,10 +100,7 @@ public class ReimburseServlet extends HttpServlet {
 		String Department = request.getParameter("Department")==null?"":request.getParameter("Department").trim();
 		String Pass = request.getParameter("Pass");
 		double TotalAmount = Double.parseDouble(request.getParameter("TotalAmount")==null?"0.0":request.getParameter("TotalAmount"));
-		String BillScreenshot = request.getParameter("BillScreenshot")==null?"":request.getParameter("BillScreenshot");
-		String ElectronicInvoice = request.getParameter("ElectronicInvoice")==null?"":request.getParameter("ElectronicInvoice");
-		String TravelPaper = request.getParameter("TravelPaper")==null?"":request.getParameter("TravelPaper");
-		String Others = request.getParameter("Others")==null?"":request.getParameter("Others");
+	
 		
 		String detailJson = request.getParameter("DetailJson")==null?"":request.getParameter("DetailJson");
 		String travelJson = request.getParameter("TravelJson")==null?"":request.getParameter("TravelJson");
@@ -101,10 +110,7 @@ public class ReimburseServlet extends HttpServlet {
 		reimburse.setDepartment(Department);
 		reimburse.setPass(Pass);
 		reimburse.setTotalAmount(TotalAmount);
-		reimburse.setBillScreenshot(BillScreenshot);
-		reimburse.setElectronicInvoice(ElectronicInvoice);
-		reimburse.setTravelPaper(TravelPaper);
-		reimburse.setOthers(Others);
+
 		
 		ReimburseService service = new ReimburseServiceImpl();
 		LogInfoService service2 = new LogInfoServiceImpl();
@@ -118,9 +124,8 @@ public class ReimburseServlet extends HttpServlet {
 			service2.insert(request, "报销申请", "修改"+Name);
 			response.getWriter().write(new Gson().toJson(service.updateReimburse(reimburse, detailJson, travelJson)));
 			break;
-		case "saveFile":
-			response.getWriter().write(new Gson().toJson(service.saveFileName(reimburse)));
 		}
+	
 	
 		
 	}

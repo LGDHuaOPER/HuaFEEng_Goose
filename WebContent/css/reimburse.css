@@ -827,22 +827,47 @@ div.modal-backdrop.in {
 }
 
 /*模态框里的表格*/
-.modal-body {
-	max-height: 450px;
+.modal-lg {
+    width: 1100px !important;
 }
 
-.modal-body_detail thead th:nth-child(1), .modal-body_detail thead th:nth-child(2), .modal-body_detail thead th:nth-child(4), .modal-body_detail thead th:nth-child(5), .modal-body_detail tbody td:nth-child(1), .modal-body_detail tbody td:nth-child(2), .modal-body_detail tbody td:nth-child(4), .modal-body_detail tbody td:nth-child(5) {
-	max-width: 70px;
-	min-width: 70px;
-	width: 70px;
+.modal-body {
+	max-height: 600px;
+}
+
+.modal-body legend {
+	margin-bottom: 6px;
+	font-size: 16px;
+	color: #00aeef;
+}
+
+.modal-body .row>div {
+	margin-bottom: 5px;
+	max-height: 250px;
+}
+
+.modal-body_detail thead th:nth-child(1), .modal-body_detail thead th:nth-child(2), .modal-body_detail tbody td:nth-child(1), .modal-body_detail tbody td:nth-child(2) {
+	max-width: 80px;
+	min-width: 80px;
+	width: 80px;
 	word-wrap: break-word;
 	word-break: break-all;
 }
 
-.modal-body_detail thead th:nth-child(3), .modal-body_detail tbody td:nth-child(3) {
-	max-width: 150px;
-	min-width: 150px;
-	width: 150px;
+/*客户名*/
+.modal-body_detail thead th:nth-child(4), .modal-body_detail tbody td:nth-child(4) {
+	max-width: 140px;
+	min-width: 140px;
+	width: 140px;
+	word-wrap: break-word;
+	word-break: break-all;
+}
+
+/*事由，往返城市*/
+.modal-body_detail thead th:nth-child(3), .modal-body_detail tbody td:nth-child(3), .modal-body_detail thead th:nth-child(5), .modal-body_detail tbody td:nth-child(5) {
+	max-width: 170px;
+	min-width: 170px;
+	width: 170px;
 	word-wrap: break-word;
 	/*字内换行行为*/
 	word-break: break-all;
@@ -852,24 +877,18 @@ div.modal-backdrop.in {
 	text-align: center;
 }
 
-.modal-body_travel tbody td:nth-child(1), .modal-body_travel tbody td:nth-child(5), .modal-body_travel tbody td:nth-child(2), .modal-body_travel tbody td:nth-child(8) {
-	max-width: 70px;
-	min-width: 70px;
-	width: 70px;
+.modal-body_travel tbody td:nth-child(1), .modal-body_travel tbody td:nth-child(5), .modal-body_travel tbody td:nth-child(2), .modal-body_travel tbody td:nth-child(8), .modal-body_travel tbody td:nth-child(3), .modal-body_travel tbody td:nth-child(7) {
+	max-width: 110px;
+	min-width: 110px;
+	width: 110px;
 	word-wrap: break-word;
 	word-break: break-all;
 }
 
-.modal-body_travel tbody td:nth-child(3), .modal-body_travel tbody td:nth-child(7) {
-	max-width: 45px;
-	min-width: 45px;
-	width: 45px;
-}
-
 .modal-body_travel tbody td:nth-child(4) {
-	max-width: 100px;
-	min-width: 100px;
-	width: 100px;
+	max-width: 170px;
+	min-width: 170px;
+	width: 170px;
 	word-wrap: break-word;
 	word-break: break-all;
 }
@@ -878,27 +897,44 @@ div.modal-backdrop.in {
 	font-size: 13px;
 }
 
+.detail_filename+span, .detail_filename+span+span {
+	margin-left: 3px;
+	font-size: 18px;
+}
+
+.detail_filename {
+	display: inline-block;
+	max-width: 120px;
+	color: #00aeef;
+}
+
 /*维护y轴超出滚动元素*/
-.add_NonStandard_details_div, .add_NonStandard_details_address, .update_NonStandard_details_div, .update_NonStandard_details_address, .modal-body {
+.add_NonStandard_details_div, .add_NonStandard_details_address, .update_NonStandard_details_div, .update_NonStandard_details_address, .modal-body, .modal-body .row>div {
 	overflow-y: auto; 
 	overflow-x: hidden;
 }
 
 /*维护隐藏元素*/
-.add_NonStandard_details_files, .update_NonStandard_details_files {
+.add_NonStandard_details_files, .update_NonStandard_details_files, .modal-body input[type="file"], div.add_fileList_info {
 	display: none;
 }
 
 /*维护鼠标悬浮元素*/
-span.glyphicon, .add_NonStandard_tit_r, .update_NonStandard_tit_r, .update_td, ul.dropdown-menu>li, span.downFile_span {
+span.glyphicon, .add_NonStandard_tit_r, .update_NonStandard_tit_r, .update_td, ul.dropdown-menu>li, span.downFile_span, span.badge {
 	cursor: pointer;
 }
 
 /*维护超出隐藏元素*/
-.m_table table td, .m_table table th {
+.m_table table td, .m_table table th, .detail_filename {
 	overflow: hidden;
     text-overflow: ellipsis;
     white-space: nowrap;
+}
+
+/*维护下划线元素*/
+li.list-group-item-success, li.list-group-item-info, .detail_filename {
+	text-decoration: underline;
+	cursor: pointer;
 }
 
 @media screen and (max-width: 1040px) {

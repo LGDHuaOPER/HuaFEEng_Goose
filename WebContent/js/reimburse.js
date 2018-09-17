@@ -29,6 +29,25 @@ updateSubmitObj.TravelJson = null;
 
 // 状态定义
 var reimburseState = new Object();
+reimburseState.allUploadObj = {
+	"a": {
+		uploadFileNo: 0,
+		uploadFileList: {}
+	},
+	"b": {
+		uploadFileNo: 0,
+		uploadFileList: {}
+	},
+	"c": {
+		uploadFileNo: 0,
+		uploadFileList: {}
+	},
+	HasSummitYM: null,
+	StaffName: null,
+	ID: null
+};
+reimburseState.uploadFileNo = 0;
+reimburseState.uploadFileList = {};
 reimburseState.hasSearch = false;
 reimburseState.curFileupload = '';
 reimburseState.addResID = '';
@@ -57,7 +76,7 @@ reimburseCategory.map(function(currentValue, index, arr){
 });
 
 // 地点、事由添加字符串
-var address_businessStr = '<tr><td>出差地点</td><td class="detail_td_TravelPlace"></td><td>事由</td><td class="detail_td_MainContent"></td><td>往返时间</td><td class="detail_td_TravelTime"><input type="date" class="detail_td_TravelTime_1">&nbsp--&nbsp;<input type="date" class="detail_td_TravelTime_2"></td><td>天数</td><td class="detail_td_Days">0</td><td><span class="glyphicon glyphicon-plus" aria-hidden="true"></span></td></tr>';
+var address_businessStr = '<tr><td>出差地点</td><td class="detail_td_TravelPlace"></td><td>事由</td><td class="detail_td_MainContent"></td><td>往返时间</td><td class="detail_td_TravelTime"><input type="date" class="detail_td_TravelTime_1">&nbsp--&nbsp;<input type="date" class="detail_td_TravelTime_2"></td><td>天数&nbsp;<span class="glyphicon glyphicon-refresh refresh_days" aria-hidden="true"></span></td><td class="detail_td_Days">0</td><td><span class="glyphicon glyphicon-plus" aria-hidden="true"></span></td></tr>';
 
 // 翻页组件按钮逻辑
 function pageStyle(currentPage,pageCounts){
@@ -143,9 +162,9 @@ function renderPageData(data, CurrentPage, pageCounts){
 					'<td class="reimburse_detail_td" title="点此查看详情"><span class="glyphicon glyphicon-eye-open" aria-hidden="true"></span></td>'+
 					'<td class="hastd_FilingDate" title="'+currentValue.FilingDate+'">'+currentValue.FilingDate+'</td>'+
 					'<td class="hastd_BillScreenshot" title="'+currentValue.BillScreenshot+'">'+BillScreenshotStr+'</td>'+
-					'<td class="hastd_ElectronicInvoice" title="'+currentValue.ElectronicInvoice+'">'+ElectronicInvoiceStr+'</td>'+
-					'<td class="hastd_TravelPaper" title="'+currentValue.TravelPaper+'">'+TravelPaperStr+'</td>'+
-					'<td class="hastd_Others" title="'+currentValue.Others+'">'+OthersStr+'</td>'+
+					'<td class="hastd_ElectronicInvoice" title="'+currentValue.ElectronicInvoice+'" data-ivalue="'+currentValue.ElectronicInvoice+'">'+ElectronicInvoiceStr+'</td>'+
+					'<td class="hastd_TravelPaper" title="'+currentValue.TravelPaper+'" data-ivalue="'+currentValue.TravelPaper+'">'+TravelPaperStr+'</td>'+
+					'<td class="hastd_Others" title="'+currentValue.Others+'" data-ivalue="'+currentValue.Others+'">'+OthersStr+'</td>'+
 					'<td class="hastd_Pass" data-container="body" data-toggle="popover" data-placement="top"><input type="button" value="'+currentValue.Pass+'"></td>'+
 				'</tr>';
 			}
@@ -266,13 +285,60 @@ function sosuoInit(){
 }
 
 //上传文件
-function uploadFiles(StaffName, ID, iMonth){                                               
+function uploadFiles(Folder, fileObj, curTr){                                               
     var formData = new FormData();
     formData.enctype="multipart/form-data";
-    formData.append("StaffName",StaffName);
-    formData.append("ID",ID);
-    formData.append("Month",iMonth);
-    var fileList = $("#serFinRepUpload")[0].files;
+    formData.append("Folder",Folder);
+    // formData.append("ID",ID);
+    $.each(fileObj, function(iname, ivalue){
+    	formData.append("file",ivalue);
+    });
+    //formData.append("file",$("#serFinRepUpload")[0].files[0]);//append()里面的第一个参数file对应permission/upload里面的参数file         
+    // formData.append("Operate","upload");
+    $.ajax({
+        type: "POST",
+        async: true,  //这里要设置异步上传，才能成功调用myXhr.upload.addEventListener('progress',function(e){}),progress的回掉函数
+        // accept: 'text/html;charset=UTF-8',
+        accept: 'application/json; charset=utf-8',
+        data: formData,
+        // contentType:"multipart/form-data",
+        url: "BatchUpload",
+        processData: false, // 告诉jQuery不要去处理发送的数据
+        contentType: false, // 告诉jQuery不要去设置Content-Type请求头
+        cache: false,
+        dataType: "json",                   
+        success: function(data){
+        	if(data.length > 0){
+        		if(data[0].Message == "上传成功"){
+	        		$.Response_Load.After("上传成功", 1600);
+        		}else if(data[0].Message.indexOf("失败") > -1){
+        			$.Response_Load.After("上传失败", 1600);
+        		}else{
+        			$.Response_Load.After("文件已存在", 1600);
+        		}
+        	}else if(data.length == 0){
+        		$.Response_Load.After("文件读取至服务器失败！", 1600);
+        	}
+        },
+        error: function(){
+        	$.Response_Load.After("网络繁忙！上传失败！", 1600);
+        },
+		beforeSend: function(XMLHttpRequest){
+            $.Response_Load.Before("上传提示","正在提交...",200);
+        },
+		complete: function(XMLHttpRequest, textStatus){
+		}
+    });                           
+}
+
+
+//上传文件
+function uploadFiles2(iParentDOM, Folder, iThat){                                               
+    var formData = new FormData();
+    formData.enctype="multipart/form-data";
+    formData.append("Folder",Folder);
+    // formData.append("ID",ID);
+    var fileList = reimburseState.allUploadObj[iParentDOM.data("iclassify")].uploadFileList;
     $.each(fileList, function(iname, ivalue){
     	formData.append("file",ivalue);
     });
@@ -285,7 +351,7 @@ function uploadFiles(StaffName, ID, iMonth){
         accept: 'application/json; charset=utf-8',
         data: formData,
         // contentType:"multipart/form-data",
-        url: "ReimburseAttachment",
+        url: "BatchUpload",
         processData: false, // 告诉jQuery不要去处理发送的数据
         contentType: false, // 告诉jQuery不要去设置Content-Type请求头
         cache: false,
@@ -296,69 +362,57 @@ function uploadFiles(StaffName, ID, iMonth){
                 myXhr.upload.addEventListener('progress',function(e){                           
                     var loaded = e.loaded;                  //已经上传大小情况 
                     var total = e.total;                      //附件总大小 
-                    var percent = Math.floor(100*loaded/total)+"%";     //已经上传的百分比  
-                    console.log("已经上传了："+percent);  
-                    var newWidthFloat =  globalToPoint(percent);  
-                    var newWidth = newWidthFloat*400;
-                    console.log("进度条宽度："+newWidth);   
-                    $(".progressIn").css("width",newWidth+"px");
-                    $(".progressIn").text(percent);
+                    var percent = (Math.floor(1000*loaded/total)/10)+"%";     //已经上传的百分比  
+                    console.log("已经上传了："+percent);
+                    var newWidthFloat =  globalToPoint(percent);
+                    var newWidth = (newWidthFloat*100).toFixed(0);
+                    iParentDOM.find("div.add_fileList_info>div:nth-child(1)>div.progress-bar").attr("aria-valuenow",newWidth).css("width",percent).text(percent);
                 }, false); // for handling the progress of the upload
             }
             return myXhr;
         },                    
         success: function(data){
-        	if(data.success == undefined && data.error == undefined){
-        		$.MsgBox_Unload.Alert("提示","网络繁忙，文件读取失败！");
-        	}else{
-	        	var errorList = data.error.split("::");
-	        	var successList = data.success.split("::");
-	        	errorList.pop();
-	        	successList.pop();
-	        	var imsg = '';
-	        	var iimsg = '';
-	        	var erLen = errorList.length;
-	        	var sucLen = successList.length;
-	        	if(erLen == 0){
-	        		imsg = '全部上传成功';
-	        		iimsg = sucLen+'个文件上传成功';
-	        	}else if(sucLen == 0){
-	        		imsg = '全部上传失败';
-	        		iimsg = erLen+'个文件上传失败';
-	        		$(".progressIn").css("width","30px");
-	        		$(".progressIn").text("0%");
-	        	}else{
-	        		imsg = '部分上传成功';
-	        		iimsg = sucLen+'个文件上传成功，'+erLen+'个上传失败';
-	        	}
-	        	$("span.isUpload").text(imsg);
-				var curFileuploadArr;
-				if(reimburseState.curFileupload.indexOf("++")>-1){
-					curFileuploadArr = reimburseState.curFileupload.split("++");
-				}else{
-					curFileuploadArr = ["",""];
-				} 
-				var oldFileArray = $("."+curFileuploadArr[0]+" ."+curFileuploadArr[1]).val().split("::");
-				oldFileArray = $.grep(oldFileArray,function(currentValue,index){
-				    return currentValue != "";
-				});
-				var newFileArray0 = oldFileArray.concat(successList);
-				var newFileArray = globalArrStrUnique(newFileArray0);
-				var newFileString = newFileArray.length == 0 ? "" : newFileArray.join("::")+"::";
-				$("."+curFileuploadArr[0]+" ."+curFileuploadArr[1]).val(newFileString);
-				$("."+curFileuploadArr[0]+" ."+curFileuploadArr[1]).attr("title",newFileString);
-				if(sucLen != 0){
-					$(".dropFileTit span").trigger("click");
-				}
-	        	$.MsgBox_Unload.Alert("提示",iimsg);
+        	if(data.length > 0){
+        		var LiStr = '';
+        		var successNO = 0;
+        		data.map(function(currentValue, index, arr){
+        			if(currentValue.Message.indexOf("成功")>-1){
+        				LiStr+='<li class="list-group-item list-group-item-success" title="'+currentValue.FileName+'"><span class="badge">成功</span><span class="badge uploaded">删除</span>'+currentValue.FileName+'</li>';
+        				successNO++;
+        			}else if(currentValue.Message.indexOf("失败")>-1){
+        				LiStr+='<li class="list-group-item list-group-item-danger" title="'+currentValue.FileName+'"><span class="badge">失败</span>'+currentValue.FileName+'</li>';
+        			}else{
+        				LiStr+='<li class="list-group-item list-group-item-warning" title="'+currentValue.FileName+'"><span class="badge">已存在</span>'+currentValue.FileName+'</li>';
+        			}
+        		});
+        		iParentDOM.find("ul>li>span.noUpload:contains('删除')").parent().remove();
+        		iParentDOM.find("ul").append(LiStr);
+        		// var successFloat = (successNO/(data.length)).toFixed(3);
+        		// var successValueNow = successFloat*100;
+        		// var successPercent = successValueNow+"%";
+        		// $("div."+classify+"_fileList_info>div:nth-child(2)>div.progress-bar").attr("aria-valuenow",successValueNow).css("width",successPercent).text(successPercent);
+        		// 重置文件待上传
+        		reimburseState.allUploadObj[iParentDOM.data("iclassify")].uploadFileNo = 0;
+        		for(var kk in reimburseState.allUploadObj[iParentDOM.data("iclassify")].uploadFileList){
+        			delete reimburseState.allUploadObj[iParentDOM.data("iclassify")].uploadFileList[kk];
+        		}
+        		iParentDOM.find("input[type='file']").val("");
+        	}else if(data.length == 0){
+        		$.MsgBox_Unload.Alert("上传提示","文件读取至服务器失败！");
         	}
         },
         error: function(){
-        	$("span.isUpload").text("");
-        	$(".progressIn").css("width","30px");
-        	$(".progressIn").text("0%");
+        	iParentDOM.find("div.add_fileList_info>div:nth-child(1)>div.progress-bar").attr("aria-valuenow","0").css("width","0%").text("0%");
             $.MsgBox_Unload.Alert("上传提示","网络繁忙！上传失败！");
-        }
+        },
+		beforeSend: function(XMLHttpRequest){
+            iThat.css("cursor","not-allowed").prop("disabled","disabled");
+        },
+		complete: function(XMLHttpRequest, textStatus){
+		    if(textStatus=="success"){
+		    }
+		    iThat.css("cursor","pointer").prop("disabled",false);
+		}
     });                             
 }
 
@@ -537,7 +591,7 @@ $(document).on("click",".update_td",function(){
 						'<td title="'+currentValue.MainContent+'" class="detail_td_MainContent">'+currentValue.MainContent+'</td>'+
 						'<td>往返时间</td>'+
 						'<td title="'+currentValue.TravelTime.replace(";;"," -- ")+'" class="detail_td_TravelTime"><input type="date" class="detail_td_TravelTime_1" value="'+currentValue.TravelTime.split(";;")[0]+'">&nbsp--&nbsp;<input type="date" class="detail_td_TravelTime_2" value="'+currentValue.TravelTime.split(";;")[1]+'"></td>'+
-						'<td>天数</td>'+
+						'<td>天数&nbsp;<span class="glyphicon glyphicon-refresh refresh_days" aria-hidden="true"></span></td>'+
 						'<td title="'+currentValue.Days+'" class="detail_td_Days">'+currentValue.Days+'</td>'+
 						'<td><span class="glyphicon glyphicon-plus" aria-hidden="true"></span></td>'+
 					'</tr>';
@@ -941,6 +995,220 @@ $("#Gotojump").click(function(){
     }
 });
 
+/*上传整体*/
+// input file域触发点击
+$(".trigger_click").click(function(e){
+	e.preventDefault();
+	$(this).next().trigger("click");
+});
+
+// 点击浏览切换文件
+$(".modal-body .row fieldset input[type='file']").on("change",function(){
+	var $iParent = $(this).parents(".iParent");
+	if(!$iParent.find(".add_fileList_info").is(':visible')){
+		$iParent.find(".add_fileList_info").slideDown(150);
+	}
+	console.log($(this));
+	console.log($(this)[0]);
+	console.log($(this)[0].files);
+	var curFileList = $(this)[0].files;
+	var curFileListStr = '';
+	var uploadFileNo = reimburseState.allUploadObj[$(this).parents(".iParent").data("iclassify")].uploadFileNo;
+	var uploadFileList = reimburseState.allUploadObj[$(this).parents(".iParent").data("iclassify")].uploadFileList;
+	$.each(curFileList, function(iname, ivalue){
+		uploadFileNo++;
+		curFileListStr+='<li class="list-group-item" title="'+ivalue.name+'" value="'+uploadFileNo+'"><span class="badge noUpload">删除</span>'+ivalue.name+'</li>';
+		uploadFileList[uploadFileNo] = ivalue;
+		// curFileListStr+=ivalue.name+"::";
+	});
+	$iParent.find("ul").append(curFileListStr);
+	$iParent.find(".add_fileList_info>div>div.progress-bar").prop("aria-valuenow","0").css("width","0%").text("0%");
+});
+
+// 等待上传文件删除
+$(document).on("click",".iParent ul>li>span.noUpload:contains('删除')",function(){
+	var iValue = $(this).parent().attr("value");
+	delete reimburseState.allUploadObj[$(this).parents(".iParent").data("iclassify")].uploadFileList[iValue];
+	$(this).parents(".iParent").find("input[type='file']").val("");
+	$(this).parent().remove();
+});
+
+// 正式文件上传
+$(".iParent label[class^='add_info_upload']>button").click(function(){
+	if(Object.keys(reimburseState.allUploadObj[$(this).parents(".iParent").data("iclassify")].uploadFileList).length == 0){
+		$.MsgBox_Unload.Alert("上传提示","请选择文件！");
+		return false;
+	}
+	var iParentDOM = $(this).parents(".iParent");
+	var Folder = "报销申请"+reimburseState.allUploadObj.HasSummitYM+"-"+reimburseState.allUploadObj.StaffName+"-"+reimburseState.allUploadObj.ID;
+	var iThat = $(this);
+	uploadFiles2(iParentDOM, Folder, iThat);
+});
+
+// 报销详情模态框弹出
+$(document).on("click", ".reimburse_detail_td span", function(){
+	var curParent = $(this).parent();
+	var RequestID = curParent.siblings(".update_td").data("iid").toString();
+	var StaffName = curParent.siblings(".hastd_Name").text();
+	// 保存提交日期
+	reimburseState.allUploadObj.HasSummitYM = curParent.siblings(".hastd_FilingDate").text().trim().split("-")[0] + curParent.siblings(".hastd_FilingDate").text().trim().split("-")[1];
+	reimburseState.allUploadObj.StaffName = StaffName;
+	reimburseState.allUploadObj.ID = RequestID;
+	$.ajax({
+		type: "GET",
+		url: "ReimburseApplication",
+		data: {
+			RequestID: RequestID
+		},
+		dataType: "json"
+	}).then(function(res){
+		var detailData = res.detail;
+		var travelData = res.travel;
+		if(detailData.length == 1 && travelData.length == 1){
+			$.MsgBox_Unload.Alert("查看详情提示","无报销详情记录");
+		}else{
+			// 详情
+			var detailStr = '';
+			detailData.map(function(currentValue, index, arr){
+				if(index > 0){
+					detailStr+='<tr data-iid="'+currentValue.ID+'">'+
+							'<td title="'+currentValue.Type+'">'+currentValue.Type+'</td>'+
+							'<td title="'+currentValue.Amount+'">'+currentValue.Amount+'</td>'+
+							'<td title="'+currentValue.MainContent+'">'+currentValue.MainContent+'</td>'+
+							'<td title="'+currentValue.CustomerName+'">'+currentValue.CustomerName+'</td>'+
+							'<td title="'+currentValue.City.replace(";;"," -- ")+'">'+currentValue.City.replace(";;"," -- ")+'</td>'+
+							'<td title="'+currentValue.Time.replace(";;"," -- ")+'">'+currentValue.Time.replace(";;"," -- ")+'</td>'+
+							'<td class="detail_filename_td"><input type="file"><span class="detail_filename">12327643718234784567890</span><span class="glyphicon glyphicon-open" aria-hidden="true"></span><span class="glyphicon glyphicon-trash" aria-hidden="true"></span></td>'+
+						'</tr>';
+				}
+			});
+			$(".modal-body_detail tbody").empty().append(detailStr);
+			// 事由等
+			var travelStr = '';
+			if(travelData.length == 1){
+				travelStr+='<tr>'+
+						'<td>出差地点</td>'+
+						'<td></td>'+
+						'<td>事由</td>'+
+						'<td></td>'+
+						'<td>往返时间</td>'+
+						'<td></td>'+
+						'<td>天数</td>'+
+						'<td></td>'+
+					'</tr>';
+			}else{
+				travelData.map(function(currentValue, index, arr){
+					if(index > 0){
+						travelStr+='<tr data-iid="'+currentValue.ID+'">'+
+								'<td>出差地点</td>'+
+								'<td title="'+currentValue.TravelPlace+'">'+currentValue.TravelPlace+'</td>'+
+								'<td>事由</td>'+
+								'<td title="'+currentValue.MainContent+'">'+currentValue.MainContent+'</td>'+
+								'<td>往返时间</td>'+
+								'<td title="'+currentValue.TravelTime.replace(";;"," -- ")+'">'+currentValue.TravelTime.replace(";;"," -- ")+'</td>'+
+								'<td>天数</td>'+
+								'<td title="'+currentValue.Days+'" class="details_calc_days">'+currentValue.Days+'</td>'+
+							'</tr>';
+					}
+				});
+			}
+			$(".modal-body_travel tbody").empty().append(travelStr);
+			var item2 = $(".modal-body_travel tbody .details_calc_days");
+			var insertItem2 = $(".modal-body_travel .insert_detail_calc_days");
+			calcDays(item2, insertItem2);
+			$(".modal-header .modal-title").text(StaffName+"的报销详情");
+			$(".bg_cover").slideDown(250);
+			$('#reimburseModal').modal('show');
+
+			// 文件回显
+			// 滴滴电子发票
+			var oldFileStrA = curParent.siblings(".hastd_ElectronicInvoice").data("ivalue");
+			if(oldFileStrA !== null && oldFileStrA !== undefined){
+				var iAttachmentArr = $.grep(String(oldFileStrA).split("::"),function(currentValue,index){
+				    return currentValue != "";
+				});
+				var iAttachmentStr = '';
+				iAttachmentArr.map(function(currentValue, index, arr){
+					iAttachmentStr+='<li class="list-group-item list-group-item-info" title="'+currentValue+'"><span class="badge uploaded">删除</span><span class="badge">已上传</span>'+currentValue+'</li>';
+				});
+				$("#add_fileList_ul").empty().append(iAttachmentStr);
+			}
+			// 滴滴行程单
+			var oldFileStrB = curParent.siblings(".hastd_TravelPaper").data("ivalue");
+			if(oldFileStrB !== null && oldFileStrB !== undefined){
+				var iAttachmentArr2 = $.grep(String(oldFileStrB).split("::"),function(currentValue,index){
+				    return currentValue != "";
+				});
+				var iAttachmentStr2 = '';
+				iAttachmentArr2.map(function(currentValue, index, arr){
+					iAttachmentStr2+='<li class="list-group-item list-group-item-info" title="'+currentValue+'"><span class="badge uploaded">删除</span><span class="badge">已上传</span>'+currentValue+'</li>';
+				});
+				$("#add_fileList_ul2").empty().append(iAttachmentStr2);
+			}
+			// 滴滴电子发票
+			var oldFileStrC = curParent.siblings(".hastd_ElectronicInvoice").data("ivalue");
+			if(oldFileStrC !== null && oldFileStrC !== undefined){
+				var iAttachmentArr3 = $.grep(String(oldFileStrC).split("::"),function(currentValue,index){
+				    return currentValue != "";
+				});
+				var iAttachmentStr3 = '';
+				iAttachmentArr3.map(function(currentValue, index, arr){
+					iAttachmentStr3+='<li class="list-group-item list-group-item-info" title="'+currentValue+'"><span class="badge uploaded">删除</span><span class="badge">已上传</span>'+currentValue+'</li>';
+				});
+				$("#add_fileList_ul3").empty().append(iAttachmentStr3);
+			}
+		}
+	},function(){
+		$.MsgBox_Unload.Alert("查看详情提示","网络繁忙！");
+	});
+});
+
+// 详情模态框关闭事件
+$('#reimburseModal').on('hide.bs.modal', function (e) {
+	$(".bg_cover").slideUp(250);
+
+	$("div.add_fileList_info").each(function(){
+		if($(this).is(':visible')){
+			$(this).slideUp(150, function(){
+				$(this).children("div").children("div.progress-bar").attr("aria-valuenow","0").css("width","0%").text("0%");
+			});
+		}
+	});
+	$(".iParent ul").empty();	
+
+	reimburseState.allUploadObj["a"].uploadFileNo = 0;
+	reimburseState.allUploadObj["b"].uploadFileNo = 0;
+	reimburseState.allUploadObj["c"].uploadFileNo = 0;
+	for(var k in reimburseState.allUploadObj["a"].uploadFileList){
+		delete reimburseState.allUploadObj["a"].uploadFileList[k];
+	}
+	for(var kk in reimburseState.allUploadObj["b"].uploadFileList){
+		delete reimburseState.allUploadObj["b"].uploadFileList[kk];
+	}
+	for(var kkk in reimburseState.allUploadObj["c"].uploadFileList){
+		delete reimburseState.allUploadObj["c"].uploadFileList[kkk];
+	}
+	$(".iParent input[type='file']").val("");
+});
+
+// 详情记录单条选文件
+$(document).on("click", ".detail_filename+span", function(){
+	$(this).prev().prev().val("").trigger("click");
+});
+$(document).on("change", ".detail_filename_td>input[type='file']", function(){
+	var curTr = $(this).parent().parent();
+	var Folder = "报销申请"+reimburseState.allUploadObj.HasSummitYM+"-"+reimburseState.allUploadObj.StaffName+"-"+reimburseState.allUploadObj.ID;
+	var fileObj = $(this)[0].files;
+	console.log(fileObj);
+	uploadFiles(Folder, fileObj, curTr);
+});
+
+/*上传整体end*/
+// 详情提交
+$(".modal-footer>.btn-success").click(function(){
+
+});
+
 // 上传附件框打开
 $(".line_relative>input[value='上传']").click(function(){
 	var curClassifyHook;
@@ -1080,85 +1348,6 @@ $(document).on("click","span.downFile_span",function(e){
 });
 
 
-// 报销详情模态框弹出
-$(document).on("click", ".reimburse_detail_td span", function(){
-	var RequestID = $(this).parent().siblings(".update_td").data("iid").toString();
-	var StaffName = $(this).parent().siblings(".hastd_Name").text();
-	$.ajax({
-		type: "GET",
-		url: "ReimburseApplication",
-		data: {
-			RequestID: RequestID
-		},
-		dataType: "json"
-	}).then(function(res){
-		var detailData = res.detail;
-		var travelData = res.travel;
-		if(detailData.length == 1 && travelData.length == 1){
-			$.MsgBox_Unload.Alert("查看详情提示","无报销详情记录");
-		}else{
-			// 详情
-			var detailStr = '';
-			detailData.map(function(currentValue, index, arr){
-				if(index > 0){
-					detailStr+='<tr data-iid="'+currentValue.ID+'">'+
-							'<td title="'+currentValue.Type+'">'+currentValue.Type+'</td>'+
-							'<td title="'+currentValue.Amount+'">'+currentValue.Amount+'</td>'+
-							'<td title="'+currentValue.MainContent+'">'+currentValue.MainContent+'</td>'+
-							'<td title="'+currentValue.CustomerName+'">'+currentValue.CustomerName+'</td>'+
-							'<td title="'+currentValue.City.replace(";;"," -- ")+'">'+currentValue.City.replace(";;"," -- ")+'</td>'+
-							'<td title="'+currentValue.Time.replace(";;"," -- ")+'">'+currentValue.Time.replace(";;"," -- ")+'</td>'+
-						'</tr>';
-				}
-			});
-			$(".modal-body_detail tbody").empty().append(detailStr);
-			// 事由等
-			var travelStr = '';
-			if(travelData.length == 1){
-				travelStr+='<tr>'+
-						'<td>出差地点</td>'+
-						'<td></td>'+
-						'<td>事由</td>'+
-						'<td></td>'+
-						'<td>往返时间</td>'+
-						'<td></td>'+
-						'<td>往返时间</td>'+
-						'<td></td>'+
-					'</tr>';
-			}else{
-				travelData.map(function(currentValue, index, arr){
-					if(index > 0){
-						travelStr+='<tr data-iid="'+currentValue.ID+'">'+
-								'<td>出差地点</td>'+
-								'<td title="'+currentValue.TravelPlace+'">'+currentValue.TravelPlace+'</td>'+
-								'<td>事由</td>'+
-								'<td title="'+currentValue.MainContent+'">'+currentValue.MainContent+'</td>'+
-								'<td>往返时间</td>'+
-								'<td title="'+currentValue.TravelTime.replace(";;"," -- ")+'">'+currentValue.TravelTime.replace(";;"," -- ")+'</td>'+
-								'<td>天数</td>'+
-								'<td title="'+currentValue.Days+'" class="details_calc_days">'+currentValue.Days+'</td>'+
-							'</tr>';
-					}
-				});
-			}
-			$(".modal-body_travel tbody").empty().append(travelStr);
-			var item2 = $(".modal-body_travel tbody .details_calc_days");
-			var insertItem2 = $(".modal-body_travel .insert_detail_calc_days");
-			calcDays(item2, insertItem2);
-			$(".modal-header .modal-title").text(StaffName+"的报销详情");
-			$(".bg_cover").slideDown(200);
-			$('#reimburseModal').modal('show');
-		}
-	},function(){
-		$.MsgBox_Unload.Alert("查看详情提示","网络繁忙！");
-	});
-});
-
-// 详情模态框关闭事件
-$('#reimburseModal').on('hide.bs.modal', function (e) {
-	$(".bg_cover").slideUp(200);
-});
-
 // 审核
 $(document).on("click",".hastd_Pass input",function(){
 	$("div.popover:not(:last)").remove();
@@ -1246,6 +1435,16 @@ $(document).on("click","#ReimburseApplication_n",function(){
 	}).always(function(){
 		$("#ReimburseApplication_n").css("cursor","pointer").prop("disabled",false);
 	});
+});
+
+// 天数刷新
+$(document).on("click", ".refresh_days", function(){
+	var $irefresh = $(this).parent().next();
+	var startT = $(this).parent().prev().children(".detail_td_TravelTime_1").val();
+	var endT = $(this).parent().prev().children(".detail_td_TravelTime_2").val();
+	if(!startT || !endT) return false;
+	$irefresh.text(Number(globalCalcTimeDiff(endT,startT,true).replace("天","")) + 1);
+	$irefresh.trigger("blur");
 });
 
 // 天数blur事件

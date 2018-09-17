@@ -314,10 +314,10 @@ a:hover{
             str = str.replace(/\s/g,'') ;
             return str;
         }
-    var isOpacityNav = ["Schedule","SoftwareProduct","QuotationSystem","Transport","PackingList","Invoice","Equipment","OriginFactory","Inventory","Price","Requirement","Inventory","MachineDetails","SalesStatistics","LeaveApplication","DocumentUpload","QuotationSystem","StockPurchasing","Insurance","Proposal","PackingList","HotProduct","Commodity","Quality","QuantityWeight","TestReport","Fumigation","Origin","Shipment","Receiving","Acceptance","Customer","MachineDetails","Hardware","AfterSale","Schedule","RoutineVisit","SoftwareDocument","SoftwareProject","SoftwareProduct","CustomerInquiry","SoftwareImplementation","StaffInfo","LeaveApplication","SoftwareImplementation","Tasking","Keysight","NonStandard","OriginalQuotation","Supplier","AssessmentStatistics","ServiceReport","StandardProduct","SalesQuotationSystem","Lab","Reimburse","WorkReport","BiddingDocument","PaymentRequest","ApplicationGallery"];
+    var isOpacityNav = ["Schedule","SoftwareProduct","QuotationSystem","Transport","PackingList","Invoice","Equipment","OriginFactory","Inventory","Price","Requirement","Inventory","MachineDetails","SalesStatistics","LeaveApplication","DocumentUpload","QuotationSystem","StockPurchasing","Insurance","Proposal","PackingList","HotProduct","Commodity","Quality","QuantityWeight","TestReport","Fumigation","Origin","Shipment","Receiving","Acceptance","Customer","MachineDetails","Hardware","AfterSale","Schedule","RoutineVisit","SoftwareDocument","SoftwareProject","SoftwareProduct","CustomerInquiry","SoftwareImplementation","StaffInfo","LeaveApplication","SoftwareImplementation","Tasking","Keysight","NonStandard","OriginalQuotation","Supplier","AssessmentStatistics","ServiceReport","StandardProduct","SalesQuotationSystem","Lab","Reimburse","WorkReport","BiddingDocument","PaymentRequest","ApplicationGallery","AllLab"];
     $(function(){
         var navProHref = window.location.href.indexOf("cfChicken8/")>-1?window.location.href.split("cfChicken8/")[1]:window.location.href.split("Logistics/")[1];
-        console.log("nav页面的预处理href:"+navProHref);
+        // console.log("nav页面的预处理href:"+navProHref);
         var newNavProHref = navProHref.indexOf("?")>-1?navProHref.split("?")[0]:navProHref;
         console.log("nav页面的处理后的href:"+newNavProHref);
         if(isOpacityNav.indexOf(newNavProHref)==-1){
@@ -354,10 +354,10 @@ a:hover{
                             $(".nav-container-in-li-3").children("a").text(dbSubInsertText);
                             subTitGroupShow();
                             dbSubTitGroupShow();
-                            console.log(subInsertHref);
-                            console.log(subInsertText);
-                            console.log(dbSubInsertHref);
-                            console.log(dbSubInsertText);
+                            // console.log(subInsertHref);
+                            // console.log(subInsertText);
+                            // console.log(dbSubInsertHref);
+                            // console.log(dbSubInsertText);
                         }
                     });
                 }else{
@@ -371,7 +371,7 @@ a:hover{
                     }
                 }
             });
-            $(".nav-container-in").fadeTo(300,1);
+            $(".nav-container-in").fadeTo(250,1);
         }
         
         function subTitGroupShow(){
@@ -441,9 +441,9 @@ a:hover{
                 }
             }
         }
-        var notCopyHref = ["OriginFactory","OriginFactorySearch","SoftwareImplementation","Tasking","Keysight","Price","PriceRoute","Transport","GetOrderRoute","GetOrderByPageOne","NonStandard","Inventory","OriginalQuotation","Supplier","AssessmentStatistics","StaffInfo","TrainingRecords","Admin","ServiceReport","SoftwareDocument","StandardProduct","Lab","Reimburse","WorkReport","SoftwareProject","BiddingDocument","PackingList","PaymentRequest","ApplicationGallery","Hardware","GetHardwareRoute","Customer","GetCustomerInfo2"];
+        var notCopyHref = ["OriginFactory","OriginFactorySearch","SoftwareImplementation","Tasking","Keysight","Price","PriceRoute","Transport","GetOrderRoute","GetOrderByPageOne","NonStandard","Inventory","OriginalQuotation","Supplier","AssessmentStatistics","StaffInfo","TrainingRecords","Admin","ServiceReport","SoftwareDocument","StandardProduct","Lab","Reimburse","WorkReport","SoftwareProject","BiddingDocument","PackingList","PaymentRequest","ApplicationGallery","Hardware","GetHardwareRoute","Customer","GetCustomerInfo2","AllLab"];
         var copyNewNavProHref = newNavProHref.indexOf("?")>-1?newNavProHref.split("?")[0]:newNavProHref;
-        console.log("版权处理方法的copyNewNavProHref为"+copyNewNavProHref);
+        // console.log("版权处理方法的copyNewNavProHref为"+copyNewNavProHref);
         if(notCopyHref.indexOf(copyNewNavProHref)>-1){
             console.log("我跳过了nav的版权处理函数.");
             return;
