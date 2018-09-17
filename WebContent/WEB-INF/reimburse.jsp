@@ -132,24 +132,17 @@
                                 </div>
                                 <!-- 页面表格主体 -->
                                 <div class="m_table">
-                                    <table class="eou-table-collapse">
+                                    <table>
                                         <thead>
                                             <tr>
-                                            	<th class="t0" rowspan="2"><input type="checkbox"></th>
-                                                <th class="t1" rowspan="2">序号</th>
-                                                <th class="t2" rowspan="2">部门</th>
-                                                <th class="t3" rowspan="2">姓名</th>
-                                                <th class="t4" rowspan="2">报销总金额</th>
-                                                <th class="t5" rowspan="2">报销详情</th>
-                                                <th class="t6" rowspan="2">提交日期</th>
-                                                <th class="t7" colspan="4">报销附件</th>
-                                                <th class="t8" rowspan="2">是否通过</th>
-                                            </tr>
-                                            <tr>
-                                                <th class="t9">票据截图</th>
-                                                <th class="t10">滴滴电子发票</th>
-                                                <th class="t11">滴滴行程单</th>
-                                                <th class="t12">其他</th>
+                                            	<th class="t0"><input type="checkbox"></th>
+                                                <th class="t1">序号</th>
+                                                <th class="t2">部门</th>
+                                                <th class="t3">姓名</th>
+                                                <th class="t4">报销总金额</th>
+                                                <th class="t5">报销详情</th>
+                                                <th class="t6">提交日期</th>
+                                                <th class="t8">是否通过</th>
                                             </tr>
                                         </thead>
                                         <tbody>
@@ -264,48 +257,12 @@
 											</tfoot>
 										</table>
 									</div>
-									<!-- 第一步提交 -->
-									<div class="add_NonStandard_submit_1">
-										<div class="add_NonStandard_submit_1_in">
-											<input type="button" class="btn btn-success" id="NonStandard_addsubmit_1" value="信息提交">
-										</div>
-									</div>
-									<!-- 报销附件 -->
-									<blockquote>
-										<h5>报销附件<span class="small_small">（点击右边图标打开上传界面）</span>&nbsp;<span class="glyphicon glyphicon-cloud-upload" aria-hidden="true"></span></h5>
-									</blockquote>
-									<div class="add_NonStandard_details_files">
-										<div class="line_0">
-										    <div class="line_01">票据截图</div>
-										    <div class="line_02 line_relative">
-										        <input type="text" class="info_BillScreenshot" readonly="readonly" disabled="disabled"><input type="button" class="btn btn-primary" value="上传">
-										    </div>
-										</div>
-										<div class="line_0">
-										    <div class="line_01">滴滴电子发票</div>
-										    <div class="line_02 line_relative">
-										        <input type="text" class="info_ElectronicInvoice" readonly="readonly" disabled="disabled"><input type="button" class="btn btn-primary" value="上传">
-										    </div>
-										</div>
-										<div class="line_0">
-										    <div class="line_01">滴滴行程单</div>
-										    <div class="line_02 line_relative">
-										        <input type="text" class="info_TravelPaper" readonly="readonly" disabled="disabled"><input type="button" class="btn btn-primary" value="上传">
-										    </div>
-										</div>
-										<div class="line_0">
-										    <div class="line_01">其他</div>
-										    <div class="line_02 line_relative">
-										        <input type="text" class="info_Others" readonly="readonly" disabled="disabled"><input type="button" class="btn btn-primary" value="上传">
-										    </div>
-										</div>
-									</div>
                             	</fieldset>
                             </div><!-- add_NonStandard_body_in end -->
                         </div>
                         <div class="add_NonStandard_foot">
                             <div class="add_NonStandard_foot_in">
-                                <input type="button" class="btn btn-success" id="NonStandard_addsubmit" value="附件提交">
+                                <input type="button" class="btn btn-success" id="NonStandard_addsubmit" value="提交">
                                 <input type="button" class="btn btn-warning" id="NonStandard_addclose" value="取消">
                             </div>
                         </div>
@@ -373,36 +330,6 @@
 											</tfoot>
 										</table>
 									</div>
-									<!-- 报销附件 -->
-									<blockquote>
-										<h5>报销附件<span class="small_small">（点击右边图标打开上传界面）</span>&nbsp;<span class="glyphicon glyphicon-cloud-upload" aria-hidden="true"></span></h5>
-									</blockquote>
-									<div class="update_NonStandard_details_files">
-										<div class="line_0">
-										    <div class="line_01">票据截图</div>
-										    <div class="line_02 line_relative">
-										        <input type="text" class="info_BillScreenshot" readonly="readonly" disabled="disabled"><input type="button" class="btn btn-primary" value="上传">
-										    </div>
-										</div>
-										<div class="line_0">
-										    <div class="line_01">滴滴电子发票</div>
-										    <div class="line_02 line_relative">
-										        <input type="text" class="info_ElectronicInvoice" readonly="readonly" disabled="disabled"><input type="button" class="btn btn-primary" value="上传">
-										    </div>
-										</div>
-										<div class="line_0">
-										    <div class="line_01">滴滴行程单</div>
-										    <div class="line_02 line_relative">
-										        <input type="text" class="info_TravelPaper" readonly="readonly" disabled="disabled"><input type="button" class="btn btn-primary" value="上传">
-										    </div>
-										</div>
-										<div class="line_0">
-										    <div class="line_01">其他</div>
-										    <div class="line_02 line_relative">
-										        <input type="text" class="info_Others" readonly="readonly" disabled="disabled"><input type="button" class="btn btn-primary" value="上传">
-										    </div>
-										</div>
-									</div>
                             	</fieldset>
                             </div><!-- update_NonStandard_body_in end -->
                         </div>
@@ -423,31 +350,6 @@
                         </div>
                     </div> -->
 
-                    <!-- 上传 -->
-                    <div class="upload_bgcover"></div>
-                    <div class="dropFileBox" style="display: none">
-                        <div class="dropFile">
-                            <div class="dropFileTit">
-                                上传文件<span>关闭</span>
-                            </div>
-                            <div class="dropFileCon">
-                                <div class="dropFileConMid">
-                                    <div class="dropFileConMidTop">
-                                        <input type="button" class="eou-button eou-button-radius eou-button-20 eou-button-w60 preUpload1" value="浏览..." title="选择文件">
-                                        <input type="text" readonly="readonly" class="serFinRepUploadName" placeholder="未选择文件"><span class="isUpload"></span>
-                                        <input type="file" id="serFinRepUpload" multiple="multiple" accept="application/msword, application/pdf, image/*">
-                                    </div>
-                                    <div class="dropFileConMidMid">
-                                        <div class="progressOut"></div>
-                                        <div class="progressIn">0%</div>
-                                    </div>
-                                    <div class="dropFileConMidbot">
-                                        <input type="button" class="eou-button eou-button-radius eou-button-30 eou-button-w60 dropUp2" value="上传">
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
                     <!-- webupload上传 -->
                     <!-- <div class="upload_wrapper">
                         <div class="upload_wrapper_tit">
@@ -466,7 +368,7 @@
                         </div>
                     </div> -->
 					<!-- 报销详情模态框 -->
-					<div class="modal fade" id="reimburseModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel">
+					<div class="modal fade" id="reimburseModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" style="display: none;">
 					  <div class="modal-dialog modal-lg" role="document">
 					    <div class="modal-content">
 					      <div class="modal-header">

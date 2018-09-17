@@ -3,8 +3,8 @@
 var addSubmitObj = new Object();
 addSubmitObj.Type = null;
 // addSubmitObj.ID = undefined;
-addSubmitObj.Name = null;
 addSubmitObj.Department = null;
+addSubmitObj.Name = null;
 // addSubmitObj.Pass = undefined;
 addSubmitObj.TotalAmount = null;
 // addSubmitObj.BillScreenshot = null;
@@ -16,14 +16,10 @@ addSubmitObj.TravelJson = null;
 var updateSubmitObj = new Object();
 updateSubmitObj.Type = null;
 updateSubmitObj.ID = null;
-updateSubmitObj.Name = null;
 updateSubmitObj.Department = null;
+updateSubmitObj.Name = null;
 updateSubmitObj.Pass = null;
 updateSubmitObj.TotalAmount = null;
-updateSubmitObj.BillScreenshot = null;
-updateSubmitObj.ElectronicInvoice = null;
-updateSubmitObj.TravelPaper = null;
-updateSubmitObj.Others = null;
 updateSubmitObj.DetailJson = null;
 updateSubmitObj.TravelJson = null;
 
@@ -46,12 +42,15 @@ reimburseState.allUploadObj = {
 	StaffName: null,
 	ID: null
 };
-reimburseState.uploadFileNo = 0;
-reimburseState.uploadFileList = {};
+reimburseState.remindDeleteloading = false;
+reimburseState.detailObject = {
+	DeleteFile: "",
+	ElectronicInvoice: "",
+	TravelPaper: "",
+	Others: ""
+};
+
 reimburseState.hasSearch = false;
-reimburseState.curFileupload = '';
-reimburseState.addResID = '';
-reimburseState.OperaClassify = '';
 reimburseState.Application = {
 	ID: null,
 	State: '',
@@ -60,9 +59,6 @@ reimburseState.Application = {
 	Reason: ''
 };
 reimburseState.exportAll = false;
-reimburseState.hasReminedShield = true;
-reimburseState.addHasSummitYM = globalGetToday(false).substring(0, globalGetToday(false).length - 3).replace(/-/g,"");
-reimburseState.updateHasSummitYM = null;
 // 天数的正则
 // var reimburse_daysReg = /^((\d)*|0\.5)$/;
 var reimburse_daysReg = /^((([1-9][0-9]*)+(\.[0,5]{1})?)|0\.5)$/;
@@ -145,14 +141,10 @@ function getPageData(Year, Month, CurrentPage){
 function renderPageData(data, CurrentPage, pageCounts){
 	var str = '';
 	if(data.length == 1){
-		str+='<tr><td colspan="12">无数据......</td></tr>';
+		str+='<tr><td colspan="8">无数据......</td></tr>';
 	}else if(data.length > 1){
 		data.map(function(currentValue, index, arr){
 			if(index > 0){
-				var BillScreenshotStr = splitFilePath(currentValue.BillScreenshot);
-				var ElectronicInvoiceStr = splitFilePath(currentValue.ElectronicInvoice);
-				var TravelPaperStr = splitFilePath(currentValue.TravelPaper);
-				var OthersStr = splitFilePath(currentValue.Others);
 				str+='<tr>'+
 					'<td><input type="checkbox"></td>'+
 					'<td class="update_td" data-iid="'+currentValue.ID+'">'+parseInt((CurrentPage-1)*10 + index)+'</td>'+
@@ -161,10 +153,10 @@ function renderPageData(data, CurrentPage, pageCounts){
 					'<td class="hastd_TotalAmount" title="'+currentValue.TotalAmount+'">'+currentValue.TotalAmount+'</td>'+
 					'<td class="reimburse_detail_td" title="点此查看详情"><span class="glyphicon glyphicon-eye-open" aria-hidden="true"></span></td>'+
 					'<td class="hastd_FilingDate" title="'+currentValue.FilingDate+'">'+currentValue.FilingDate+'</td>'+
-					'<td class="hastd_BillScreenshot" title="'+currentValue.BillScreenshot+'">'+BillScreenshotStr+'</td>'+
-					'<td class="hastd_ElectronicInvoice" title="'+currentValue.ElectronicInvoice+'" data-ivalue="'+currentValue.ElectronicInvoice+'">'+ElectronicInvoiceStr+'</td>'+
-					'<td class="hastd_TravelPaper" title="'+currentValue.TravelPaper+'" data-ivalue="'+currentValue.TravelPaper+'">'+TravelPaperStr+'</td>'+
-					'<td class="hastd_Others" title="'+currentValue.Others+'" data-ivalue="'+currentValue.Others+'">'+OthersStr+'</td>'+
+					'<td class="hastd_BillScreenshot" title="'+currentValue.BillScreenshot+'" data-ivalue="'+currentValue.BillScreenshot+'"></td>'+
+					'<td class="hastd_ElectronicInvoice" title="'+currentValue.ElectronicInvoice+'" data-ivalue="'+currentValue.ElectronicInvoice+'"></td>'+
+					'<td class="hastd_TravelPaper" title="'+currentValue.TravelPaper+'" data-ivalue="'+currentValue.TravelPaper+'"></td>'+
+					'<td class="hastd_Others" title="'+currentValue.Others+'" data-ivalue="'+currentValue.Others+'"></td>'+
 					'<td class="hastd_Pass" data-container="body" data-toggle="popover" data-placement="top"><input type="button" value="'+currentValue.Pass+'"></td>'+
 				'</tr>';
 			}
@@ -285,7 +277,7 @@ function sosuoInit(){
 }
 
 //上传文件
-function uploadFiles(Folder, fileObj, curTr){                                               
+function uploadFiles(Folder, fileObj, curTr, OperateType, OldAttachment){                                               
     var formData = new FormData();
     formData.enctype="multipart/form-data";
     formData.append("Folder",Folder);
@@ -310,21 +302,23 @@ function uploadFiles(Folder, fileObj, curTr){
         success: function(data){
         	if(data.length > 0){
         		if(data[0].Message == "上传成功"){
-	        		$.Response_Load.After("上传成功", 1600);
+        			curTr.find(".detail_filename_td .detail_filename").text(data[0].FileName).attr("title", data[0].FileName);
+        			curTr.find(".detail_filename_td").data("operatetype", OperateType).data("attachment", data[0].FileName).data("oldattachment", OldAttachment);
+	        		$.Response_Load.After("上传成功", 1700);
         		}else if(data[0].Message.indexOf("失败") > -1){
-        			$.Response_Load.After("上传失败", 1600);
+        			$.Response_Load.After("上传失败", 1700);
         		}else{
-        			$.Response_Load.After("文件已存在", 1600);
+        			$.Response_Load.After("文件已存在", 1700);
         		}
         	}else if(data.length == 0){
-        		$.Response_Load.After("文件读取至服务器失败！", 1600);
+        		$.Response_Load.After("文件读取至服务器失败！", 1700);
         	}
         },
         error: function(){
-        	$.Response_Load.After("网络繁忙！上传失败！", 1600);
+        	$.Response_Load.After("网络繁忙！上传失败！", 1700);
         },
 		beforeSend: function(XMLHttpRequest){
-            $.Response_Load.Before("上传提示","正在提交...",200);
+            $.Response_Load.Before("上传提示","正在提交...", 300);
         },
 		complete: function(XMLHttpRequest, textStatus){
 		}
@@ -377,7 +371,7 @@ function uploadFiles2(iParentDOM, Folder, iThat){
         		var successNO = 0;
         		data.map(function(currentValue, index, arr){
         			if(currentValue.Message.indexOf("成功")>-1){
-        				LiStr+='<li class="list-group-item list-group-item-success" title="'+currentValue.FileName+'"><span class="badge">成功</span><span class="badge uploaded">删除</span>'+currentValue.FileName+'</li>';
+        				LiStr+='<li class="list-group-item list-group-item-success" title="'+currentValue.FileName+'"><span class="badge uploaded">删除</span><span class="badge">成功</span>'+currentValue.FileName+'</li>';
         				successNO++;
         			}else if(currentValue.Message.indexOf("失败")>-1){
         				LiStr+='<li class="list-group-item list-group-item-danger" title="'+currentValue.FileName+'"><span class="badge">失败</span>'+currentValue.FileName+'</li>';
@@ -507,22 +501,15 @@ $(".m_button_l input[value='添加']").click(function(){
 		$(this).val("");
 	});
 	addupdateInitTableStr("add");
-	$(".add_NonStandard blockquote .glyphicon-cloud-upload, #NonStandard_addsubmit").prop("disabled","disabled").css("cursor","not-allowed");
-	reimburseState.OperaClassify = 'add';
-	$(".add_NonStandard_details_files").hide();
+	var item2 = $(".add_NonStandard_details_address_table>tbody .detail_td_Days");
+	var insertItem2 = $(".add_NonStandard_details_address_table>tfoot .insert_detail_td_calc_days");
+	calcDays(item2, insertItem2);
 });
 $(".add_NonStandard_tit_r, #NonStandard_addclose").click(function(){
-	if(reimburseState.addResID){
-		sosuoInit();
-		getPageData(undefined, undefined, 1);
-	}
 	$(".bg_cover, .add_NonStandard").slideUp(300);
 	for(var k in addSubmitObj){
 		addSubmitObj[k] = null;
 	}
-	reimburseState.addResID = '';
-	reimburseState.OperaClassify = '';
-	$(".add_NonStandard .info_Name, .add_NonStandard .info_Department").prop("disabled",false);
 });
 
 // 修改模块打开关闭
@@ -538,8 +525,6 @@ $(document).on("click",".update_td",function(){
 	updateSubmitObj.ID = Number($(this).data("iid")).toString();
 	updateSubmitObj.Pass = $(this).siblings(".hastd_Pass").children("input[type='button']").val();
 
-	// 保存修改的提交日期
-	reimburseState.updateHasSummitYM = $(this).siblings(".hastd_FilingDate").text().trim().split("-")[0] + $(this).siblings(".hastd_FilingDate").text().trim().split("-")[1];
 	var RequestID = $(this).data("iid").toString();
 	$.ajax({
 		type: "GET",
@@ -643,7 +628,6 @@ $(document).on("click",".update_td",function(){
 					$(this).attr("title",newVal);
 				}
 			});
-			reimburseState.OperaClassify = 'update';
 		});
 	},function(){
 		$.MsgBox_Unload.Alert("查看详情提示","网络繁忙！");
@@ -655,19 +639,6 @@ $(".update_NonStandard_tit_r, #NonStandard_updateclose").click(function(){
 	$(".bg_cover, .update_NonStandard").slideUp(300);
 	for(var k in updateSubmitObj){
 		updateSubmitObj[k] = null;
-	}
-	reimburseState.OperaClassify = '';
-});
-
-// 上传界面打开关闭
-$("span.glyphicon-cloud-upload").click(function(){
-	if($(this).css("cursor") == "not-allowed"){
-		return false;
-	}
-	if($(this).parents(".add_NonStandard").length){
-		$(".add_NonStandard_details_files").slideToggle();
-	}else if($(this).parents(".update_NonStandard").length){
-		$(".update_NonStandard_details_files").slideToggle();
 	}
 });
 
@@ -695,7 +666,7 @@ $(document).on("change",".info_Department",function(){
 });
 
 // 添加模块信息的提交
-$("#NonStandard_addsubmit_1").click(function(){
+$("#NonStandard_addsubmit").click(function(){
 	for(var kk in addSubmitObj){
 		if(kk=="Type"){
 			addSubmitObj[kk] = "add";
@@ -759,67 +730,41 @@ $("#NonStandard_addsubmit_1").click(function(){
 	addSubmitObj.TravelJson = JSON.stringify(TravelJson);
 	console.log("add我执行了吗");
 	console.log(addSubmitObj);
+	var iThat = $(this);
 	$.ajax({
 		type: "POST",
 		url: "Reimburse",
 		dataType: 'text',
 		data: addSubmitObj,
 		success: function(data){
-			if(data==="0"){
-				$.MsgBox_Unload.Alert("提示","信息添加失败！");
-			}else{
-				$(".add_NonStandard blockquote .glyphicon-cloud-upload, #NonStandard_addsubmit").prop("disabled",false).css("cursor","pointer");
-				reimburseState.addResID = data;
-				$(".add_NonStandard .info_Name, .add_NonStandard .info_Department").prop("disabled",true);
-				$.MsgBox_Unload.Alert("提示","信息添加成功！");
-				// 暂存年月
-				reimburseState.addHasSummitYM = globalGetToday(false).substring(0, globalGetToday(false).length - 3).replace(/-/g,"");
+			// if(data=="true"){
+			// 	$.MsgBox_Unload.Alert("提示","附件保存成功！");
+			// 	$("#NonStandard_addclose").trigger("click");
+			// 	sosuoInit();
+			// 	getPageData(undefined, undefined, 1);
+			// }else if(data=="false"){
+			// 	$.MsgBox_Unload.Alert("提示","附件保存失败！");
+			// }
+			if(data !== "0"){
+				$.MsgBox_Unload.Alert("提示","附件保存成功！");
+				$("#NonStandard_addclose").trigger("click");
+				sosuoInit();
+				getPageData(undefined, undefined, 1);
+			}else if(data === "0"){
+				$.MsgBox_Unload.Alert("提示","附件保存失败！");
 			}
 		},
 		error: function(){
 			$.MsgBox_Unload.Alert("提示","网络繁忙，刷新页面试下！");
 		},
 		beforeSend: function(XMLHttpRequest){
-            $("#NonStandard_addsubmit_1").css("cursor","not-allowed").prop("disabled","disabled");
+            eouluGlobal.C_btnDisabled(iThat, true, "正在提交...");
         },
 		complete: function(XMLHttpRequest, textStatus){
 		    if(textStatus=="success"){
 		    }
-		    $("#NonStandard_addsubmit_1").css("cursor","pointer").prop("disabled",false);
+		    eouluGlobal.C_btnAbled(iThat, true, "提交");
 		}
-	});
-});
-
-// add提交第二步
-$("#NonStandard_addsubmit").click(function(){
-	var ID = reimburseState.addResID;
-	var BillScreenshot = $(".add_NonStandard .info_BillScreenshot").val();
-	var ElectronicInvoice = $(".add_NonStandard .info_ElectronicInvoice").val();
-	var TravelPaper = $(".add_NonStandard .info_TravelPaper").val();
-	var Others = $(".add_NonStandard .info_Others").val();
-	$.ajax({
-		type: "POST",
-		url: "Reimburse",
-		data: {
-			Type: "saveFile",
-			ID: ID,
-			BillScreenshot: BillScreenshot,
-			ElectronicInvoice: ElectronicInvoice,
-			TravelPaper: TravelPaper,
-			Others: Others
-		},
-		dataType: "text"
-	}).then(function(data){
-		if(data=="true"){
-			$.MsgBox_Unload.Alert("提示","附件保存成功！");
-			$("#NonStandard_addclose").trigger("click");
-		}else if(data=="false"){
-			$.MsgBox_Unload.Alert("提示","附件保存失败！");
-			// sosuoInit();
-			// getPageData(undefined, undefined, 1);
-		}
-	},function(){
-		$.MsgBox_Unload.Alert("提示","网络繁忙！");
 	});
 });
 
@@ -888,6 +833,7 @@ $("#NonStandard_updatesubmit").click(function(){
 	updateSubmitObj.TravelJson = JSON.stringify(TravelJson);
 	console.log("update我执行了吗");
 	console.log(updateSubmitObj);
+	var iThat = $(this);
 	$.ajax({
 		type: "POST",
 		url: "Reimburse",
@@ -907,12 +853,12 @@ $("#NonStandard_updatesubmit").click(function(){
 			$.MsgBox_Unload.Alert("提示","网络繁忙，刷新页面试下！");
 		},
 		beforeSend: function(XMLHttpRequest){
-            $("#NonStandard_updatesubmit").css("cursor","not-allowed").prop("disabled","disabled");
+            eouluGlobal.C_btnDisabled(iThat, true, "正在提交...");
         },
 		complete: function(XMLHttpRequest, textStatus){
 		    if(textStatus=="success"){
 		    }
-		    $("#NonStandard_updatesubmit").css("cursor","pointer").prop("disabled",false);
+		    eouluGlobal.C_btnAbled(iThat, true, "提交");
 		}
 	});
 });
@@ -1008,16 +954,16 @@ $(".modal-body .row fieldset input[type='file']").on("change",function(){
 	if(!$iParent.find(".add_fileList_info").is(':visible')){
 		$iParent.find(".add_fileList_info").slideDown(150);
 	}
-	console.log($(this));
-	console.log($(this)[0]);
-	console.log($(this)[0].files);
+	// console.log($(this));
+	// console.log($(this)[0]);
+	// console.log($(this)[0].files);
 	var curFileList = $(this)[0].files;
 	var curFileListStr = '';
 	var uploadFileNo = reimburseState.allUploadObj[$(this).parents(".iParent").data("iclassify")].uploadFileNo;
 	var uploadFileList = reimburseState.allUploadObj[$(this).parents(".iParent").data("iclassify")].uploadFileList;
 	$.each(curFileList, function(iname, ivalue){
 		uploadFileNo++;
-		curFileListStr+='<li class="list-group-item" title="'+ivalue.name+'" value="'+uploadFileNo+'"><span class="badge noUpload">删除</span>'+ivalue.name+'</li>';
+		curFileListStr+='<li class="list-group-item" title="'+ivalue.name+'" value="'+uploadFileNo+'"><span class="badge noUpload">删除</span><span class="badge">待上传</span>'+ivalue.name+'</li>';
 		uploadFileList[uploadFileNo] = ivalue;
 		// curFileListStr+=ivalue.name+"::";
 	});
@@ -1050,10 +996,6 @@ $(document).on("click", ".reimburse_detail_td span", function(){
 	var curParent = $(this).parent();
 	var RequestID = curParent.siblings(".update_td").data("iid").toString();
 	var StaffName = curParent.siblings(".hastd_Name").text();
-	// 保存提交日期
-	reimburseState.allUploadObj.HasSummitYM = curParent.siblings(".hastd_FilingDate").text().trim().split("-")[0] + curParent.siblings(".hastd_FilingDate").text().trim().split("-")[1];
-	reimburseState.allUploadObj.StaffName = StaffName;
-	reimburseState.allUploadObj.ID = RequestID;
 	$.ajax({
 		type: "GET",
 		url: "ReimburseApplication",
@@ -1067,10 +1009,15 @@ $(document).on("click", ".reimburse_detail_td span", function(){
 		if(detailData.length == 1 && travelData.length == 1){
 			$.MsgBox_Unload.Alert("查看详情提示","无报销详情记录");
 		}else{
+			// 保存提交日期
+			reimburseState.allUploadObj.HasSummitYM = curParent.siblings(".hastd_FilingDate").text().trim().split("-")[0] + curParent.siblings(".hastd_FilingDate").text().trim().split("-")[1];
+			reimburseState.allUploadObj.StaffName = StaffName;
+			reimburseState.allUploadObj.ID = RequestID;
 			// 详情
 			var detailStr = '';
 			detailData.map(function(currentValue, index, arr){
 				if(index > 0){
+					var OperateType = "no";
 					detailStr+='<tr data-iid="'+currentValue.ID+'">'+
 							'<td title="'+currentValue.Type+'">'+currentValue.Type+'</td>'+
 							'<td title="'+currentValue.Amount+'">'+currentValue.Amount+'</td>'+
@@ -1078,7 +1025,7 @@ $(document).on("click", ".reimburse_detail_td span", function(){
 							'<td title="'+currentValue.CustomerName+'">'+currentValue.CustomerName+'</td>'+
 							'<td title="'+currentValue.City.replace(";;"," -- ")+'">'+currentValue.City.replace(";;"," -- ")+'</td>'+
 							'<td title="'+currentValue.Time.replace(";;"," -- ")+'">'+currentValue.Time.replace(";;"," -- ")+'</td>'+
-							'<td class="detail_filename_td"><input type="file"><span class="detail_filename">12327643718234784567890</span><span class="glyphicon glyphicon-open" aria-hidden="true"></span><span class="glyphicon glyphicon-trash" aria-hidden="true"></span></td>'+
+							'<td class="detail_filename_td" data-operatetype="'+OperateType+'" data-attachment="" data-oldattachment=""><input type="file"><span class="detail_filename" title="未上传">未上传</span><span class="glyphicon glyphicon-open" aria-hidden="true"></span><span class="glyphicon glyphicon-trash" aria-hidden="true"></span></td>'+
 						'</tr>';
 				}
 			});
@@ -1145,8 +1092,8 @@ $(document).on("click", ".reimburse_detail_td span", function(){
 				});
 				$("#add_fileList_ul2").empty().append(iAttachmentStr2);
 			}
-			// 滴滴电子发票
-			var oldFileStrC = curParent.siblings(".hastd_ElectronicInvoice").data("ivalue");
+			// 其他
+			var oldFileStrC = curParent.siblings(".hastd_Others").data("ivalue");
 			if(oldFileStrC !== null && oldFileStrC !== undefined){
 				var iAttachmentArr3 = $.grep(String(oldFileStrC).split("::"),function(currentValue,index){
 				    return currentValue != "";
@@ -1189,6 +1136,10 @@ $('#reimburseModal').on('hide.bs.modal', function (e) {
 		delete reimburseState.allUploadObj["c"].uploadFileList[kkk];
 	}
 	$(".iParent input[type='file']").val("");
+
+	reimburseState.remindDeleteloading = true;
+	// 详情文件提交状态init
+	reimburseState.detailObject.DeleteFile = "";
 });
 
 // 详情记录单条选文件
@@ -1197,156 +1148,169 @@ $(document).on("click", ".detail_filename+span", function(){
 });
 $(document).on("change", ".detail_filename_td>input[type='file']", function(){
 	var curTr = $(this).parent().parent();
+	var OperateType, OldAttachment;
+	var oldFileName = $(this).next().attr("title");
+	if(oldFileName == "未上传"){
+		OperateType = "add";
+	}else{
+		OperateType = "update";
+	}
+	if($(this).parent().data("oldattachment") === undefined || $(this).parent().data("oldattachment") === null){
+		OldAttachment = "";
+		OldAttachment += (oldFileName == "未上传" ? "" : (oldFileName + "::"));
+	}else{
+		OldAttachment = String($(this).parent().data("oldattachment"));
+		OldAttachment += (oldFileName == "未上传" ? "" : (oldFileName + "::"));
+	}
+
 	var Folder = "报销申请"+reimburseState.allUploadObj.HasSummitYM+"-"+reimburseState.allUploadObj.StaffName+"-"+reimburseState.allUploadObj.ID;
 	var fileObj = $(this)[0].files;
-	console.log(fileObj);
-	uploadFiles(Folder, fileObj, curTr);
+	// console.log(fileObj);
+	uploadFiles(Folder, fileObj, curTr, OperateType, OldAttachment);
 });
-
 /*上传整体end*/
+
 // 详情提交
 $(".modal-footer>.btn-success").click(function(){
-
-});
-
-// 上传附件框打开
-$(".line_relative>input[value='上传']").click(function(){
-	var curClassifyHook;
-	if($(this).parents(".add_NonStandard").length){
-		curClassifyHook = "add_NonStandard";
-	}else if($(this).parents(".update_NonStandard").length){
-		curClassifyHook = "update_NonStandard";
-	}
-	reimburseState.curFileupload = curClassifyHook+"++"+$(this).siblings("input[type='text']").attr("class");
-	var ih1 = $(".add_NonStandard").height();
-	var ih2 = $(".update_NonStandard").height();
-	var ih = ih1 - ih2 > 0 ? ih1:ih2;
-	$(".upload_bgcover").css("height",ih+"px");
-	$(".upload_bgcover, .dropFileBox").slideDown(250);
-});
-
-// 上传事件
-$("input.dropUp2").on("click",function(){
-	var judgeFile = $("input.serFinRepUploadName").val();
-	var judgeFile2 = $("#serFinRepUpload").val();
-	var filename1=judgeFile.replace(/.*(\/|\\)/, ""); 
-	var filename2=judgeFile2.replace(/.*(\/|\\)/, ""); 
-	var fileExt1=(/[.]/.exec(filename1)) ? /[^.]+$/.exec(filename1.toLowerCase()) : '';
-	var fileExt2=(/[.]/.exec(filename2)) ? /[^.]+$/.exec(filename2.toLowerCase()) : '';
-	if(fileExt1==''||fileExt2==''){
-		$.MsgBox_Unload.Alert("上传提示","文件没有后缀名，请重新上传");
-		return false;
-	}
-	// else if(fileExt1!=''&&fileExt2!=''){
-	// 	if(fileExt1["0"]!="pdf"||fileExt2["0"]!="pdf"){
-	// 		$.MsgBox_Unload.Alert("上传提示","文件后缀名错误，请上传pdf");
-	// 		return false;
-	// 	}
-	// }
-	if(judgeFile && judgeFile2){
-		var StaffName, ID, iMonth;
-		if(reimburseState.OperaClassify == 'add'){
-			StaffName = $(".add_NonStandard .info_Name").val();
-			ID = reimburseState.addResID;
-			iMonth = reimburseState.addHasSummitYM;
-		}else if(reimburseState.OperaClassify == 'update'){
-			StaffName = $(".update_NonStandard .info_Name").val();
-			ID = updateSubmitObj.ID;
-			iMonth = reimburseState.updateHasSummitYM;
-		}
-		/*后台文件夹姓名出现null，暂时处理之*/
-		if(!StaffName){
-			$.MsgBox_Unload.Alert("上传提示","请检查是否错误更换了姓名");
-			return false;
-		}
-		uploadFiles(StaffName, ID, iMonth);
-		// uploadFiles("施聪华", "3");
-	}else{
-		$.MsgBox_Unload.Alert("上传提示","请检查是否选择或更换了文件");
-	}
-});
-
-// 点击浏览切换文件
-$("#serFinRepUpload").on("change",function(){
-	console.log($(this));
-	console.log($(this)[0]);
-	console.log($(this)[0].files);
-	var curFileList = $(this)[0].files;
-	var curFileListStr = '';
-	$.each(curFileList, function(iname, ivalue){
-		curFileListStr+=ivalue.name+"::";
+	var fileArray = [];
+	$("#add_fileList_ul>li.list-group-item-success, #add_fileList_ul>li.list-group-item-info").each(function(){
+		fileArray.push($(this).attr("title"));
 	});
-	$("span.isUpload").text("");
-	$(".progressIn").css("width","30px");
-	$(".progressIn").text("0%");
-	// console.log("文件上传改变值"+$(this).val());
-	// var newFileName1 = $(this).val().indexOf("\\fakepath\\")>-1?$(this).val().split("\\fakepath\\")[1]:$(this).val().split("\\").pop();
-	// console.log("赋给input的值"+newFileName1);
-	$("input.serFinRepUploadName").val(curFileListStr);
-	$("input.serFinRepUploadName").attr("title",curFileListStr);
+	var newfileArray = globalArrStrUnique(fileArray);
+	var ElectronicInvoice = newfileArray.length == 0 ? "" : (newfileArray.join("::")+"::");
+
+	var fileArray2 = [];
+	$("#add_fileList_ul2>li.list-group-item-success, #add_fileList_ul2>li.list-group-item-info").each(function(){
+		fileArray2.push($(this).attr("title"));
+	});
+	var newfileArray2 = globalArrStrUnique(fileArray2);
+	var TravelPaper = newfileArray2.length == 0 ? "" : (newfileArray2.join("::")+"::");
+
+	var fileArray3 = [];
+	$("#add_fileList_ul3>li.list-group-item-success, #add_fileList_ul3>li.list-group-item-info").each(function(){
+		fileArray3.push($(this).attr("title"));
+	});
+	var newfileArray3 = globalArrStrUnique(fileArray3);
+	var Others = newfileArray3.length == 0 ? "" : (newfileArray3.join("::")+"::");
+
+	var AttachmentArr = [];
+	$("div.modal-body_detail tbody>tr").each(function(){
+		var OperateType = $(this).children(".detail_filename_td").data("operatetype");
+		if(OperateType === undefined || OperateType === null || OperateType == "no") return true;
+		var item = {};
+		item.ID = String($(this).data("iid"));
+		item.OperateType = OperateType;
+		var Attachment = $(this).children(".detail_filename_td").data("attachment");
+		if(Attachment === undefined || Attachment === null){
+			Attachment = "";
+		}
+		var OldAttachment = $(this).children(".detail_filename_td").data("oldattachment");
+		if(OldAttachment === undefined || OldAttachment === null){
+			OldAttachment = "";
+		}
+		if(OperateType == "add"){
+			item.Attachment = Attachment;
+			item.iclassify = "R3";
+		}else if(OperateType == "update"){
+			item.OldAttachment = OldAttachment;
+			item.Attachment = Attachment;
+			item.iclassify = "R2";
+		}else if(OperateType == "delete"){
+			item.OldAttachment = OldAttachment;
+			item.iclassify = "R1";
+		}
+		AttachmentArr.push(item);
+	});
+	console.log(_.sortBy(AttachmentArr, function(o) { return o.iclassify; }));
+	var AttachmentJson = JSON.stringify(_.sortBy(AttachmentArr, function(o) { return o.iclassify; }));
+	$.ajax({
+		type: "POST",
+		url: "ReimburseAttachment",
+		data: {
+			ElectronicInvoice: ElectronicInvoice,
+			TravelPaper: TravelPaper,
+			Others: Others,
+			AttachmentJson: AttachmentJson,
+			Folder: ("报销申请"+reimburseState.allUploadObj.HasSummitYM+"-"+reimburseState.allUploadObj.StaffName+"-"+reimburseState.allUploadObj.ID),
+			DeleteFile: reimburseState.detailObject.DeleteFile
+		}
+	}).then(function(data){
+		console.log(typeof data);
+	},function(){
+
+	}).always(function(){
+
+	});
 });
 
-// 上传附件框关闭
-$(".dropFileTit span").on("click",function(){
-	$(".upload_bgcover, .dropFileBox").slideUp(250);
-	$("span.isUpload").text("");
-	$(".progressIn").css("width","30px");
-	$(".progressIn").text("0%");
-	$("input.serFinRepUploadName").val("");
-	$("input.serFinRepUploadName").attr("title","");
-	$("#serFinRepUpload").val("");
-});
-
-// 附件点击下载
-$(document).on("click","span.downFile_span",function(e){
+// 文件下载
+$(document).on("click","li.list-group-item-success, li.list-group-item-info, span.detail_filename",function(e){
 	e.stopPropagation();
-	var fileName = $(this).text().trim();
-	if(fileName==""||fileName=="--"){
-		$.MsgBox_Unload.Alert("下载提示","无文件可下载");
+	var fileName = $(this).attr("title");
+	if(!fileName || fileName == "未上传"){
+		$.MsgBox_Unload.Alert("下载提示","无数据或文件已被删除！");
 		return false;
 	}
-	var ID = $(this).parent().siblings(".update_td").data("iid").toString();
-	var StaffName = $(this).parent().siblings(".hastd_Name").text();
-	var FolderMonthHook = $(this).parent().siblings(".hastd_FilingDate").text();
-	if(!regHasDate.test(FolderMonthHook) && !regHasDateNoCTOR.test(FolderMonthHook)){
-		$.MsgBox_Unload.Alert("提示","提交日期没有或格式错误！");
-		return false;
-	}
-	var FolderMonth;
-	if(regHasDate.test(FolderMonthHook)){
-		FolderMonth = FolderMonthHook.match(regHasDate)[0].split("-");
-		FolderMonth.pop();
-		FolderMonth = FolderMonth.join("");
-	}else if(regHasDateNoCTOR.test(FolderMonthHook)){
-		FolderMonth = FolderMonthHook.match(regHasDateNoCTOR)[0].substring(0,FolderMonthHook.match(regHasDateNoCTOR)[0].length-2);
-	}
+	// var FolderMonthHook = $(this).parent().siblings(".hastd_FilingDate").text();
+	// if(!regHasDate.test(FolderMonthHook) && !regHasDateNoCTOR.test(FolderMonthHook)){
+	// 	$.MsgBox_Unload.Alert("提示","提交日期没有或格式错误！");
+	// 	return false;
+	// }
+	// var FolderMonth;
+	// if(regHasDate.test(FolderMonthHook)){
+	// 	FolderMonth = FolderMonthHook.match(regHasDate)[0].split("-");
+	// 	FolderMonth.pop();
+	// 	FolderMonth = FolderMonth.join("");
+	// }else if(regHasDateNoCTOR.test(FolderMonthHook)){
+	// 	FolderMonth = FolderMonthHook.match(regHasDateNoCTOR)[0].substring(0,FolderMonthHook.match(regHasDateNoCTOR)[0].length-2);
+	// }
 	$.ajax({
 		type: "GET",
 		url: "ReimburseAttachment",
 		data: {
 			Type: 'download',
-			ID: ID,
-			StaffName: StaffName,
+			ID: reimburseState.allUploadObj.ID,
+			StaffName: reimburseState.allUploadObj.StaffName,
 			FileName: fileName,
-			FolderMonth: FolderMonth
+			FolderMonth: reimburseState.allUploadObj.HasSummitYM
 		}
 	}).then(function(data){
 		window.open(data);
-		if(!reimburseState.hasReminedShield){
-			setTimeout(function(){
-				$.MsgBox_Unload.Alert("新窗口导出提示","若无反应请取消浏览器屏蔽");
-			},500);
-			reimburseState.hasReminedShield = true;
-		}
 	},function(){
 		$.MsgBox_Unload.Alert("下载提示","网络繁忙或文件已被删除！");
 	});
-	// var baseUrl = window.location.href.split(globalProjectName)[0];
-	// window.location.href = url+"LogisticsFile/File/"+fileName;
-	// window.open(baseUrl+"LogisticsFile/File/"+fileName);
-	// console.log("服务报告下载"+baseUrl+"LogisticsFile/File/"+fileName);
 });
 
+// 已上传文件删除
+$(document).on("click", "span.badge.uploaded", function(e){
+	e.stopPropagation();
+	if(!reimburseState.remindDeleteloading){
+		$.Response_Load.Before("删除提示","已删除，请记得提交保存", 300);
+		$.Response_Load.After("已删除，请记得提交保存", 800);
+		reimburseState.remindDeleteloading = true;
+	}
+	reimburseState.detailObject.DeleteFile += $(this).parent().attr("title");
+	reimburseState.detailObject.DeleteFile += "::";
+	$(this).parent().remove();
+});
+
+// 票据截图删除
+$(document).on("click", "td.detail_filename_td>.glyphicon-trash", function(e){
+	e.stopPropagation();
+	if($(this).prev().prev().attr("title") == "未上传") return false;
+	if(!reimburseState.remindDeleteloading){
+		$.Response_Load.Before("删除提示","已删除，请记得提交保存", 300);
+		$.Response_Load.After("已删除，请记得提交保存", 800);
+		reimburseState.remindDeleteloading = true;
+	}
+	var oldFileName = $(this).siblings(".detail_filename").attr("title");
+	var oldattachment = $(this).parent().data("oldattachment");
+	if(oldattachment === undefined || oldattachment === null){
+		oldattachment = "";
+	}
+	var newoldattachment = oldattachment+oldFileName+"::";
+	$(this).parent().data("operatetype", "delete").data("oldattachment", newoldattachment).children(".detail_filename").attr("title", "未上传").text("未上传");
+});
 
 // 审核
 $(document).on("click",".hastd_Pass input",function(){
@@ -1532,12 +1496,6 @@ $(".m_button_l>input:nth-child(3)").click(function(){
 		}
 	}).then(function(data){
 		window.open(data);
-		if(!reimburseState.hasReminedShield){
-			setTimeout(function(){
-				$.MsgBox_Unload.Alert("新窗口导出提示","若无反应请取消浏览器屏蔽");
-			},500);
-			reimburseState.hasReminedShield = true;
-		}
 	},function(){
 		$.MsgBox_Unload.Alert("导出提示","网络繁忙或文件已被删除！");
 	});

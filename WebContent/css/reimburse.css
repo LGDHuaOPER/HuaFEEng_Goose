@@ -94,6 +94,8 @@ ul.dropdown-menu li {
 	text-align: center;
 	font-size: 15px;
 	box-shadow: -3px 3px 10px 2px rgba(195,206,220,0.7), 3px 3px 10px 2px rgba(195,206,220,0.7);
+	box-sizing: border-box;
+    border-collapse: collapse;
 }
 
 .m_table table input[type="checkbox"] {
@@ -114,25 +116,6 @@ ul.dropdown-menu li {
 	border-left: 1px solid #999;
 }
 
-.m_table table td:not(:first-child):not(:last-child) {
-	border-right: 1px solid #999;
-}
-
-.m_table table thead tr:nth-child(1) th:not(:first-child) {
-	// border-left: 1px solid #483D8B;
-	border-left: 1px solid rgba(255,245,225,0.9);
-}
-
-.m_table table thead tr:nth-child(1) th:not(:first-child):not(:last-child):not(:nth-child(8)) {
-	// border-right: 1px solid #483D8B;
-	border-right: 1px solid rgba(255,245,225,0.9);
-}
-
-.m_table table thead tr:nth-child(2) th {
-	// border-top: 1px solid #483D8B;
-	border-top: 1px solid rgba(255,245,225,0.9);
-}
-
 .m_table table tbody tr:nth-child(odd) {
 	height: 45px;
 	background: #fff;
@@ -145,58 +128,39 @@ ul.dropdown-menu li {
 
 .m_table table thead tr {
 	background: #b5b5b5;
+	height: 40px;
 }
 
-.m_table table thead tr:nth-child(1) {
-	height: 30px;
-}
-
-.m_table table thead tr:nth-child(2) {
-	height: 25px;
+.m_table th, .m_table td {
+	max-width: 170px;
+	min-width: 70px;
 }
 
 .m_table .t0 {
-	min-width: 30px;
-	max-width: 30px;
-	width: 30px;
+	min-width: 50px;
+	max-width: 50px;
+	width: 50px;
 }
 
 .m_table .t1 {
-	min-width: 40px;
-	max-width: 40px;
-	width: 40px;
+	min-width: 60px;
+	max-width: 60px;
+	width: 60px;
 }
 
-.m_table .t2, .m_table .t3, .m_table .t5 {
-	min-width: 60px;
-	width: 6.0%;
-}
+/*.m_table .t2, .m_table .t3, .m_table .t5 {
+	min-width: 70px;
+	width: 7.0%;
+}*/
 
 .m_table .t4, .m_table .t6, .m_table .t8 {
-	min-width: 95px;
-	width: 9.5%;
+	min-width: 130px;
+	width: 13%;
 }
 
 .hastd_TotalAmount, .hastd_FilingDate, .hastd_Pass{
-	min-width: 95px;
-	width: 9.5%;
-}
-
-.m_table .t9, .m_table .t10, .m_table .t11 {
-	min-width: 110px;
-	max-width: 130px;
-	width: 11%;
-}
-
-.hastd_BillScreenshot, .hastd_ElectronicInvoice, .hastd_TravelPaper {
-	min-width: 110px;
-	max-width: 130px;
-	width: 11%;
-}
-
-.m_table .t12, .hastd_Others {
-	min-width: 50px;
-	max-width: 90px;
+	min-width: 130px;
+	width: 13%;
 }
 
 span.downFile_span {
@@ -229,8 +193,8 @@ span.downFile_span {
 
 /*弹出类*/
 .bg_cover {
-	width: 100%;
-	height: 100%;
+	width: 100vw;
+	height: 100vh;
 	background-color: rgba(10%,20%,30%,0.7);
     position: absolute;
     top: 0;
@@ -238,18 +202,6 @@ span.downFile_span {
     display: none;
     overflow: hidden;
     z-index: 3;
-}
-
-.upload_bgcover {
-	width: 100%;
-	height: 100%;
-	background-color: rgba(10%,20%,30%,0.7);
-    position: absolute;
-    top: 0;
-    left: 0;
-    display: none;
-    overflow: hidden;
-    z-index: 15;
 }
 
 .add_NonStandard {
@@ -414,6 +366,10 @@ span.downFile_span {
 }
 
 /*添加修改共用*/
+.add_NonStandard legend, .update_NonStandard legend {
+	margin-bottom: 8px;
+}
+
 .line_0 {
 	height: 40px;
 	width: 100%;
@@ -608,145 +564,6 @@ fieldset table tr {
 	width: 270px;
 }
 
-/*上传文件*/
-.dropFileBox {
-    width: 600px;
-    height: 330px;
-    position: absolute;
-    top: calc(6% + 80px);
-    left: calc(50% - 300px);
-    display: none;
-    z-index: 16;
-    border: 1px dashed #999;
-}
-
-.dropFile {
-    position: relative;
-    height: 330px;
-    width: 100%;
-    background: #fff;
-}
-
-.dropFileTit {
-    height: 35px;
-    line-height: 35px;
-    color: #fff;
-    text-indent: 15px;
-    background: #00aeef;
-    font-size: 15px;
-    position: relative;
-}
-
-.dropFileTit span {
-    display: inline-block;
-    width: 50px;
-    height: 35px;
-    position: absolute;
-    right: 2px;
-    top: 0;
-    cursor: pointer;
-}
-
-/*.dropFileConTop {
-    margin: 15px auto 40px auto;
-    width: 500px; 
-    height:250px; 
-    line-height:250px; 
-    text-align:center; 
-    font-size:24px; 
-    color:#999; 
-    border:3px #c0c0c0 dashed; 
-    position:relative;
-}*/
-
-/*.toggleFileUp {
-    height: 30px;
-    margin-top: 0;
-    padding-left: calc(50% - 50px);
-}*/
-
-.dropFileConMid {
-    margin: 15px auto 20px auto;
-    width: 500px; 
-    height:250px; 
-    line-height:250px; 
-    text-align:center;
-    border:1px #c0c0c0 dashed;
-    position: relative;
-}
-
-.dropFileConMidTop, .dropFileConMidMid, .dropFileConMidbot {
-    margin: 30px auto 20px auto;
-    width: 400px;
-    height: 40px;
-    line-height: 40px;
-}
-
-.dropFileConMidTop {
-    font-size: 13px;
-    text-align: center;
-    position: relative;
-}
-
-.dropFileConMidMid .progressOut, .dropFileConMidMid .progressIn {
-    margin: 10px auto 10px 0;
-    height: 20px;
-    line-height: 20px;
-    border-radius: 10px;
-    text-align: center;
-    font-size: 13px;
-}
-
-.dropFileConMidMid .progressOut {
-    width: 400px;
-}
-
-.dropFileConMidMid .progressIn {
-    position: relative;
-    top: -30px;
-    background: #4DBF7D;
-    width: 30px;
-    max-width: 400px;
-}
-
-#serFinRepUpload {
-    width: 70px;
-    height: 22px;
-    position: absolute;
-    left: 5px;
-    top: 9px;
-    overflow: hidden;
-    opacity: 0;
-    cursor: pointer;
-}
-
-.preUpload1 {
-    cursor: pointer;
-}
-
-.serFinRepUploadName {
-    margin-left: 7px;
-    margin-top: 1px;
-    width: 250px;
-    height: 20px;
-    border: none;
-    font-size: 12px;
-}
-
-.isUpload {
-    display: inline-block;
-    width: 69px;
-    height: 20px;
-    line-height: 20px;
-    text-align: left;
-    color: red;
-}
-
-.dropFileCon {
-    overflow: hidden;
-}
-/*文件上传结束*/
-
 /*webupload文件上传*/
 .upload_wrapper {
     position: absolute;
@@ -915,7 +732,7 @@ div.modal-backdrop.in {
 }
 
 /*维护隐藏元素*/
-.add_NonStandard_details_files, .update_NonStandard_details_files, .modal-body input[type="file"], div.add_fileList_info {
+.add_NonStandard_details_files, .update_NonStandard_details_files, .modal-body input[type="file"], div.add_fileList_info, .hastd_BillScreenshot, .hastd_ElectronicInvoice, .hastd_TravelPaper, .hastd_Others {
 	display: none;
 }
 
@@ -943,7 +760,7 @@ li.list-group-item-success, li.list-group-item-info, .detail_filename {
 		margin-left: 0;
     }
 
-    .bg_cover, .upload_bgcover {
+    .bg_cover {
     	width: 1100px;
     }
 }
