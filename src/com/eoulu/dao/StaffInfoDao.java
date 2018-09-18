@@ -250,6 +250,7 @@ public class StaffInfoDao {
 	public List<Map<String,Object>> getMail(String name){
 		String sql = "select StaffMail from t_staff where StaffName = ?";
 		DBUtil db = new DBUtil();
+		System.out.println("name"+name);
 		Object[] param = new Object[]{name};
 		List<Map<String,Object>> ls = db.QueryToList(sql, param);
 		return ls;

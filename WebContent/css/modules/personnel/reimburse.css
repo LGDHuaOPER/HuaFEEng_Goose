@@ -725,6 +725,13 @@ div.modal-backdrop.in {
 	color: #00aeef;
 }
 
+.popover_close {
+	position: absolute;
+	right: 12px;
+	top: 7px;
+	font-size: 18px;
+}
+
 /*维护y轴超出滚动元素*/
 .add_NonStandard_details_div, .add_NonStandard_details_address, .update_NonStandard_details_div, .update_NonStandard_details_address, .modal-body, .modal-body .row>div {
 	overflow-y: auto; 

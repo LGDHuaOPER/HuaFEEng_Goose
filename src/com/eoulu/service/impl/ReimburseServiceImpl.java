@@ -4,6 +4,7 @@ import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
+import java.io.InputStream;
 import java.sql.Connection;
 import java.sql.SQLException;
 import java.text.SimpleDateFormat;
@@ -267,6 +268,10 @@ public class ReimburseServiceImpl implements ReimburseService{
 				if(!sendReviewMail(name, reason, filingDate)){
 					result+="，邮件发送失败！";
 				}
+			}else{
+				if(!sendReviewMail(name, null, filingDate)){
+					result+="，邮件发送失败！";
+				}
 			}
 		}else{
 			result = "操作失败";
@@ -286,20 +291,53 @@ public class ReimburseServiceImpl implements ReimburseService{
 			email = list.get(1).get("StaffMail").toString();
 		}
 		String[] to = new String[]{email};
+		String[] copyto = null;
 		Properties pro = new Properties();
+		Properties pro2 = new Properties();
+		
+		InputStream in = SendMailUtil.class.getResourceAsStream("email.properties");
 		try {
-			pro.load(SendMailUtil.class.getResourceAsStream("email.properties"));
+			pro.load(in);
 		} catch (IOException e1) {
 			e1.printStackTrace();
+		}
+		InputStream in1 = SendMailUtil.class.getResourceAsStream("afterSale.properties");
+		try {
+			pro2.load(in1);
+		} catch (IOException e) {
+			
+			e.printStackTrace();
+		}
+		
+		int copytoCount = Integer.parseInt(pro2.getProperty("copyto"));
+		copyto = new String[copytoCount];
+		for(int i=0 ; i<copytoCount ; i++){
+			int temp = i+1;
+			String key = "CopyTo"+temp;
+			copyto[i] = pro2.getProperty(key);
+			
 		}
 		user = pro.getProperty("SEND_USER");
 		uname = pro.getProperty("SEND_UNAME");
 		pwd = pro.getProperty("SEND_PWD");
+		try {
+			in.close();
+			in1.close();
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+		
 		String subject = "Eoulu:报销申请审批结果";
 		StringBuilder sBuilder = new StringBuilder();
-		sBuilder.append("<span style='font-family:微软雅黑;font-size:14px;'>您好！</span><br><br>");
-		sBuilder.append("<span style='font-family:微软雅黑;font-size:14px;'>您在"+filingDate+"提交的报销申请，审核未通过，原因为："+reason+"</span><br><br>");
-		sBuilder.append("<span style='font-family:微软雅黑;font-size:14px;'>请您尽快重新提交，谢谢！</span><br>");
+		if(reason == null){
+			sBuilder.append("<span style='font-family:微软雅黑;font-size:14px;'>您好！</span><br><br>");
+			sBuilder.append("<span style='font-family:微软雅黑;font-size:14px;'>您于"+filingDate+"提交的报销申请已经审批通过，请知晓。</span><br><br>");
+			sBuilder.append("<span style='font-family:微软雅黑;font-size:14px;'>此邮件为系统自动发出，无需回复。</span><br><br>");
+		}else{
+			sBuilder.append("<span style='font-family:微软雅黑;font-size:14px;'>您好！</span><br><br>");
+			sBuilder.append("<span style='font-family:微软雅黑;font-size:14px;'>您于"+filingDate+"提交的报销申请审批未通过，未通过原因："+reason+"，请于2个工作日内前往系统进行修改。</span><br><br>");
+			sBuilder.append("<span style='font-family:微软雅黑;font-size:14px;'>此邮件为系统自动发出，无需回复。</span><br><br>");
+		}
 		String content = util.getEmailSign(sBuilder.toString(),"NA");
 		return new JavaMailToolsUtil(user, uname, pwd).doSendHtmlEmail(subject, content, null, to, null);			
 	}
@@ -591,80 +629,106 @@ public class ReimburseServiceImpl implements ReimburseService{
 	}
 
 	@Override
-	public boolean saveAttachment(Reimburse reimburse,String folder,String deleteFile) {
+	public boolean saveAttachment(Reimburse reimburse,String folder,String deleteFile,String isRevoke) {
 		boolean flag = false;
 		String path = "E:\\LogisticsFile\\File\\"+folder+"\\";
-		ReimburseDao dao = new ReimburseDao();
-		DBUtil db = new DBUtil();
-		String attachmentJson = reimburse.getAttachmentJson();
-		List<Map<String, String>> list = new ArrayList<>();
-		if(!attachmentJson.equals("")){
-			JSONArray array = JSONArray.fromObject(attachmentJson);
-			JSONObject object = null;
-			Map<String,String> updateMap = null;	
-			for(int i = 0;i < array.size();i ++){
-				object = array.getJSONObject(i);
-				updateMap = new HashMap<>();
-				updateMap.put("ID",(String)object.get("ID"));
-				String OperateType = (String)object.get("OperateType");
-				String Attachment = null;
-				String OldAttachment = null;
-	
-		
-				switch (OperateType) {
-				case "update":
-					Attachment = (String)object.get("Attachment");
-					OldAttachment = (String)object.get("OldAttachment");
-					if(!OldAttachment.equals(Attachment)){
-						deleteFile += (OldAttachment + "::");
+		if(isRevoke.equals("YES")){
+			if(!deleteFile.equals("")){
+				System.out.println(deleteFile);
+			
+				String[] file = deleteFile.split("::");
+				for(int i = 0;i < file.length;i ++){
+					if(!file[i].equals("")){
+						try {
+							FileUtils.forceDelete(new File(path+file[i]));
+						} catch (IOException e) {
+							e.printStackTrace();
+						}
 					}
-					updateMap.put("Attachment", Attachment);
-					break;
-
-				case "delete":
-					OldAttachment = (String)object.get("OldAttachment");
-					deleteFile += (OldAttachment + "::");
-					updateMap.put("Attachment", null);
-					break;
-				case "add":
-					Attachment = (String)object.get("Attachment");
-					updateMap.put("Attachment", Attachment);
-					break;
+				}
+			}
+			flag = true;
+		}else{
+			ReimburseDao dao = new ReimburseDao();
+			DBUtil db = new DBUtil();
+			String attachmentJson = reimburse.getAttachmentJson();
+			List<Map<String, String>> list = new ArrayList<>();
+			if(!attachmentJson.equals("")){
+				JSONArray array = JSONArray.fromObject(attachmentJson);
+				JSONObject object = null;
+				Map<String,String> updateMap = null;	
+				for(int i = 0;i < array.size();i ++){
+					object = array.getJSONObject(i);
+					updateMap = new HashMap<>();
+					updateMap.put("ID",(String)object.get("ID"));
+					String OperateType = (String)object.get("OperateType");
+					String Attachment = null;
+					String OldAttachment = null;
+		
+			
+					switch (OperateType) {
+					case "update":
+						Attachment = (String)object.get("Attachment");
+						OldAttachment = (String)object.get("OldAttachment");
+					
+						deleteFile += (OldAttachment + "::");
+						
+						updateMap.put("Attachment", Attachment);
+						break;
+	
+					case "delete":
+						OldAttachment = (String)object.get("OldAttachment");
+						deleteFile += (OldAttachment + "::");
+						updateMap.put("Attachment", null);
+						break;
+					case "add":
+						Attachment = (String)object.get("Attachment");
+						updateMap.put("Attachment", Attachment);
+						break;
+					}
+					
+					list.add(updateMap);
+				}
+			}
+			Connection conn = db.getConnection();
+			try {
+				conn.setAutoCommit(false);
+				dao.saveFileName(reimburse, db);
+				for(int i = 0;i < list.size();i ++){
+					dao.updateAttachment(Integer.parseInt(list.get(i).get("ID")), list.get(i).get("Attachment"), db);
 				}
 				
-				list.add(updateMap);
-			}
-		}
-		Connection conn = db.getConnection();
-		try {
-			conn.setAutoCommit(false);
-			dao.saveFileName(reimburse, db);
-			for(int i = 0;i < list.size();i ++){
-				dao.updateAttachment(Integer.parseInt(list.get(i).get("ID")), list.get(i).get("Attachment"), db);
-			}
-			
-			conn.commit();
-			flag = true;
-			
-		} catch (SQLException e) {
-			try {
-				conn.rollback();
-			} catch (SQLException e1) {
-				e1.printStackTrace();
-			}
-			flag = false;
-		}finally {
-			db.closed();
-		}
-		
-		String[] file = deleteFile.split("::");
-		for(int i = 0;i < file.length;i ++){
-			try {
-				FileUtils.forceDelete(new File(path+file));
-			} catch (IOException e) {
+				conn.commit();
+				flag = true;
+				
+			} catch (SQLException e) {
 				e.printStackTrace();
+				try {
+					conn.rollback();
+				} catch (SQLException e1) {
+					e1.printStackTrace();
+				}
+				flag = false;
+			}finally {
+				db.closed();
+			}
+			if(!deleteFile.equals("")){
+				System.out.println(deleteFile);
+			
+				String[] file = deleteFile.split("::");
+				System.out.println(file.length);
+				for(int i = 0;i < file.length;i ++){
+					if(!file[i].equals("")){
+						try {
+							FileUtils.forceDelete(new File(path+file[i]));
+						} catch (IOException e) {
+							e.printStackTrace();
+						}
+					}
+				}
 			}
 		}
+			
 		return flag;
 		
 	}

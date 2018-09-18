@@ -303,6 +303,7 @@ public class DocumentUploadUtilY {
 	              
 	                String value = item.getString("UTF-8");
 	                if(name.equals("Folder")){
+	                	System.out.println("文件夹："+value);
 	                	savePath += value;
 	                	File saveFile = new File(savePath);
 	                	 if(!saveFile.exists()){
@@ -328,7 +329,10 @@ public class DocumentUploadUtilY {
 		                filename = filename
 	                            .substring(filename.lastIndexOf("\\") + 1);
 		                in = item.getInputStream();
-		            
+		                File file0 = new File(savePath);
+		                if(!file0.exists()){
+		                	file0.mkdirs();
+		                }
 		                
 		                File file = new File(savePath + "\\" + filename);
 		                if(file.exists()){

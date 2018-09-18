@@ -154,7 +154,7 @@ public class OriginFactoryServiceImpl implements OriginFactoryService{
 		}
 		LogInfoService logs = new LogInfoServiceImpl();
 		String JspInfo = "FORMFACTOR";
-		String description = "原厂邮件发送-密码："+pwd+"-提示信息："+result;
+		String description = "原厂邮件发送-提示信息："+result;
 		logs.insert(request, JspInfo, description);
 		return result;
 			

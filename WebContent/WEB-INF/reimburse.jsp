@@ -12,9 +12,7 @@
         <link rel="shortcut icon" href="image/eoulu.ico" />
         <link rel="bookmark" href="image/eoulu.ico" />
         <link rel="stylesheet" href="css/libs/bootstrap.min.css" type="text/css">
-        <link rel="stylesheet" href="css/global/eouluCustom.css" type="text/css">
-        <!-- <link rel="stylesheet" type="text/css" href="plugins/webuploader/webuploader.css" /> -->
-        <link rel="stylesheet" href="css/reimburse.css" type="text/css">
+        <link rel="stylesheet" href="css/modules/personnel/reimburse-c0f068a8f6.min.css" type="text/css">
         <style>
             .u-admin a {
                 vertical-align: top !important;
@@ -76,9 +74,16 @@
                 margin-top:-40px;
             }
 
+            td.detail_td_Attachment {
+                display: none;
+            }
+
         </style>
     </head>
     <body>
+        <div class="loading_div_g_div" style="position: fixed;top: 0;bottom: 0;left: 0;right: 0;z-index: 100;width: 100vw;height: 100vh;background-color: #5bc0de;filter:alpha(opacity=90);-moz-opacity:0.9;-khtml-opacity:0.9;opacity: 0.9;display: -webkit-flex;display: flex;justify-content: center;align-items: center;">
+            <img src="image/loading/Spinner-1s-200px.gif" alt="loading。。。">
+        </div>
         <div id="NonStandard_wrapper">
             <div id="NonStandard_sticker">
                 <div id="NonStandard_sticker-con">
@@ -500,7 +505,5 @@
         </div>
 
         <script src="js/libs/bootstrap.min.js"></script>
-        <script src="js/global/responseLoading.js"></script>
-        <script src="js/reimburse.js"></script>
     </body>
 </html>

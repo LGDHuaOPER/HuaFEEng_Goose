@@ -38,6 +38,6 @@ public interface ReimburseService {
 	
 	public int getListCount();
 	
-	public boolean saveAttachment(Reimburse reimburse,String folder,String deleteFile);
+	public boolean saveAttachment(Reimburse reimburse,String folder,String deleteFile,String isRevoke);
 	
 }

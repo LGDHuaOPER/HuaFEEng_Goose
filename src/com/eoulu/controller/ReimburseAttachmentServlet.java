@@ -62,20 +62,23 @@ public class ReimburseAttachmentServlet extends HttpServlet {
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		int ID = Integer.parseInt(request.getParameter("ID")==null?"0":request.getParameter("ID"));
 		String ElectronicInvoice = request.getParameter("ElectronicInvoice")==null?"":request.getParameter("ElectronicInvoice");
 		String TravelPaper = request.getParameter("TravelPaper")==null?"":request.getParameter("TravelPaper");
 		String Others = request.getParameter("Others")==null?"":request.getParameter("Others");	
 		String AttachmentJson = request.getParameter("AttachmentJson")==null?"":request.getParameter("AttachmentJson");
 		String folder = request.getParameter("Folder");
 		String deleteFile = request.getParameter("DeleteFile");
+		String isRevoke = request.getParameter("IsRevoke")==null?"":request.getParameter("IsRevoke");
 		Reimburse reimburse = new Reimburse();
+		reimburse.setID(ID);
 		reimburse.setElectronicInvoice(ElectronicInvoice);
 		reimburse.setTravelPaper(TravelPaper);
 		reimburse.setOthers(Others);
 		reimburse.setAttachmentJson(AttachmentJson);
 		
 		ReimburseService service = new ReimburseServiceImpl();
-		response.getWriter().write(new Gson().toJson(service.saveAttachment(reimburse, folder,deleteFile)));
+		response.getWriter().write(new Gson().toJson(service.saveAttachment(reimburse, folder,deleteFile,isRevoke)));
 		
 		
 	}

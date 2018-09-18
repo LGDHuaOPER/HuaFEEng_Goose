@@ -23,7 +23,7 @@
     // 定义一些默认参数
     var _DefaultParam = {
         projectName: "cfChicken8",
-        versionNO: "1536897675561",
+        versionNO: "1536897675562",
         versionExceptArr: ["eoulu.ico","bootstrap","swiper-3.4.1.min.css","eouluCustom.css","reset.css","css/libs","css/extends","echarts","jquery","msgbox","ajaxfileupload.js","html2canvas.js","fullcalendar.min.js","jsPdf.debug.js","underscore-min.js","ProvinceandCity.js","dispatchScript-079ece4932.min.js","js/libs","plugins/"],
         chartColorArr: [
               '#DE3656','#D6395B','#C93F64','#C0436C','#B64873','#A35283','#9D5588','#885F98','#7468A6','#6C6BA6','#5F72B6','#5A74B9','#5077BE','#4B7BC5','#467DC9','#4081CE','#3A83D3','#3183DA','#2A8BDF','#248EE3','#1E91E8','#1993EC','#1396F0','#0F98F4','#0B9AF7','#069CFA','#019FFF'
@@ -726,8 +726,40 @@
                             "mergeToParentFile": "Lab.js"
                         }
                     }
-                }
+                },
                 // 设备清单页面结束
+                // 报销申请页面
+                "Reimburse": {
+                    "lastModify": "Tue Sep 18 2018 17:29:07 GMT+0800 (中国标准时间)",
+                    "lastModifyTime": "1537262947000",
+                    // css
+                    "cssPrimary": {
+                        "bootstrap.min.css": {
+                            "referenceOrder": 0,
+                            "filePath": "css/libs/bootstrap.min.css",
+                            "mergeToParentFile": null
+                        },
+                        "reimburse.css": {
+                            "referenceOrder": 1,
+                            "filePath": "css/modules/personnel/reimburse.css",
+                            "mergeToParentFile": "reimburse.css"
+                        }
+                    },
+                    // js
+                    "jsPrimary": {
+                        "bootstrap.min.js": {
+                            "referenceOrder": 0,
+                            "filePath": "js/libs/bootstrap.min.js",
+                            "mergeToParentFile": null
+                        },
+                        "reimburse.js": {
+                            "referenceOrder": 1,
+                            "filePath": "js/modules/personnel/reimburse.js",
+                            "mergeToParentFile": "reimburse.js"
+                        }
+                    }
+                }
+                // 报销申请页面结束
             },
         // pageHrefImportFileMap 结束
         // compressFilePathMap 开始
@@ -786,6 +818,12 @@
                     "outBasePath": "./cfChicken8/WebContent/css/modules/laboratory/",
                     "gulp-rev": "Lab-d0d0edd961.min.css",
                     "referencePath": "css/modules/laboratory/Lab-d0d0edd961.min.css"
+                },
+                "reimburse.css": {
+                    "originPath": ["./cfChicken8/WebContent/css/modules/personnel/reimburse.css"],
+                    "outBasePath": "./cfChicken8/WebContent/css/modules/personnel/",
+                    "gulp-rev": "reimburse-c0f068a8f6.min.css",
+                    "referencePath": "css/modules/personnel/reimburse-c0f068a8f6.min.css"
                 }
             },
             "jsMerge": {
@@ -872,6 +910,12 @@
                     "outBasePath": "./cfChicken8/WebContent/js/modules/laboratory/",
                     "gulp-rev": "Lab-0fcdac365a.min.js",
                     "referencePath": "js/modules/laboratory/Lab-0fcdac365a.min.js"
+                },
+                "reimburse.js": {
+                    "originPath": ["./cfChicken8/WebContent/js/modules/personnel/reimburse.js"],
+                    "outBasePath": "./cfChicken8/WebContent/js/modules/personnel/",
+                    "gulp-rev": "reimburse-b99e50c9f6.min.js",
+                    "referencePath": "js/modules/personnel/reimburse-b99e50c9f6.min.js"
                 }
             }
         }
@@ -1206,7 +1250,7 @@
     // 版本号排除关键词、文件名或路径名，全文匹配
     var globalVersionExceptFileName = ["eoulu.ico","bootstrap","swiper-3.4.1.min.css","eouluCustom.css","reset.css","css/libs","css/extends","echarts","jquery","msgbox","ajaxfileupload.js","html2canvas.js","fullcalendar.min.js","jsPdf.debug.js","underscore-min.js","ProvinceandCity.js","dispatchScript-079ece4932.min.js","js/libs","plugins/"];
     // 版本号
-    var globalVersionNo = "1536897675561";
+    var globalVersionNo = "1536897675562";
 
     // echarts自定义渐变色
     // 用法：series[i].itemStyle.normal.color =

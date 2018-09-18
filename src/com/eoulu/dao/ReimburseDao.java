@@ -88,7 +88,7 @@ public class ReimburseDao {
 	
 	
 	public List<Map<String,Object>> getDetails(int RequestID){
-		String sql = "select ID,Type,Amount,MainContent,CustomerName,City,Time from t_reimburse_details "
+		String sql = "select ID,Type,Amount,MainContent,CustomerName,City,Time,Attachment from t_reimburse_details "
 				+ "where RequestID=?";
 		DBUtil dbUtil = new DBUtil();
 		return dbUtil.QueryToList(sql, new Object[]{RequestID});
@@ -119,7 +119,7 @@ public class ReimburseDao {
 	
 	public boolean updateRequest(Reimburse reimburse, DBUtil db) throws SQLException{
 		String sql = "update t_reimburse set Name=?,Department=?,TotalAmount=?,Pass=? where ID=?";
-		Object[] param = new Object[9];
+		Object[] param = new Object[5];
 		param[0] = reimburse.getName();
 		param[1] = reimburse.getDepartment();
 		param[2] = reimburse.getTotalAmount();
