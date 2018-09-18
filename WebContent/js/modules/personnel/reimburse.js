@@ -1282,6 +1282,11 @@ $('#reimburseModal').on('hide.bs.modal', function (e) {
 				if(OldAttachment === undefined || OldAttachment === null){
 					OldAttachment = "";
 				}
+
+				var Attachment = $(this).children(".detail_filename_td").data("attachment");
+				if(Attachment === undefined || Attachment === null){
+					Attachment = "";
+				}
 				// 删除origin
 				var submitOldAttachment;
 				if(OldAttachment == ""){
@@ -1292,10 +1297,11 @@ $('#reimburseModal').on('hide.bs.modal', function (e) {
 						originFile = "";
 					}
 					var submitOldAttachmentArr = _.pull(OldAttachment.toString().split("::"), originFile);
-					submitOldAttachment = (submitOldAttachmentArr.join("::")+"::");
+					submitOldAttachment = (submitOldAttachmentArr.length == 0 ? "" : (submitOldAttachmentArr.join("::")+"::"));
 				}
 
 				DeleteFile+=submitOldAttachment;
+				DeleteFile+=(Attachment == "" ? "" : (Attachment + "::"));
 			});
 			DeleteFile+=reimburseState.detailObject.DeleteFileNoSubmit;
 			console.log(DeleteFile);
@@ -1432,7 +1438,6 @@ $(".modal-footer>.btn-success").click(function(){
 			DeleteFile: reimburseState.detailObject.DeleteFile
 		}
 	}).then(function(data){
-		console.log(typeof data);
 		if(data == "true"){
 			$.MsgBox_Unload.Alert("更新提示","更新成功！");
 			reimburseState.detailModalUpdate = true;
@@ -1524,7 +1529,7 @@ $(document).on("click", "td.detail_filename_td>.glyphicon-trash", function(e){
 	}else{
 		newoldattachment = oldattachment+"::"+oldFileName;
 	}
-	$(this).parent().data("operatetype", "delete").data("oldattachment", newoldattachment).children(".detail_filename").attr("title", "未上传").text("未上传");
+	$(this).parent().data("operatetype", "delete").data("oldattachment", newoldattachment).data("attachment", "").children(".detail_filename").attr("title", "未上传").text("未上传");
 });
 
 // 审核popover
