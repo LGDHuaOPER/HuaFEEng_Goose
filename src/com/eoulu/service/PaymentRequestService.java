@@ -20,6 +20,7 @@ public interface PaymentRequestService {
 	
 	public boolean updatePayState(int ID);
 	
+	public boolean deleteFile(int ID,String fileName);
 	
 
 }

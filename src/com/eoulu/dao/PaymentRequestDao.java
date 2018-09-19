@@ -122,5 +122,21 @@ public boolean insert(PaymentRequest request){
 		return dbUtil.QueryToList(sql, new Object[]{ID});
 	}
 	
+	public List<Map<String, Object>> getAttachement(int ID){
+		
+		String sql = "select Attachment from t_payment_request where ID=?";
+		
+		DBUtil dbUtil = new DBUtil();
+		return dbUtil.QueryToList(sql, new Object[]{ID});
+		
+	}
+	
+	public boolean updateAttachemnt(int ID,String fileStr){
+		String sql = "update t_payment_request set Attachment = ? where ID = ?";
+		DBUtil dbUtil = new DBUtil();
+		int result = dbUtil.executeUpdate(sql, new Object[]{fileStr,ID});
+		return result > 0?true:false;
+	}
+	
 
 }

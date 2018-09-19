@@ -41,7 +41,7 @@ public class LabServlet extends HttpServlet {
 		String loadType = request.getParameter("LoadType") == null?"":request.getParameter("LoadType");
 		if(loadType.equals("data")){
 			String currentPage = request.getParameter("CurrentPage");
-			String Laboratory = request.getParameter("Laboratory")==null?"all":request.getParameter("Laboratory");
+			String Laboratory = request.getParameter("Laboratory")==null?"苏州":request.getParameter("Laboratory");
 			LabService service = new LabServiceImpl();
 			Page page = new Page();
 			page.setCurrentPage(currentPage==null?1:Integer.parseInt(currentPage));

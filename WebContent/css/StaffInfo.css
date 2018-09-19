@@ -510,7 +510,7 @@
 .add_idcard_div, .add_passport_div, .update_idcard_div, .update_passport_div {
     margin-top: 10px;
     margin-bottom: 10px;
-    width: 500px;
+    width: 610px;
     height: 25px;
     display: -webkit-flex; /* Safari */
     display: flex;

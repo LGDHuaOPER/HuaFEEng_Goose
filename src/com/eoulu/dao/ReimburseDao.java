@@ -16,7 +16,7 @@ public class ReimburseDao {
 	
 	
 		String sql = "select ID,Name,Department,TotalAmount,FilingDate,Pass,BillScreenshot,"
-				+ "ElectronicInvoice,TravelPaper,Others from t_reimburse ";
+				+ "ElectronicInvoice,TravelPaper,Others,Reason from t_reimburse ";
 		if(!startTime.equals("")){
 			sql += "where DATE_FORMAT(FilingDate,'%Y-%m') between ? and ? order by ID DESC limit ?,?";
 			param = new Object[] { startTime,endTime,(page.getCurrentPage() - 1)*10, page.getRows() };
@@ -36,7 +36,7 @@ public class ReimburseDao {
 	
 	
 		String sql = "select ID,Name,Department,TotalAmount,FilingDate,Pass,BillScreenshot,"
-				+ "ElectronicInvoice,TravelPaper,Others from t_reimburse where Name = (select StaffName "
+				+ "ElectronicInvoice,TravelPaper,Others,Reason from t_reimburse where Name = (select StaffName "
 				+ "from t_staff where StaffMail = ?)";
 		if(!startTime.equals("")){
 			sql += " and DATE_FORMAT(FilingDate,'%Y-%m') between ? and ? order by ID DESC limit ?,?";
@@ -134,8 +134,8 @@ public class ReimburseDao {
 	}
 	
 	public boolean insertDetails(Map<String, Object> detail, DBUtil db) throws SQLException{
-		String sql = "insert into t_reimburse_details(Type,Amount,MainContent,CustomerName,City,Time,RequestID) values(?,?,?,?,?,?,?)";
-		Object[] param = new Object[7];
+		String sql = "insert into t_reimburse_details(Type,Amount,MainContent,CustomerName,City,Time,RequestID,Attachment) values(?,?,?,?,?,?,?,?)";
+		Object[] param = new Object[8];
 		
 		param[0] = detail.get("Type");
 		param[1] = detail.get("Amount");
@@ -144,6 +144,7 @@ public class ReimburseDao {
 		param[4] = detail.get("City");
 		param[5] = detail.get("Time");
 		param[6] = detail.get("RequestID");
+		param[7] = detail.get("Attachment");
 		
 		int result = db.executeUpdateNotClose(sql, param);
 		if (result > 0){
@@ -161,6 +162,7 @@ public class ReimburseDao {
 		param[2] = travel.get("TravelTime");
 		param[3] = travel.get("Days");
 		param[4] = travel.get("RequestID");
+	
 
 		int result = db.executeUpdateNotClose(sql, param);
 		if (result > 0){
@@ -207,10 +209,10 @@ public class ReimburseDao {
 		}
 	}
 	
-	public boolean updateReview(int ID,String state){
-		String sql = "update t_reimburse set Pass = ? where ID = ?";
+	public boolean updateReview(int ID,String state,String reason){
+		String sql = "update t_reimburse set Pass = ?,Reason=? where ID = ?";
 		DBUtil dbUtil = new DBUtil();
-		int result = dbUtil.executeUpdate(sql, new Object[]{state,ID});
+		int result = dbUtil.executeUpdate(sql, new Object[]{state,reason,ID});
 		return result > 0?true:false;
 	}
 	

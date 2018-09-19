@@ -12,10 +12,7 @@
         <link rel="shortcut icon" href="image/eoulu.ico" />
         <link rel="bookmark" href="image/eoulu.ico" />
         <link rel="stylesheet" href="css/libs/bootstrap.min.css" type="text/css">
-        <!-- <link rel="stylesheet" type="text/css" href="css/global/global_table_style.css"> -->
-        <!-- <link rel="stylesheet" type="text/css" href="plugins/awesomplete/awesomplete.css"> -->
-        <!-- <link rel="stylesheet" type="text/css" href="plugins/awesomplete/awesomplete.theme.css"> -->
-        <link rel="stylesheet" href="css/modules/personnel/PaymentRequest-9c26a25e2c.min.css" type="text/css">
+        <link rel="stylesheet" href="css/modules/personnel/PaymentRequest-6bc602eb88.min.css" type="text/css">
         <style>
             .u-admin a {
                 vertical-align: top !important;
@@ -382,7 +379,7 @@
                                 <fieldset><legend>附件上传</legend>
                                     <div class="form-group">
                                         <label for="add_file_Upload" class="trigger_click"><button type="button" class="btn btn-info"><span class="glyphicon glyphicon-folder-open" aria-hidden="true"></span>&nbsp;选择文件</button></label>
-                                        <input type="file" id="add_file_Upload" multiple="multiple" accept="application/msword, application/pdf, image/*, application/vnd.ms-powerpoint, text/plain, application/vnd.openxmlformats-officedocument.presentationml.presentation, application/vnd.openxmlformats-officedocument.wordprocessingml.document">
+                                        <input type="file" id="add_file_Upload" multiple="multiple" accept="application/msword, application/pdf, image/*, application/vnd.ms-powerpoint, text/plain, application/vnd.openxmlformats-officedocument.presentationml.presentation, application/vnd.openxmlformats-officedocument.wordprocessingml.document, application/vnd.ms-excel, application/vnd.openxmlformats-officedocument.spreadsheetml.sheet, application/vnd.openxmlformats-officedocument.spreadsheetml.template, application/vnd.ms-excel.addin.macroEnabled.12, application/vnd.ms-excel.sheet.binary.macroEnabled.12">
                                         <label class="add_info_upload"><button type="button" class="btn btn-info"><span class="glyphicon glyphicon-cloud-upload" aria-hidden="true"></span>&nbsp;上传</button></label>
                                     </div>
                                     <div class="add_fileList_ul_wrapper">
@@ -592,7 +589,7 @@
                                 <fieldset><legend>附件上传</legend>
                                     <div class="form-group">
                                         <label for="update_file_Upload" class="trigger_click"><button type="button" class="btn btn-info"><span class="glyphicon glyphicon-folder-open" aria-hidden="true"></span>&nbsp;选择文件</button></label>
-                                        <input type="file" id="update_file_Upload" multiple="multiple" accept="application/msword, application/pdf, image/*, application/vnd.ms-powerpoint, text/plain, application/vnd.openxmlformats-officedocument.presentationml.presentation, application/vnd.openxmlformats-officedocument.wordprocessingml.document">
+                                        <input type="file" id="update_file_Upload" multiple="multiple" accept="application/msword, application/pdf, image/*, application/vnd.ms-powerpoint, text/plain, application/vnd.openxmlformats-officedocument.presentationml.presentation, application/vnd.openxmlformats-officedocument.wordprocessingml.document, application/vnd.ms-excel, application/vnd.openxmlformats-officedocument.spreadsheetml.sheet, application/vnd.openxmlformats-officedocument.spreadsheetml.template, application/vnd.ms-excel.addin.macroEnabled.12, application/vnd.ms-excel.sheet.binary.macroEnabled.12">
                                         <label class="update_info_upload"><button type="button" class="btn btn-info"><span class="glyphicon glyphicon-cloud-upload" aria-hidden="true"></span>&nbsp;上传</button></label>
                                     </div>
                                     <div class="update_fileList_ul_wrapper">
@@ -705,38 +702,70 @@
         						</div>
         					</fieldset>
         					<fieldset class="mail_con_field"><legend>内容</legend>
-                                <div class="container-fluid">
-                                    <!-- <div>您好！</div>
-                                    <div>申请详情</div>
+                                <div class="container-fluid well well-sm">
+                                    <p>你好！</p>
+                                    <p>以下是<span class="auto_detail_con"></span>付款申请，请您查看。</p>
                                     <div class="row">
-                                        <div class="col-md-6 col-lg-6">
-                                            <div class="paymoney_detail_table_wrapper">
-                                                <table>
-                                                    <thead><tr><th colspan="2">付款信息</th></tr></thead>
-                                                    <tbody>
-                                                        <tr><td>收款户名：</td><td></td></tr>
-                                                        <tr><td>账号：</td><td></td></tr>
-                                                        <tr><td>开户行：</td><td></td></tr>
-                                                        <tr><td>备注：</td><td></td></tr>
-                                                    </tbody>
-                                                </table>
-                                            </div>
+                                        <div>
+                                            <table border="1" style="width: 100%;font-family: 'Microsoft YaHei','Arial','黑体','宋体',sans-serif;border-collapse: collapse;border-spacing: 0;box-sizing: border-box;background-color: transparent;">
+                                                <tbody>
+                                                    <tr style="height: 28px;text-indent: 10px;"><td colspan="4" style="text-align: left;color: #00aeef;">申请人信息</td></tr>
+                                                    <tr style="height: 28px;text-indent: 10px;">
+                                                        <td style="text-align: right;padding-right: 8px;max-width: 100px;min-width: 100px;width: 100px;">部门</td>
+                                                        <td class="mailContent_Department" style="white-space: pre-wrap;word-wrap: break-word;word-break: break-all;"></td>
+                                                        <td style="text-align: right;padding-right: 8px;max-width: 100px;min-width: 100px;width: 100px;">姓名</td>
+                                                        <td class="mailContent_Applicant" style="white-space: pre-wrap;word-wrap: break-word;word-break: break-all;"></td>
+                                                    </tr>
+                                                    <tr style="height: 28px;text-indent: 10px;"><td colspan="4" style="text-align: left;color: #00aeef;">基本信息</td></tr>
+                                                    <tr style="height: 28px;text-indent: 10px;">
+                                                        <td style="text-align: right;padding-right: 8px;max-width: 100px;min-width: 100px;width: 100px;">费用类型</td>
+                                                        <td class="mailContent_ExpenseCategory" style="white-space: pre-wrap;word-wrap: break-word;word-break: break-all;"></td>
+                                                        <td style="text-align: right;padding-right: 8px;max-width: 100px;min-width: 100px;width: 100px;">费用项目</td>
+                                                        <td class="mailContent_ExpenseItem" style="white-space: pre-wrap;word-wrap: break-word;word-break: break-all;"></td>
+                                                    </tr>
+                                                    <tr style="height: 28px;text-indent: 10px;">
+                                                        <td style="text-align: right;padding-right: 8px;max-width: 100px;min-width: 100px;width: 100px;">申请详情</td>
+                                                        <td class="mailContent_ExpenseDetails" style="white-space: pre-wrap;word-wrap: break-word;word-break: break-all;"></td>
+                                                        <td style="text-align: right;padding-right: 8px;max-width: 100px;min-width: 100px;width: 100px;">金额</td>
+                                                        <td class="mailContent_Amount" style="white-space: pre-wrap;word-wrap: break-word;word-break: break-all;"></td>
+                                                    </tr>
+                                                    <tr style="height: 28px;text-indent: 10px;">
+                                                        <td style="text-align: right;padding-right: 8px;max-width: 100px;min-width: 100px;width: 100px;">申请日期</td>
+                                                        <td class="mailContent_ApplicationDate" style="white-space: pre-wrap;word-wrap: break-word;word-break: break-all;"></td>
+                                                        <td style="text-align: right;padding-right: 8px;max-width: 100px;min-width: 100px;width: 100px;">付款截止日期</td>
+                                                        <td class="mailContent_PayDate" style="white-space: pre-wrap;word-wrap: break-word;word-break: break-all;"></td>
+                                                    </tr>
+                                                    <tr style="height: 28px;text-indent: 10px;"><td colspan="4" style="text-align: left;color: #00aeef;">付款信息</td></tr>
+                                                    <tr style="height: 28px;text-indent: 10px;">
+                                                        <td style="text-align: right;padding-right: 8px;max-width: 100px;min-width: 100px;width: 100px;">收款户名</td>
+                                                        <td class="mailContent_Payee" style="white-space: pre-wrap;word-wrap: break-word;word-break: break-all;"></td>
+                                                        <td style="text-align: right;padding-right: 8px;max-width: 100px;min-width: 100px;width: 100px;">开户行</td>
+                                                        <td class="mailContent_DepositBank" style="white-space: pre-wrap;word-wrap: break-word;word-break: break-all;"></td>
+                                                    </tr>
+                                                    <tr style="height: 28px;text-indent: 10px;">
+                                                        <td style="text-align: right;padding-right: 8px;max-width: 100px;min-width: 100px;width: 100px;">账号</td>
+                                                        <td class="mailContent_Account" style="white-space: pre-wrap;word-wrap: break-word;word-break: break-all;"></td>
+                                                        <td style="text-align: right;padding-right: 8px;max-width: 100px;min-width: 100px;width: 100px;">备注</td>
+                                                        <td class="mailContent_PaymentRemark" style="white-space: pre-wrap;word-wrap: break-word;word-break: break-all;"></td>
+                                                    </tr>
+                                                    <tr style="height: 28px;text-indent: 10px;"><td colspan="4" style="text-align: left;color: #00aeef;">链接信息</td></tr>
+                                                    <tr style="height: 28px;text-indent: 10px;">
+                                                        <td style="text-align: right;padding-right: 8px;max-width: 100px;min-width: 100px;width: 100px;">店家名称</td>
+                                                        <td class="mailContent_StoreName" style="white-space: pre-wrap;word-wrap: break-word;word-break: break-all;"></td>
+                                                        <td style="text-align: right;padding-right: 8px;max-width: 100px;min-width: 100px;width: 100px;">链接</td>
+                                                        <td class="mailContent_Link" style="white-space: pre-wrap;word-wrap: break-word;word-break: break-all;"></td>
+                                                    </tr>
+                                                    <tr style="height: 28px;text-indent: 10px;">
+                                                        <td style="text-align: right;padding-right: 8px;max-width: 100px;min-width: 100px;width: 100px;">订单号</td>
+                                                        <td class="mailContent_OrderNO" style="white-space: pre-wrap;word-wrap: break-word;word-break: break-all;"></td>
+                                                        <td style="text-align: right;padding-right: 8px;max-width: 100px;min-width: 100px;width: 100px;">备注</td>
+                                                        <td class="mailContent_LinkRemark" style="white-space: pre-wrap;word-wrap: break-word;word-break: break-all;"></td>
+                                                    </tr>
+                                                </tbody>
+                                            </table>
                                         </div>
-                                        <div class="col-md-6 col-lg-6">
-                                            <div class="link_detail_table_wrapper">
-                                                <table>
-                                                    <thead><tr><th colspan="2">链接信息</th></tr></thead>
-                                                    <tbody>
-                                                        <tr><td>店家名称：</td><td></td></tr>
-                                                        <tr><td>订单号：</td><td></td></tr>
-                                                        <tr><td>链接：</td><td></td></tr>
-                                                        <tr><td>备注：</td><td></td></tr>
-                                                    </tbody>
-                                                </table>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div>请协助尽快安排付款，非常感谢！</div> -->
+                                    </div><br>
+                                    <p>请协助尽快安排付款，非常感谢！</p>
                                 </div><!-- container-fluid end -->
                             </fieldset>
                             <!-- <fieldset class="mail_con_field"><legend>内容</legend>
@@ -759,6 +788,15 @@
         				</div>
         			</div><!-- 邮件发送模板end -->
 
+                    <!-- 警告框 -->
+                    <div class="warning_alert_wrapper_cover"></div>
+                    <div class="warning_alert_wrapper">
+                        <div class="container-fluid">
+                            
+                        </div>
+                    </div>
+                    <!-- 警告框结束 -->
+
                 <!-- NonStandard_sticker-con结束 -->
                 </div>
             <!-- NonStandard_sticker结束 -->
@@ -774,6 +812,10 @@
                     </div>
                 </div>
             </div>
+            <!-- <div class="alert alert-warning alert-dismissible" role="alert">
+                <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                <strong>Warning!</strong> Better check yourself, you're not looking too good.
+            </div> -->
         <!-- NonStandard_wrapper结束 -->
         </div>
         

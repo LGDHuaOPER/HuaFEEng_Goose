@@ -1,10 +1,13 @@
 package com.eoulu.service.impl;
 
+import java.io.File;
 import java.io.IOException;
 import java.io.InputStream;
 import java.util.List;
 import java.util.Map;
 import java.util.Properties;
+
+import org.apache.commons.io.FileUtils;
 
 import com.eoulu.commonality.Page;
 import com.eoulu.dao.PaymentRequestDao;
@@ -70,34 +73,12 @@ public class PaymentRequestServiceImpl implements PaymentRequestService{
 		List<Map<String, Object>> list = dao.getMailInfo(request.getID());
 		String Attachment = list.get(1).get("Attachment").toString();
 		String ExpenseDetails = list.get(1).get("ExpenseDetails").toString();
-		String Payee = list.get(1).get("Payee").toString();
-		String Account = list.get(1).get("Account").toString();
-		String DepositBank = list.get(1).get("DepositBank").toString();
-		String PaymentRemark = list.get(1).get("PaymentRemark").toString();
-		String StoreName = list.get(1).get("StoreName").toString();
-		String OrderNO = list.get(1).get("OrderNO").toString();
-		String Link = list.get(1).get("Link").toString();
-		String LinkRemark = list.get(1).get("LinkRemark").toString();
+	
 		
 		StringBuilder sBuilder = new StringBuilder();
 		sBuilder.append("<span style='font-family:微软雅黑;font-size:14px;'>您好！</span><br><br>");
-		sBuilder.append("<span style='font-family:微软雅黑;font-size:14px;'>"+ExpenseDetails+"。</span>");
-		if(!Payee.equals("")||!Account.equals("")||!DepositBank.equals("")||!PaymentRemark.equals("")){
-			sBuilder.append("<br><br><table border='1' style='font-family:微软雅黑;text-align: center;box-sizing: border-box;border-collapse: collapse;font-size: 14px;'><thead><tr><th colspan='2'>付款信息</th></tr></thead>");
-			sBuilder.append("<tbody><tr style='height: 30px;background: #fff;'><td>收款户名：</td><td>"+Payee+"</td></tr>");
-			sBuilder.append("<tr style='height: 30px;background: rgba(195,206,220,0.9);'><td>账号：</td><td>"+Account+"</td></tr>");
-			sBuilder.append("<tr style='height: 30px;background: #fff;'><td>开户行：</td><td>"+DepositBank+"</td></tr>");
-			sBuilder.append("<tr style='height: 30px;background: rgba(195,206,220,0.9);'><td>备注：</td><td>"+PaymentRemark+"</td></tr></tbody></table>");
-		}
-		
-		if(!StoreName.equals("")||!OrderNO.equals("")||!Link.equals("")||!LinkRemark.equals("")){
-			sBuilder.append("<br><br><table border='1' style='font-family:微软雅黑;text-align: center;box-sizing: border-box;border-collapse: collapse;font-size: 14px;'><thead><tr><th colspan='2'>链接信息</th></tr></thead>");
-			sBuilder.append("<tbody><tr style='height: 30px;background: #fff;'><td>店家名称：</td><td>"+StoreName+"</td></tr>");
-			sBuilder.append("<tr style='height: 30px;background: rgba(195,206,220,0.9);'><td>订单号：</td><td>"+OrderNO+"</td></tr>");
-			sBuilder.append("<tr style='height: 30px;background: #fff;'><td>链接：</td><td>"+Link+"</td></tr>");
-			sBuilder.append("<tr style='height: 30px;background: rgba(195,206,220,0.9);'><td>备注：</td><td>"+LinkRemark+"</td></tr></tbody></table>");
-		}
-		
+		sBuilder.append("<span style='font-family:微软雅黑;font-size:14px;'>以下是"+ExpenseDetails+"付款申请，请您查看。</span><br><br>");
+		sBuilder.append(request.getContent());
 		sBuilder.append("<br><br><span style='font-family:微软雅黑;font-size:14px;'>请协助尽快安排付款，非常感谢！</span><br><br>");
 		String content = new MethodUtil().getEmailSign(sBuilder.toString(), "NA");
 		String[] to = request.getToList().split(";");
@@ -120,6 +101,41 @@ public class PaymentRequestServiceImpl implements PaymentRequestService{
 	public boolean updatePayState(int ID) {
 		PaymentRequestDao dao = new PaymentRequestDao();
 		return dao.updatePayState(ID);
+	}
+
+	@Override
+	public boolean deleteFile(int ID, String fileName) {
+		boolean flag = false;
+		PaymentRequestDao dao = new PaymentRequestDao();
+		List<Map<String, Object>> list = dao.getAttachement(ID);
+		String fileStr = "";
+		if(list.size()>1){
+			fileStr = list.get(1).get("Attachment").toString();
+		}
+		String[] fileArr = fileStr.split("::");
+		fileStr = "";
+		for(int i = 0;i < fileArr.length;i++){
+			if(!fileArr[i].equals(fileName)){
+				fileStr += (fileArr[i]+"::");
+			}
+		}
+		if(ID!= 0){
+			dao.updateAttachemnt(ID, fileStr);
+		}
+	
+		String folder = "E:\\LogisticsFile\\File\\PaymentRequest\\";
+		if(!fileName.equals("")){
+			try {
+				FileUtils.forceDelete(new File(folder+fileName));
+				flag = true;
+			} catch (IOException e) {
+				e.printStackTrace();
+			}
+		}
+			
+		
+	
+		return flag;
 	}
 
 

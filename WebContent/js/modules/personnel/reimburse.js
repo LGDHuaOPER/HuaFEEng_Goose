@@ -1263,9 +1263,9 @@ $('#reimburseModal').on('hide.bs.modal', function (e) {
 		});
 		if(OperateTypeChange || $(".iParent ul>li.list-group-item-success").length || reimburseState.detailObject.DeleteFileNoSubmit != ""){
 			$.Response_Load.Before("直接关闭提示","正在撤销操作...",500);
-			var ElectronicInvoice = reimburseState.detailObject.ElectronicInvoice;
-			var TravelPaper = reimburseState.detailObject.TravelPaper;
-			var Others = reimburseState.detailObject.Others;
+			// var ElectronicInvoice = reimburseState.detailObject.ElectronicInvoice;
+			// var TravelPaper = reimburseState.detailObject.TravelPaper;
+			// var Others = reimburseState.detailObject.Others;
 
 			var fileArray3 = [];
 			$(".iParent ul>li.list-group-item-success").each(function(){

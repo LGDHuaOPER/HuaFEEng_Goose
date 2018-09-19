@@ -47,12 +47,14 @@ public class PaymentMailSendServlet extends HttpServlet {
 		String Subject = request.getParameter("Subject");
 		String ToList = request.getParameter("ToList");
 		String CopyList = request.getParameter("CopyList");
+		String MailContent = request.getParameter("MailContent");
 		
 		PaymentRequest paymentRequest = new PaymentRequest();
 		paymentRequest.setID(ID);
 		paymentRequest.setSubject(Subject);
 		paymentRequest.setToList(ToList);
 		paymentRequest.setCopyList(CopyList);
+		paymentRequest.setContent(MailContent);
 		
 		PaymentRequestService service = new PaymentRequestServiceImpl();
 		boolean result = service.sendMail(paymentRequest);

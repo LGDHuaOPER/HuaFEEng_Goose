@@ -468,6 +468,7 @@
 						                	</div>
 						                	<div class="flex_3">
 						                		<input type="button" class="bToggle" value="上传">
+						                		<a tabindex="0" class="btn btn-lg btn-danger" role="button" data-toggle="popover" data-trigger="focus" title="Dismissible popover" data-content="And here's some amazing content. It's very engaging. Right?" data-container="body">下载</a>
 						                	</div>
 						                </div>
 						        	</div>

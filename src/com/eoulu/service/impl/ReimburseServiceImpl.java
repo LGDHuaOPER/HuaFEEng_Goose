@@ -190,6 +190,7 @@ public class ReimburseServiceImpl implements ReimburseService{
 				updateMap.put("CustomerName", (String)object.get("CustomerName"));
 				updateMap.put("City", (String)object.get("City"));
 				updateMap.put("Time", (String)object.getString("Time"));
+				updateMap.put("Attachment", object.get("Attachment"));
 				details.add(updateMap);
 			}
 			
@@ -260,7 +261,7 @@ public class ReimburseServiceImpl implements ReimburseService{
 	@Override
 	public String review(int ID, String state,String name,String reason,String filingDate) {
 		ReimburseDao dao = new ReimburseDao();
-		boolean flag = dao.updateReview(ID, state);
+		boolean flag = dao.updateReview(ID,state,reason);
 		String result;
 		if(flag){
 			result = "操作成功";

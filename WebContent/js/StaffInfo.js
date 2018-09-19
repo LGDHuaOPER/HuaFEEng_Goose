@@ -153,8 +153,10 @@ $('.contract-edit').click(function () {
     $(".update_idcard_div .flex_2 input").attr("title",tr.find(".IDCardFile.t27").attr("title"));
     $(".update_passport_div .flex_2 input").val(tr.find(".PassportFile.t28").attr("title"));
     $(".update_passport_div .flex_2 input").attr("title",tr.find(".PassportFile.t28").attr("title"));
-	$('.cover-color').show();
-    $('.contract_update').show();
+	$('.cover-color, .contract_update').show();
+    $('.contract_update .flex_3 [data-toggle="popover"]').popover({
+        html: true
+    });
 });
 $("#update_submit").click(function(){
 	var ID = $('.contract_update .update_id').text();
@@ -533,9 +535,8 @@ function uploadFiles(){
 }
 
 // 打开上传框
-$(".flex_3 input").on("click",function(){
-    $(".dropFileBox").show();
-    $(".cover-color2").show();
+$(".flex_3 input:nth-child(1)").on("click",function(){
+    $(".cover-color2, .dropFileBox").show();
     var typeVal = $(this).parent().parent().attr("class");
     if(typeVal.indexOf("idcard")>-1){
         $(".dropFileBox").attr("value","IDCard");

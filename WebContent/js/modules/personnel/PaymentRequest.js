@@ -55,8 +55,10 @@ var hasRequestStaffObj = {};
 
 // 维护费用类别
 var ExpenseCategoryExpenseItemObj = {
-	"采购费用": ["办公用品费","生活用品费","快递费","课程培训费","其他"],
-	"办公管理费用": ["办公室租赁费","宿舍租赁费","水电物业费","清洁费","保险费","社保缴纳费","其他"]
+	"行政采购": ["办公用品费","生活用品费","快递费","课程培训费","其他"],
+	"办公管理": ["办公室租赁费","宿舍租赁费","水电物业费","清洁费","保险费","社保缴纳费","其他"],
+	"实验室采购": ["苏州", "深圳", "厦门", "成都", "石家庄", "北京", "合肥"],
+	"宿舍管理": ["苏州", "深圳", "厦门", "成都", "石家庄", "北京", "合肥"]
 };
 
 // 定义状态集
@@ -71,6 +73,9 @@ PaymentRequestState.popoverPayDetailVal = 0;
 PaymentRequestState.popoverLinkDetailVal = 0;
 PaymentRequestState.popoverAttachmentVal = 0;
 PaymentRequestState.allMail = [];
+PaymentRequestState.deleteFileID = "0";
+PaymentRequestState.deleteFileNeedRefresh = false;
+PaymentRequestState.deleteFileLiDOM = null;
 
 
 // 主页面获取数据
@@ -304,7 +309,8 @@ function uploadFiles(classify, Folder, iThat){
         		var successNO = 0;
         		data.map(function(currentValue, index, arr){
         			if(currentValue.Message.indexOf("成功")>-1){
-        				LiStr+='<li class="list-group-item list-group-item-success" title="'+currentValue.FileName+'"><span class="badge">成功</span>'+currentValue.FileName+'</li>';
+        				// var uploadedStr = classify == "add" ? "" : "<span class='badge uploaded'>删除</span>";
+        				LiStr+='<li class="list-group-item list-group-item-success" title="'+currentValue.FileName+'"><span class="badge uploaded">删除</span><span class="badge">成功</span>'+currentValue.FileName+'</li>';
         				successNO++;
         			}else if(currentValue.Message.indexOf("失败")>-1){
         				LiStr+='<li class="list-group-item list-group-item-danger" title="'+currentValue.FileName+'"><span class="badge">失败</span>'+currentValue.FileName+'</li>';
@@ -312,7 +318,7 @@ function uploadFiles(classify, Folder, iThat){
         				LiStr+='<li class="list-group-item list-group-item-warning" title="'+currentValue.FileName+'"><span class="badge">文件已存在</span>'+currentValue.FileName+'</li>';
         			}
         		});
-        		$("#"+classify+"_fileList_ul>li>span:contains('删除')").parent().remove();
+        		$("#"+classify+"_fileList_ul>li>span.noUpload:contains('删除')").parent().remove();
         		$("#"+classify+"_fileList_ul").append(LiStr);
         		var successFloat = (successNO/(data.length)).toFixed(3);
         		var successValueNow = successFloat*100;
@@ -463,6 +469,9 @@ $(function(){
 			}
 		});
 	}, null);
+
+	// 邮件内容可编辑
+	$(".mail_con_field tbody td[class^='mailContent_']").attr("contenteditable", "true");
 });
 
 
@@ -545,6 +554,8 @@ $(".add_NonStandard_tit_r, #NonStandard_addclose").click(function(){
 		delete PaymentRequestState.uploadFileList[kk];
 	}
 	$("#add_file_Upload").val("");
+
+	PaymentRequestState.deleteFileLiDOM = null;
 });
 
 // 点击浏览切换文件
@@ -567,9 +578,9 @@ $("#add_file_Upload, #update_file_Upload").on("change",function(){
 	if(!hideShowDOM.is(':visible')){
 		hideShowDOM.slideDown(150);
 	}
-	console.log($(this));
-	console.log($(this)[0]);
-	console.log($(this)[0].files);
+	// console.log($(this));
+	// console.log($(this)[0]);
+	// console.log($(this)[0].files);
 	var curFileList = $(this)[0].files;
 	var curFileListStr = '';
 	var fileNamesuccess = true;
@@ -586,7 +597,7 @@ $("#add_file_Upload, #update_file_Upload").on("change",function(){
 	}
 	$.each(curFileList, function(iname, ivalue){
 		PaymentRequestState.uploadFileNo++;
-		curFileListStr+='<li class="list-group-item" title="'+ivalue.name+'" value="'+PaymentRequestState.uploadFileNo+'"><span class="badge">删除</span>'+ivalue.name+'</li>';
+		curFileListStr+='<li class="list-group-item" title="'+ivalue.name+'" value="'+PaymentRequestState.uploadFileNo+'"><span class="badge noUpload">删除</span><span class="badge">待上传</span>'+ivalue.name+'</li>';
 		PaymentRequestState.uploadFileList[PaymentRequestState.uploadFileNo] = ivalue;
 		// curFileListStr+=ivalue.name+"::";
 	});
@@ -598,7 +609,7 @@ $("#add_file_Upload, #update_file_Upload").on("change",function(){
 });
 
 // 添加修改文件删除
-$(document).on("click","[id$='_fileList_ul']>li>span:contains('删除')",function(){
+$(document).on("click","[id$='_fileList_ul']>li>span.noUpload:contains('删除')",function(){
 	var iValue = $(this).parent().attr("value");
 	delete PaymentRequestState.uploadFileList[iValue];
 	var emptyFileInput;
@@ -702,6 +713,7 @@ $(document).on("click",".update_td",function(){
 	$(".bg_cover, .update_NonStandard").slideDown(250);
 	var tr = $(this).parent();
 	updateSubmitObj.ID = $(this).data("iid").toString();
+	PaymentRequestState.deleteFileID = $(this).data("iid").toString();
 
 	var iVal = tr.find(".hastd_Department").data("ivalue").toString();
 	var iName = tr.find(".hastd_Applicant").data("ivalue").toString();
@@ -751,13 +763,19 @@ $(document).on("click",".update_td",function(){
 	});
 	var iAttachmentStr = '';
 	iAttachmentArr.map(function(currentValue, index, arr){
-		iAttachmentStr+='<li class="list-group-item list-group-item-info" title="'+currentValue+'"><span class="badge">已上传</span>'+currentValue+'</li>';
+		iAttachmentStr+='<li class="list-group-item list-group-item-info" title="'+currentValue+'"><span class="badge uploaded">删除</span><span class="badge">已上传</span>'+currentValue+'</li>';
 	});
 	$("#update_fileList_ul").empty().append(iAttachmentStr);
 });
 // 修改关闭
 $(".update_NonStandard_tit_r, #NonStandard_updateclose").click(function(){
 	$(".bg_cover, .update_NonStandard").slideUp(250);
+
+	if(PaymentRequestState.deleteFileNeedRefresh){
+		getDataByPage(Number($("span#currentPage").text()), undefined, undefined);
+		PaymentRequestState.deleteFileNeedRefresh = false;
+	}
+
 	if($('div.update_fileList_info').is(':visible')){
 		$('div.update_fileList_info').slideUp(150, function(){
 			$("div.update_fileList_info>div>div.progress-bar").attr("aria-valuenow","0").css("width","0%").text("0%");
@@ -774,6 +792,8 @@ $(".update_NonStandard_tit_r, #NonStandard_updateclose").click(function(){
 		delete PaymentRequestState.uploadFileList[kk];
 	}
 	$("#update_file_Upload").val("");
+
+	PaymentRequestState.deleteFileLiDOM = null;
 });
 
 // 修改提交
@@ -829,6 +849,7 @@ $("#NonStandard_updatesubmit").click(function(){
 	}).then(function(data){
 		if(data == "修改成功"){
 			getDataByPage(Number($("span#currentPage").text()), undefined, undefined);
+			PaymentRequestState.deleteFileNeedRefresh = false;
 			$("#NonStandard_updateclose").trigger("click");
 		}
 		$.MsgBox_Unload.Alert("提示", data);
@@ -993,52 +1014,13 @@ $(document).on("click","td.SendState_td>a",function(){
 	var iExpenseDetails = $(this).parent().siblings(".hastd_ExpenseDetails").text();
 	$("#i_mail_Subject").val("Eoulu："+iExpenseDetails);
 	// 内容填充
-	var insertPayStr, insertLinkStr;
+	$("span.auto_detail_con").text(iExpenseDetails);
 	var iitd = $(this).parent();
-	if(iitd.siblings(".hastd_Payee").attr("title")!="" || iitd.siblings(".hastd_Account").attr("title")!="" || iitd.siblings(".hastd_DepositBank").attr("title")!="" || iitd.siblings(".hastd_PaymentRemark").attr("title")!=""){
-		insertPayStr = '<div class="col-md-6 col-lg-6">'+
-	                        '<div class="paymoney_detail_table_wrapper">'+
-								"<table>"+
-		                            "<thead><tr><th colspan='2'>付款信息</th></tr></thead>"+
-		                            "<tbody>"+
-		                                "<tr><td>收款户名：</td><td>"+iitd.siblings(".hastd_Payee").attr("title")+"</td></tr>"+
-		                                "<tr><td>账号：</td><td>"+iitd.siblings(".hastd_Account").attr("title")+"</td></tr>"+
-		                                "<tr><td>开户行：</td><td>"+iitd.siblings(".hastd_DepositBank").attr("title")+"</td></tr>"+
-		                                "<tr><td>备注：</td><td>"+iitd.siblings(".hastd_PaymentRemark").attr("title")+"</td></tr>"+
-		                            "</tbody>"+
-                        		"</table>"+
-                        	'</div>'+
-                        '</div>';
-	}else{
-		insertPayStr = "";
-	}
-
-	if(iitd.siblings(".hastd_StoreName").attr("title")!="" || iitd.siblings(".hastd_OrderNO").attr("title")!="" || iitd.siblings(".hastd_Link").attr("title")!="" || iitd.siblings(".hastd_LinkRemark").attr("title")!=""){
-		insertLinkStr = '<div class="col-md-6 col-lg-6">'+
-	                        '<div class="link_detail_table_wrapper">'+
-								"<table>"+
-		                            "<thead><tr><th colspan='2'>链接信息</th></tr></thead>"+
-		                            "<tbody>"+
-		                                "<tr><td>店家名称：</td><td>"+iitd.siblings(".hastd_StoreName").attr("title")+"</td></tr>"+
-		                                "<tr><td>订单号：</td><td>"+iitd.siblings(".hastd_OrderNO").attr("title")+"</td></tr>"+
-		                                "<tr><td>链接：</td><td>"+iitd.siblings(".hastd_Link").attr("title")+"</td></tr>"+
-		                                "<tr><td>备注：</td><td>"+iitd.siblings(".hastd_LinkRemark").attr("title")+"</td></tr>"+
-		                            "</tbody>"+
-		                        "</table>"+
-		                    '</div>'+
-		                '</div>';
-	}else{
-		insertLinkStr = "";
-	}
-
-	var emailConStr = '<div>您好！</div><br>'+
-	                        '<div>'+iExpenseDetails+'</div><br>'+
-	                        '<div class="row">'+
-	                            insertPayStr+
-	                            insertLinkStr+
-	                        '</div><br>'+
-	                        '<div>请协助尽快安排付款，非常感谢！</div>';
-	$("fieldset.mail_con_field>.container-fluid").empty().append(emailConStr);
+	$(".mail_con_field tbody td[class^='mailContent_']").each(function(){
+		var subClassName = $(this).attr("class").replace("mailContent_", "hastd_");
+		var newVal = globalDateDataHandle(iitd.siblings("."+subClassName).data("ivalue"), "");
+		$(this).text(newVal);
+	});
 
 	$(".CC_wrapper>.mail_item input").each(function(i, el){
 		new Awesomplete(el, {
@@ -1134,6 +1116,7 @@ $("#mail_template_submit").click(function(){
 	        CopyList+=';';
 	    }
 	});
+	var MailContent = $(".mail_con_field div.row").html();
 	iThat.css("cursor","not-allowed").prop("disabled","disabled");
 	$.ajax({
 		type: "POST",
@@ -1142,7 +1125,8 @@ $("#mail_template_submit").click(function(){
 			ID: ID,
 			Subject: Subject,
 			ToList: ToList,
-			CopyList: CopyList
+			CopyList: CopyList,
+			MailContent: MailContent
 		},
 		dataType: "json"
 	}).then(function(data){
@@ -1190,7 +1174,7 @@ $(document).on("click","button.PayState_td_y",function(){
 });
 
 // 添加修改和预览里的文件下载
-$(document).on("click","li.list-group-item-success, li.list-group-item-info, ol>li",function(){
+$(document).on("click","li.list-group-item-success, li.list-group-item-info, ol>li, .warning_alert_wrapper_h4>a",function(){
 	var fileName = $(this).attr("title");
 	if(!fileName){
 		$.MsgBox_Unload.Alert("下载提示","无数据或文件已被删除！");
@@ -1241,4 +1225,63 @@ $(document).on("click",function(e){
     $('.paymoney_detail_td>button').popover('hide');
     $('.link_detail_td>button').popover('hide');
     $('.hastd_Attachment>button').popover('hide');
+});
+
+//删除文件时弹出
+$(document).on("click", "span.badge.uploaded", function(e){
+	e.stopPropagation();
+	if($(this).parent().is(".list-group-item-success")){
+		PaymentRequestState.deleteFileID = "0";
+	}else if($(this).parent().is(".list-group-item-info")){
+		PaymentRequestState.deleteFileID = updateSubmitObj.ID;
+	}
+	PaymentRequestState.deleteFileLiDOM = $(this).parent();
+	var fileName = $(this).parent().attr("title");
+	var str = '<div class="alert alert-warning alert-dismissible fade in" role="alert" id="warning_alert_wrapper_alert">'+
+	                '<button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>'+
+	                '<h4>确定删除</h4>'+
+	                '<h4 class="warning_alert_wrapper_h4"><a class="alert-link" title="'+fileName+'">'+fileName+'</a></h4>'+
+	                '<h4>吗？</h4>'+
+	                '<p>文件删除成功后无需再次点提交按钮！</p>'+
+	                '<p>'+
+	                    '<button type="button" class="btn btn-warning" id="yes_delete_file">是，删除</button>'+
+	                    '<button type="button" class="btn btn-default" id="no_delete_file">否，点错了</button>'+
+	                '</p>'+
+	            '</div>';
+	$(".warning_alert_wrapper, .warning_alert_wrapper_cover").slideDown(150).children("div").empty().append(str);
+});
+$(document).on("click", "#warning_alert_wrapper_alert>button", function(){
+	$(".warning_alert_wrapper, .warning_alert_wrapper_cover").slideUp(150);
+});
+$(document).on("click", "#no_delete_file", function(){
+	$("#warning_alert_wrapper_alert").alert('close');
+	$(".warning_alert_wrapper, .warning_alert_wrapper_cover").slideUp(150);
+});
+// 删除
+$(document).on("click", "#yes_delete_file", function(){
+	var iThat = $(this);
+	$.ajax({
+		type: "GET",
+		url: "DeletePaymentAttachment",
+		data: {
+			ID: PaymentRequestState.deleteFileID,
+			FileName: iThat.parent().siblings(".warning_alert_wrapper_h4").children("a").attr("title")
+		}
+	}).then(function(data){
+		if(data == "true"){
+			$.MsgBox_Unload.Alert("删除提示","删除成功！");
+			$("#no_delete_file").trigger("click");
+			if(PaymentRequestState.deleteFileLiDOM.is(".list-group-item-info")){
+				PaymentRequestState.deleteFileNeedRefresh = true;
+			}
+			PaymentRequestState.deleteFileLiDOM.remove();
+			PaymentRequestState.deleteFileLiDOM = null;
+		}else if(data == "false"){
+			$.MsgBox_Unload.Alert("删除提示","删除失败或出错！");
+		}else{
+			$.MsgBox_Unload.Alert("删除提示", data);
+		}
+	},function(){
+		$.MsgBox_Unload.Alert("删除提示","服务器繁忙！");
+	});
 });
