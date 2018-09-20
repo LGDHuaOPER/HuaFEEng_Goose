@@ -520,8 +520,14 @@ public class OrderServiceImpl implements OrderService {
 			if (i < length - 1)
 				sql += " or ";
 		}
-		sql += condition + " ActualDelivery='0000-00-00' or ActualDelivery is null";
-		return new OrderDao().getCountsByName(sql, obj);
+		int times = 1;
+		Object[] param = new Object[obj.length+1];
+		param[0] = 0;
+		for(int i = 0;i < obj.length;i++){
+			param[times++] = obj[i];
+		}
+		sql += condition + " (ActualDelivery='0000-00-00' or ActualDelivery is null)";
+		return new OrderDao().getCountsByName(sql, param);
 	}
 
 	/**
@@ -582,7 +588,6 @@ public class OrderServiceImpl implements OrderService {
 			obj2[0] = "%" + parameter2 + "%";
 		}
 		int length2 = obj2.length;
-System.out.println("obj="+Arrays.toString(obj2));
 		if (classify2.equals("型号")) {
 			sql2 = " t_order.ID in (select t_order_info.OrderID ID from t_order_info left join "
 					+ "t_commodity_info on t_order_info.EquipmentModel=t_commodity_info.ID " + "where t_commodity_info.Model like ?)";
@@ -2328,7 +2333,7 @@ System.out.println("obj="+Arrays.toString(obj2));
 			obj = new Object[]{PageType};
 
 		}
-		sql += condition + " ActualDelivery='0000-00-00' or ActualDelivery is null";
+		sql += condition + " (ActualDelivery='0000-00-00' or ActualDelivery is null)";
 		return new OrderDao().getCountsByName(sql, obj);
 	}
 
@@ -2699,11 +2704,11 @@ System.out.println("obj="+Arrays.toString(obj2));
 			sql += " and (" + classify_MAP.get(classify) + " between ? and ?)";
 			switch (classify) {
 			case "合同货期":
-				sql += condition + " and ActualDelivery='0000-00-00' order by t_order.CargoPeriod desc limit ?,?";
+				sql += condition + " and (ActualDelivery='0000-00-00' or ActualDelivery = null) order by t_order.CargoPeriod desc limit ?,?";
 				break;
 			case "预计货期":
 				sql += condition
-						+ " and ActualDelivery='0000-00-00' order by t_order.ExpectedDeliveryPeriod desc limit ?,?";
+						+ " and (ActualDelivery='0000-00-00' or ActualDelivery = null) order by t_order.ExpectedDeliveryPeriod desc limit ?,?";
 				break;
 			default:
 				sql += condition + " order by t_order.DateOfSign desc limit ?,?";
@@ -2716,8 +2721,8 @@ System.out.println("obj="+Arrays.toString(obj2));
 			for (int i = 0; i < length; i++) {
 				param[i+1] = obj[i];
 			}
-			param[length] = (page.getCurrentPage() - 1) * page.getRows();
-			param[length + 1] = page.getRows();
+			param[length + 1] = (page.getCurrentPage() - 1) * page.getRows();
+			param[length + 2] = page.getRows();
 			for(int i = 0;i < param.length;i ++){
 				System.out.println("uuuuuuuuuuuu"+param[i]);
 			}
@@ -2783,10 +2788,10 @@ System.out.println("obj="+Arrays.toString(obj2));
 
 			switch (classify) {
 			case "合同货期":
-				sql += " and ActualDelivery='0000-00-00' order by t_order.CargoPeriod desc ";
+				sql += " and (ActualDelivery='0000-00-00' or ActualDelivery = null) order by t_order.CargoPeriod desc ";
 				break;
 			case "预计货期":
-				sql += " and ActualDelivery='0000-00-00' order by t_order.ExpectedDeliveryPeriod desc ";
+				sql += " and (ActualDelivery='0000-00-00' or ActualDelivery = null) order by t_order.ExpectedDeliveryPeriod desc ";
 				break;
 			default:
 				sql += " order by t_order.DateOfSign desc ";
@@ -2933,7 +2938,7 @@ System.out.println("obj="+Arrays.toString(obj2));
 				sql += " or ";
 		}
 		sql += condition
-				+ " t_order.ActualDelivery='0000-00-00' or t_order.ActualDelivery is null order by t_order.DateOfSign desc limit ?,?";
+				+ " (t_order.ActualDelivery='0000-00-00' or t_order.ActualDelivery is null) order by t_order.DateOfSign desc limit ?,?";
 
 		// 构建带有分页信息的参数数组
 		Object[] param = null;
@@ -3060,7 +3065,7 @@ System.out.println("obj="+Arrays.toString(obj2));
 			}
 		}
 		String sql = sql1 + "t_order." + classify_MAP.get(classify2) + " in(" + sql2 + ")" + condition
-				+ "  t_order.ActualDelivery='0000-00-00' or t_order.ActualDelivery is null ";
+				+ "  (t_order.ActualDelivery='0000-00-00' or t_order.ActualDelivery is null) ";
 		int length1;
 		int length2;
 		int allCounts = 0;
@@ -3159,16 +3164,18 @@ System.out.println("obj="+Arrays.toString(obj2));
 		}
 
 		String sql = sql1 + " and t_order." + classify_MAP.get(classify2) + " in(" + sql2 + ")" + condition
-				+ " ActualDelivery='0000-00-00' or ActualDelivery is null";
+				+ " (ActualDelivery='0000-00-00' or ActualDelivery is null)";
 		int allCounts = obj1.length + obj2.length;
-		Object[] sqlObj = new Object[allCounts];
-		int times = 0;
+		Object[] sqlObj = new Object[allCounts+1];
+		sqlObj[0] = 0;
+		int times = 1;
 		for (int i = 0; i < length1; i++) {
 			sqlObj[times++] = obj1[i];
 		}
 		for (int i = 0; i < length2; i++) {
 			sqlObj[times++] = obj2[i];
 		}
+	
 
 		return new OrderDao().getCountsByName(sql, sqlObj);
 	}
@@ -3310,7 +3317,7 @@ System.out.println("obj="+Arrays.toString(obj2));
 		}
 		
 		sql += condition
-				+ " ActualDelivery='0000-00-00' or ActualDelivery is null order by t_order.DateOfSign desc limit ?,?";
+				+ " (ActualDelivery='0000-00-00' or ActualDelivery is null) order by t_order.DateOfSign desc limit ?,?";
 		sqlObj[allCounts+1] = (page.getCurrentPage() - 1) * page.getRows();
 		sqlObj[allCounts + 2] = page.getRows();
 		return new OrderDao().getOrder(sql, sqlObj);
@@ -3410,44 +3417,54 @@ System.out.println("obj="+Arrays.toString(obj2));
 		// 构建带有分页信息的参数数组
 		int allCounts = obj1.length + obj2.length;
 
-		int times = 0;
+		int times = 1;
 		if (length1 == 0 && length2 != 0) {
-			sqlObj = new Object[allCounts + 3];
-			sqlObj[0] = 0;
-			for (int i = 0; i < length2; i++) {
-				sqlObj[times++] = obj2[i];
-			}
-			sqlObj[allCounts + 1] = (page.getCurrentPage() - 1) * page.getRows();
-			sqlObj[allCounts + 2] = page.getRows();
-		} else if (length1 != 0 && length2 == 0) {
-			sqlObj = new Object[allCounts + 3];
-			for (int i = 0; i < length1; i++) {
-				sqlObj[times++] = obj1[i];
-			}
-			sqlObj[1] = 0;
-			sqlObj[allCounts + 1] = (page.getCurrentPage() - 1) * page.getRows();
-			sqlObj[allCounts + 2] = page.getRows();
-		} else if (length1 == 0 && length2 == 0) {
 			sqlObj = new Object[allCounts + 4];
 			sqlObj[0] = 0;
 			sqlObj[1] = 0;
+			times = 2;
+			for (int i = 0; i < length2; i++) {
+				sqlObj[times++] = obj2[i];
+			}
 			sqlObj[allCounts + 2] = (page.getCurrentPage() - 1) * page.getRows();
 			sqlObj[allCounts + 3] = page.getRows();
+		} else if (length1 != 0 && length2 == 0) {
+			sqlObj = new Object[allCounts + 4];
+			for (int i = 0; i < length1; i++) {
+				sqlObj[times++] = obj1[i];
+			}
+			sqlObj[0] = 0;
+			sqlObj[allCounts + 1] = 0;
+			sqlObj[allCounts + 2] = (page.getCurrentPage() - 1) * page.getRows();
+			sqlObj[allCounts + 3] = page.getRows();
+		} else if (length1 == 0 && length2 == 0) {
+			sqlObj = new Object[allCounts + 5];
+			sqlObj[0] = 0;
+			sqlObj[1] = 0;
+			sqlObj[2] = 0;
+			sqlObj[allCounts + 3] = (page.getCurrentPage() - 1) * page.getRows();
+			sqlObj[allCounts + 4] = page.getRows();
 		} else {
-			sqlObj = new Object[allCounts + 2];
+			
+			sqlObj = new Object[allCounts + 3];
+			sqlObj[0] = 0;
 			for (int i = 0; i < length1; i++) {
 				sqlObj[times++] = obj1[i];
 			}
 			for (int i = 0; i < length2; i++) {
 				sqlObj[times++] = obj2[i];
 			}
-			sqlObj[allCounts] = (page.getCurrentPage() - 1) * page.getRows();
-			sqlObj[allCounts + 1] = page.getRows();
+			sqlObj[allCounts + 1] = (page.getCurrentPage() - 1) * page.getRows();
+			sqlObj[allCounts + 2] = page.getRows();
 		}
 
 		sql += condition
-				+ "  ActualDelivery='0000-00-00' or ActualDelivery is null order by t_order.DateOfSign desc limit ?,?";
-
+				+ "  (ActualDelivery='0000-00-00' or ActualDelivery is null) order by t_order.DateOfSign desc limit ?,?";
+		System.out.println("ceshi"+sql);
+		System.out.println(allCounts);
+		for(int i = 0;i < sqlObj.length;i++){
+			System.out.print(sqlObj[i]+",");
+		}
 		return new OrderDao().getOrder(sql, sqlObj);
 
 	}

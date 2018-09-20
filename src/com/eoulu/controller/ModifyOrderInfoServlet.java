@@ -4,6 +4,7 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
+
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -103,7 +104,7 @@ public class ModifyOrderInfoServlet extends HttpServlet {
 				for(int j = 0 ; j < columns.length ; j++){
 					//物流
 					if(columns[j].equals("POAmount")){
-						int po_amount = Integer.parseInt(request.getParameter("po_amount"));
+						int po_amount = Integer.parseInt(request.getParameter("po_amount").equals("")?"0":request.getParameter("po_amount"));
 						if(i == 0){
 							logistics.setPOAmount(po_amount);
 						}else{
@@ -112,7 +113,7 @@ public class ModifyOrderInfoServlet extends HttpServlet {
 						
 					}
 					if(columns[j].equals("RMBPOAmount")){
-						int rmb_po_amount =Integer.parseInt(request.getParameter("rmb_po_amount"));
+						int rmb_po_amount =Integer.parseInt(request.getParameter("rmb_po_amount").equals("")?"0":request.getParameter("rmb_po_amount"));
 					
 						if(i == 0){
 							logistics.setRMBPOAmount(rmb_po_amount);

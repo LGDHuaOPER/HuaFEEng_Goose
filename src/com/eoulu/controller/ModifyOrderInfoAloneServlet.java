@@ -16,7 +16,6 @@ import com.eoulu.service.LogisticService;
 import com.eoulu.service.impl.InventoryInfoServiceImpl;
 import com.eoulu.service.impl.LogInfoServiceImpl;
 import com.eoulu.service.impl.LogisticServiceImpl;
-import com.eoulu.util.MethodUtil;
 import com.google.gson.Gson;
 
 @WebServlet("/ModifyOrderInfoAlone")
@@ -78,6 +77,8 @@ public class ModifyOrderInfoAloneServlet extends HttpServlet{
 		}else{
 			response.getWriter().write(new Gson().toJson("{\"message\":\"false\"}"));
 		}
+		
+		
 			
 		
 		

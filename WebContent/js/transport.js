@@ -1009,11 +1009,11 @@ $(document).on("click", "#edit_submit", function() {
                 .text();
             var po_no = $('.bottom_table input[name="po_no"]').val() == "" ? "--" : $('.bottom_table input[name="po_no"]').val();
             var so_no = $('.bottom_table input[name="so_no"]').val() == "" ? "--" : $('.bottom_table input[name="so_no"]').val();
-            var po_amount = $('.bottom_table input[name="po_amount"]').val();
+            var po_amount = $('.bottom_table input[name="po_amount"]').val().trim();
             if(po_amount == "" || po_amount == "--"){
             	po_amount = "0";
             }
-            var rmb_po_amount = $('.bottom_table input[name="rmb_po_amount"]').val();
+            var rmb_po_amount = $('.bottom_table input[name="rmb_po_amount"]').val().trim();
             if(rmb_po_amount == "" || rmb_po_amount == "--"){
             	rmb_po_amount = "0";
             }
@@ -1042,25 +1042,17 @@ $(document).on("click", "#edit_submit", function() {
             changeDom.eq(2).text() != (supplierText == "" ? "" : supplierText) ? columns.push("Supplier") : null;
             changeDom.eq(3).text() != po_no ? columns.push("PONO") : null;
             changeDom.eq(4).text() != so_no ? columns.push("SONO") : null;
-            changeDom.eq(5).text() != po_amount ? columns
-                .push("POAmount") : null;
-            changeDom.eq(6).text() != rmb_po_amount ? columns
-                .push("RMBPOAmount") : null;
-            changeDom.eq(7).text() != factory_shipment ? columns
-                .push("FactoryShipment") : null;
-            changeDom.eq(11).text() != logistics_number ? columns
-                .push("LogisticsNumber") : null;
-            changeDom.eq(13).text() != (date == "" ? "--" : date) ? columns
-                .push("Date") : null;
+            changeDom.eq(5).text() != po_amount ? columns.push("POAmount") : null;
+            changeDom.eq(6).text() != rmb_po_amount ? columns.push("RMBPOAmount") : null;
+            changeDom.eq(7).text() != factory_shipment ? columns.push("FactoryShipment") : null;
+            changeDom.eq(11).text() != logistics_number ? columns.push("LogisticsNumber") : null;
+            changeDom.eq(13).text() != (date == "" ? "--" : date) ? columns.push("Date") : null;
             changeDom.eq(14).text() != (except_date == "" ? "--" : except_date) ? columns.push("ExceptDate") : null;
-            changeDom.eq(15).text() != delivery_number ? columns
-                .push("DeliveryNumber") : null;
+            changeDom.eq(15).text() != delivery_number ? columns.push("DeliveryNumber") : null;
                 /*00000*/
             changeDom.eq(16).text() != (statusText == "" ? "--" : statusText) ? columns.push("Status") : null;
-            changeDom.eq(17).text() != (estimated_payment_time == "" ? "--" : estimated_payment_time) ? columns
-                .push("EstimatedPaymentTime") : null;
-            changeDom.eq(18).text() != (actual_payment_time == "" ? "--" : actual_payment_time) ? columns
-                .push("ActualPaymentTime") : null;
+            changeDom.eq(17).text() != (estimated_payment_time == "" ? "--" : estimated_payment_time) ? columns.push("EstimatedPaymentTime") : null;
+            changeDom.eq(18).text() != (actual_payment_time == "" ? "--" : actual_payment_time) ? columns.push("ActualPaymentTime") : null;
             columns = columns.unique();
             var dataSet = new Object();
 

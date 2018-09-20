@@ -16,12 +16,16 @@ public class ReimburseDao {
 	
 	
 		String sql = "select ID,Name,Department,TotalAmount,FilingDate,Pass,BillScreenshot,"
-				+ "ElectronicInvoice,TravelPaper,Others,Reason from t_reimburse ";
+				+ "ElectronicInvoice,TravelPaper,Others,Reason,(CASE "
+				+ "WHEN t_reimburse.Pass='未审核' THEN '0' " 
+				+ "WHEN t_reimburse.Pass='通过' THEN '1' "
+				+ "WHEN t_reimburse.Pass='未通过' THEN '2' END) State"
+				+ " from t_reimburse ";
 		if(!startTime.equals("")){
-			sql += "where DATE_FORMAT(FilingDate,'%Y-%m') between ? and ? order by ID DESC limit ?,?";
+			sql += "where DATE_FORMAT(FilingDate,'%Y-%m') between ? and ? order by State,FilingDate DESC limit ?,?";
 			param = new Object[] { startTime,endTime,(page.getCurrentPage() - 1)*10, page.getRows() };
 		}else{
-			sql += "order by ID DESC limit ?,?";
+			sql += "order by State,FilingDate DESC limit ?,?";
 			param = new Object[] {(page.getCurrentPage() - 1)*10, page.getRows() };
 
 		}
@@ -36,13 +40,17 @@ public class ReimburseDao {
 	
 	
 		String sql = "select ID,Name,Department,TotalAmount,FilingDate,Pass,BillScreenshot,"
-				+ "ElectronicInvoice,TravelPaper,Others,Reason from t_reimburse where Name = (select StaffName "
+				+ "ElectronicInvoice,TravelPaper,Others,Reason,(CASE "
+				+ "WHEN t_reimburse.Pass='未审核' THEN '0' " 
+				+ "WHEN t_reimburse.Pass='通过' THEN '1' "
+				+ "WHEN t_reimburse.Pass='未通过' THEN '2' END) State "
+				+ "from t_reimburse where Name = (select StaffName "
 				+ "from t_staff where StaffMail = ?)";
 		if(!startTime.equals("")){
-			sql += " and DATE_FORMAT(FilingDate,'%Y-%m') between ? and ? order by ID DESC limit ?,?";
+			sql += " and DATE_FORMAT(FilingDate,'%Y-%m') between ? and ? order by State,FilingDate DESC limit ?,?";
 			param = new Object[] { email,startTime,endTime,(page.getCurrentPage() - 1)*10, page.getRows() };
 		}else{
-			sql += " order by ID DESC limit ?,?";
+			sql += " order by State,FilingDate DESC limit ?,?";
 			param = new Object[] {email,(page.getCurrentPage() - 1)*10, page.getRows() };
 
 		}
