@@ -52,7 +52,7 @@
 
 						<c:if test="${authoritiy=='SoftwareDocument' || authoritiy=='SoftwareProject' || authoritiy=='CustomerInquiry' || authoritiy=='SoftwareImplementation' || authoritiy=='SoftwareProduct'}"><c:set var="ruanjianbu" value="1"></c:set></c:if>
 
-						<c:if test="${authoritiy=='StaffInfo' || authoritiy=='LeaveApplication' || authoritiy=='Tasks' || authoritiy=='ExaminationDetails' || authoritiy=='Reimburse' || authoritiy=='PaymentRequest'}"><c:set var="renshibu" value="1"></c:set></c:if>
+						<c:if test="${authoritiy=='StaffInfo' || authoritiy=='LeaveApplication' || authoritiy=='ExaminationDetails' || authoritiy=='Reimburse' || authoritiy=='PaymentRequest'}"><c:set var="renshibu" value="1"></c:set></c:if>
 
 						<c:if test="${authoritiy=='Requirement' || authoritiy=='Keysight'}"><c:set var="xuqiutongji" value="1"></c:set></c:if>
 
@@ -328,9 +328,9 @@
 					            <c:if test="${authoritiy=='LeaveApplication'}">
 					            <h5 class="LeaveApplication"><a href="LeaveApplication">请假申请</a></h5>
 					            </c:if>
-					            <c:if test="${authoritiy=='Tasks'}">
+					            <%-- <!-- <c:if test="${authoritiy=='Tasks'}">
 					            <h5 class="Tasks"><a href="Tasking" class="post_tasking" style="font-size: 13px;">人事任务分配</a></h5>
-					            </c:if>
+					            </c:if> --> --%>
 					            <c:if test="${authoritiy=='ExaminationDetails'}">
 					            <h5 class="AssessmentStatistics"><a href="AssessmentStatistics">考核明细</a></h5>
 					            </c:if>
@@ -415,7 +415,7 @@
 <!-- <script src="js/msgbox_unload.js"></script> -->
 <script src="js/libs/lodash.min.js"></script>
 <script src="js/modules/sharing/top-dbec435863.min.js"></script>
-<script src="js/global/myFunction.js?iv=201809191707" type="text/javascript" charset="utf-8"></script>
+<script src="js/global/myFunction.js?iv=201809201132" type="text/javascript" charset="utf-8"></script>
 <script>
 var ServiceUpdate =<%=request.getSession().getAttribute("startTime") %>
 
@@ -431,7 +431,7 @@ function versionControlFlag2(str){
 	return versionControlFlag;
 }
 
-var vControlExceptHrefArr = ["top", "ApplicationGallery", "SoftwareDocument", "Transport", "GetOrderRoute", "GetOrderByPageOne", "PaymentRequest", "ServiceReport", "AssessmentStatistics", "Hardware", "GetHardwareRoute", "StandardProduct", "Customer", "GetCustomerInfo2"];
+var vControlExceptHrefArr = eouluGlobal.S_getDispatchPageArr();
 var curVControlExceptHref = window.location.href.split(globalProjectName+"/")[1].indexOf("?") > -1 ? window.location.href.split(globalProjectName+"/")[1].split("?")[0] : window.location.href.split(globalProjectName+"/")[1];
 // 加版本号控制函数
 (function(){
@@ -465,8 +465,7 @@ var curVControlExceptHref = window.location.href.split(globalProjectName+"/")[1]
 	});
 })();
 
-var YEAR_copy = new Date().getFullYear(); 
-$(".YEAR").text(YEAR_copy);
+$("span.YEAR").text(new Date().getFullYear());
 var UserName = '<%=request.getSession().getAttribute("user") %>';
 var EMAIL = '<%=request.getSession().getAttribute("email") %>';
 // var date1 = new Date();
@@ -474,10 +473,7 @@ var EMAIL = '<%=request.getSession().getAttribute("email") %>';
 // 		$.cookie('the_cookie1', 'the_value1', { expires: date1, path: '/' });
 
 function checkHref2Cookie(){
-	var href_ = window.location.href.split("cfChicken8/")[1];
-	if(href_.indexOf("?")>0){
-	    href_ = href_.split("?")[0];
-	}
+	var href_ = eouluGlobal.S_getCurPageHref();
 	var statisDepart;
 	var statisPage;
 	$.each(globalDepart2PageObj, function(name,value){
@@ -526,37 +522,16 @@ $(function(){
 		$("h5.hasui3").css("border-bottom","1px solid rgba(204,204,204,0.8)");
 	}else{
 		$(".eou-container-r .u-admin").css("height","67px");
-	}	
-	
-	if($(".currentPage").children().length >1){
-		//console.log($(".currentPage").children().length )
-		var currentLi = $(".currentPage").children().eq(1).children();
-		// var href = window.location.href.split("Logistics/")[1];
-		var href = window.location.href.split("cfChicken8/")[1];
-		for(var i = 0 ;i<currentLi.length;i++){
-			//console.log(href);
-			var day_addr = href.substr(-2);
-			//console.log(day_addr);
-			$("[html=day_addr]")
-			if(href == currentLi.eq(i).find("a").attr("href")){
-				//console.log(currentLi.eq(i).text())
-				$(".currentPage").children().eq(0).text("").text(currentLi.eq(i).text())
-			}
-		}
 	}
 });
 
 $(function(){
-	var href1 = window.location.href.split("cfChicken8/")[1];
-	// var href1 = window.location.href.split("Logistics/")[1];
-	if(href1.indexOf("?")>0){
-	    href1 = href1.split("?")[0];
-	}
+	var href1 = eouluGlobal.S_getCurPageHref();
 	if(href1 != "Index" && href1 != "Login"){
 		$("div.eou-container-m").css("opacity",1);
 		$("div.eou-container-m").css("visibility","visible");
 	}
-	if(href1 == "Inventory" ||href1 == "Transport" ||href1 == "StockPurchasing"||href1 == "Inventory"||href1 == "OriginFactory"||href1 == "Insurance"||href1 == "Proposal"||href1 == "PackingList" || href1 =="Supplier" || href1 =="Commodity"){
+	if(href1 == "Inventory" ||href1 == "Transport" || href1 == "GetOrderRoute" || href1 == "GetOrderByPageOne" || href1 == "GetOrderByPageTwo" ||href1 == "StockPurchasing"||href1 == "Inventory"||href1 == "OriginFactory"||href1 == "Insurance"||href1 == "Proposal"||href1 == "PackingList" || href1 =="Supplier" || href1 =="Commodity"){
 	    href1 = "Inventory0";
 	}
 	else if(href1 == "QuotationSystem" || href1 == "Price" ||  href1 == "Requirement" ||  href1 == "SalesStatistics" ||  href1 == "HotProduct" || href1 == "Quality" || href1 == "QuantityWeight" || href1 == "TestReport" || href1 == "Fumigation" || href1 == "Origin" || href1 == "Shipment" || href1 == "Receiving" || href1 == "Acceptance" || href1 == "Customer" || href1 == "Invoice" || href1 == "Keysight" || href1 == "OriginalQuotation" || href1 == "WorkReport" || href1 == "BiddingDocument"){
@@ -568,7 +543,7 @@ $(function(){
 	else if(href1 == "SoftwareDocument" || href1 == "SoftwareProject" || href1 == "SoftwareProduct" || href1 == "CustomerInquiry"|| href1 == "SoftwareImplementation"){
 	    href1 = "SoftwareProject0";
 	}
-	else if(href1 == "StaffInfo" || href1 == "LeaveApplication" || href1 == "Tasking" || href1 == "AssessmentStatistics" || href1 == "Reimburse" || href1 == "PaymentRequest"){
+	else if(href1 == "StaffInfo" || href1 == "LeaveApplication" || href1 == "AssessmentStatistics" || href1 == "Reimburse" || href1 == "PaymentRequest"){
 	    href1 = "LeaveApplication0";
 	}
 	else if(href1 == "SalesQuotationSystem"){
@@ -583,28 +558,10 @@ $(function(){
 	}else{
 		href1 = "00";
 	}
-	/* else if(href1 == "Quotation" || href1 == "QuotationSystem" || href1 == "Commodity"){
-	    href1 ="quotationTit";
-	}
-	else if(href1 == "SalesStatistics" || href1 == "HotProduct"){
-	    href1 ="SalesTit";
-	}
-	else if(href1 == "Transport" || href1 == "StockPurchasing"){
-	    href1 ="Transport";
-	} */
+	
 	if(href1 != "00"){
 		$(".g-nav .g-nav-ul").find("."+href1+"").addClass("current").siblings().removeClass("current");
 	}
-	
-	/* $(document).on("click",".Nav_More",function(){
-	    //$(".Nav_More").parent().find(".listLi").toggleClass("isHidden");
-	    $(".Nav_More").parent().toggleClass("navHidden");
-	}) */
-	
-	/* if(href1== "SoftwareTit" ||href1== "LogisticsTit" ||href1== "BusinessTit" ||href1== "serTit" ||href1== "StaffTit" ||href1== "SalesTit"  ||href1== "DocumentUpload" ||href1== "OriginFactory" ){
-	    $(".navRight").toggleClass("navHidden");
-	    $(".navLeft").toggleClass("navHidden");
-	} */
 });
 
 

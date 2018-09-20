@@ -149,14 +149,51 @@ $('.contract-edit').click(function () {
     $("#update_AccountNumber").val(tr.find(".AccountNumber").text());
     $("#update_DepositBank").val(tr.find(".DepositBank").text());
     $("#update_Remarks").val(tr.find(".Remarks").text());
-    $(".update_idcard_div .flex_2 input").val(tr.find(".IDCardFile.t27").attr("title"));
-    $(".update_idcard_div .flex_2 input").attr("title",tr.find(".IDCardFile.t27").attr("title"));
-    $(".update_passport_div .flex_2 input").val(tr.find(".PassportFile.t28").attr("title"));
-    $(".update_passport_div .flex_2 input").attr("title",tr.find(".PassportFile.t28").attr("title"));
-	$('.cover-color, .contract_update').show();
+    var idFileStr = tr.find(".IDCardFile.t27").attr("title");
+    var passportFileStr = tr.find(".PassportFile.t28").attr("title");
+    $(".update_idcard_div .flex_2 input").val(idFileStr).attr("title", idFileStr);
+    $(".update_passport_div .flex_2 input").val(passportFileStr).attr("title", passportFileStr);
+	$(".contract_update .flex_3>a.btn").remove();
+    var idFileCon, passportFileCon;
+    if(idFileStr == "--" || idFileStr === "" || idFileStr == null){
+        idFileCon = "服务器未读取到数据";
+    }else{
+        var idFileArr = $.grep(idFileStr.split(";"),function(currentValue,index){
+            return currentValue != "";
+        });
+        var len = idFileArr.length - 1;
+        idFileCon = "";
+        idFileArr.map(function(currentValue,index,arr){
+            if(index<len){
+                idFileCon+="<span class='downFile_span' title='"+currentValue+"'>（"+(index+1)+"）、"+currentValue+"</span><br/>";
+            }else{
+                idFileCon+="<span class='downFile_span' title='"+currentValue+"'>（"+(index+1)+"）、"+currentValue+"</span>";
+            }
+        });
+    }
+
+    if(passportFileStr == "--" || passportFileStr === "" || passportFileStr == null){
+        passportFileCon = "服务器未读取到数据";
+    }else{
+        var passportFileArr = $.grep(passportFileStr.split(";"),function(currentValue,index){
+            return currentValue != "";
+        });
+        var len2 = passportFileArr.length - 1;
+        passportFileCon = "";
+        passportFileArr.map(function(currentValue,index,arr){
+            if(index<len2){
+                passportFileCon+="<span class='downFile_span' title='"+currentValue+"'>（"+(index+1)+"）、"+currentValue+"</span><br/>";
+            }else{
+                passportFileCon+="<span class='downFile_span' title='"+currentValue+"'>（"+(index+1)+"）、"+currentValue+"</span>";
+            }
+        });
+    }
+    $(".contract_update .update_idcard_div .flex_3").append('<a tabindex="0" class="btn btn-info" role="button" data-toggle="popover" data-trigger="click" title="点击下载身份证（再次点击下载按钮关闭）" data-container="body" data-content="'+idFileCon+'">下载</a>');
+    $(".contract_update .update_passport_div .flex_3").append('<a tabindex="0" class="btn btn-info" role="button" data-toggle="popover" data-trigger="click" title="点击下载护照（再次点击下载按钮关闭）" data-container="body" data-content="'+passportFileCon+'">下载</a>');
     $('.contract_update .flex_3 [data-toggle="popover"]').popover({
         html: true
     });
+    $('.cover-color, .contract_update').show();
 });
 $("#update_submit").click(function(){
 	var ID = $('.contract_update .update_id').text();
@@ -226,30 +263,24 @@ $("#update_submit").click(function(){
     	success:function(data){
     		if(data){
     			$.MsgBox.Alert('提示','修改成功');
-    			 $('.cover-color').hide();
-    			  $('.contract_update').hide();
+    			$('.update_close').trigger("click");
     		}else{
     			 $.MsgBox.Alert("提示", "修改失败，稍后重试！");
     		}
     	},
-   
 	    error: function () {
 	        $.MsgBox.Alert("提示", "服务器繁忙，稍后重试！");
 	    }
     });
-})
-$('.update_close').click(function () {
-    $('.cover-color').hide();
-    $('.contract_update').hide();
 });
-/*$('#update_cancel').click(function () {
-    $('.cover-color').hide();
-    $('.contract_update').hide();
-});*/
+$('.update_close').click(function () {
+    $('.cover-color, .contract_update').hide();
+    $('.contract_update .flex_3 [data-toggle="popover"]').popover('hide');
+});
+
 //删除功能
 $("#update_cancel").click(function(){
 	 $.MsgBox_Unload.Confirm("提示", "确定要删除该员工信息?");
-	/* alert("确定要删除该员工信息！");*/
 	 $("#mb_btn_ok_unload").click(function(){
 		 var ID =$(".contract_update  .update_id").text();
 		 $.ajax({
@@ -260,8 +291,6 @@ $("#update_cancel").click(function(){
 				 type:'delete'
 			 },
 			 success:function(data){
-				/* alert(1)*/
-				 console.log(data)
 				if(data == 'true'){
 					 $.MsgBox.Alert("提示", "删除成功！");
 				}else{
@@ -271,9 +300,9 @@ $("#update_cancel").click(function(){
 			 error:function(){
 				 $.MsgBox.Alert("提示", "网络错误请稍候重试！");
 			 }
-		 })
-	 })
-})
+		 });
+	 });
+});
 
 //导出功能
 $(".export").click(function(){
@@ -323,7 +352,6 @@ $(".contract_add .RealName").on("input propertychange",function(){
 			keyword:RealName
 		},
 		success:function(data){
-			console.log(data);
 			 var str = "";
              for(var i = 1 ; i < data.length ; i++){
             	 str += "<li  class='addListLi'>"+data[i].StaffName+"</li>";
@@ -335,16 +363,16 @@ $(".contract_add .RealName").on("input propertychange",function(){
 		error:function(){
 			 $.MsgBox.Alert("提示", "服务器繁忙，稍后重试！");
 		}
-	})
-})
+	});
+});
 $(document).on("click",function(){
 	$(".contract_add .RealNamelist").hide();
-})
+});
 $(document).on("click",".contract_add .addListLi",function(){
 	var currentCont = $(this).text();
 	$(this).parent().prev().val(currentCont);
 	$(".contract_add .RealNamelist").hide();
-})
+});
 //修改的姓名
 $(".contract_update .RealName").on("input propertychange",function(){
 	var RealName = $(".contract_update .RealName").val();
@@ -356,7 +384,6 @@ $(".contract_update .RealName").on("input propertychange",function(){
 			keyword:RealName
 		},
 		success:function(data){
-			console.log(data);
 			 var str = "";
              for(var i = 1 ; i < data.length ; i++){
             	 str += "<li  class='addListLi'>"+data[i].StaffName+"</li>";
@@ -368,11 +395,11 @@ $(".contract_update .RealName").on("input propertychange",function(){
 		error:function(){
 			 $.MsgBox.Alert("提示", "服务器繁忙，稍后重试！");
 		}
-	})
-})
+	});
+});
 $(document).on("click",function(){
 	$(".contract_update .RealNamelist").hide();
-})
+});
 $(document).on("click",".contract_update .addListLi",function(){
 	var currentCont = $(this).text();
 	$(this).parent().prev().val(currentCont);
@@ -596,7 +623,7 @@ $("input.dropUp2").on("click",function(){
 
 // 更多信息
 $("#more_info").on("click",function(){
-    $(this).toggleClass("fa-plus-square").toggleClass("fa-minus-square");
+    $(this).toggleClass("glyphicon-plus glyphicon-minus");
     $(".td_IDCard, .td_Passport, .td_AccountNumber, .td_DepositBank, .td_reminded, .td_Remarks, .td_IDCardFile, .td_PassportFile").toggle();
     $(".tbody_tr").find(".IDCard, .Passport, .AccountNumber, .DepositBank, .reminded, .Remarks, .IDCardFile, .PassportFile").toggle();
 });

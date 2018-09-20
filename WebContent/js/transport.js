@@ -924,10 +924,7 @@ $(document)
 
 $('.operate_close').click(function() {
 	operateMarkSet = [];
-	$('.cover-color').hide();
-	$('.operate').hide();
-	$('.bottom_table').hide();
-	$('.check_table').hide();
+	$('.cover-color, .operate, .bottom_table, .check_table').hide();
 	window.location.reload();
 });
 
@@ -996,11 +993,7 @@ $(document).on("blur", '.editPage input[name="factory_shipment"]', function() {
 });
 
 // -------------------------------------提交修改内容------------------------------------------
-$(document)
-    .on(
-        "click",
-        "#edit_submit",
-        function() {
+$(document).on("click", "#edit_submit", function() {
             var columns = [];
             var user_id = $('#userID').val();
             var check1 = $('#review_name1').val();
@@ -1016,37 +1009,26 @@ $(document)
                 .text();
             var po_no = $('.bottom_table input[name="po_no"]').val() == "" ? "--" : $('.bottom_table input[name="po_no"]').val();
             var so_no = $('.bottom_table input[name="so_no"]').val() == "" ? "--" : $('.bottom_table input[name="so_no"]').val();
-            var po_amount = $('.bottom_table input[name="po_amount"]')
-                .val(); // 
-            var rmb_po_amount = $(
-                '.bottom_table input[name="rmb_po_amount"]').val(); //
-            var factory_shipment = $(
-                    '.bottom_table input[name="factory_shipment"]')
-                .val() == "" ? "--" : $(
-                    '.bottom_table input[name="factory_shipment"]')
-                .val();
-            var logistics_number = $(
-                    '.bottom_table input[name="logistics_number"]')
-                .val() == "" ? "--" : $(
-                    '.bottom_table input[name="logistics_number"]')
-                .val();
+            var po_amount = $('.bottom_table input[name="po_amount"]').val();
+            if(po_amount == "" || po_amount == "--"){
+            	po_amount = "0";
+            }
+            var rmb_po_amount = $('.bottom_table input[name="rmb_po_amount"]').val();
+            if(rmb_po_amount == "" || rmb_po_amount == "--"){
+            	rmb_po_amount = "0";
+            }
+            var factory_shipment = $('.bottom_table input[name="factory_shipment"]').val() == "" ? "--" : $('.bottom_table input[name="factory_shipment"]').val();
+            var logistics_number = $('.bottom_table input[name="logistics_number"]').val() == "" ? "--" : $('.bottom_table input[name="logistics_number"]').val();
             /*
              * var stock_number=$('.bottom_table
              * input[name="stock_number"]').val() == "" ? "--"
              * :$('.bottom_table input[name="stock_number"]').val();
              */
             var date = $('.bottom_table input[name="date"]').val();
-            var except_date = $(
-                '.bottom_table input[name="except_date"]').val();
-            var delivery_number = $(
-                    '.bottom_table input[name="delivery_number"]')
-                .val() == "" ? "--" : $(
-                    '.bottom_table input[name="delivery_number"]')
-                .val();
+            var except_date = $('.bottom_table input[name="except_date"]').val();
+            var delivery_number = $('.bottom_table input[name="delivery_number"]').val() == "" ? "--" : $('.bottom_table input[name="delivery_number"]').val();
             var status = $('.bottom_table select[name="status"]').val();
-            var statusText = $(
-                    '.bottom_table select[name="status"] option:checked')
-                .text()
+            var statusText = $('.bottom_table select[name="status"] option:checked').text();
             var estimated_payment_time = $(
                     '.bottom_table input[name="estimated_payment_time"]')
                 .val();
@@ -1056,8 +1038,7 @@ $(document)
 
             var IsChangeIndex = (operateMark == 0.1 ? 1 : operateMark);
 
-            var changeDom = $(".operatePage  tr").eq(IsChangeIndex)
-                .children();
+            var changeDom = $(".operatePage tr").eq(IsChangeIndex).children();
             changeDom.eq(2).text() != (supplierText == "" ? "" : supplierText) ? columns.push("Supplier") : null;
             changeDom.eq(3).text() != po_no ? columns.push("PONO") : null;
             changeDom.eq(4).text() != so_no ? columns.push("SONO") : null;
@@ -1155,8 +1136,7 @@ $(document)
                         data = eval("(" + data + ")");
                         if (data.message) {
                             $.MsgBox.Alert("提示", "修改成功！");
-                            $
-                                .ajax({
+                            $.ajax({
                                     type: 'get',
                                     url: 'GetOrderInfoAndLogisc',
                                     data: {
@@ -1165,15 +1145,12 @@ $(document)
                                     dataType: 'json',
                                     success: function(data) {
 
-                                        $('.operatePage tbody')
-                                            .html("");
+                                        $('.operatePage tbody').html("");
                                         var tr;
                                         for (var i = 1; i < data.length; i++) {
                                             var notFirstVal = "";
                                             if (operateMark == i - 1 || operateMark == 0.1) {
-                                                operateMarkSet
-                                                    .push(operateMark);
-
+                                                operateMarkSet.push(operateMark);
                                             }
                                             notFirstVal = '<input type="button" name="operate-update" value="修改"  class="bToggle">'
 
@@ -1209,14 +1186,9 @@ $(document)
                                                 }
 
                                             }
-                                            $(
-                                                    '.operatePage tbody')
-                                                .append(tr);
+                                            $('.operatePage tbody').append(tr);
                                         }
-                                        $('.cover-color')
-                                            .show();
-                                        $('.operate').show();
-
+                                        $('.cover-color, .operate').show();
                                         // for(var m = 1; m <
                                         // operateMarkSet.length;
                                         // m++){
@@ -1230,32 +1202,22 @@ $(document)
                                             "服务器繁忙，稍后重试！");
                                     },
                                     complete: function() {
-                                        operateMarkSet = operateMarkSet
-                                            .unique();
+                                        operateMarkSet = operateMarkSet.unique();
                                         for (var m = 0; m < operateMarkSet.length; m++) {
                                             if (operateMarkSet[m] == 0.1) {
-                                                $(
-                                                        ".operatePage  tr")
+                                                $(".operatePage tr")
                                                     .eq(1)
                                                     .children()
                                                     .eq(21)
-                                                    .find(
-                                                        'input[name="operate-update"]')
-                                                    .css(
-                                                        "background",
-                                                        "red");
+                                                    .find('input[name="operate-update"]')
+                                                    .css("background", "red");
                                             } else {
-                                                $(
-                                                        ".operatePage tbody tr")
-                                                    .eq(
-                                                        operateMarkSet[m])
+                                                $(".operatePage tbody tr")
+                                                    .eq(operateMarkSet[m])
                                                     .children()
                                                     .eq(21)
-                                                    .find(
-                                                        'input[name="operate-update"]')
-                                                    .css(
-                                                        "background",
-                                                        "red");
+                                                    .find('input[name="operate-update"]')
+                                                    .css("background", "red");
                                             }
 
                                         }
@@ -1274,12 +1236,7 @@ $(document)
         });
 
 // -------------------------------------提交审核内容------------------------------------------
-$(document)
-    .on(
-        "click",
-        "#check_submit",
-        function() {
-
+$(document).on("click", "#check_submit", function() {
             var user_id = $('#userID').val();
             var check1 = $('#review_name1').val();
             var check2 = $('#review_name2').val();

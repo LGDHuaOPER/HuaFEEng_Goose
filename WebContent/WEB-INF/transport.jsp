@@ -86,6 +86,11 @@
 		line-height: 80px !important;
 	}
 
+	hr {
+	    margin-top: 1px;
+	    margin-bottom: 1px;
+	}
+
 	/*表格自定义*/
 	.gl_table_style_wrapper {
 		overflow-x: scroll;
@@ -146,42 +151,12 @@
 		width: 90px;
 	}
 
-	/*loading图*/
-	.loading_div_g_div {
-		position: fixed;
-		top: 0;
-		bottom: 0;
-		left: 0;
-		right: 0;
-		z-index: 100;
-		width: 100vw;
-		height: 100vh;
-		background-color: #5bc0de;
-
-		filter:alpha(opacity=90); /* IE */  
-		-moz-opacity:0.9; /* 老版Mozilla */  
-		-khtml-opacity:0.9; /* 老版Safari */  
-		opacity: 0.9; /* 支持opacity的浏览器*/ 
-
-	    /*text-align: center;*/
-	    /*水平垂直居中，父元素设置*/
-	    display: -webkit-flex;
-	    display: flex;
-	    	/*设置弹性盒子元素在主轴（横轴）的对齐方式。*/
-	    justify-content: center;
-		/*
-		* align-items, align-self 
-	设置弹性盒子元素在垂直方向上（纵轴）的对齐方式。其中align-items属性用于弹性容器，而align-self用于弹性项目。
-		align-self 属性定义flex子项单独在侧轴（纵轴）方向上的对齐方式。
-		align-self 属性可重写灵活容器的 align-items 属性。
-		 */
-	    align-items: center;
-	}
-	/*loading图end*/
-
 </style>
 </head>
 <body>
+	<div class="loading_div_g_div" style="position: fixed;top: 0;bottom: 0;left: 0;right: 0;z-index: 100;width: 100vw;height: 100vh;background-color: #5bc0de;filter:alpha(opacity=90);-moz-opacity:0.9;-khtml-opacity:0.9;opacity: 0.9;display: -webkit-flex;display: flex;justify-content: center;align-items: center;">
+	    <img src="image/loading/Spinner-1s-200px.gif" alt="loading。。。">
+	</div>
 	<div id="Transport_wrapper">
 	    <div id="Transport_sticker">
 	        <div id="Transport_sticker-con">
@@ -811,9 +786,6 @@
 	        </div>
 	    </div>
 	<!-- Transport_wrapper结束 -->
-	</div>
-	<div class="loading_div_g_div">
-	    <img src="image/loading/Spinner-1s-200px.gif" alt="loading。。。">
 	</div>
 </body>
 <script src="js/libs/bootstrap/bootstrap-grid-form-button-res-icon-list.min.js"></script>

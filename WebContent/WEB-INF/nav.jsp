@@ -314,16 +314,14 @@ a:hover{
             str = str.replace(/\s/g,'') ;
             return str;
         }
-    var isOpacityNav = ["Schedule","SoftwareProduct","QuotationSystem","Transport","PackingList","Invoice","Equipment","OriginFactory","Inventory","Price","Requirement","Inventory","MachineDetails","SalesStatistics","LeaveApplication","DocumentUpload","QuotationSystem","StockPurchasing","Insurance","Proposal","PackingList","HotProduct","Commodity","Quality","QuantityWeight","TestReport","Fumigation","Origin","Shipment","Receiving","Acceptance","Customer","MachineDetails","Hardware","AfterSale","Schedule","RoutineVisit","SoftwareDocument","SoftwareProject","SoftwareProduct","CustomerInquiry","SoftwareImplementation","StaffInfo","LeaveApplication","SoftwareImplementation","Tasking","Keysight","NonStandard","OriginalQuotation","Supplier","AssessmentStatistics","ServiceReport","StandardProduct","SalesQuotationSystem","Lab","Reimburse","WorkReport","BiddingDocument","PaymentRequest","ApplicationGallery","AllLab"];
+    var isOpacityNav = eouluGlobal.S_getShowNavArr();
     $(function(){
-        var navProHref = window.location.href.indexOf("cfChicken8/")>-1?window.location.href.split("cfChicken8/")[1]:window.location.href.split("Logistics/")[1];
-        // console.log("nav页面的预处理href:"+navProHref);
-        var newNavProHref = navProHref.indexOf("?")>-1?navProHref.split("?")[0]:navProHref;
+        var newNavProHref = eouluGlobal.S_getCurPageHref();
         console.log("nav页面的处理后的href:"+newNavProHref);
         if(isOpacityNav.indexOf(newNavProHref)==-1){
             $(".nav-container-in").css("opacity",0);
         }else{
-            if(newNavProHref=='Transport'){
+            if(newNavProHref=='Transport' || newNavProHref == 'GetOrderRoute' || newNavProHref == 'GetOrderByPageOne' || newNavProHref == 'GetOrderByPageTwo'){
                 newNavProHref = 'Transport?ActualDelivery=no&column=DateOfSign&condition=All';
             }else if(newNavProHref=='StockPurchasing'){
                 newNavProHref = 'StockPurchasing?ActualDelivery=no&column=DateOfSign&condition=All';
@@ -346,12 +344,10 @@ a:hover{
                         if($(this).children("a").attr("href")==newNavProHref){
                             var subInsertHref = that.children("a").attr("href");
                             var subInsertText = that.children("a").text();
-                            $(".nav-container-in-li-2").children("a").attr("href",subInsertHref);
-                            $(".nav-container-in-li-2").children("a").text(subInsertText);
+                            $(".nav-container-in-li-2").children("a").attr("href",subInsertHref).text(subInsertText);
                             var dbSubInsertHref = $(this).children("a").attr("href");
                             var dbSubInsertText = $(this).children("a").text();
-                            $(".nav-container-in-li-3").children("a").attr("href",dbSubInsertHref);
-                            $(".nav-container-in-li-3").children("a").text(dbSubInsertText);
+                            $(".nav-container-in-li-3").children("a").attr("href",dbSubInsertHref).text(dbSubInsertText);
                             subTitGroupShow();
                             dbSubTitGroupShow();
                             // console.log(subInsertHref);
@@ -364,8 +360,7 @@ a:hover{
                     if($(this).children("a").attr("href")==newNavProHref){
                         var insertHref = $(this).children("a").attr("href");
                         var insertText = $(this).children("a").text();
-                        $(".nav-container-in-li-2").children("a").attr("href",insertHref);
-                        $(".nav-container-in-li-2").children("a").text(insertText);
+                        $(".nav-container-in-li-2").children("a").attr("href",insertHref).text(insertText);
                         subTitGroupShow();
                         dbSubTitGroupHide();
                     }
@@ -375,20 +370,16 @@ a:hover{
         }
         
         function subTitGroupShow(){
-            $("span.nav-sub-span").show();
-            $(".nav-container-in-li-2").show();
+            $("span.nav-sub-span, .nav-container-in-li-2").show();
         }
         function subTitGroupHide(){
-            $("span.nav-sub-span").hide();
-            $(".nav-container-in-li-2").hide();
+            $("span.nav-sub-span, .nav-container-in-li-2").hide();
         }
         function dbSubTitGroupShow(){
-            $("span.nav-dbsub-span").show();
-            $(".nav-container-in-li-3").show();
+            $("span.nav-dbsub-span, .nav-container-in-li-3").show();
         }
         function dbSubTitGroupHide(){
-            $("span.nav-dbsub-span").hide();
-            $(".nav-container-in-li-3").hide();
+            $("span.nav-dbsub-span, .nav-container-in-li-3").hide();
         }
 
         function navCopyResponse(){
@@ -441,7 +432,7 @@ a:hover{
                 }
             }
         }
-        var notCopyHref = ["OriginFactory","OriginFactorySearch","SoftwareImplementation","Tasking","Keysight","Price","PriceRoute","Transport","GetOrderRoute","GetOrderByPageOne","NonStandard","Inventory","OriginalQuotation","Supplier","AssessmentStatistics","StaffInfo","TrainingRecords","Admin","ServiceReport","SoftwareDocument","StandardProduct","Lab","Reimburse","WorkReport","SoftwareProject","BiddingDocument","PackingList","PaymentRequest","ApplicationGallery","Hardware","GetHardwareRoute","Customer","GetCustomerInfo2","AllLab"];
+        var notCopyHref = eouluGlobal.S_getNotEouluCopy();
         var copyNewNavProHref = newNavProHref.indexOf("?")>-1?newNavProHref.split("?")[0]:newNavProHref;
         // console.log("版权处理方法的copyNewNavProHref为"+copyNewNavProHref);
         if(notCopyHref.indexOf(copyNewNavProHref)>-1){

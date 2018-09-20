@@ -745,7 +745,8 @@ $(".addData").click(function(){
 	 $('.MailBar_cover_color').show();
 	 $('.hidePdf').show(); 
 	 $(".MailBar_cover_color").css("height",$("#view").height()+30);
-})
+	 $("#Add_submit").css("pointerEvents","auto");
+});
 
 $(".Sidebar_Price div").click(function(){
 	$(this).addClass("isHover").siblings().removeClass("isHover");
@@ -792,9 +793,8 @@ $(".Sidebar_Price div").click(function(){
 		var PackingNumber=$('#table_Proposal .PackingNumber').eq(0).val();
 		var ApplicantDate=$('#table_Proposal .ApplicantYear').eq(0).text()+"-"+$('#table_Proposal .ApplicantMonth').eq(0).text()+"-"+$('#table_Proposal .ApplicantDay').eq(0).text();
 		var ShippingMark=$('#table_Proposal .ShippingMarkNO').eq(0).text()+"&&"+$('#table_Proposal .ShippingMarkADD').eq(0).text();
-		var InvoiceAmount=$('#table_Proposal .InvoiceAmount').eq(0).text();
+		var InvoiceAmount=$('#table_Proposal .InvoiceAmount').eq(0).text().trim();
 		var Currency=$('#table_Proposal .Currency').eq(0).text(); //币种
-		
 		
 		//新增字段 
 		var InsuredName="苏州伊欧陆系统集成有限公司";
@@ -817,7 +817,6 @@ $(".Sidebar_Price div").click(function(){
 		}
 	}
 	else{
-		console.log("inini")
 		var InvoiceNO=$('#table_Proposal_Air .InvoiceNO').text();
 		var ContractNO=$('#table_Proposal_Air .ContractNO').text();
 		var GoodsNO=$('#table_Proposal_Air .GoodsNO').text();
@@ -829,7 +828,7 @@ $(".Sidebar_Price div").click(function(){
 		var PackingNumber=$('#table_Proposal_Air .PackingNumber').val();
 		var ApplicantDate=$('#table_Proposal_Air .ApplicantYear').text()+"-"+$('#table_Proposal_Air .ApplicantMonth').text()+"-"+$('#table_Proposal_Air .ApplicantDay').text();
 		var ShippingMark=$('#table_Proposal_Air .ShippingMarkNO').text()+"&&"+$('#table_Proposal_Air .ShippingMarkADD').text();
-		var InvoiceAmount=$('#table_Proposal_Air .InvoiceAmount').text();
+		var InvoiceAmount=$('#table_Proposal_Air .InvoiceAmount').text().trim();
 		var Currency=$('#table_Proposal_Air .Currency').text(); //币种
 		var Transport=$('#table_Proposal_Air .TransportTool').eq(0).text(); //币种
 		//新增字段 
@@ -852,6 +851,12 @@ $(".Sidebar_Price div").click(function(){
 		}
 	}
 	
+	// 表单验证
+	if(InvoiceAmount === null || InvoiceAmount === undefined || InvoiceAmount == ""){
+		$.MsgBox_Unload.Alert("发票金额提示", "未填！请在币种后面一格填写");
+		return false;
+	}
+
 	//8个固定字段 
 	var AdditionFactor = 1 ;
 	var Address = 1 ;
@@ -939,14 +944,12 @@ $(".Sidebar_Price div").click(function(){
 			}
 		var alertMsg = "修改成功！"
 	}
-	console.log(data)
 	    $.ajax({
         type : 'get',
         url : currentURL,
         data : data,	
         dataType : 'json',
         success : function (data) {
-        	
             $.MsgBox.Alert('提示',alertMsg);
             $('.MailBar_cover_color').hide();
             $('.contract_add').hide();
@@ -974,7 +977,6 @@ $(document).on("click",".contract_add .DelThisTr",function(){
 $(document).on("click",".contract_update .DelThisTr",function(){
 	var InfoID = $(this).parent().parent().attr("value");
 	$(this).parent().parent().remove();
-	console.log(InfoID)
 	$.ajax({
         type : 'get',
         url : 'ProposalGoodsDelete',
@@ -992,10 +994,12 @@ $(document).on("click",".contract_update .DelThisTr",function(){
 })
     
     
-$(document).on("blur",".hidePdf .ContractNO ",function(){
+$(document).on("blur",".hidePdf .ContractNO",function(){
 	var ContractNO = $(this).text();
 	if($(".hidePdf").attr("conId")){
+		console.warn(1);
 		if($(".hidePdf").attr("conId") != ContractNO){
+			console.warn(2);
 			$.ajax({
 		        type : 'get',
 		        url : 'SearchContractNO',
@@ -1011,7 +1015,6 @@ $(document).on("blur",".hidePdf .ContractNO ",function(){
 		        	else{
 		        		$("#submit_n,#Add_submit").css("pointerEvents","auto");
 		        	}
-		        	 
 		        },
 		        error : function () {
 		            $.MsgBox.Alert("提示", "服务器繁忙，稍后重试！");
@@ -1019,6 +1022,7 @@ $(document).on("blur",".hidePdf .ContractNO ",function(){
 		    });
 		}
 	}else{
+		console.warn(3);
 		$.ajax({
 	        type : 'get',
 	        url : 'SearchContractNO',
@@ -1034,7 +1038,6 @@ $(document).on("blur",".hidePdf .ContractNO ",function(){
 	        	else{
 	        		$("#submit_n,#Add_submit").css("pointerEvents","auto");
 	        	}
-	        	 
 	        },
 	        error : function () {
 	            $.MsgBox.Alert("提示", "服务器繁忙，稍后重试！");
@@ -1046,12 +1049,8 @@ $(document).on("blur",".hidePdf .ContractNO ",function(){
  /***********  点击序号模板显示****************/   
  $('.contract-show').click(function () {
 	//提交按钮
-	$(".hidePdf .editDom").hide();
-	$(".hidePdf .noteditDom").show();
-	
-		$(".hidePdf #submit_n").show();
-		$(".hidePdf #Add_submit").hide();
-	    $('.MailBar_cover_color').show();
+	$(".hidePdf .editDom, .hidePdf #Add_submit").hide();
+	$(".hidePdf .noteditDom, .hidePdf #submit_n, .MailBar_cover_color").show();
 	    /* 获取隐藏信息 */
          var thisList = $(this).parent();
          var ID = thisList.find("td").eq(0).attr("value");
@@ -1065,7 +1064,6 @@ $(document).on("blur",".hidePdf .ContractNO ",function(){
         	 var currenDom = currenDomText; 
          }
          console.log(currenDom);
-         
  		$(".Sidebar_Price").find("."+currenDom).click();
 		$(".Sidebar_Price").find("."+currenDom).siblings().css("pointerEvents","none"); 
 		
@@ -1117,7 +1115,6 @@ $(document).on("blur",".hidePdf .ContractNO ",function(){
     	     $("#table_Proposal .ApplicantMonth").text("").text(ApplicantMonth);
     	     $("#table_Proposal .ApplicantDay").text("").text(ApplicantDay);
     	     $("#table_Proposal .InsuranceUSD").text("").text(InsuranceUSD);
-    	     console.log(ID)
     	     $.ajax({
  	 	        type : 'get',
  	 	        url : 'ProposalGoods',
@@ -1163,7 +1160,6 @@ $(document).on("blur",".hidePdf .ContractNO ",function(){
     	     $("#table_Proposal_Air .TransUtil").text("").text(TransUtil);
     	     $("#table_Proposal_Air .BLNO").text("").text(BLNO);
     	     $("#table_Proposal_Air .TransportTool").text("").text(Transport);
-    	     console.log(ID)
     	     $.ajax({
   	 	        type : 'get',
   	 	        url : 'ProposalGoods',
@@ -1172,23 +1168,19 @@ $(document).on("blur",".hidePdf .ContractNO ",function(){
   	 	        },
   	 	        dataType : 'json',
   	 	        success : function (data) {
-  	 	        	console.log(data)
   	 	        	 $("#table_Proposal_Air .DescriptionNameTd pre").html("").html(data[1].Model);
  	 	        	 $("#table_Proposal_Air .DescriptionNameTd").attr("value",data[1].ID);
-  	 	        /* 	 $($.parseHTML("#table_Proposal_Air .DescriptionNameTd pre")).html(data[1].Model);
-  	 	        	$($.parseHTML("#table_Proposal_Air .DescriptionNameTd pre")).attr("value",data[1].ID) */
-  	 	        	/* html = $($.parseHTML(data)).find('#Gallery').html();   */
   	 	        },
   	 	        error : function () {
   	 	            $.MsgBox.Alert("提示", "服务器繁忙，稍后重试！"); 
   	 	        }
   	 	    })  
          }
-	 	/* console.log(ID) */
 	   
     $('.hidePdf').show(); 
- 	  $(".MailBar_cover_color").css("height",$("#view").height()+30);
- })
+ 	$(".MailBar_cover_color").css("height",$("#view").height()+30);
+ 	$("#submit_n").css("pointerEvents","auto");
+});
 
 $('#contract_close1').click(function () {
     $('.MailBar_cover_color').hide();
@@ -1198,7 +1190,6 @@ $('#contract_close1').click(function () {
 //点击添加
 function AddContract() {
 	$(".ModelTr").not(".FirstModelTr").remove();
-
     $('.MailBar_cover_color').show();
     $('.contract_add').show();
 };
@@ -1210,7 +1201,6 @@ $(document).on("click", "#mb_btn_ok", function () {
 });
 
 //点击关闭
-
 $('#contract_close1').click(function () {
     $('.MailBar_cover_color').hide();
     $('.hidePdf').hide();
@@ -1226,7 +1216,6 @@ $("#exportPDF1").click(function(){
         },
         dataType : 'json',
         success : function (data) {
-        	console.log(data)
         	window.location.href = data;
         },
         error : function () {
@@ -1240,7 +1229,6 @@ $("#exportPDF1").click(function(){
 
 function FistPage(arg) {
 	window.location.href = arg + "1";
-	
 }
 function UpPage(arg) {
 	window.location.href = arg;
@@ -1358,7 +1346,6 @@ $(function() {
 	   formData.append('Content', EmailCont);
 	   formData.append('Password', $(".EmailPwd").val());
 	   formData.append('ID', $("#SendEmail_submit").attr("value1"));
-	   console.log(formData)
 	   $.ajax({
 		    url: 'ProposalEmail',
 		    type: 'POST',
@@ -1402,11 +1389,6 @@ $(function() {
 		});
 	
 	})
-/* 	$(document).on("click",".annexHref a",function(){
-		$(this).attr("href",window.URL.createObjectURL(mailBlob));
-		$(this).attr("download","Insurance");
-		var clickFlag = true;
-	}) */
 
 	var test_list = [];
   	   $.ajax({
@@ -1414,7 +1396,6 @@ $(function() {
 	        url : 'GetAllEmail',
 	        dataType : 'json',
 	        success : function (data) {
-	        	//console.log(data);
 	        	for(var i = 1 ; i < data.length;i++){
 	        		test_list.push(data[i].Email);
 	        	}

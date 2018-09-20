@@ -88,7 +88,7 @@
 
                     <c:if test="${authoritiy=='SalesStatistics' || authoritiy=='HotProduct'}"><c:set var="xiaoshoutongjiz" value="1"></c:set></c:if>
 
-                    <c:if test="${authoritiy=='StaffInfo' || authoritiy=='LeaveApplication' || authoritiy=='Tasks' || authoritiy=='ExaminationDetails' || authoritiy=='Reimburse' || authoritiy=='PaymentRequest'}"><c:set var="renshibuz" value="1"></c:set></c:if>
+                    <c:if test="${authoritiy=='StaffInfo' || authoritiy=='LeaveApplication' || authoritiy=='ExaminationDetails' || authoritiy=='Reimburse' || authoritiy=='PaymentRequest'}"><c:set var="renshibuz" value="1"></c:set></c:if>
 
                     <c:if test="${authoritiy=='Requirement' || authoritiy=='Keysight'}"><c:set var="xuqiutongjiz" value="1"></c:set></c:if>
 
@@ -156,7 +156,7 @@
         "Inventory":["StockPurchasing","Inventory","OriginFactory","Insurance","Proposal","PackingList","Supplier","Commodity"],
         "ServiceReport":["MachineDetails","Hardware","AfterSale","ServiceReport","StandardProduct","DocumentUpload","ApplicationGallery"],
         "SalesStatistics":["SalesStatistics","HotProduct"],
-        "LeaveApplication":["LeaveApplication","StaffInfo","Tasks","ExaminationDetails","Reimburse","PaymentRequest"],
+        "LeaveApplication":["LeaveApplication","StaffInfo","ExaminationDetails","Reimburse","PaymentRequest"],
         "Requirement":["Requirement","Keysight"],
         "SalesQuotationSystem":["SalesQuotationSystem"],
         "AllLab":["AllLab","Lab"],
@@ -211,9 +211,9 @@
             if(currentValue=="StockPurchasing"){
                 currentValue="StockPurchasing?ActualDelivery=no&column=DateOfSign&condition=All";
             }
-            if(currentValue=="Tasks"){
-                currentValue="Tasking";
-            }
+            // if(currentValue=="Tasks"){
+            //     currentValue="Tasking";
+            // }
             if(currentValue == "NonStandardProject"){
                 currentValue = "NonStandard";
             }

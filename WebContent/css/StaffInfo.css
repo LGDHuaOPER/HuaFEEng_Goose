@@ -153,11 +153,11 @@
     height: 26px;
 }
 .contract_basic select[name='customer_name']{
-	    height: 60px;
-	    position: absolute;
-        top:26px;;
-        display:none;
-        left:0;
+    height: 60px;
+    position: absolute;
+    top:26px;;
+    display:none;
+    left:0;
 }
 .contract_basic input[type='text'],.contract_basic input[type='month']{
     width: 180px;
@@ -173,11 +173,10 @@
     margin: 5px 3%;
 }
 
-
 .apply_add_info{
 	height:75px;
 }
-.contract  .edit_btn{
+.contract .edit_btn{
     text-align: left;
 }
 
@@ -264,7 +263,6 @@
     margin-left:20px;
 }
 
-
 #fDrag{
     position: absolute;
     top:0;
@@ -287,7 +285,6 @@
     color: #fff;
 }
 .flow .choose{
-
     height: 130px;
     /*border: 1px solid red;*/
     display: block;
@@ -302,21 +299,16 @@
     line-height: 30px;
     margin-left: 30%;
     /* margin-bottom: 1px solid gray; */
-
     color: #fff;
 }
 .choose ul{
     list-style: none;
     cursor: pointer;
-
 }
 .choose ul li{
-
     width: 160px;
     /* border-bottom: 1px solid #567084; */
     color: #000;
-
-
 }
 .choose ul li:hover{
     color: #fff;
@@ -510,7 +502,7 @@
 .add_idcard_div, .add_passport_div, .update_idcard_div, .update_passport_div {
     margin-top: 10px;
     margin-bottom: 10px;
-    width: 610px;
+    width: 620px;
     height: 25px;
     display: -webkit-flex; /* Safari */
     display: flex;
@@ -674,7 +666,6 @@
 }
 
 
-
 .t11 {
     max-width: 5%;
     width: 5%;
@@ -820,23 +811,21 @@ html,body{
 .remindInText {
     animation: fadescale 2s linear infinite;
     -webkit-animation: fadescale 2s linear infinite;
-    // color: red;
+    /*color: red;*/
 }
 
 @keyframes fadescale {
     0% {
         opacity: 1;
-        // transform: scale(1);
+        /*transform: scale(1);*/
         color: red;
     }
     50% {
         opacity: 1;
-        // transform: scale(1.1);
         color: #FF1493;
     }
     100% {
         opacity: 0.5;
-        // transform: scale(1);
         color: #FF00FF;
     }
 }
@@ -844,7 +833,7 @@ html,body{
 @-webkit-keyframes fadescale {
     0% {
         opacity: 1;
-        // -webkit-transform: scale(1);
+        /*-webkit-transform: scale(1);*/
         color: red;
     }
     50% {
@@ -855,4 +844,29 @@ html,body{
         opacity: 0.5;
         color: #FF00FF;
     }
+}
+
+/*2018-09-20更新*/
+.flex_3 .btn {
+    padding: 3px 12px;
+}
+
+/*导航栏及搜索框各页面自定义*/
+.g-nav-ul li {
+    height: 80px !important;
+    line-height: 80px !important;
+}
+
+hr {
+    margin-top: 1px;
+    margin-bottom: 1px;
+}
+
+.u-admin img {
+    vertical-align: top;
+}
+
+div.g-nav h5, div.g-nav h6, div.u-admin h5 {
+    margin-top: 0px;
+    margin-bottom: 0px;
 }

@@ -29,13 +29,16 @@
               '#DE3656','#D6395B','#C93F64','#C0436C','#B64873','#A35283','#9D5588','#885F98','#7468A6','#6C6BA6','#5F72B6','#5A74B9','#5077BE','#4B7BC5','#467DC9','#4081CE','#3A83D3','#3183DA','#2A8BDF','#248EE3','#1E91E8','#1993EC','#1396F0','#0F98F4','#0B9AF7','#069CFA','#019FFF'
             ],
         allDepartArr: ["软件部","财务部","人事部","商务部","销售部","市场部","服务部","物流部","硬件部","应用部","标准服务部","研发部","厦门办事处"],
-        canDispatchPageArr_href: ["ApplicationGallery", "SoftwareDocument", "Transport", "GetOrderRoute", "GetOrderByPageOne", "PaymentRequest", "ServiceReport", "AssessmentStatistics", "Hardware", "GetHardwareRoute", "StandardProduct", "Customer", "GetCustomerInfo2"],
+        canDispatchPageArr_href: ["ApplicationGallery", "SoftwareDocument", "Transport", "GetOrderRoute", "GetOrderByPageOne", "GetOrderByPageTwo", "PaymentRequest", "ServiceReport", "AssessmentStatistics", "Hardware", "GetHardwareRoute", "StandardProduct", "Customer", "GetCustomerInfo2", "AllLab", "Lab", "Reimburse"],
+        notEouluCopy_href: ["OriginFactory","OriginFactorySearch","SoftwareImplementation","Tasking","Keysight","Price","PriceRoute","Transport","GetOrderRoute","GetOrderByPageOne", "GetOrderByPageTwo", "NonStandard","Inventory","OriginalQuotation","Supplier","AssessmentStatistics","StaffInfo","TrainingRecords","Admin","ServiceReport","SoftwareDocument","StandardProduct","Lab","Reimburse","WorkReport","SoftwareProject","BiddingDocument","PackingList","PaymentRequest","ApplicationGallery","Hardware","GetHardwareRoute","Customer","GetCustomerInfo2","AllLab"],
+        showNavArr_href: ["Schedule","SoftwareProduct","QuotationSystem","Transport", "GetOrderRoute", "GetOrderByPageOne", "GetOrderByPageTwo", "PackingList","Invoice","Equipment","OriginFactory","Inventory","Price","Requirement","Inventory","MachineDetails","SalesStatistics","LeaveApplication","DocumentUpload","QuotationSystem","StockPurchasing","Insurance","Proposal","PackingList","HotProduct","Commodity","Quality","QuantityWeight","TestReport","Fumigation","Origin","Shipment","Receiving","Acceptance","Customer","MachineDetails","Hardware","AfterSale","Schedule","RoutineVisit","SoftwareDocument","SoftwareProject","SoftwareProduct","CustomerInquiry","SoftwareImplementation","StaffInfo","LeaveApplication","SoftwareImplementation","Keysight","NonStandard","OriginalQuotation","Supplier","AssessmentStatistics","ServiceReport","StandardProduct","SalesQuotationSystem","Lab","Reimburse","WorkReport","BiddingDocument","PaymentRequest","ApplicationGallery","AllLab"],
         depart2PageObj: {
                 "物流部": {
                     // "物流统计": "Transport?ActualDelivery=no&column=DateOfSign&condition=All",
                     "物流统计": "Transport",
                     "物流统计#": "GetOrderRoute",
                     "物流统计##": "GetOrderByPageOne",
+                    "物流统计###": "GetOrderByPageTwo",
                     // "库存采购": "StockPurchasing?ActualDelivery=no&column=DateOfSign&condition=All",
                     "库存采购": "StockPurchasing",
                     "库存采购#": "PriceRoute",
@@ -288,6 +291,35 @@
                     }
                 },
                 "GetOrderByPageOne": {
+                    "lastModify": "Tue Sep 04 2018 17:49:45 GMT+0800 (中国标准时间)",
+                    "lastModifyTime": "1536054585000",
+                    // css
+                    "cssPrimary": {},
+                    // js
+                    "jsPrimary": {
+                        "bootstrap-grid-form-button-res-icon-list.min.js": {
+                            "referenceOrder": 0,
+                            "filePath": "js/libs/bootstrap/bootstrap-grid-form-button-res-icon-list.min.js",
+                            "mergeToParentFile": null
+                        },
+                        "msgbox.js": {
+                            "referenceOrder": 1,
+                            "filePath": "js/msgbox.js",
+                            "mergeToParentFile": "transport.js"
+                        },
+                        "responseLoading.js": {
+                            "referenceOrder": 2,
+                            "filePath": "js/global/responseLoading.js",
+                            "mergeToParentFile": "transport.js"
+                        },
+                        "transport.js": {
+                            "referenceOrder": 3,
+                            "filePath": "js/transport.js",
+                            "mergeToParentFile": "transport.js"
+                        }
+                    }
+                },
+                "GetOrderByPageTwo": {
                     "lastModify": "Tue Sep 04 2018 17:49:45 GMT+0800 (中国标准时间)",
                     "lastModifyTime": "1536054585000",
                     // css
@@ -1129,6 +1161,12 @@
         S_getDispatchPageArr: function(){
             return _DefaultParam.canDispatchPageArr_href;
         },
+        S_getNotEouluCopy: function(){
+            return _DefaultParam.notEouluCopy_href;
+        },
+        S_getShowNavArr: function(){
+            return _DefaultParam.showNavArr_href;
+        },
         // 获取pageHrefImportFileMap数据开始
         S_getPageHrefImportFileMap: function(){
             return _DefaultParam.pageHrefImportFileMap;
@@ -1256,7 +1294,7 @@
     // 版本号排除关键词、文件名或路径名，全文匹配
     var globalVersionExceptFileName = ["eoulu.ico","bootstrap","swiper-3.4.1.min.css","eouluCustom.css","reset.css","css/libs","css/extends","echarts","jquery","msgbox","ajaxfileupload.js","html2canvas.js","fullcalendar.min.js","jsPdf.debug.js","underscore-min.js","ProvinceandCity.js","dispatchScript-079ece4932.min.js","js/libs","plugins/"];
     // 版本号
-    var globalVersionNo = "1536897675562";
+    var globalVersionNo = "1536897675563";
 
     // echarts自定义渐变色
     // 用法：series[i].itemStyle.normal.color =
@@ -1302,6 +1340,7 @@
             "物流统计": "Transport",
             "物流统计#": "GetOrderRoute",
             "物流统计##": "GetOrderByPageOne",
+            "物流统计###": "GetOrderByPageTwo",
             // "库存采购": "StockPurchasing?ActualDelivery=no&column=DateOfSign&condition=All",
             "库存采购": "StockPurchasing",
             "库存采购#": "PriceRoute",

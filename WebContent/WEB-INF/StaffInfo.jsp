@@ -11,9 +11,10 @@
 <title>员工信息</title>
 <link rel="shortcut icon" href="image/eoulu.ico"/>
 <link rel="bookmark" href="image/eoulu.ico"/>
-<link rel="stylesheet" type="text/css" href="font-awesome-4.5.0/css/font-awesome.min.css">
+<!-- <link rel="stylesheet" type="text/css" href="font-awesome-4.5.0/css/font-awesome.min.css"> -->
+<link rel="stylesheet" href="css/libs/bootstrap-grid-form-btn-res-icon-tooltip-popover.min.css" type="text/css">
 <link rel="stylesheet" href="css/global/eouluCustom.css" type="text/css">
-<link rel="stylesheet" type="text/css" href="css/StaffInfo.css">
+<link rel="stylesheet" type="text/css" href="css/StaffInfo.css?iv=201809201122">
 </head>
 <body>
 	<div id="originfactory_wrapper">
@@ -27,8 +28,7 @@
 					<!-- 	=======================导航栏   开始 ================================== -->
 					<%@include file="nav.jsp"%>
 			<!-- 	=======================导航栏   结束 ================================== -->
-				<form id="top_text_from" name="top_text_from" method="GET"
-							action="StaffInfo">
+				<form id="top_text_from" name="top_text_from" method="GET" action="StaffInfo">
 							<!-- <input type="text" id="search" name="isSearch" value="search"
 								style="display: none;"> -->
 							<div class="select-content">
@@ -49,8 +49,7 @@
 												value="maxQuery" onclick="Check(this.value)">组合查询
 											</label>&nbsp;&nbsp;&nbsp;<br>
 										</c:otherwise>
-									</c:choose> <c:set var="dropdown"
-										value="${fn:split('姓名,所属部门,职位,工作地',',')}"></c:set>
+									</c:choose> <c:set var="dropdown" value="${fn:split('姓名,所属部门,职位,工作地',',')}"></c:set>
 									<div class="select1">
 										<select name="field1" id="type1">
 											<c:forEach items="${dropdown }" var="dropdownList1"
@@ -64,10 +63,8 @@
 													</c:otherwise>
 												</c:choose>
 											</c:forEach>
-
 										</select>
 										 <input type="text" id="searchContent1" name="content1" value="${content1}">
-
 									</div>
 									<!-- 第二个搜索框 -->
 								<c:if test="${queryType !='maxQuery'}">
@@ -85,16 +82,13 @@
 												</c:choose>
 											</c:forEach>
 										</select>
-										
 											<input type="text" id="searchContent2" name="content2" value="${content2}">
-
 									</div>
 									</c:if>
 									<c:if test="${queryType =='maxQuery'}">
 									<div class="select2" style="display: inline-block">
 										<select name="field2" id="type2">
-											<c:forEach items="${dropdown }" var="dropdownList2"
-												varStatus="status">
+											<c:forEach items="${dropdown }" var="dropdownList2" varStatus="status">
 												<c:choose>
 													<c:when test="${dropdownList2==field2}">
 														<option selected="selected">${dropdownList2}</option>
@@ -130,7 +124,7 @@
 						<table id="table1">
 							<tr style="background:#bfbfbf">
 								<td class="t11">序号</td>
-								<td class="t12">姓名<i class="fa fa-plus-square" id="more_info"></i></td>
+								<td class="t12">姓名<span class="glyphicon glyphicon-plus" aria-hidden="true" id="more_info"></span></td>
 								<td class="t13">联系手机 </td>
 								<td class="t14">籍贯</td>
 								<td class="t15">毕业院校</td>
@@ -468,7 +462,6 @@
 						                	</div>
 						                	<div class="flex_3">
 						                		<input type="button" class="bToggle" value="上传">
-						                		<a tabindex="0" class="btn btn-lg btn-danger" role="button" data-toggle="popover" data-trigger="focus" title="Dismissible popover" data-content="And here's some amazing content. It's very engaging. Right?" data-container="body">下载</a>
 						                	</div>
 						                </div>
 						        	</div>
@@ -484,22 +477,18 @@
 								</c:set>
 							</c:when>
 							<c:when test="${queryType == 'maxQuery'}">
-								<c:set var="queryUrl"
-								value="StaffInfo?queryType=${queryType}&field1=${field1}&content1=${content1}&field1=${field2}&content1=${content2}&currentPage=">
+								<c:set var="queryUrl" value="StaffInfo?queryType=${queryType}&field1=${field1}&content1=${content1}&field1=${field2}&content1=${content2}&currentPage=">
 								</c:set>
 							</c:when>
 							<c:otherwise>
-								<c:set var="queryUrl"
-								value="StaffInfo?currentPage=">
+								<c:set var="queryUrl" value="StaffInfo?currentPage=">
 								</c:set>
 							</c:otherwise>
-						
 						</c:choose>
 						 	
 						<div id="page">
 							<div class="pageInfo">
-								当前是第&nbsp;<span id="currentPage">${currentPage}</span>&nbsp;页,&nbsp;总计&nbsp;<span
-									id="allPage">${pageCounts}</span>页
+								当前是第&nbsp;<span id="currentPage">${currentPage}</span>&nbsp;页,&nbsp;总计&nbsp;<span id="allPage">${pageCounts}</span>页
 							</div>
 							<div class="changePage">
 								<input type="button" class="bToggle" value="首页" id="fistPage"
@@ -561,13 +550,9 @@
 	<!-- originfactor_wrapper结束	 -->
 	</div>
 </body>
-<!-- <script src="js/jquery-1.11.3.js" type="text/javascript" charset="utf-8"></script> -->
-<script src="js/swiper-3.4.1.jquery.min.js" type="text/javascript" charset="utf-8"></script>
-<!-- <script src="js/ajaxfileupload.js" type="text/javascript" charset="utf-8"></script> -->
+<script src="js/libs/bootstrap/bootstrap-grid-form-btn-res-icon-tooltip-popover.min.js"></script>
 <script src="js/msgbox.js"></script>
-<!-- <script src="js/msgbox_unload.js"></script> -->
-<!-- <script src="js/global/myFunction.js"></script> -->
-<script src="js/StaffInfo.js"></script>
+<script src="js/StaffInfo.js?iv=201809201122"></script>
 <script type="text/javascript">
 /****************** 跳页 **********************/
 function FistPage(arg) {
@@ -646,9 +631,9 @@ $(function() {
 		var len = FilePathArr.length - 1;
 		FilePathArr.map(function(currentValue,index,arr){
 			if(index<len){
-				str+='<span class="downFile_span">'+currentValue+'</span><br/>';
+				str+='<span class="downFile_span" title="'+currentValue+'">'+currentValue+'</span><br/>';
 			}else{
-				str+='<span class="downFile_span">'+currentValue+'</span>';
+				str+='<span class="downFile_span" title="'+currentValue+'">'+currentValue+'</span>';
 			}
 		});
 		/* 当参考
@@ -681,7 +666,7 @@ $(function() {
 		$(this).html(str);
 	});
 	$(document).on("click",".downFile_span",function(e){
-		var fileName = $(this).text();
+		var fileName = $(this).attr("title");
 		var form11 = $("<form method='post'><input type='text' name='FileName' value='"+fileName+"'></form>");
 		form11.attr({"action":"StaffInfo"});
 		form11.appendTo(document.body);
@@ -693,19 +678,15 @@ $(function() {
 	});
 
 	// 定时提醒reminded t25
-	var todayVal = globalGetToday();
 	$(".reminded.t25").each(function(){
 		var inCompanyTime = $(this).siblings(".EntryDate.t17").text();
 		if(inCompanyTime==""||inCompanyTime=="--") return true;
 		var remarkText = $(this).siblings(".Remarks.t26").text();
 		if(remarkText==""||remarkText=="--"){
-			var gapTime = parseInt(globalCalcTimeDiff(inCompanyTime,todayVal));
+			var gapTime = parseInt(globalCalcTimeDiff(inCompanyTime, globalGetToday()));
 			var gapMY = Math.floor(gapTime/90);
 			var gapMYText = getRemindedMapText(gapMY);
-			$(this).text(gapMYText);
-			$(this).attr("value",gapTime);
-			$(this).attr("title",gapMYText);
-			$(this).addClass("remindInText");
+			$(this).text(gapMYText).attr({"value": gapTime, "title": gapMYText}).addClass("remindInText");
 		}
 	});
 });
