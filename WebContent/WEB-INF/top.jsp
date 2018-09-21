@@ -408,14 +408,16 @@
 		<c:if test="${authoritiy=='SendComments'}"><span id="SendComments_has_span" style="display: none;">是</span></c:if>
 	</c:forEach>
 </body>
-<!-- <script src="js/libs/jquery-3.3.1.min.js" type="text/javascript" charset="utf-8"></script> -->
-<!-- <script src="plugins/ecdo/ec-do-1.1.4.min.js"></script> -->
-<!-- <script src="plugins/cookie/jquery.cookie.js"></script> -->
-<!-- <script src="plugins/imageResizeTool/imageResizeTool.min.js"></script> -->
-<!-- <script src="js/msgbox_unload.js"></script> -->
+<%--
+	<!-- <script src="js/libs/jquery-3.3.1.min.js" type="text/javascript" charset="utf-8"></script> -->
+	<!-- <script src="plugins/ecdo/ec-do-1.1.4.min.js"></script> -->
+	<!-- <script src="plugins/cookie/jquery.cookie.js"></script> -->
+	<!-- <script src="plugins/imageResizeTool/imageResizeTool.min.js"></script> -->
+	<!-- <script src="js/msgbox_unload.js"></script> -->
+--%>
 <script src="js/libs/lodash.min.js"></script>
 <script src="js/modules/sharing/top-dbec435863.min.js"></script>
-<script src="js/global/myFunction.js?iv=201809201729" type="text/javascript" charset="utf-8"></script>
+<script src="js/global/myFunction.js?iv=201809211625" type="text/javascript" charset="utf-8"></script>
 <script>
 var ServiceUpdate =<%=request.getSession().getAttribute("startTime") %>
 

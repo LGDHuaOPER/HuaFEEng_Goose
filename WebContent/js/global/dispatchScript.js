@@ -1,6 +1,8 @@
 $(function(){
 	var dispatchCurHref = eouluGlobal.S_getCurPageHref();
 	if(eouluGlobal.S_getPageHrefImportFileMapAllKey().indexOf(dispatchCurHref) > -1){
+		var Environment = eouluGlobal.S_getEnvironment();
+		var Reference = Environment == "development" ? "srcPath" : "referencePath";
 		var notSortFileJsonArr = [];
 		var loadJsFileObj = eouluGlobal.S_getCssJsPrimaryByHref(dispatchCurHref, "jsPrimary");
 		$.each(loadJsFileObj, function(name, value){
@@ -19,7 +21,7 @@ $(function(){
 		console.log(mergeToParentFileArr);
 		var mergeToParentFilePathArr = [];
 		mergeToParentFileArr.map(function(val, i, ar){
-			mergeToParentFilePathArr.push(eouluGlobal.S_getCompressFilePathMapLowerValue("jsMerge", val, "referencePath"));
+			mergeToParentFilePathArr.push(eouluGlobal.S_getCompressFilePathMapLowerValue("jsMerge", val, Reference));
 		});
 		console.log(mergeToParentFilePathArr);
 		/*加载脚本部分*/

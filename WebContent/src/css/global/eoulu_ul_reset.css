@@ -1,0 +1,21 @@
+/*bs组件 nav 去除项目样式*/
+ul.nav {
+	clear: none !important;
+	min-width: 1px !important;
+	width: auto !important;
+	height: auto !important;
+	line-height: 1.42857143 !important;
+	margin: 0 0 !important;
+	background: transparent !important;
+}
+
+ul.nav li a {
+	color: #337ab7 !important;
+	cursor: pointer !important;
+}
+
+ul.nav li.active a {
+	color: #555 !important;
+	cursor: default !important;
+}
+/*bs组件 nav 去除项目样式 end*/

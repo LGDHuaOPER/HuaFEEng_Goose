@@ -22,4 +22,6 @@ public interface LabService {
 	
 	public void exportConfig(int LabID,String Model,String path);
 	
+	public boolean deleteFile(int ID, String fileName);
+	
 }

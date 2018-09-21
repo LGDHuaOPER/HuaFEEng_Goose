@@ -22,6 +22,8 @@
     var _global;
     // 定义一些默认参数
     var _DefaultParam = {
+        environment: "development",
+        // environment: "product",
         projectName: "cfChicken8",
         versionNO: "1536897675562",
         versionExceptArr: ["eoulu.ico","bootstrap","swiper-3.4.1.min.css","eouluCustom.css","reset.css","css/libs","css/extends","echarts","jquery","msgbox","ajaxfileupload.js","html2canvas.js","fullcalendar.min.js","jsPdf.debug.js","underscore-min.js","ProvinceandCity.js","dispatchScript-079ece4932.min.js","js/libs","plugins/"],
@@ -801,67 +803,78 @@
                     "originPath": ["./cfChicken8/WebContent/plugins/awesomplete/awesomplete.css", "./cfChicken8/WebContent/plugins/awesomplete/awesomplete.theme.css", "./cfChicken8/WebContent/css/modules/software/mailSetting.css"],
                     "outBasePath": "./cfChicken8/WebContent/css/extends/integrationLibs/",
                     "gulp-rev": "awesomplete-mailSetting-a439ec29a7.min.css",
-                    "referencePath": "css/extends/integrationLibs/awesomplete-mailSetting-a439ec29a7.min.css"
+                    "referencePath": "css/extends/integrationLibs/awesomplete-mailSetting-a439ec29a7.min.css",
+                    "srcPath": "src/css/extends/integrationLibs/awesomplete-mailSetting-a439ec29a7.min.css"
                 },
                 "ApplicationGallery.css": {
                     "originPath": ["./cfChicken8/WebContent/css/global/global_table_style.css", "./cfChicken8/WebContent/css/modules/serviced/ApplicationGallery.css", "./cfChicken8/WebContent/css/global/add_update_section.css", "./cfChicken8/WebContent/css/global/eoulu_ul_reset.css"],
                     "outBasePath": "./cfChicken8/WebContent/css/modules/serviced/",
                     "gulp-rev": "ApplicationGallery-48a2d648b2.min.css",
-                    "referencePath": "css/modules/serviced/ApplicationGallery-48a2d648b2.min.css"
+                    "referencePath": "css/modules/serviced/ApplicationGallery-48a2d648b2.min.css",
+                    "srcPath": "src/css/modules/serviced/ApplicationGallery-48a2d648b2.min.css"
                 },
                 "SoftwareDocument.css": {
                     "originPath": ["./cfChicken8/WebContent/css/global/global_table_style.css", "./cfChicken8/WebContent/css/SoftwareDocument.css", "./cfChicken8/WebContent/css/global/eoulu_ul_reset.css", "./cfChicken8/WebContent/css/modules/software/time_line.css"],
                     "outBasePath": "./cfChicken8/WebContent/css/modules/software/",
                     "gulp-rev": "SoftwareDocument-0dd1cea1d7.min.css",
-                    "referencePath": "css/modules/software/SoftwareDocument-0dd1cea1d7.min.css"
+                    "referencePath": "css/modules/software/SoftwareDocument-0dd1cea1d7.min.css",
+                    "srcPath": "src/css/modules/software/SoftwareDocument-0dd1cea1d7.min.css"
                 },
                 "ServiceReport.css": {
                     "originPath": ["./cfChicken8/WebContent/css/global/eouluCustom.css", "./cfChicken8/WebContent/css/ServiceReport.css", "./cfChicken8/WebContent/css/global/dispatchLoading.css"],
                     "outBasePath": "./cfChicken8/WebContent/css/modules/serviced/",
                     "gulp-rev": "ServiceReport-30eec74d24.min.css",
-                    "referencePath": "css/modules/serviced/ServiceReport-30eec74d24.min.css"
+                    "referencePath": "css/modules/serviced/ServiceReport-30eec74d24.min.css",
+                    "srcPath": "src/css/modules/serviced/ServiceReport-30eec74d24.min.css"
                 },
                 "examination.css": {
                     "originPath": ["./cfChicken8/WebContent/css/global/dispatchLoading.css", "./cfChicken8/WebContent/css/libs/bootstrap-multiselect.css", "./cfChicken8/WebContent/css/global/eouluCustom.css", "./cfChicken8/WebContent/css/examination.css"],
                     "outBasePath": "./cfChicken8/WebContent/css/modules/personnel/",
                     "gulp-rev": "examination-3a846d3f0d.min.css",
-                    "referencePath": "css/modules/personnel/examination-3a846d3f0d.min.css"
+                    "referencePath": "css/modules/personnel/examination-3a846d3f0d.min.css",
+                    "srcPath": "src/css/modules/personnel/examination-3a846d3f0d.min.css"
                 },
                 "hardware.css": {
                     "originPath": ["./cfChicken8/WebContent/css/global/global_table_style.css", "./cfChicken8/WebContent/css/hardware.css"],
                     "outBasePath": "./cfChicken8/WebContent/css/modules/serviced/",
                     "gulp-rev": "hardware-b64078737b.min.css",
-                    "referencePath": "css/modules/serviced/hardware-b64078737b.min.css"
+                    "referencePath": "css/modules/serviced/hardware-b64078737b.min.css",
+                    "srcPath": "src/css/modules/serviced/hardware-b64078737b.min.css"
                 },
                 "StandardProduct.css": {
                     "originPath": ["./cfChicken8/WebContent/css/global/eouluCustom.css", "./cfChicken8/WebContent/css/StandardProduct.css"],
                     "outBasePath": "./cfChicken8/WebContent/css/modules/serviced/",
                     "gulp-rev": "StandardProduct-855edafc10.min.css",
-                    "referencePath": "css/modules/serviced/StandardProduct-855edafc10.min.css"
+                    "referencePath": "css/modules/serviced/StandardProduct-855edafc10.min.css",
+                    "srcPath": "src/css/modules/serviced/StandardProduct-855edafc10.min.css"
                 },
                 "customer.css": {
                     "originPath": ["./cfChicken8/WebContent/css/modules/commerce/customer.css"],
                     "outBasePath": "./cfChicken8/WebContent/css/modules/commerce/",
                     "gulp-rev": "customer-2d46b78604.min.css",
-                    "referencePath": "css/modules/commerce/customer-2d46b78604.min.css"
+                    "referencePath": "css/modules/commerce/customer-2d46b78604.min.css",
+                    "srcPath": "src/css/modules/commerce/customer-2d46b78604.min.css"
                 },
                 "Lab.css": {
                     "originPath": ["./cfChicken8/WebContent/css/modules/laboratory/Lab.css"],
                     "outBasePath": "./cfChicken8/WebContent/css/modules/laboratory/",
-                    "gulp-rev": "Lab-d0d0edd961.min.css",
-                    "referencePath": "css/modules/laboratory/Lab-d0d0edd961.min.css"
+                    "gulp-rev": "Lab-ecd0227fc6.min.css",
+                    "referencePath": "css/modules/laboratory/Lab-ecd0227fc6.min.css",
+                    "srcPath": "src/css/modules/laboratory/Lab-ecd0227fc6.min.css"
                 },
                 "reimburse.css": {
                     "originPath": ["./cfChicken8/WebContent/css/modules/personnel/reimburse.css"],
                     "outBasePath": "./cfChicken8/WebContent/css/modules/personnel/",
                     "gulp-rev": "reimburse-c0f068a8f6.min.css",
-                    "referencePath": "css/modules/personnel/reimburse-c0f068a8f6.min.css"
+                    "referencePath": "css/modules/personnel/reimburse-c0f068a8f6.min.css",
+                    "srcPath": "src/css/modules/personnel/reimburse-c0f068a8f6.min.css"
                 },
                 "PaymentRequest.css": {
                     "originPath": ["./cfChicken8/WebContent/css/modules/personnel/PaymentRequest.css"],
                     "outBasePath": "./cfChicken8/WebContent/css/modules/personnel/",
                     "gulp-rev": "PaymentRequest-6bc602eb88.min.css",
-                    "referencePath": "css/modules/personnel/PaymentRequest-6bc602eb88.min.css"
+                    "referencePath": "css/modules/personnel/PaymentRequest-6bc602eb88.min.css",
+                    "srcPath": "src/css/modules/personnel/PaymentRequest-6bc602eb88.min.css"
                 }
             },
             "jsMerge": {
@@ -869,91 +882,106 @@
                     "originPath": ["./cfChicken8/WebContent/js/jquery-1.12.3.min.js", "./cfChicken8/WebContent/plugins/cookie/jquery.cookie.js", "./cfChicken8/WebContent/js/ajaxfileupload.js"],
                     "outBasePath": "./cfChicken8/WebContent/js/libs/integrationLibs/",
                     "gulp-rev": "jquery-cookie-ajaxfile-77692a8173.min.js",
-                    "referencePath": "js/libs/integrationLibs/jquery-cookie-ajaxfile-77692a8173.min.js"
+                    "referencePath": "js/libs/integrationLibs/jquery-cookie-ajaxfile-77692a8173.min.js",
+                    "srcPath": "src/js/libs/integrationLibs/jquery-cookie-ajaxfile-77692a8173.min.js"
                 },
                 "msgbox_all.js": {
                     "originPath": ["./cfChicken8/WebContent/js/msgbox.js", "./cfChicken8/WebContent/js/msgbox_unload.js"],
                     "outBasePath": "./cfChicken8/WebContent/js/libs/integrationLibs/",
                     "gulp-rev": "msgbox_all-56b86b3095.min.js",
-                    "referencePath": "js/libs/integrationLibs/msgbox_all-56b86b3095.min.js"
+                    "referencePath": "js/libs/integrationLibs/msgbox_all-56b86b3095.min.js",
+                    "srcPath": "src/js/libs/integrationLibs/msgbox_all-56b86b3095.min.js"
                 },
                 "awesomplete-mailSetting.js": {
                     "originPath": ["./cfChicken8/WebContent/plugins/awesomplete/awesomplete.min.js", "./cfChicken8/WebContent/js/modules/software/mailSetting.js"],
                     "outBasePath": "./cfChicken8/WebContent/js/libs/integrationLibs/",
                     "gulp-rev": "awesomplete-mailSetting-ddfa04e4f1.min.js",
-                    "referencePath": "js/libs/integrationLibs/awesomplete-mailSetting-ddfa04e4f1.min.js"
+                    "referencePath": "js/libs/integrationLibs/awesomplete-mailSetting-ddfa04e4f1.min.js",
+                    "srcPath": "src/js/libs/integrationLibs/awesomplete-mailSetting-ddfa04e4f1.min.js"
                 },
                 "ApplicationGallery.js": {
                     "originPath": ["./cfChicken8/WebContent/js/modules/serviced/ApplicationGallery.js"],
                     "outBasePath": "./cfChicken8/WebContent/js/modules/serviced/",
                     "gulp-rev": "ApplicationGallery-bb5a55da9e.min.js",
-                    "referencePath": "js/modules/serviced/ApplicationGallery-bb5a55da9e.min.js"
+                    "referencePath": "js/modules/serviced/ApplicationGallery-bb5a55da9e.min.js",
+                    "srcPath": "src/js/modules/serviced/ApplicationGallery-bb5a55da9e.min.js"
                 },
                 "dispatchScript.js": {
                     "originPath": ["./cfChicken8/WebContent/js/global/dispatchScript.js"],
                     "outBasePath": "./cfChicken8/WebContent/js/global/",
                     "gulp-rev": "dispatchScript-079ece4932.min.js",
-                    "referencePath": "js/global/dispatchScript-2b3aa5cac9.min.js"
+                    "referencePath": "js/global/dispatchScript-2b3aa5cac9.min.js",
+                    "srcPath": "src/js/global/dispatchScript-2b3aa5cac9.min.js"
                 },
                 "SoftwareDocument.js": {
                     "originPath": ["./cfChicken8/WebContent/js/global/responseLoading.js", "./cfChicken8/WebContent/js/SoftwareDocument.js"],
                     "outBasePath": "./cfChicken8/WebContent/js/modules/software/",
                     "gulp-rev": "SoftwareDocument-698d116bb8.min.js",
-                    "referencePath": "js/modules/software/SoftwareDocument-698d116bb8.min.js"
+                    "referencePath": "js/modules/software/SoftwareDocument-698d116bb8.min.js",
+                    "srcPath": "src/js/modules/software/SoftwareDocument-698d116bb8.min.js"
                 },
                 "transport.js": {
                     "originPath": ["./cfChicken8/WebContent/js/msgbox.js", "./cfChicken8/WebContent/js/global/responseLoading.js", "./cfChicken8/WebContent/js/transport.js"],
                     "outBasePath": "./cfChicken8/WebContent/js/modules/transport/",
                     "gulp-rev": "transport-0082f74523.min.js",
-                    "referencePath": "js/modules/transport/transport-0082f74523.min.js"
+                    "referencePath": "js/modules/transport/transport-0082f74523.min.js",
+                    "srcPath": "src/js/modules/transport/transport-0082f74523.min.js"
                 },
                 "ServiceReport.js": {
                     "originPath": ["./cfChicken8/WebContent/js/libs/jSignature.min.js", "./cfChicken8/WebContent/plugins/colResizable/colResizable-1.6.min.js", "./cfChicken8/WebContent/js/ServiceReport.js"],
                     "outBasePath": "./cfChicken8/WebContent/js/modules/serviced/",
                     "gulp-rev": "ServiceReport-2951b6ba44.min.js",
-                    "referencePath": "js/modules/serviced/ServiceReport-2951b6ba44.min.js"
+                    "referencePath": "js/modules/serviced/ServiceReport-2951b6ba44.min.js",
+                    "srcPath": "src/js/modules/serviced/ServiceReport-2951b6ba44.min.js"
                 },
                 "examination.js": {
                     "originPath": ["./cfChicken8/WebContent/js/libs/bootstrap-multiselect.js", "./cfChicken8/WebContent/plugins/echarts/theme/eoulu_chart_1.js", "./cfChicken8/WebContent/js/examination.js"],
                     "outBasePath": "./cfChicken8/WebContent/js/modules/personnel/",
                     "gulp-rev": "examination-179cada3b8.min.js",
-                    "referencePath": "js/modules/personnel/examination-179cada3b8.min.js"
+                    "referencePath": "js/modules/personnel/examination-179cada3b8.min.js",
+                    "srcPath": "src/js/modules/personnel/examination-179cada3b8.min.js"
                 },
                 "hardware.js": {
                     "originPath": ["./cfChicken8/WebContent/js/msgbox.js", "./cfChicken8/WebContent/js/hardware.js"],
                     "outBasePath": "./cfChicken8/WebContent/js/modules/serviced/",
                     "gulp-rev": "hardware-f19ddd9986.min.js",
-                    "referencePath": "js/modules/serviced/hardware-f19ddd9986.min.js"
+                    "referencePath": "js/modules/serviced/hardware-f19ddd9986.min.js",
+                    "srcPath": "src/js/modules/serviced/hardware-f19ddd9986.min.js"
                 },
                 "StandardProduct.js": {
                     "originPath": ["./cfChicken8/WebContent/js/global/responseLoading.js", "./cfChicken8/WebContent/js/StandardProduct.js"],
                     "outBasePath": "./cfChicken8/WebContent/js/modules/serviced/",
                     "gulp-rev": "StandardProduct-acbe9a200f.min.js",
-                    "referencePath": "js/modules/serviced/StandardProduct-acbe9a200f.min.js"
+                    "referencePath": "js/modules/serviced/StandardProduct-acbe9a200f.min.js",
+                    "srcPath": "src/js/modules/serviced/StandardProduct-acbe9a200f.min.js"
                 },
                 "customer.js": {
                     "originPath": ["./cfChicken8/WebContent/js/modules/commerce/customer.js"],
                     "outBasePath": "./cfChicken8/WebContent/js/modules/commerce/",
                     "gulp-rev": "customer-a03b5a60b3.min.js",
-                    "referencePath": "js/modules/commerce/customer-a03b5a60b3.min.js"
+                    "referencePath": "js/modules/commerce/customer-a03b5a60b3.min.js",
+                    "srcPath": "src/js/modules/commerce/customer-a03b5a60b3.min.js"
                 },
                 "Lab.js": {
                     "originPath": ["./cfChicken8/WebContent/js/modules/laboratory/Lab.js"],
                     "outBasePath": "./cfChicken8/WebContent/js/modules/laboratory/",
-                    "gulp-rev": "Lab-0fcdac365a.min.js",
-                    "referencePath": "js/modules/laboratory/Lab-0fcdac365a.min.js"
+                    "gulp-rev": "Lab-4be8c6a8d3.min.js",
+                    "referencePath": "js/modules/laboratory/Lab-4be8c6a8d3.min.js",
+                    "srcPath": "src/js/modules/laboratory/Lab-4be8c6a8d3.min.js"
                 },
                 "reimburse.js": {
                     "originPath": ["./cfChicken8/WebContent/js/modules/personnel/reimburse.js"],
                     "outBasePath": "./cfChicken8/WebContent/js/modules/personnel/",
                     "gulp-rev": "reimburse-d7048b79a9.min.js",
-                    "referencePath": "js/modules/personnel/reimburse-d7048b79a9.min.js"
+                    "referencePath": "js/modules/personnel/reimburse-d7048b79a9.min.js",
+                    "srcPath": "src/js/modules/personnel/reimburse-d7048b79a9.min.js"
                 },
                 "PaymentRequest.js": {
                     "originPath": ["./cfChicken8/WebContent/js/modules/personnel/PaymentRequest.js"],
                     "outBasePath": "./cfChicken8/WebContent/js/modules/personnel/",
                     "gulp-rev": "PaymentRequest-4b3d5152bd.min.js",
-                    "referencePath": "js/modules/personnel/PaymentRequest-4b3d5152bd.min.js"
+                    "referencePath": "js/modules/personnel/PaymentRequest-4b3d5152bd.min.js",
+                    "srcPath": "src/js/modules/personnel/PaymentRequest-4b3d5152bd.min.js"
                 }
             }
         }
@@ -1138,6 +1166,9 @@
         // @获取默认参数@
         S_getDefaultParam: function(){
             return _DefaultParam;
+        },
+        S_getEnvironment: function(){
+            return _DefaultParam.environment;
         },
         S_getProjectName: function(){
             return _DefaultParam.projectName;

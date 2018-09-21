@@ -243,27 +243,34 @@ public class ScheduleDao {
 		List<Map<String, Object>> ls = null;
 		DBUtil db = new DBUtil();
 		if (startTime.equals("0000-00-00") && endTime.equals("0000-00-00")) {
-			String sql = "SELECT province,count(province) times from t_schedule LEFT JOIN t_provinces "
-					+"on t_schedule.Destination = t_provinces.province GROUP BY province UNION "
-					+"SELECT province,COUNT(province) times from t_schedule LEFT JOIN t_cities ON "
-					+"t_schedule.Destination = t_cities.city LEFT JOIN t_provinces ON "
-					+"t_cities.provinceid = t_provinces.provinceid GROUP BY province ORDER BY times DESC";
+			String sql = "SELECT t_provinces.province,COUNT(t_provinces.province) times FROM t_schedule,"
+					+ "t_provinces WHERE LOCATE(t_schedule.Destination,t_provinces.province)>0 "
+					+ "AND t_schedule.Destination != '' GROUP BY province UNION SELECT a.province,"
+					+ "COUNT(a.province) times FROM t_schedule,(SELECT t_cities.city,t_provinces.province "
+					+ "from t_cities LEFT JOIN t_provinces ON t_cities.provinceid = t_provinces.provinceid) a "
+					+ "WHERE LOCATE(t_schedule.Destination,a.city)>0 AND t_schedule.Destination != ''  "
+					+ "GROUP BY a.province ORDER BY times DESC";
 			Object[] param = null;
 			ls = db.QueryToList(sql, param);
 		} else if(name.equals("")){
-			String sql ="SELECT province,count(province) times from t_schedule LEFT JOIN t_provinces "
-					+"on t_schedule.Destination = t_provinces.province where Date" + " BETWEEN ? AND ? GROUP BY province UNION "
-					+"SELECT province,COUNT(province) times from t_schedule LEFT JOIN t_cities ON "
-					+"t_schedule.Destination = t_cities.city LEFT JOIN t_provinces ON "
-					+"t_cities.provinceid = t_provinces.provinceid where Date" + " BETWEEN ? AND ? GROUP BY province ORDER BY times DESC";
+			String sql ="SELECT t_provinces.province,COUNT(t_provinces.province) times FROM t_schedule,"
+					+ "t_provinces WHERE LOCATE(t_schedule.Destination,t_provinces.province)>0 "
+					+ "AND t_schedule.Destination != '' AND (Date BETWEEN ? AND ?)GROUP BY province "
+					+ "UNION SELECT a.province,COUNT(a.province) times FROM t_schedule,(SELECT t_cities.city,t_provinces.province "
+					+ "from t_cities LEFT JOIN t_provinces ON t_cities.provinceid = t_provinces.provinceid) a "
+					+ "WHERE LOCATE(t_schedule.Destination,a.city)>0 AND t_schedule.Destination != '' AND "
+					+ "(Date BETWEEN ? AND ?) GROUP BY province ORDER BY times DESC";
 			Object[] param = new Object[] { startTime, endTime,startTime, endTime };
 			ls = db.QueryToList(sql, param);
 		}else{
-			String sql = "SELECT province,count(province) times from t_schedule LEFT JOIN t_provinces "
-					+"on t_schedule.Destination = t_provinces.province where replace(Name,' ','') = replace(?,' ','') and Date" + " BETWEEN ? AND ?  GROUP BY province UNION "
-					+"SELECT province,COUNT(province) times from t_schedule LEFT JOIN t_cities ON "
-					+"t_schedule.Destination = t_cities.city LEFT JOIN t_provinces ON "
-					+"t_cities.provinceid = t_provinces.provinceid where replace(Name,' ','') = replace(?,' ','') and Date" + " BETWEEN ? AND ?  GROUP BY province ORDER BY times DESC";
+			String sql = "SELECT t_provinces.province,COUNT(t_provinces.province) times FROM t_schedule,"
+					+ "t_provinces WHERE LOCATE(t_schedule.Destination,t_provinces.province)>0 "
+					+ "AND t_schedule.Destination != '' AND replace(Name,' ','') = replace(?,' ','') AND "
+					+ "Date BETWEEN ? AND ?GROUP BY province UNION SELECT a.province,"
+					+ "COUNT(a.province) times FROM t_schedule,(SELECT t_cities.city,t_provinces.province "
+					+ "from t_cities LEFT JOIN t_provinces ON t_cities.provinceid = t_provinces.provinceid) a "
+					+ "WHERE LOCATE(t_schedule.Destination,a.city)>0 AND t_schedule.Destination != '' AND "
+					+ "replace(Name,' ','') = replace(?,' ','') and Date BETWEEN ? AND ?  GROUP BY province ORDER BY times DESC";
 			Object[] param = new Object[] { name, startTime, endTime, name, startTime, endTime };
 			ls = db.QueryToList(sql, param);
 		}

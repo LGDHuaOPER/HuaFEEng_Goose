@@ -1,0 +1,128 @@
+body {
+	background: #e4e8eb;
+}
+
+/*表格*/
+.g_container_body_table {
+	width: 100%;
+    font-size: 15px;
+}
+
+.g_container {
+	min-width: 1000px;
+	width: 90%;
+	margin: 0 auto;
+}
+
+/*头信息*/
+.g_container_info {
+	position: relative;
+	background: #ddd;
+	width: 100%;
+	height: 50px;
+	margin-bottom: 10px;
+	margin-top: 10px;
+}
+
+.g_container_info_l {
+	height: 50px;
+	line-height: 50px;
+	width: calc(100% - 175px);
+}
+
+.g_container_info_r {
+	position: absolute;
+	right: 2px;
+	top: 0;
+	height: 50px;
+	line-height: 50px;
+	width: 170px;
+}
+
+/*地址栏元素*/
+.statistics_staff_tab, .statistics_time_tab {
+	display: inline-block;
+	font-size: 15px;
+	font-weight: 600;
+	width: 150px;
+	text-align: center;
+	height: 50px;
+	line-height: 50px;
+}
+
+.statistics_staff_tab:hover, .statistics_time_tab:hover {
+	cursor: pointer;
+	background: #bbb;
+}
+
+#current_tab {
+	color: #00aeef;
+}
+
+/*主体*/
+.g_container_body {
+	width: 100%;
+	background: #fff;
+}
+
+.g_container_body_in {
+	padding-bottom: 20px;
+	padding-left: 10px;
+	padding-right: 10px;
+}
+
+.g_container_body_info {
+	height: 50px;
+	line-height: 50px;
+	position: relative;
+}
+
+.g_container_body_info_l, .g_container_body_info_r {
+	display: inline-block;
+	height: 50px;
+	line-height: 50px;
+}
+
+.g_container_body_info_l {
+	width: calc(100% - 500px);
+	font-size: 16px;
+	font-weight: 700;
+}
+
+.g_container_body_info_r {
+	position: absolute;
+	right: 2px;
+	top: 0;
+	width: auto;
+}
+
+.g_container_body_info_r button {
+	border-radius: 15px;
+}
+
+#year_btn, #month_btn, #week_btn, .Eoulu_chart, .Formfactor_chart, .Experiment_chart, .year_chart, .month_chart, .week_chart, .g_container_info_r {
+	display: none;
+}
+
+/*柱状图*/
+.g_container_body_table [class$="_chart"] {
+	padding-top: 15px;
+	padding-buttom: 15px;
+	height: 450px;
+	width: 100%;
+	border-bottom: 2px dashed #ccc;
+}
+
+#year_sel, #month_sel {
+	color: #999;
+}
+
+.g_container_body_table [id$="_charts_cont"] {
+	width: 1000px;
+	height: 415px;
+	margin: auto auto;
+}
+
+.ym_sel_group {
+	max-width: 170px;
+}

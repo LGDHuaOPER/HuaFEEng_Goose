@@ -1,0 +1,134 @@
+body {
+	height: auto;
+}
+
+.g_container {
+	min-width: 1000px;
+	width: 90%;
+	margin: 0 auto;
+}
+
+.g_body {
+	padding-top: 10px;
+}
+
+
+/*导航切换*/
+	/*头信息*/
+.g_container_info {
+	background: #ddd;
+	opacity: 0.7;
+	width: 100%;
+	height: 50px;
+	margin-bottom: 10px;
+	margin-top: 10px;
+}
+
+.g_container_info_l {
+	display: inline-block;
+	vertical-align: top;
+	height: 50px;
+	line-height: 50px;
+}
+
+	/*ul胶囊切换*/
+.g_container_info_l ul {
+    margin-top: 0;
+    margin-bottom: 0;
+	padding-left: 0;
+    list-style: none;
+    line-height: 30px;
+    font-size: 16px;
+}
+
+.g_container_info_l ul>li+li {
+    margin-left: 4px;
+}
+
+.g_container_info_l ul>li {
+    float: left;
+    position: relative;
+    display: block;
+    cursor: pointer;
+}
+
+.g_container_info_l ul>li>span {
+	position: relative;
+    display: block;
+    padding: 10px 20px;
+    border-radius: 4px;
+    color: #337ab7;
+    text-decoration: none;
+    background-color: transparent;
+}
+
+.g_container_info_l ul>li.current_tab>span {
+	color: #fff;
+	background-color: #337ab7;
+}
+
+.g_container_info_l ul>li>span:hover {
+	background-color: #eee;
+	cursor: pointer;
+}
+	/*ul胶囊切换--end*/
+
+/*页面主体内容包裹*/
+.g_container_body {
+	width: 100%;
+	background: #ddd;
+	opacity: 0.7;
+}
+
+.g_container_body_in {
+	margin: 0 20px 20px 20px;
+}
+
+div[class$='_statistics_wrapper'] {
+	padding-top: 5px;
+}
+
+div[class$='_statistics_wrapper']>div {
+	padding-left: 10px;
+}
+
+div[class$='_statistics_wrapper']>div:not(:last-child) {
+	margin-bottom: 15px;
+	background: #fff;
+}
+
+div[class$='_statistics_wrapper']>div+div {
+	margin-top: 15px;
+	background: #fff;
+}
+
+div[class$='_statistics_wrapper'] div[class$='_title'] {
+	height: 40px;
+	line-height: 40px;
+	color: #00aeef;
+	text-indent: 10px;
+	font-weight: 600;
+	font-size: 17px;
+}
+
+div[class$='_statistics_wrapper'] div[class$='_cont'] {
+	height: 450px;
+	padding-bottom: 10px;
+}
+
+/*维护默认隐藏元素*/
+.bar_statistics_wrapper_all, .g_container_info_l li:nth-child(2) {
+	display: none;
+}
+
+/*维护鼠标悬浮元素*/
+.update_td_notice, .notice_departments, .notice_Status, .notice_Examiners, .examiner_sel_top_r, .department_sele_top_r {
+	cursor: pointer;
+}
+
+/*维护超出隐藏*/
+.m_table th, .m_table td, .m_table4 th, .m_table4 td{
+	overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}

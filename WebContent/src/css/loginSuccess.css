@@ -1,0 +1,42 @@
+body{
+    background: #00aeef;
+}
+div{
+    position:fixed;
+    margin:auto;
+    left:0;
+    right:0;
+    top:0;
+    bottom:0;
+    width: 450px;
+    height:340px;
+}
+img{
+    display: block;
+    width: 450px;
+    height:340px;
+    border: none;
+}
+
+#loading{
+    position:fixed;
+    margin:auto;
+    left:0;
+    right:0;
+    top:0;
+    bottom:0;
+
+    width: 450px;
+    height:340px;
+}
+
+p{
+    position: absolute;
+    left:0;
+    bottom: 10px;
+    text-align: center;
+    width:440px;
+    font-size: 22px;
+    color:#fff;
+    font-family:'microsoft yahei';
+}

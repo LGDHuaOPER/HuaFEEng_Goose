@@ -1,0 +1,313 @@
+body {
+	background: #e4e8eb;
+}
+
+/*表格*/
+.g_container_body_table {
+	width: 100%;
+    font-size: 15px;
+}
+
+.g_container_body_table table {
+	box-sizing: border-box;
+    border-collapse: collapse;
+	width: 100%;
+}
+
+.g_container_body_table table thead tr {
+	background: #ccc;
+}
+
+.g_container_body_table table th, .g_container_body_table table td {
+	/*min-width: 100px;*/
+	height: 45px;
+	text-align: center;
+}
+
+.g_container {
+	min-width: 1000px;
+	width: 90%;
+	margin: 0 auto;
+}
+
+/*分类表格*/
+.g_container_body_table table[class$="_table"]:not(.transportdetail_table) th{
+	background: #00aeef;
+}
+
+.g_container_body_table table[class$="_table"]:not(.transportdetail_table) th:nth-child(1){
+	min-width: 40px;
+	width: 4.1%;
+}
+
+.g_container_body_table table[class$="_table"]:not(.transportdetail_table) th:nth-child(2){
+	min-width: 52px;
+	width: 5.4%;
+}
+
+.g_container_body_table table[class$="_table"]:not(.transportdetail_table) th:nth-child(3){
+	min-width: 129px;
+	max-width: 129px;
+	width: 13.5%;
+}
+
+.g_container_body_table table[class$="_table"]:not(.transportdetail_table) tbody td:nth-child(3) {
+	min-width: 129px;
+	max-width: 129px;
+	width: 13.5%;
+	overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+.g_container_body_table table[class$="_table"]:not(.transportdetail_table) th:nth-child(4){
+	min-width: 251px;
+	max-width: 251px;
+	width: 26.2%;
+}
+
+.g_container_body_table table[class$="_table"]:not(.transportdetail_table) tbody td:nth-child(4) {
+	min-width: 251px;
+	max-width: 251px;
+	width: 26.2%;
+	overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+.g_container_body_table table[class$="_table"]:not(.transportdetail_table) th:nth-child(5){
+	min-width: 118px;
+	max-width: 118px;
+	width: 12.3%;
+}
+
+.g_container_body_table table[class$="_table"]:not(.transportdetail_table) tbody td:nth-child(5) {
+	min-width: 118px;
+	max-width: 118px;
+	width: 12.3%;
+	overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+.g_container_body_table table[class$="_table"]:not(.transportdetail_table) th:nth-child(6){
+	min-width: 92px;
+	width: 9.6%;
+}
+
+.g_container_body_table table[class$="_table"]:not(.transportdetail_table) th:nth-child(7){
+	min-width: 92px;
+	width: 9.6%;
+}
+
+.g_container_body_table table[class$="_table"]:not(.transportdetail_table) th:nth-child(8){
+	min-width: 92px;
+	width: 9.6%;
+}
+
+.g_container_body_table table[class$="_table"]:not(.transportdetail_table) th:nth-child(9){
+	min-width: 92px;
+	width: 9.6%;
+}
+
+.g_container_body_table table[class$="_table"] tbody tr:nth-child(odd) {
+	background-color: #fff;
+	background-clip: padding-box;
+}
+
+.g_container_body_table table[class$="_table"] tbody tr:nth-child(even) {
+	background-color: #dcdcdc;
+	background-clip: padding-box;
+}
+
+.g_container_body_table table[class$="_table"] tbody td:not(:first-child):not(:last-child) {
+	border-left: 1px solid #999;
+	border-right: 1px solid #999;
+}
+
+.g_container_body_table table[class$="_table"] tbody td:first-child {
+	border-left: 2px solid rgba(204,204,204,0);
+}
+
+.g_container_body_table table[class$="_table"] tbody td:last-child {
+	border-right: 2px solid rgba(204,204,204,0);
+}
+
+.g_container_body_table table[class$="_table"] {
+	-moz-box-shadow: -4px 4px 15px 2px #ccc, 4px 4px 15px 2px #ccc; 
+	-webkit-box-shadow: -4px 4px 15px 2px #ccc, 4px 4px 15px 2px #ccc; 
+	box-shadow: -4px 4px 15px 2px #ccc, 4px 4px 15px 2px #ccc;
+}
+
+/*头信息*/
+.g_container_info {
+	position: relative;
+	background: #ddd;
+	width: 100%;
+	height: 50px;
+	margin-bottom: 10px;
+	margin-top: 10px;
+}
+
+.g_container_info_l {
+	height: 50px;
+	line-height: 50px;
+	width: calc(100% - 405px);
+}
+
+.g_container_info_r {
+	position: absolute;
+	right: 2px;
+	top: 0;
+	height: 50px;
+	line-height: 50px;
+	width: 400px;
+}
+
+/*地址栏元素*/
+.g_container_info span[class$="_tab"] {
+	display: inline-block;
+	font-size: 15px;
+	font-weight: 500;
+	text-align: center;
+	height: 50px;
+	line-height: 50px;
+}
+
+.g_container_info span[class$="_tab"]:hover {
+	cursor: pointer;
+	background: #bbb;
+}
+
+.g_container_info span[class$="_tab"]:nth-child(1) {
+	min-width: 128px;
+	width: 12.8%;
+}
+
+.g_container_info span[class$="_tab"]:nth-child(2) {
+	min-width: 210px;
+	width: 21.0%;
+}
+
+.g_container_info span[class$="_tab"]:nth-child(3) {
+	min-width: 128px;
+	width: 12.8%;
+}
+
+.g_container_info span[class$="_tab"]:nth-child(4) {
+	min-width: 210px;
+	width: 21.0%;
+}
+
+.g_container_info span[class$="_tab"]:nth-child(5) {
+	min-width: 128px;
+	width: 12.8%;
+}
+
+.g_container_info span[class$="_tab"]:nth-child(6) {
+	min-width: 128px;
+	width: 12.8%;
+}
+
+.current_tab {
+	color: #00aeef;
+}
+
+/*主体*/
+.g_container_body {
+	width: 100%;
+	background: #fff;
+}
+
+.g_container_body_in {
+	margin: 0 20px;
+	padding-bottom: 20px;
+}
+
+.g_container_body_info {
+	height: 50px;
+	line-height: 50px;
+	position: relative;
+}
+
+.g_container_body_info_l, .g_container_body_info_r {
+	display: inline-block;
+	height: 50px;
+	line-height: 50px;
+}
+
+.g_container_body_info_l {
+	width: calc(100% - 92px);
+	font-size: 16px;
+	font-weight: 700;
+}
+
+.g_container_body_info_r {
+	position: absolute;
+	right: 2px;
+	top: 0;
+	width: 84px;
+}
+
+.g_container_body_info_r button {
+	border-radius: 15px;
+	width: 80px;
+}
+
+
+/*柱状图*/
+.transportdetail_div {
+	height: 450px;
+	width: 100%;
+}
+
+#year_sel, #month_sel {
+	color: #999;
+}
+
+#detail_chart_cont {
+	width: 1000px;
+	height: 445px;
+	margin: auto auto;
+}
+
+/*翻页*/
+.m_page {
+	margin-top: 10px;
+	/*display: table-cell;*/
+	width: 100%;
+	height: 32px;
+	vertical-align: middle;
+	text-align: right;
+	padding-top: 1px;
+	padding-right: 20px;
+}
+
+.pageInfo, .changePage {
+	display: inline-block;
+}
+
+.buttonDisabled {
+    background: #dddddd;
+    color: #808080;
+    border: none;
+    box-shadow: 0 0 0 0 #f8fcfd;
+    cursor: not-allowed;
+}
+
+.buttonAbled {
+    background: #00aeef;
+    color: #fff;
+    border: 1px solid #00aeef;
+    box-shadow: 1px 2px 5px 0 #00aeef;
+    cursor: pointer;
+}
+
+.pageInfo {
+    margin-right: 20px;
+}
+
+.DateOfSign, .CargoPeriod, .ExpectedDeliveryPeriod, .ActualDelivery {
+	color: #fff;
+	opacity: 0;
+}

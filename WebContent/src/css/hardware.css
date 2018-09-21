@@ -1,0 +1,425 @@
+
+/*-------------------------------------闁跨喕绶濇潏鐐------------------------------------------------*/
+.upload{
+    background: white;
+    position: absolute;
+    top:15%;
+    left:35%;
+    width: 30%;
+    height:auto;
+    display: none;
+    border: none;
+    z-index:2;
+}
+.file_content{
+    width: 70%;
+    margin: 35px auto 25px;
+}
+
+.file_content .error{
+    color:red;
+    font-size:12px;
+    left:110px;
+    position:relative;
+}
+.list{
+	display: none;
+	text-align:start;
+	margin:0 0 10px 5%;
+}
+.list ul {
+	padding:0;
+	margin:0;
+}
+.list ul li{
+	padding:2px 0;
+}
+.file{
+    position: relative;
+    background: #00aeef;
+    border: solid 1px #00aeef;
+    color:#fff;
+    cursor: pointer;
+    box-shadow: 1px 2px 5px 0 #00aeef;
+    margin-top: 10px;
+    margin-left: 10%;
+    padding:2px;
+    overflow: hidden;
+    font-size: 14px;
+    text-decoration: none;
+    text-indent: 0;
+    line-height: 38px;
+}
+
+.file input {
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 75px;
+    filter:alpha(opacity=0);
+    opacity: 0;
+}
+#file_name{
+    margin-left: 5px;
+    height: 20px;
+}
+#open{
+    width: 55px;
+    height: 26px;
+    position: relative;
+    left: 42%;
+    margin-bottom:10px;
+    
+}
+.file:hover{
+    background: #fff;
+    color:#00aeef ;
+}
+
+.table{
+    margin: 0 auto;
+    width: 90%;
+    height: auto;
+    background: #e4e8eb;
+    color: #000;
+    table-layout: fixed;
+    border: 1px solid #00aeef;
+}
+
+
+#table1{
+    margin: 0 auto;
+    width: 90%;
+    height: auto;
+    background: #e4e8eb;
+    color: #000;
+    border: 1px solid #999;
+    box-sizing: border-box;
+    border-collapse: collapse;
+}
+
+
+#table1 td{
+    text-align: center;
+    height: 30px;
+    min-width:50px;
+    max-width:150px;
+    word-break: break-all;
+    font-size: 16px;
+    color: #000;
+    font-weight: normal;
+}
+#table1 td a{
+    color: #000;
+} 
+.fa{
+    cursor: pointer;
+}
+
+.th_tr {
+    background: #ccc;
+}
+
+#table1 tr td:nth-child(1) {
+    width: 55px;
+}
+
+.progress_td {
+    width: 75px;
+}
+
+/*------------------------------闁跨喖妯佺拠褎瀚�----------------------------------*/
+.footer{
+    width: 100%;
+    height: 80px;
+    background: #92bd6e;
+    color: #fff;
+    text-align: center;
+
+    margin-top: 54px;
+}
+.footer #p1{
+    margin-top: 12px;
+}
+/* 闁跨喐鏋婚幏鐑芥晸閺傘倖瀚归弫鍫ユ晸閺傘倖瀚� */
+.change
+{
+	color:red ;
+	animation:myfirst 1s;
+	-moz-animation:myfirst 1s; 
+	-webkit-animation:myfirst 1s; 
+	-o-animation:myfirst 1s; 
+	animation-iteration-count:infinite;
+	-moz-animation-iteration-count:infinite;
+	-webkit-animation-iteration-count:infinite;
+	-o-animation-iteration-count:infinite;
+	/* animation-direction:alternate;
+    -moz-animation-direction:alternate;
+    -webkit-animation-direction:alternate;
+    -o-animation-direction:alternate; */
+    
+}
+.change:hover{
+	animation-play-state:paused;
+	/* Safari and Chrome */
+	-webkit-animation:mymove 5s;
+	-moz-animation-play-state:paused;
+	-webkit-animation-play-state:paused;
+	-o-animation-play-state:paused;
+	
+}
+@keyframes myfirst
+{
+    0% {color:red;}
+    100% {color: #fdd530;}
+}
+
+@-moz-keyframes myfirst{
+	0% {color:red;}
+	100% {color:#fdd530;}
+}
+}
+@-webkit-keyframes myfirst{
+	0% {color:red;}
+	100% {color:#fdd530;}
+}
+}
+@-moz-keyframes myfirst{
+	0% {color:red;}
+	100% {color:#fdd530;}
+}
+
+.MailBar_cover_color{
+    width: 100%;
+    height:100%;
+    background-color: rgba(10%,20%,30%,0.7);
+    position: absolute;
+    top:0;
+    left: 0;
+   display: none;
+    overflow: hidden;
+    z-index:10;
+}
+
+.news,#hiddenView{
+	width:65%;
+	min-height:500px;
+	margin-bottom:30px;
+	}
+
+.news table{
+	margin:0 auto;
+	width:90%;
+	font-family: -webkit-body;
+}
+.news table tr td {
+	height: 32px;
+}
+.news table{border-right:1px solid #000;border-bottom:1px solid #000;} 
+.news table td{border-left:1px solid #000;border-top:1px solid #000;} 
+
+.chooseTem{
+	background:#00aeef;
+}
+
+.outlineNone{
+	outline:none;
+}
+
+/*2018-09-11更新*/
+.contract_add {
+    position: absolute;
+    top: 50px;
+    left: calc(50% - 450px);
+    width: 900px;
+    display: none;
+    z-index: 11;
+    background: #fff;
+    font-size: 15px;
+}
+
+.contract_add_title {
+    position: relative;
+    height: 40px;
+    line-height: 40px;
+    background-color: #707070;
+    color: #fff;
+    text-indent: 20px;
+    font-size: 18px;
+}
+
+.contract_add_title>span.glyphicon {
+    position: absolute;
+    top: 8px;
+    right: 20px;
+    font-size: 22px;
+}
+
+.contract_add_body_in {
+    margin: 20px;
+}
+
+.contract_add_body_in legend {
+    margin-bottom: 10px;
+    font-size: 18px;
+    color: #00aeef;
+    font-weight: 500;
+}
+
+.contract_add_foot {
+    padding-bottom: 10px;
+    text-align: center;
+}
+
+.contract_add_foot_in {
+    display: inline-block;
+}
+
+.contract_add_foot_in>input+input {
+    margin-left: 40px;
+}
+
+.contract_update {
+    position: absolute;
+    top: 50px;
+    left: calc(50% - 450px);
+    width: 900px;
+    display: none;
+    z-index: 11;
+    background: #fff;
+    font-size: 15px;
+}
+
+.contract_update_title {
+    position: relative;
+    height: 40px;
+    line-height: 40px;
+    background-color: #707070;
+    color: #fff;
+    text-indent: 20px;
+    font-size: 18px;
+}
+
+.contract_update_title>span.glyphicon {
+    position: absolute;
+    top: 8px;
+    right: 20px;
+    font-size: 22px;
+}
+
+.contract_update_body_in {
+    margin: 20px;
+}
+
+.contract_update_body_in legend {
+    margin-bottom: 10px;
+    font-size: 18px;
+    color: #00aeef;
+    font-weight: 500;
+}
+
+.contract_update_foot {
+    padding-bottom: 10px;
+    text-align: center;
+}
+
+.contract_update_foot_in {
+    display: inline-block;
+}
+
+.contract_update_foot_in>input+input {
+    margin-left: 40px;
+}
+
+.awesomplete_btn {
+    padding-top: 8px;
+    padding-bottom: 10px;
+    position: relative;
+    top: -2px;
+}
+
+label.sub_line{
+    padding-top: 1px !important;
+    line-height: 15px;
+}
+
+.appendp_p_div .xuhao>span.glyphicon {
+    display: none;
+    font-size: 20px;
+}
+
+.appendp_p_div .xuhao:hover>span.glyphicon {
+    display: inline-block;
+}
+
+.appendp_p_div table {
+    max-width: 100%;
+    width: 100%;
+    border-spacing: 0;
+    border-collapse: collapse;
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
+    font-size: 13px;
+    background-color: transparent;
+}
+
+.appendp_p_div table tbody tr:hover {
+    background-color: #eee;
+}
+
+.appendp_p_div table td {
+    text-align: center;
+    height: 30px;
+    border: 1px solid #ddd;
+}
+
+.appendp_p_div table thead tr {
+    background-color: #eee;
+    height: 30px;
+}
+
+.appendp_p_div .xuhao {
+    max-width: 65px;
+    min-width: 65px;
+    width: 65px;
+}
+
+.appendp_p_div .progress_detail_time {
+    max-width: 150px;
+    min-width: 150px;
+    width: 150px;
+}
+
+/*表格自定义*/
+.gl_table_style th, .gl_table_style td {
+    min-width: 100px;
+    max-width: 250px;
+}
+
+.gl_table_style th:nth-child(1), .gl_table_style td:nth-child(1) {
+    max-width: 60px;
+    min-width: 60px;
+    width: 60px;
+}
+
+.gl_table_style th:nth-child(4), .gl_table_style td:nth-child(4), .gl_table_style th:nth-child(5), .gl_table_style td:nth-child(5) {
+    max-width: 90px;
+    min-width: 90px;
+    width: 90px;
+}
+
+/*维护鼠标悬浮元素*/
+span.glyphicon {
+    cursor: pointer;
+}
+
+@media screen and (max-width: 1000px) {
+    .contract_add, .contract_update {
+        left: 0px;
+    }
+}
+
+
+
+

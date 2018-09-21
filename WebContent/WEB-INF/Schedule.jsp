@@ -395,7 +395,7 @@
 		</div>
 	</div>
 	
-	<form id="help-form" method="get" action="Schedule" style="display:none;" > 
+	<form id="help-form" method="get" action="Schedule" style="display:none;"> 
 		<input  name="Date" class="bToggle" id="All_upload" >
 	</form>
 	
@@ -427,12 +427,12 @@
 			<div class="m-add-schedule-m">
         		<span style="margin-right:19%;margin-bottom:30px;margin-left:4%;">出发地</span>
         		<div id="city_1"  name="StartAdd" style="display:inline-block;margin-bottom:30px;">
-					<input class="startArea" type="text" style="width:130px;">
+					<input class="startArea" type="text" style="width:180px;cursor: not-allowed;" readonly="readonly" placeholder="请点击后从地图里选择">
 				</div>
                 <br>
         		<span style="margin-right:19%;margin-bottom:30px;margin-left:4%">目的地</span>
         		<div id="city_2"  name="EndAdd" style="display:inline-block;margin-bottom:30px;">
-					<input class="arriveArea" type="text" style="width:130px;">
+					<input class="arriveArea" type="text" style="width:180px;cursor: not-allowed;" readonly="readonly" placeholder="请点击后从地图里选择">
 				</div>
                 <br>
         		<span style="margin-right:15%;margin-bottom:30px;margin-left:4%">出发时间</span>
@@ -503,12 +503,12 @@
         	<div class="m-add-schedule-m">
         		<span style="margin-right:19%;margin-bottom:30px;margin-left:4%;">出发地</span>
         		<div id="city_3"  name="StartAdd" style="display:inline-block;margin-bottom:30px;">
-					<input class="startArea2" type="text" style="width:130px;">
+					<input class="startArea2" type="text" style="width:180px;cursor: not-allowed;" readonly="readonly" placeholder="请点击后从地图里选择">
 				</div>
                 <br>
         		<span style="margin-right:19%;margin-bottom:30px;margin-left:4%">目的地</span>
         		<div id="city_4"  name="EndAdd" style="display:inline-block;margin-bottom:30px;">
-					<input class="arriveArea2" type="text" style="width:130px;">
+					<input class="arriveArea2" type="text" style="width:180px;cursor: not-allowed;" readonly="readonly" placeholder="请点击后从地图里选择">
 				</div>
                 <br>
         		<span style="margin-right:15%;margin-bottom:30px;margin-left:4%;">出发时间</span>
@@ -521,11 +521,11 @@
                 <span>
                 	<select style="width:45%;height:25px;margin-bottom:30px;" name="Traffic"  id="Traffic">
                 	  <option text="请选择" value="0">请选择</option>
-					  <option  text="飞机" value="1">飞机</option>
-					  <option  text="铁路" value="2">铁路</option>
-					  <option  text="自驾" value="3">自驾</option>
-					  <option  text="打车" value="4">打车</option>
-					  <option  text="其他" value="5">其他</option>
+					  <option text="飞机" value="1">飞机</option>
+					  <option text="铁路" value="2">铁路</option>
+					  <option text="自驾" value="3">自驾</option>
+					  <option text="打车" value="4">打车</option>
+					  <option text="其他" value="5">其他</option>
 					</select>
 				</span>
                 <br>
@@ -535,7 +535,7 @@
         	</div>
         	<div class="m-add-schedule-r">
 				 <span style="float:left;margin-right:4%;margin-left:4%;">服务事项</span>
-		         <span><textarea  style="margin-bottom:20px;" rows="4" cols="23"  name="Service" value="" id="Service"></textarea></span>
+		         <span><textarea style="margin-bottom:20px;" rows="4" cols="23" name="Service" value="" id="Service"></textarea></span>
 		         <br>
 				 <span style="float:left;margin-right:4%;margin-left:4%;">酒店信息</span>
 		         <span><textarea rows="4" cols="23"  name="HotelMessage" value="" id="HotelMessage"></textarea></span>
@@ -825,7 +825,6 @@ function province(a){
 }
 
 var myChart1,myChart2,myChart3,myChart4,myChart5;
-
 
 // 函数封装
 function showMap(start_time,end_time){

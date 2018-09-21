@@ -1,5 +1,7 @@
 package com.eoulu.service.impl;
 
+import java.io.File;
+import java.io.IOException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
@@ -7,6 +9,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import org.apache.commons.io.FileUtils;
 import org.junit.Test;
 
 import com.eoulu.commonality.Page;
@@ -81,6 +84,41 @@ public class LabServiceImpl implements LabService{
 	public void exportConfig(int LabID, String Model,String path) {
 		List<Map<String, Object>> config = new LabDao().getComfig(LabID);
 		GeneratePdfUtil.createLabConfig(path, config, Model);
+	}
+	
+	
+	public boolean deleteFile(int ID, String fileName) {
+		boolean flag = false;
+		LabDao dao = new LabDao();
+		List<Map<String, Object>> list = dao.getDocument(ID);
+		String fileStr = "";
+		if(list.size()>1){
+			fileStr = list.get(1).get("Document").toString();
+		}
+		String[] fileArr = fileStr.split("::");
+		fileStr = "";
+		for(int i = 0;i < fileArr.length;i++){
+			if(!fileArr[i].equals(fileName)){
+				fileStr += (fileArr[i]+"::");
+			}
+		}
+		if(ID!= 0){
+			dao.updateDocument(ID, fileStr);
+		}
+	
+		String folder = "E:\\LogisticsFile\\File\\LabDocument\\";
+		if(!fileName.equals("")){
+			try {
+				FileUtils.forceDelete(new File(folder+fileName));
+				flag = true;
+			} catch (IOException e) {
+				e.printStackTrace();
+			}
+		}
+			
+		
+	
+		return flag;
 	}
 
 }

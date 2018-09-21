@@ -1,0 +1,759 @@
+
+/*------------------------������------------------------------*/
+.info_add,.info_update{
+    background: white;
+    position: absolute;
+    top:10%;
+    left:13%;
+    width: 74%;
+    height:450px;
+    display: none;
+    border: none;
+    z-index:1;
+}
+.contract{
+    background: white;
+    position: absolute;
+    top:20%;
+    left:20%;
+    width: 60%;
+    min-height:230px;
+    display: none;
+    border: none;
+    z-index:1;
+}
+
+.contract_info{
+	margin:10px auto;
+    width: 100%;
+    min-height: 110px;
+    max-height: 260px;
+    overflow: auto;
+}
+.apply_add_info input[type=search]{
+    z-index: 999;
+    position: absolute;
+    top:0;
+    right:0;
+    width: 150px;
+}
+.apply_left,.apply_right{
+    display: inline-block;
+    position: relative;
+    height: 30px;
+    width: 220px;
+    top:10px;
+    left: 3%;
+}
+.apply_right{
+    margin-left: 20px;
+    width: 300px;
+}
+#select{
+    display: none;
+    position: absolute;
+    top:22px;
+    right: 0;
+    width: 150px;
+}
+.info{
+    background: white;
+    position: absolute;
+    top:20%;
+    left:30%;
+    width: 35%;
+    max-height: 300px;
+    overflow: auto;
+    display: none;
+    border: none;
+    z-index:1;
+}
+.operatePage,.contract_basic{
+    background: white;
+    border: none;
+    width: 100%;
+}
+.contract_basic td{
+    height: 50px;
+    border: none;
+    text-align: center;
+}
+.search,.customer_search{
+	z-index: 999;
+    position: absolute;
+    width: 184px;
+    height: 26px;
+    left:0;
+}
+.out_search{
+	position: relative;
+	margin:0 auto;
+	width: 184px;
+    height: 26px;
+}
+.contract_basic select{
+    width: 184px;
+    height: 26px;
+}
+.contract_basic select[name='customer_name']{
+	    height: 60px;
+	    position: absolute;
+        top:26px;;
+        display:none;
+        left:0;
+}
+.contract_basic input[type='text'],.contract_basic input[type='month']{
+    width: 180px;
+    height: 20px;
+}
+.contract_basic input[type='date'],.contract_basic input[type='month']{
+    width: 178px;
+    height: 22px;
+}
+
+.apply_add_info{
+	height:75px;
+}
+
+.contractPage{
+    background: white;
+    border-color: gainsboro;
+    width: 94%;
+    margin: 15px auto 10px;
+}
+.contractPage td,.contractPage th{
+    word-break: break-all;
+    height:34px;
+    min-width:50px;
+    max-width:150px;
+    text-align: center;
+}
+
+.title{
+    height: 35px;
+    width: 100%;
+    line-height: 35px;
+    background-color:#00aeef ;
+    text-indent: 1em;
+    color: white;
+}
+.update_close,.infoAdd_close{
+    width: 35px;
+    height: 25px;
+    color: white;
+    position: absolute;
+    top: 5px;
+    right: 5px;
+    cursor: pointer;
+}
+.update_close {
+    font-size: 22px;
+}
+.cover-color{
+    width: 100%;
+    height:100%;
+    background-color: rgba(10%,20%,30%,0.7);
+    position: absolute;
+    top: -10px;
+    left: 0;
+    display: none;
+    overflow: hidden;
+}
+
+.flow{
+    width: 300px;
+    height: 410px;
+    background: rgba(10%,20%,30%,0.5);
+    border: 1px solid #fff;
+    /*float: right;*/
+    position: absolute;
+    left:-290px;
+    top:160px;
+}
+.flow #datalist{
+    width: 300px;
+    height: 235px;
+    border: 1px solid green;
+    padding-top:40px ;
+    border: 1px solid #fff;
+    overflow-y: auto;
+}
+#datalist .bar{
+    font-size: 24px;
+    position: absolute;
+    z-index: 1;
+    right:-16px;
+    top: 0px;
+    color: #2badd4;
+    display: block;
+    transform: rotate(180deg);
+
+}
+#datalist b{
+    display:inline-block;
+    font-size: 17px;
+    color:#fff;
+    cursor:pointer;
+    margin-left:20px;
+}
+
+
+#fDrag{
+    position: absolute;
+    top:0;
+    left: 0;
+    width:100%;
+    cursor: move;
+    height:40px;
+    text-align: center;
+    line-height: 40px;
+    color: #fff;
+    background: #00aeef;
+    font-size:16px;
+}
+#datalist ul{
+    margin-top: 20px;
+}
+#datalist ul li{
+    list-style: none;
+    text-align: center;
+    color: #fff;
+}
+.flow .choose{
+
+    height: 130px;
+    /*border: 1px solid red;*/
+    display: block;
+    display: inline-block;
+}
+.choose #choosedisplay{
+    width: 160px;
+    height: 30px;
+    background: #00aeef;
+    margin-top: 10px;
+    text-align: center;
+    line-height: 30px;
+    margin-left: 30%;
+    /* margin-bottom: 1px solid gray; */
+
+    color: #fff;
+}
+.choose ul{
+    list-style: none;
+    cursor: pointer;
+
+}
+.choose ul li{
+
+    width: 160px;
+    /* border-bottom: 1px solid #567084; */
+    color: #000;
+
+
+}
+.choose ul li:hover{
+    color: #fff;
+}
+.choose #submenu{
+    display: none;
+}
+
+.choose #submenu input[type="button"]{
+    width: 160px;
+    background: #ECF0F1;
+    color: #00aeef;
+    border: none;
+    font-size: 14px;
+}
+.bAnimate:hover{
+    cursor: pointer;
+    animation: bAn 0.5s forwards;
+    -webkit-animation: bAn 0.5s forwards;
+}
+@keyframes bAn{
+    from{background: #e4e8eb;color:#00aeef;}
+    to{background: #00aeef;color:#fff;}
+}
+@-webkit-keyframes bAn{
+    from{background: #e4e8eb;color:#00aeef;}
+    to{background: #00aeef;color:#fff;}
+}
+.flow .clear{
+    float: right;
+    margin-right: 20px;
+    margin-top: 10px;
+    border-radius: 3px;
+}
+.clear input[type="button"]{
+    width: 60px;
+    height: 30px;
+    background: #ddb55c;
+    border: none;
+    border-radius: 3px;
+    color: #fff;
+    cursor: pointer;
+}
+.table_title{
+	margin-left:3%;
+	margin-top:20px;
+	color:#00aeef;
+}
+
+.contract_add, .contract_update{
+    background: white;
+    position: absolute;
+    top: 2%;
+    left: calc(50% - 400px);
+    width: 800px;
+    display: none;
+    border: none;
+    z-index: 3;
+    font-size: 14px;
+}
+.contract_title{
+    height: 35px;
+    width: 100%;
+    line-height: 35px;
+    background-color:#00aeef ;
+    text-indent: 1em;
+    color: white;
+    font-size:16px!important;
+}
+.contractAdd_close{
+    width: 35px;
+    height: 25px;
+    color: white;
+    position: absolute;
+    top: 5px;
+    right: 5px;
+    cursor: pointer;
+    font-size: 22px!important;
+}
+
+.table_title{
+    margin: 5px 0;color: #00aeef;
+    font-size: 17px;
+}
+.contract_basic{
+    background: white;
+    border: none;
+    width: 100%;
+}
+.contract_basic td{
+    height: 34px;
+    border: none;
+    text-align: center;
+}
+.contract_basic tr{
+  /*  margin:3px 0; */
+  height:50px;
+}
+.contract_basic input[type='text'],.contract_basic input[type='time']{
+    width: 180px;
+    height: 22px;
+}
+.contract_basic input[type='date']{
+    width: 178px;
+    height: 22px;
+}
+.contract_basic select{
+    width: 184px;
+    height: 26px;
+}
+.MailBar_cover_color{
+    width: 100%;
+    height:100%;
+    background-color: rgba(10%,20%,30%,0.7);
+    position: absolute;
+    top:0;
+    left: 0;
+   display: none;
+    overflow: hidden;
+    z-index:10;
+}
+.input_css{
+	width:65%;
+	height:20px;
+	margin-bottom:20px;
+}
+.tbody_tr td {
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+.MailBar {
+    height: 320px;
+}
+.MailBar,.MailBar_All {
+    width: 570px !important;
+}
+.MailBar, .MailBar_All {
+    background: white;
+    position: fixed;
+    top: calc(50% - 160px);
+    left: calc(50% - 285px);
+    width: 30%;
+    height: 28%;
+    display: none;
+    border: none;
+    z-index: 100;
+}
+.info_title, .contract_title, .operate_title, .detail_title {
+    height: 35px;
+    width: 100%;
+    line-height: 35px;
+    background-color: #707070;
+    text-indent: 1em;
+    color: white;
+}
+.po_close, .info_close, .contract_close, .operate_close, .supply_detail_close, .MailBar_close {
+    width: 35px;
+    height: 25px;
+    color: white;
+    position: absolute;
+    top: 5px;
+    right: 5px;
+    cursor: pointer;
+}
+/*为上传框写的样式 */
+a.box{
+			/* margin-left:31%; */
+			margin-left:191px; 
+			margin-top:10px;
+			list-style: none;
+			color:#000;
+			text-decoration: none;
+			display:inline-block;
+		/* 	width:31%; */
+		width:160px;
+			height: 160px;
+			background: #ccc;
+			font-size:12px;
+
+			/* 借鉴 */
+	    position: relative;
+	    cursor: pointer;
+	    color: #888;
+	    background-color: #fafafa;
+	    border: 1px solid #ddd;
+	    border-radius: 4px;
+	    overflow: hidden;
+	    display: inline-block;
+	    zoom: 1;
+   		min-width: 120px;
+	    line-height: 200px;
+	    background-image:url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAC0AAAAlCAYAAADWSWD3AAAAGXRFWHRTb2Z0d2FyZQBBZG9iZSBJbWFnZVJlYWR5ccllPAAAA4RpVFh0WE1MOmNvbS5hZG9iZS54bXAAAAAAADw/eHBhY2tldCBiZWdpbj0i77u/IiBpZD0iVzVNME1wQ2VoaUh6cmVTek5UY3prYzlkIj8+IDx4OnhtcG1ldGEgeG1sbnM6eD0iYWRvYmU6bnM6bWV0YS8iIHg6eG1wdGs9IkFkb2JlIFhNUCBDb3JlIDUuNi1jMTM4IDc5LjE1OTgyNCwgMjAxNi8wOS8xNC0wMTowOTowMSAgICAgICAgIj4gPHJkZjpSREYgeG1sbnM6cmRmPSJodHRwOi8vd3d3LnczLm9yZy8xOTk5LzAyLzIyLXJkZi1zeW50YXgtbnMjIj4gPHJkZjpEZXNjcmlwdGlvbiByZGY6YWJvdXQ9IiIgeG1sbnM6eG1wTU09Imh0dHA6Ly9ucy5hZG9iZS5jb20veGFwLzEuMC9tbS8iIHhtbG5zOnN0UmVmPSJodHRwOi8vbnMuYWRvYmUuY29tL3hhcC8xLjAvc1R5cGUvUmVzb3VyY2VSZWYjIiB4bWxuczp4bXA9Imh0dHA6Ly9ucy5hZG9iZS5jb20veGFwLzEuMC8iIHhtcE1NOk9yaWdpbmFsRG9jdW1lbnRJRD0ieG1wLmRpZDplNzNkYmFmMi01NmY5LTk2NDQtODJjNC0zZWVmZDlhNGU0ZmIiIHhtcE1NOkRvY3VtZW50SUQ9InhtcC5kaWQ6ODQ4NjIxQzFGODNCMTFFN0E2ODE5RjI1N0RFMzlBRkMiIHhtcE1NOkluc3RhbmNlSUQ9InhtcC5paWQ6ODQ4NjIxQzBGODNCMTFFN0E2ODE5RjI1N0RFMzlBRkMiIHhtcDpDcmVhdG9yVG9vbD0iQWRvYmUgUGhvdG9zaG9wIENDIDIwMTcgKFdpbmRvd3MpIj4gPHhtcE1NOkRlcml2ZWRGcm9tIHN0UmVmOmluc3RhbmNlSUQ9InhtcC5paWQ6MmFjNzU4MzgtOTcxYS0zNDQ3LTk0ZWItNWVlZmJiYTJiYjI1IiBzdFJlZjpkb2N1bWVudElEPSJhZG9iZTpkb2NpZDpwaG90b3Nob3A6NTc2OWUwZTQtZjgyMS0xMWU3LWIxNjYtYjdiYTg3YjM2YWRjIi8+IDwvcmRmOkRlc2NyaXB0aW9uPiA8L3JkZjpSREY+IDwveDp4bXBtZXRhPiA8P3hwYWNrZXQgZW5kPSJyIj8+jn1qEgAABD5JREFUeNrsWGtIVFEQ3l030zQtS5Okp0lWRNJbiNQfij0oqCwoCtMfYRH96EEkEWWZkESBVEhlYVAYRKxhaUolGhVqSZSJSZhWkppQaqalfRNz43i6u/feXUsDBz5m99xzZr47e87MnDWbXJDgQH9vqNXAMmAuDQHuQBfQBFQCxcC12samOlM/idlJsiOh9gM7AF8dS3qAXFoD8q/+OWkQjoS6AgQ54a8bSAVSQP7HPyENwglQmYCbHULVQAswApgEBNgxlQfEgXjHXyUNwhugrqqsuQtkAAUg0SmtmQm1GdgO+Ejr8oEVzkTcrJPwDKgyjqAiFNGtcJqrY/04qPPASulROtbvNUraTc8kP2+vG1DThKF3wBI4fKRnfWtbRzts5ODjeM4yioRjPB/PG/o10ohSLNRtYYjS2WIQfurEIbZCFQIRwjClwiK228C/6AN5qxklfZNzsSKpMJjsQm4PhXoBWBxM+wxcAtLg64Mh0nDgSb8uMFyIciAMtbpYlKqgQnVM/QLsgr8scdCisWi+QPhXptBDGKSigTqgBghTmXJW5/tREbsIG+makcakqVAbgU1SRA6B9BENwrOhKgArD7UDYVj3WpoXw9uuBHjMOX0WsA6IVTF9EDaO/kEahkZRGgLi7WSWE1i4zwHhRVw4/KRHlG0iZeIadrKBEKkVWAobpRZhIqW0ciDRQSqs13BUoELYxCX/PvvQFBCjyJO9Z9JWzoANs5kd+jPhCSo2vgFUtcpgLEKDsI9U1q3Sr0kRj4adKp0Rnwj1EvAShqOVSJ9TIUxN0Rw48AC8HBCOUiH8HRjGhHuliBfzvtcT8be8XUVZb4aBBfjwRHqwDQsydUSCMsNDwFMY/sraU9hSgfwSijRTZYSPeh0+qEcXz0IVRTpBmpelhzBLokSYikKUNNbDGaFbGBvL2UlPtGuhPgpDIRZ2IspxA3WiQiIcw4dIdmxTIV5uwE+L8NlqlRqhRjioMWCMSm0n59dsrK12EDEbfupwfFxLWwrfCw34GSOeF6uU3j4ZKcdw3Ms9tt755QYjrBQ68TJRQ9tDvD0EYZKbaXDJFul7CZF+Lgz4quzxARMEkNLwHmk4h0jfkgbTMNl9EBCmlsImFRaqkEVE+gIfJkXm0dvwfxoDRXgh144wKXXupHNkpSYbk1IwcEyYQN0XtZVnoEu5lL+XqpuSbTqdIOXBBUeRAL5/0qGLs9PlUYdZ8rvL48NH98BVBv138F8BeRIp8eXq8Hyy8Gw51HXpkqwlJ2Fjd59LAF/j6Q0vGyRNjpMMrkkyQJhuLgki4T43FzzoAuJ5a1QaIPHGIGk986m6ngamy1ctk3C7kEuujZshul2sAUbzTVlucKgvOGWQdDL/ORnM3+k/kSl8w7kD3KNc7NJt3MnTb3dP94dYTP+hDJEeIj0ApJvtNPCDmvQBoI0JH+5v4z8FGABpwHzGJOeKtAAAAABJRU5ErkJggg==);
+	    background-repeat: no-repeat;
+	    background-position: 47% 40px;
+	   
+		}
+		 .up{
+			display:inline-block;
+			width:120%;
+			height: 200px;
+			position: absolute;
+		    font-size: 14px;
+		     left: -24px; 
+		    top: 0;
+		    /* opacity: 0;
+		    filter: alpha(opacity=0); */
+		    cursor: pointer;
+	    	padding-top: 120px;
+		    overflow: hidden;
+		    outline: none;
+		     white-space:nowrap; 
+		     overflow:hidden; 
+		     text-overflow:ellipsis;
+		}
+		.intitle{
+			width:200px;
+			padding-left: 8px;
+		}
+		.mask{
+			display: inline-block;
+			width:91px;
+			height:26px;
+			background:#fafafa;
+			position:absolute;
+			top:110px;
+			left:-62px;
+			z-index:999;
+
+		}
+		#Mail_fileToUpload {
+	    position: absolute;
+	    top: -10px;
+	    left: -37px;
+	    border: none;
+	    font-size:12px;
+	}
+	
+	#lastPage{
+		margin-right:0;
+	}
+	#Gotojump{
+	    margin-left: 10px;
+	}
+	
+	.AuthorCont,.remarkCont{
+		display:none;
+	    position: absolute;
+	    top: 66.5%;
+	    left: 16%;
+	    font-size:14px;
+	}
+	.PwdCont{
+		display:none;
+		position: absolute;
+	    top: 73.5%;
+	    left: 20%;
+	    font-size:14px;
+	}
+	.NameFormat{
+	 	display:none; 
+		position: absolute;
+	    top: 65%;
+	    left: 20%;
+	    font-size:14px;
+	    color:#444;
+	}	
+	.ManualWest{
+		cursor:pointer;
+	}
+	table tr:not(:first-child) td{
+		overflow: hidden;
+		text-overflow:ellipsis;
+		white-space: nowrap;
+	}
+	@media screen and (max-width: 1366px) {
+	    body .content .show input[type="button"] {
+		    width: 45px;
+		    margin-right: 6px;
+		}
+		.searchYear span{
+			margin-right: 10px!important;
+		}
+	}
+	.ManualWest{
+		text-align:left!important;
+		text-indent:10px;
+	}
+	.isClick{
+		background:#ccc!important;
+	}
+#Mail_Send {
+    top: 263px;
+}
+#Mail_Send, #All_Send {
+    width: 80px;
+    height: 35px;
+    position: absolute;
+    top: 81%;
+    left: 40%;
+    font-size: 18px;
+}
+.bToggle {
+    background: #00aeef;
+    border: solid 1px #00aeef;
+    color: #fff;
+    cursor: pointer;
+    box-shadow: 1px 2px 5px 0 #00aeef;
+}
+#Mail_fileToUpload {
+    position: absolute;
+    top: -10px;
+    left: -37px;
+    border: none;
+    font-size: 12px;
+}
+#Mail_fileToUpload {
+    /* display: block; */
+}
+#Mail_fileToUpload {
+    position: absolute;
+    left: -23.7%;
+    border: none;
+}
+.up {
+    display: inline-block;
+    width: 120%;
+    height: 200px;
+    position: absolute;
+    font-size: 14px;
+    left: -24px;
+    top: 0;
+    cursor: pointer;
+    padding-top: 120px;
+    overflow: hidden;
+    outline: none;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+.intitle {
+    width: 200px;
+    padding-left: 8px;
+}
+.mask {
+    display: inline-block;
+    width: 91px;
+    height: 26px;
+    background: #fafafa;
+    position: absolute;
+    top: 110px;
+    left: -62px;
+    z-index: 999;
+}
+.add_fileBox,.update_fileBox{
+		display:inline-block;
+		position: relative;
+		border: 1px solid #999;
+		text-decoration: none;
+		height:24px;
+		margin-bottom:20px;
+	}
+.add_change,.update_change{
+	    overflow: hidden;
+	    opacity: 0;
+	    width: 172px;
+	    cursor: pointer;
+	}
+.add_uploadText,.update_uploadText{
+	    background: #00aeef;
+	    position: absolute;
+	    top: 0;
+	    right: 0;
+	    width: 50px;
+	    height: 24px;
+	    line-height: 24px;
+	    text-align: center;
+	    cursor: pointer;
+	    color:#fff;
+	}
+.add_fileCont1,.add_fileCont2,.update_fileCont1,.update_fileCont2{
+		display: inline-block;
+		width: 126px;
+		line-height: 24px;
+		height:24px;
+		position: absolute;
+	    cursor: pointer;
+		overflow: hidden;
+		text-overflow:ellipsis;
+		white-space: nowrap;
+	}
+	.passeye {
+    display: inline-block;
+    font: normal normal normal 14px/1 FontAwesome;
+    font-size: inherit;
+    text-rendering: auto;
+}
+.passeye:before {
+    content: "\f06e";
+}
+.add_agreement1,.update_agreement1{
+	width:170px;
+}
+
+/*新需求样式 2018/08/09*/
+.basic_info_in>fieldset+fieldset {
+    margin-top: 10px;
+}
+
+.basic_info_in>fieldset>legend {
+    font-size: 15px;
+    font-weight: 600;
+    color: #00aeef;
+}
+
+.edit_btn {
+    margin-bottom: 10px;
+    text-align: center;
+}
+
+.edit_btn_in {
+    display: inline-block;
+}
+
+.edit_btn_in>input+input {
+    margin-left: 20px;
+}
+
+.basic_info {
+    margin: 20px;
+}
+
+.basic_info_in {
+    margin: 1px;
+}
+
+.field_div>div {
+    height: 31px;
+    line-height: 31px;
+}
+
+.field_div>div+div {
+    margin-top: 10px;
+}
+
+.form_div>div {
+    height: 31px;
+    line-height: 31px;
+}
+
+.form_div>div+div {
+    margin-top: 10px;
+}
+
+.form_div>div input, .form_div>div select {
+    height: 30px;
+}
+
+.form-control-feedback {
+    z-index: 20;
+    pointer-events: auto;
+    width: 31px;
+    height: 31px;
+    line-height: 31px;
+}
+
+span.glyphicon {
+    cursor: pointer;
+}
+
+#page {
+    margin: 2px auto;
+    min-width: 1000px;
+    width: 90%;
+    height: 45px;
+    line-height: 45px;
+    text-align: right;
+}
+
+#page>div {
+    display: inline-block;
+    height: 45px;
+    line-height: 45px;
+}
+
+.form-control {
+    padding: 4px 10px;
+}
+
+span.span_text {
+    font-size: 12px;
+    line-height: 12px;
+    color: red;
+    position: relative;
+    top: -10px;
+}
+
+@media screen and (max-width: 800px) {
+    .contract_add,.contract_update {
+        left: 0;
+        margin-left: 0;
+    }
+
+    .cover-color {
+        width: 1000px;
+    }
+}

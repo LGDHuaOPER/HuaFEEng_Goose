@@ -14,7 +14,7 @@
         <link rel="shortcut icon" href="image/eoulu.ico" />
         <link rel="bookmark" href="image/eoulu.ico" />
         <link rel="stylesheet" href="css/libs/bootstrap.min.css" type="text/css">
-        <link rel="stylesheet" href="css/modules/laboratory/Lab-d0d0edd961.min.css" type="text/css">
+        <link rel="stylesheet" href="css/modules/laboratory/Lab-ecd0227fc6.min.css" type="text/css">
         <style>
             .u-admin a {
                 vertical-align: top !important;
@@ -559,6 +559,15 @@
                             </div>
                         </div>
                     </div>
+
+                    <!-- 警告框 -->
+                    <div class="warning_alert_wrapper_cover"></div>
+                    <div class="warning_alert_wrapper">
+                        <div class="container-fluid">
+                            
+                        </div>
+                    </div>
+                    <!-- 警告框结束 -->
 
                 <!-- NonStandard_sticker-con结束 -->
                 </div>

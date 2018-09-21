@@ -125,5 +125,21 @@ public class LabDao {
 		
 	}
 	
+	public List<Map<String, Object>> getDocument(int LabID){
+		
+		DBUtil dbUtil = new DBUtil();
+		String sql = "select Document from t_laboratory where ID = ?";
+		return dbUtil.QueryToList(sql, new Object[]{LabID});
+	}
+	
+	public boolean updateDocument(int ID,String fileName){
+		DBUtil dbUtil = new DBUtil();
+		
+		String sql = "update t_laboratory set Document = ? where ID = ?";
+		int result = dbUtil.executeUpdate(sql, new Object[]{fileName,ID});
+		return result > 0?true:false;
+		
+	}
+	
 	
 }

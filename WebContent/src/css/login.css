@@ -1,0 +1,271 @@
+* {
+	margin:0;
+}
+
+html,body {
+	width:100%;
+	height:100%;
+	background: #00aeef;
+	font-family: "microsoft yahei";
+}
+
+.container {
+	display: block;
+	position: fixed;
+	margin: auto;
+	left: 0;
+	right: 0;
+	top: 0;
+	bottom: 0;
+	width: 1004px;
+	height: 434px;
+	/* // min-width: 502px;
+	// min-height: 434px; */
+	background: #fff;
+	opacity: 0.9;
+}
+
+.flex-container {
+	display: flex;
+	width: 100%;
+	height: 100%;
+}
+
+.container-l, .container-r {
+	flex: 1 502px;
+	height: 100%;
+}
+
+.container-l {
+	background: url(../image/leftpic.png) no-repeat center;
+    background-size: 100% 100%;
+}
+
+.container-l:hover {
+    -webkit-filter: brightness(0.5);
+    filter: brightness(0.5);
+    transition: all 0.5s linear;
+}
+
+.menu {
+	margin: 70px 74px 5px 74px;
+	// background: #000;
+}
+
+.menu ul {
+	padding: 0;
+}
+
+.menu li {
+	list-style: none;
+}
+
+/*动态交互类*/
+.menu .h33 {
+	border-bottom: 1px solid grey;
+}
+
+.menu div.unline {
+	border-bottom: 1px solid #00aeef;
+}
+
+/*username&password*/
+.menu li:nth-child(1) .h33 {
+	height: 32px;
+	padding-bottom: 9px;
+}
+
+.menu li:nth-child(2) .h33 {
+	height: 33px;
+	padding-bottom: 8px;
+	margin-top: 60px;
+}
+
+.menu .icon {
+	display: inline-block;
+	vertical-align: middle;
+}
+
+.menu li:nth-child(1) .icon {
+	width: 23px;
+	height: 23px;
+}
+
+.menu li:nth-child(2) .icon {
+	width: 20px;
+	height: 25px;
+}
+
+.menu .icon-uname {
+	background: url(../image/user.png) no-repeat center;
+    background-size: cover;
+}
+
+.menu .icon-psd {
+	background: url(../image/lock.png) no-repeat center;
+    background-size: cover;
+}
+
+.menu li:nth-child(1) .changeicon {
+	background: url(../image/user1.png) no-repeat center;
+}
+
+.menu li:nth-child(2) .changeicon {
+	background: url(../image/lock1.png) no-repeat center;
+}
+
+.container-r #username, .container-r #psd {
+	display: inline-block;
+	border: none;
+	outline: none;
+	// background: #005471;
+	height: 24px;
+	line-height: 24px;
+	font-size: 16px;
+	// color:#fff;
+	border-radius: 3px;
+}
+
+.container-r #username {
+	margin-left: 12px;
+	height: 23px;
+}
+
+.container-r #psd {
+	margin-left: 15px;
+	height: 25px;
+}
+
+/*复选框样式*/
+
+.menu .check7, .menu .sub-res {
+	margin-top: 44px;
+}
+
+.menu .checkspan {
+	position: relative;
+}
+
+#check7 {
+	position: absolute;
+    visibility: hidden;
+}
+
+#check7+label {
+	display: inline-block;
+	vertical-align: middle;
+    width: 12px;
+    height: 12px;
+    border: 1px solid #17befc;
+}
+
+#check7:checked+label:after {
+	content: "";
+    position: absolute;
+    left: 2px;
+    bottom: 8px;
+    width: 9px;
+    height: 4px;
+    border: 2px solid #17befc;
+    border-top-color: transparent;
+    border-right-color: transparent;
+    -ms-transform: rotate(-60deg);
+    -moz-transform: rotate(-60deg);
+    -webkit-transform: rotate(-60deg);
+    transform: rotate(-45deg);
+}
+
+.menu .checktxt {
+	display: inline-block;
+	height: 14px;
+	margin-left: 15px;
+	line-height: 12px;
+	font-size: 12px;
+}
+
+/*登录与重置按钮*/
+.menu .sub-res .sub {
+	float: left;
+}
+
+.menu .sub-res .res {
+	float: right;
+}
+
+.sub-res .sub, .sub-res .res {
+	height: 40px;
+	width: 150px;
+	background: #00aeef;
+	border: none;
+	color: #fff;
+	border-radius: 5px;
+	font-size: 18px;
+	letter-spacing: 4px;
+}
+
+.sub-res .sub:hover, .sub-res .res:hover {
+	background: #17befc;
+	color: rgba(255,255,255,0.8);
+	transition: all 0.3s linear;
+	cursor: pointer;
+}
+
+/*验证信息*/
+#display{
+	display: none;
+	clear: both;
+	margin-top: 110px;
+	color: red;
+	font-weight: bold;
+	text-align: left;
+}
+
+/*改为百分比  */
+.container {
+    width: 74%!important;
+}
+.container-l, .container-r {
+	flex: 50%;
+	height: 100%;
+}
+.menu {
+	width:72%;
+    margin: 70px 14% 5px 14% !important;
+}
+input#username,input#psd{
+	width:68%!important;
+	margin-left: 5%!important;
+}
+.sub-res .sub, .sub-res .res {
+    width: 40%!important;
+    min-width:44px;
+    letter-spacing: 2px;
+    text-align:center;
+}
+.menu .checktxt {
+	width:60%;
+    margin-left: 5%!important;
+}
+@media screen and (min-width: 1400px) {
+   .container {
+    width: 60%!important;
+	}
+}
+@media screen and (max-width: 960px) {
+   .container {
+    width: 100%!important;
+	}
+	.container-l {
+    background: url(../image/leftpic.png) no-repeat center;
+    background-size: 100% 100%;
+}
+}
+.passeye {
+    display: inline-block;
+    font: normal normal normal 14px/1 FontAwesome;
+    font-size: inherit;
+    text-rendering: auto;
+}
+.passeye:before {
+    content: "\f06e";
+}
