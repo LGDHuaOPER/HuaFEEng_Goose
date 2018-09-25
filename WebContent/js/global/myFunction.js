@@ -34,6 +34,11 @@
         canDispatchPageArr_href: ["ApplicationGallery", "SoftwareDocument", "Transport", "GetOrderRoute", "GetOrderByPageOne", "GetOrderByPageTwo", "PaymentRequest", "ServiceReport", "AssessmentStatistics", "Hardware", "GetHardwareRoute", "StandardProduct", "Customer", "GetCustomerInfo2", "AllLab", "Lab", "Reimburse"],
         notEouluCopy_href: ["OriginFactory","OriginFactorySearch","SoftwareImplementation","Tasking","Keysight","Price","PriceRoute","Transport","GetOrderRoute","GetOrderByPageOne", "GetOrderByPageTwo", "NonStandard","Inventory","OriginalQuotation","Supplier","AssessmentStatistics","StaffInfo","TrainingRecords","Admin","ServiceReport","SoftwareDocument","StandardProduct","Lab","Reimburse","WorkReport","SoftwareProject","BiddingDocument","PackingList","PaymentRequest","ApplicationGallery","Hardware","GetHardwareRoute","Customer","GetCustomerInfo2","AllLab"],
         showNavArr_href: ["Schedule","SoftwareProduct","QuotationSystem","Transport", "GetOrderRoute", "GetOrderByPageOne", "GetOrderByPageTwo", "PackingList","Invoice","Equipment","OriginFactory","Inventory","Price","Requirement","Inventory","MachineDetails","SalesStatistics","LeaveApplication","DocumentUpload","QuotationSystem","StockPurchasing","Insurance","Proposal","PackingList","HotProduct","Commodity","Quality","QuantityWeight","TestReport","Fumigation","Origin","Shipment","Receiving","Acceptance","Customer","MachineDetails","Hardware","AfterSale","Schedule","RoutineVisit","SoftwareDocument","SoftwareProject","SoftwareProduct","CustomerInquiry","SoftwareImplementation","StaffInfo","LeaveApplication","SoftwareImplementation","Keysight","NonStandard","OriginalQuotation","Supplier","AssessmentStatistics","ServiceReport","StandardProduct","SalesQuotationSystem","Lab","Reimburse","WorkReport","BiddingDocument","PaymentRequest","ApplicationGallery","AllLab"],
+        pageAllConfig: {
+            "Schedule": {
+                provinceANDcityRefreshFlag: false
+            }
+        },
         depart2PageObj: {
                 "物流部": {
                     // "物流统计": "Transport?ActualDelivery=no&column=DateOfSign&condition=All",
@@ -792,8 +797,130 @@
                             "mergeToParentFile": "reimburse.js"
                         }
                     }
-                }
+                },
                 // 报销申请页面结束
+                // 员工行程页面
+                "Schedule": {
+                    "lastModify": "Tue Sep 18 2018 17:29:07 GMT+0800 (中国标准时间)",
+                    "lastModifyTime": "1537262947000",
+                    // css
+                    "cssPrimary": {
+                        "bootstrap.min.css": {
+                            "referenceOrder": 0,
+                            "filePath": "css/libs/bootstrap.min.css",
+                            "mergeToParentFile": null
+                        },
+                        "daterangepicker.css": {
+                            "referenceOrder": 1,
+                            "filePath": "css/libs/daterangepicker.css",
+                            "mergeToParentFile": null
+                        },
+                        "awesomplete_all-a2ac84f236.min.css": {
+                            "referenceOrder": 2,
+                            "filePath": "plugins/awesomplete/awesomplete_all-a2ac84f236.min.css",
+                            "mergeToParentFile": null
+                        },
+                        "schedule.css": {
+                            "referenceOrder": 3,
+                            "filePath": "css/modules/serviced/schedule.css",
+                            "mergeToParentFile": "schedule.css"
+                        },
+                        "fullcalendar.css": {
+                            "referenceOrder": 4,
+                            "filePath": "css/fullcalendar.css",
+                            "mergeToParentFile": null
+                        }
+                    },
+                    // js
+                    "jsPrimary": {
+                        "http://api.map.baidu.com/api?v=2.0&ak=ZHnpqUp55qaTvkE27KGjUBYLcUfsaRTV": {
+                            "referenceOrder": 0,
+                            "filePath": "http://api.map.baidu.com/api?v=2.0&ak=ZHnpqUp55qaTvkE27KGjUBYLcUfsaRTV",
+                            "mergeToParentFile": null
+                        },
+                        "echarts-all-min.js": {
+                            "referenceOrder": 1,
+                            "filePath": "plugins/echarts/map_can/echarts-all-min.js",
+                            "mergeToParentFile": null
+                        },
+                        "bootstrap-moment-daterangepicker-abd2349e95.min.js": {
+                            "referenceOrder": 2,
+                            "filePath": "js/libs/integrationLibs/bootstrap-moment-daterangepicker-abd2349e95.min.js",
+                            "mergeToParentFile": null
+                        },
+                        "scrolltopcontrol.js": {
+                            "referenceOrder": 3,
+                            "filePath": "js/libs/scrolltopcontrol.js",
+                            "mergeToParentFile": null
+                        },
+                        "schedule.js": {
+                            "referenceOrder": 4,
+                            "filePath": "js/modules/serviced/schedule.js",
+                            "mergeToParentFile": "schedule.js"
+                        }
+                    }
+                },
+                "ScheduleRoute": {
+                    "lastModify": "Tue Sep 18 2018 17:29:07 GMT+0800 (中国标准时间)",
+                    "lastModifyTime": "1537262947000",
+                    // css
+                    "cssPrimary": {
+                        "bootstrap.min.css": {
+                            "referenceOrder": 0,
+                            "filePath": "css/libs/bootstrap.min.css",
+                            "mergeToParentFile": null
+                        },
+                        "daterangepicker.css": {
+                            "referenceOrder": 1,
+                            "filePath": "css/libs/daterangepicker.css",
+                            "mergeToParentFile": null
+                        },
+                        "awesomplete_all-a2ac84f236.min.css": {
+                            "referenceOrder": 2,
+                            "filePath": "plugins/awesomplete/awesomplete_all-a2ac84f236.min.css",
+                            "mergeToParentFile": null
+                        },
+                        "schedule.css": {
+                            "referenceOrder": 3,
+                            "filePath": "css/modules/serviced/schedule.css",
+                            "mergeToParentFile": "schedule.css"
+                        },
+                        "fullcalendar.css": {
+                            "referenceOrder": 4,
+                            "filePath": "css/fullcalendar.css",
+                            "mergeToParentFile": null
+                        }
+                    },
+                    // js
+                    "jsPrimary": {
+                        "http://api.map.baidu.com/api?v=2.0&ak=ZHnpqUp55qaTvkE27KGjUBYLcUfsaRTV": {
+                            "referenceOrder": 0,
+                            "filePath": "http://api.map.baidu.com/api?v=2.0&ak=ZHnpqUp55qaTvkE27KGjUBYLcUfsaRTV",
+                            "mergeToParentFile": null
+                        },
+                        "echarts-all-min.js": {
+                            "referenceOrder": 1,
+                            "filePath": "plugins/echarts/map_can/echarts-all-min.js",
+                            "mergeToParentFile": null
+                        },
+                        "bootstrap-moment-daterangepicker-abd2349e95.min.js": {
+                            "referenceOrder": 2,
+                            "filePath": "js/libs/integrationLibs/bootstrap-moment-daterangepicker-abd2349e95.min.js",
+                            "mergeToParentFile": null
+                        },
+                        "scrolltopcontrol.js": {
+                            "referenceOrder": 3,
+                            "filePath": "js/libs/scrolltopcontrol.js",
+                            "mergeToParentFile": null
+                        },
+                        "schedule.js": {
+                            "referenceOrder": 4,
+                            "filePath": "js/modules/serviced/schedule.js",
+                            "mergeToParentFile": "schedule.js"
+                        }
+                    }
+                },
+                // 员工行程页面结束
             },
         // pageHrefImportFileMap 结束
         // compressFilePathMap 开始
@@ -875,6 +1002,13 @@
                     "gulp-rev": "PaymentRequest-6bc602eb88.min.css",
                     "referencePath": "css/modules/personnel/PaymentRequest-6bc602eb88.min.css",
                     "srcPath": "src/css/modules/personnel/PaymentRequest-6bc602eb88.min.css"
+                },
+                "schedule.css": {
+                    "originPath": ["./cfChicken8/WebContent/css/libs/kalendae_pc.css", "./cfChicken8/WebContent/css/schedule.css"],
+                    "outBasePath": "./cfChicken8/WebContent/css/modules/serviced/",
+                    "gulp-rev": "schedule-0f26355e98.min.css",
+                    "referencePath": "css/modules/serviced/schedule-0f26355e98.min.css",
+                    "srcPath": "src/css/modules/serviced/schedule-0f26355e98.min.css"
                 }
             },
             "jsMerge": {
@@ -982,6 +1116,13 @@
                     "gulp-rev": "PaymentRequest-4b3d5152bd.min.js",
                     "referencePath": "js/modules/personnel/PaymentRequest-4b3d5152bd.min.js",
                     "srcPath": "src/js/modules/personnel/PaymentRequest-4b3d5152bd.min.js"
+                },
+                "schedule.js": {
+                    "originPath": ["./cfChicken8/WebContent/js/fullcalendar.min.js", "./cfChicken8/WebContent/js/libs/kalendae.standalone_zh.js", "./cfChicken8/WebContent/plugins/awesomplete/awesomplete.min.js", "./cfChicken8/WebContent/js/libs/scrolltopcontrol.js", "./cfChicken8/WebContent/js/msgbox.js", "./cfChicken8/WebContent/js/schedule.js"],
+                    "outBasePath": "./cfChicken8/WebContent/js/modules/serviced/",
+                    "gulp-rev": "schedule-4d6a516990.min.js",
+                    "referencePath": "js/modules/serviced/schedule-4d6a516990.min.js",
+                    "srcPath": "src/js/modules/serviced/schedule-4d6a516990.min.js"
                 }
             }
         }
@@ -1197,6 +1338,9 @@
         },
         S_getShowNavArr: function(){
             return _DefaultParam.showNavArr_href;
+        },
+        S_getPageAllConfig: function(){
+            return _DefaultParam.pageAllConfig;
         },
         // 获取pageHrefImportFileMap数据开始
         S_getPageHrefImportFileMap: function(){
