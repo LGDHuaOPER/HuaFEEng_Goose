@@ -83,12 +83,17 @@ public class PaymentRequestServiceImpl implements PaymentRequestService{
 		String content = new MethodUtil().getEmailSign(sBuilder.toString(), "NA");
 		String[] to = request.getToList().split(";");
 		String[] copyto = request.getCopyList().split(";");
-		String[] files = Attachment.split("::");
-		String folderPath = "E:\\LogisticsFile\\File\\PaymentRequest\\";
-		for(int i = 0;i < files.length;i ++){
-			String fileName = files[i];
-			files[i] = folderPath + fileName;
+		String[] files = null;
+		if(!Attachment.equals("")){
+			files = Attachment.split("::");
+			String folderPath = "E:\\LogisticsFile\\File\\PaymentRequest\\";
+			for(int i = 0;i < files.length;i ++){
+				String fileName = files[i];
+				files[i] = folderPath + fileName;
+			}
 		}
+	
+		
 		boolean flag = new JavaMailToolsUtil(SEND_USER, SEND_UNAME,SEND_PWD).doSendHtmlEmail(request.getSubject(), content,files , to, copyto);
 		if(flag){
 			dao.updateSendState(request.getID());

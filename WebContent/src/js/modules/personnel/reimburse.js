@@ -77,6 +77,7 @@ addSubmitObj.Department = null;
 addSubmitObj.Name = null;
 // addSubmitObj.Pass = undefined;
 addSubmitObj.TotalAmount = null;
+addSubmitObj.TravelDay = null;
 // addSubmitObj.BillScreenshot = null;
 // addSubmitObj.ElectronicInvoice = null;
 // addSubmitObj.TravelPaper = null;
@@ -90,6 +91,7 @@ updateSubmitObj.Department = null;
 updateSubmitObj.Name = null;
 updateSubmitObj.Pass = null;
 updateSubmitObj.TotalAmount = null;
+updateSubmitObj.TravelDay = null;
 updateSubmitObj.DetailJson = null;
 updateSubmitObj.TravelJson = null;
 
@@ -806,7 +808,7 @@ $("#NonStandard_addsubmit").click(function(){
 			addSubmitObj[kk] = "add";
 			continue;
 		}
-		if(kk=="TotalAmount" || kk=="DetailJson" || kk=="TravelJson"){
+		if(kk=="TotalAmount" || kk=="DetailJson" || kk=="TravelJson" || kk=="TravelDay"){
 			continue;
 		}
 		addSubmitObj[kk] = $(".add_NonStandard").find(".info_"+kk).val();
@@ -830,6 +832,12 @@ $("#NonStandard_addsubmit").click(function(){
 		}
 	});
 	addSubmitObj.TotalAmount = TotalAmount.toFixed(2);
+	var TravelDay = $(".add_NonStandard td.insert_detail_td_calc_days").text();
+	if(TravelDay === "" || TravelDay == "NaN"){
+		$.MsgBox_Unload.Alert("提交总天数提示","天数为空或未刷新！");
+		return false;
+	}
+	addSubmitObj.TravelDay = TravelDay;
 	// DetailJson
 	var DetailJson = [];
 	$(".add_NonStandard_details_div tbody tr").each(function(){
@@ -909,7 +917,7 @@ $("#NonStandard_updatesubmit").click(function(){
 			updateSubmitObj[kk] = "update";
 			continue;
 		}
-		if(kk=="ID" || kk=="Pass" || kk=="TotalAmount" || kk=="DetailJson" || kk=="TravelJson"){
+		if(kk=="ID" || kk=="Pass" || kk=="TotalAmount" || kk=="DetailJson" || kk=="TravelJson" || kk=="TravelDay"){
 			continue;
 		}
 		updateSubmitObj[kk] = $(".update_NonStandard").find(".info_"+kk).val();
@@ -933,6 +941,13 @@ $("#NonStandard_updatesubmit").click(function(){
 		}
 	});
 	updateSubmitObj.TotalAmount = TotalAmount.toFixed(2);
+	// 总天数
+	var TravelDay = $(".update_NonStandard td.insert_detail_td_calc_days").text();
+	if(TravelDay === "" || TravelDay == "NaN"){
+		$.MsgBox_Unload.Alert("提交总天数提示","天数为空或未刷新！");
+		return false;
+	}
+	updateSubmitObj.TravelDay = TravelDay;
 	// DetailJson
 	var DetailJson = [];
 	$(".update_NonStandard_details_div tbody tr").each(function(){
@@ -1154,10 +1169,17 @@ $(document).on("click", ".reimburse_detail_td span", function(){
 			reimburseState.allUploadObj.ID = RequestID;
 			// 详情
 			var detailStr = '';
+			var SumAmount = 0;
 			detailData.map(function(currentValue, index, arr){
 				if(index > 0){
 					var iAttachment = currentValue.Attachment == "--" ? "" : currentValue.Attachment;
 					iAttachment = iAttachment == "" ? "未上传" : iAttachment;
+					// 加和金额
+					var iiAmount = currentValue.Amount;
+					if(iiAmount == "--" || iiAmount == undefined || iiAmount == ""){
+						iiAmount = 0;
+					}
+					SumAmount+=Number(iiAmount);
 					detailStr+='<tr data-iid="'+currentValue.ID+'">'+
 							'<td title="'+currentValue.Type+'">'+currentValue.Type+'</td>'+
 							'<td title="'+currentValue.Amount+'">'+currentValue.Amount+'</td>'+
@@ -1169,6 +1191,8 @@ $(document).on("click", ".reimburse_detail_td span", function(){
 						'</tr>';
 				}
 			});
+			SumAmount = SumAmount.toFixed(2);
+			detailStr+='<tr><td>金额总计</td><td colspan="6" style="text-align: left;padding-left: 15px;">'+SumAmount+'</td></tr>';
 			$(".modal-body_detail tbody").empty().append(detailStr);
 			// 事由等
 			var travelStr = '';

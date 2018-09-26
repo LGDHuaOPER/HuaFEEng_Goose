@@ -100,7 +100,7 @@ public class ReimburseServlet extends HttpServlet {
 		String Department = request.getParameter("Department")==null?"":request.getParameter("Department").trim();
 		String Pass = request.getParameter("Pass");
 		double TotalAmount = Double.parseDouble(request.getParameter("TotalAmount")==null?"0.0":request.getParameter("TotalAmount"));
-	
+		float TravelDay = Float.parseFloat(request.getParameter("TravelDay")==null?"0":request.getParameter("TravelDay"));
 		
 		String detailJson = request.getParameter("DetailJson")==null?"":request.getParameter("DetailJson");
 		String travelJson = request.getParameter("TravelJson")==null?"":request.getParameter("TravelJson");
@@ -110,6 +110,7 @@ public class ReimburseServlet extends HttpServlet {
 		reimburse.setDepartment(Department);
 		reimburse.setPass(Pass);
 		reimburse.setTotalAmount(TotalAmount);
+		reimburse.setTravelDay(TravelDay);
 
 		
 		ReimburseService service = new ReimburseServiceImpl();

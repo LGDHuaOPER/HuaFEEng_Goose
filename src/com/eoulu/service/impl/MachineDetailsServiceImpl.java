@@ -20,9 +20,9 @@ public class MachineDetailsServiceImpl implements MachineDetailsService{
 	static{
 		Map<String, Object> map = new HashMap<String, Object>();
 		
-		map.put("客户单位", "CustomerUnit");
+		map.put("客户单位", "t_customer.CustomerName");
 		map.put("合同号", "ContractNO");
-		map.put("用户姓名", "Contact");
+		map.put("用户姓名", "t_customer.Contact");
 		map.put("SN", "SN");
 		map.put("Model", "Model");
 		map.put("装机服务时间", "InstalledTime");
@@ -123,61 +123,27 @@ public class MachineDetailsServiceImpl implements MachineDetailsService{
 	@Override
 	public List<Map<String, Object>> getMachineDetailsByPageInOne(String classify, Object parameter, Page page) {
 		
-		Object[] obj = null;
-		switch(classify_MAP.get(classify).toString()){
-		case "Contact":obj=new Object[1]; obj[0]="%"+parameter+"%";table = "t_customer.";break;
-		default: obj=new Object[1]; obj[0]="%"+parameter+"%";
-		}
+
 		String sql = "select t_machine_details.ID,t_machine_details.Model,t_machine_details.SN,t_machine_details.ContractNO,"
 				+ "t_machine_details.InstalledTime,t_customer.CustomerName CustomerUnit,t_customer.Contact CustomerName,t_customer.CustomerLevel,t_machine_details.CustomerID "
 				+ "from t_machine_details left join t_customer on t_customer.ID =t_machine_details.CustomerID ";
-		for(int i=0 ; i<obj.length ; i++){
-//			if(classify.equals("SN")){
-//				sql += "where  t_machine_details."+classify_MAP.get(classify)+"=? ";
-//			}else{
-				sql += "where "+table+classify_MAP.get(classify)+" like ? ";
-//			}
-			if(i<obj.length-1){
-				sql+=" or ";
-			}
-		}
-		sql += "order by InstalledTime desc limit ?,?";
-		Object[] param;
-		if(obj.length == 0){
-			param = new Object[2];
-			param[0] = (page.getCurrentPage()-1)*page.getRows();
-			param[1] = page.getRows();
-		}else{
-			param = new Object[obj.length+2];
-			for(int i=0 ; i< obj.length ; i++){
-				param[i] = obj[i];
-			}
-			param[obj.length] = (page.getCurrentPage()-1)*page.getRows();
-			param[obj.length+1] = page.getRows();
-		}
+	
+		sql += "where "+classify_MAP.get(classify)+" like ? order by InstalledTime desc limit ?,?";
+		Object[] param = new Object[3];
+		param[0] = "%"+parameter+"%";
+		param[1] = (page.getCurrentPage()-1)*page.getRows();
+		param[2] = page.getRows();
+	
 		return new MachineDetailsDao().getQueryList(sql, param);
 	}
 
 	@Override
 	public int getCountByClassify(String classify, Object parameter) {
-		Object[] obj = null;
-		switch(classify_MAP.get(classify).toString()){
-		case "Contact":obj=new Object[1]; obj[0]="%"+parameter+"%";table = "t_customer.";break;
-		default: obj=new Object[1]; obj[0]="%"+parameter+"%";
-		}
+
 		String sql = "select count(t_machine_details.ID),t_customer.Contact CustomerName from t_machine_details left join t_customer on t_customer.ID =t_machine_details.CustomerID ";
-		for(int i=0 ; i<obj.length ; i++){
-//			if(classify.equals("SN")){
-//				sql += "where  "+classify_MAP.get(classify)+" =?";
-//			}else{
-				sql += "where  "+table+classify_MAP.get(classify)+" like ?";
-//			}
-			if(i<obj.length-1){
-				sql+=" or ";
-			}
-		}
-		System.out.println(sql);
-		return new DBUtil().getCountsByName(sql, obj);
+		sql += "where "+classify_MAP.get(classify)+" like ? ";
+	
+		return new DBUtil().getCountsByName(sql, new Object[]{"%"+parameter+"%"});
 	}
 
 	@Override
@@ -333,46 +299,16 @@ public class MachineDetailsServiceImpl implements MachineDetailsService{
 
 	@Override
 	public int getCountByClassify(String classify1, Object parameter1, String classify2, Object parameter2) {
-		Object[] obj1 = null;
-		switch(classify_MAP.get(classify1).toString()){
-		case "Contact":obj1=new Object[1]; obj1[0]="%"+parameter1+"%";table = "t_customer.";break;
-		default: obj1=new Object[1]; obj1[0]="%"+parameter1+"%";
-		}
+
 		String sql1 =  "select count(t_machine_details.ID) ,t_customer.Contact CustomerName from t_machine_details left join t_customer on t_customer.ID =t_machine_details.CustomerID ";
-		for(int i=0 ; i<obj1.length ; i++){
-//			if(classify1.equals("SN")){
-//				sql1 += "where "+classify_MAP.get(classify1)+" =?";
-//			}else{
-				sql1 += "where "+table+classify_MAP.get(classify1)+" like ?";
-//			}
-			if(i<obj1.length-1){
-				sql1 += " or ";
-			}
-		}
-		table = "";
-		
-		Object[] obj2 = null;
-		String sql2 = "";
-		
-		switch(classify_MAP.get(classify2).toString()){
-		case "Contact":obj2=new Object[1];obj2[0]="%"+parameter2+"%";table = "t_customer.";break;
-		default: obj2=new Object[1]; obj2[0]="%"+parameter2+"%";
-		}
-		for(int i=0 ; i<obj2.length ; i++){
-//			if(classify2.equals("SN")){
-//				sql2 += classify_MAP.get(classify2)+" =?";
-//			}else{
-				sql2 += table+classify_MAP.get(classify2)+" like ?";
-//			}
-			if(i<obj2.length-1){
-				sql2 += " or ";
-			}
-		}
-		table = "";
+	
+		sql1 += "where "+table+classify_MAP.get(classify1)+" like ?";
+		String sql2 = classify_MAP.get(classify2)+" like ?";
+
 		String sql = sql1 +" and "+sql2;
-		Object[] param = new Object[obj1.length+obj2.length];
-		param[0]=obj1[0];
-		param[1]=obj2[0];
+		Object[] param = new Object[2];
+		param[0]="%"+parameter1+"%";
+		param[1]="%"+parameter2+"%";
 	
 		return new DBUtil().getCountsByName(sql, param);
 	}
@@ -380,77 +316,23 @@ public class MachineDetailsServiceImpl implements MachineDetailsService{
 	@Override
 	public List<Map<String, Object>> getMachineDetailsByPageInTwo(String classify1, Object parameter1, String classify2,
 			Object parameter2, Page page) {
-		Object[] obj1 = null;
-		switch(classify_MAP.get(classify1).toString()){
-		case "Contact":obj1=new Object[1]; obj1[0]="%"+parameter1+"%";table = "t_customer.";break;
-		default: obj1=new Object[1]; obj1[0]="%"+parameter1+"%";
-		}
+	
 		String sql1 = "select t_machine_details.ID,t_machine_details.Model,t_machine_details.SN,t_machine_details.ContractNO,"
 				+ "t_machine_details.InstalledTime,t_customer.CustomerName CustomerUnit,t_customer.Contact CustomerName,"
 				+ "t_machine_details.CustomerID,t_customer.CustomerLevel "
 				+ "from t_machine_details left join t_customer on t_customer.ID =t_machine_details.CustomerID ";
-		for(int i=0 ; i<obj1.length ; i++){
-//			if(classify1.equals("SN")){
-//				sql1 += "where "+classify_MAP.get(classify1)+" =?";
-//			}else{
-				sql1 += "where "+table+classify_MAP.get(classify1)+" like ?";
-//			}
-			if(i<obj1.length-1){
-				sql1 += " or ";
-			}
-		}
-		table="";
-		Object[] obj2 = null;
-		String sql2 = "";
-		switch(classify_MAP.get(classify2).toString()){
-		case "Contact":obj2=new Object[1]; obj2[0]="%"+parameter2+"%";table = "t_customer.";break;
-		default: obj2=new Object[1]; obj2[0]="%"+parameter2+"%";
-		}
-		for(int i=0 ; i<obj2.length ; i++){
-//			if(classify2.equals("SN")){
-//				sql2 += classify_MAP.get(classify2)+" =?";
-//			}else{
-				sql2 += table+classify_MAP.get(classify2)+" like ?";
-//			}
-			if(i<obj2.length-1){
-				sql2 += " or ";
-			}
-		}
+
+				sql1 += "where "+classify_MAP.get(classify1)+" like ?";
+
+	
+		String sql2 = classify_MAP.get(classify2)+" like ?";
 		String sql = sql1 +" and "+sql2+" order by t_machine_details.InstalledTime desc limit ?,?";
-		Object[] param;
-		if(obj1.length == 0 && obj2.length == 0){
-			param = new Object[2];
-			param[0] = (page.getCurrentPage()-1)*page.getRows();
-			param[1] = page.getRows();
-		}else if(obj1.length != 0 && obj2.length == 0){
-			param = new Object[obj1.length+2];
-			for(int i=0 ; i<obj1.length ; i++){
-				param[i] = obj1[i];
-			}
-			param[obj1.length] = (page.getCurrentPage()-1)*page.getRows();
-			param[obj1.length+1] = page.getRows();
-		}else if(obj1.length == 0 && obj2.length != 0){
-			param = new Object[obj2.length+2];
-			for(int i=0 ; i<obj2.length ; i++){
-				param[i] = obj2[i];
-			}
-			param[obj2.length] = (page.getCurrentPage()-1)*page.getRows();
-			param[obj2.length+1] = page.getRows();
-		}else{
-			param = new Object[obj1.length+obj2.length+2];
+		Object[] param = new Object[4];
+		param[0] = "%"+parameter1+"%";	
+		param[1] = "%"+parameter2+"%";
 			
-			for(int i=0 ; i<param.length-2 ; i++){
-				if(i == 0){
-					param[i] = obj1[0];
-				}
-				if(i == 1){
-					param[i] = obj2[0];
-				}
-				
-			}
-			param[param.length-2] = (page.getCurrentPage()-1)*page.getRows();
-			param[param.length-1] = page.getRows();
-		}
+		param[2] = (page.getCurrentPage()-1)*page.getRows();
+		param[3] = page.getRows();
 		return new MachineDetailsDao().getQueryList(sql, param);
 	}
 

@@ -1,15 +1,12 @@
 package com.eoulu.dao;
 
-import java.sql.SQLException;
 import java.text.SimpleDateFormat;
-import java.util.Arrays;
 import java.util.Date;
 import java.util.List;
 import java.util.Map;
 
 import com.eoulu.commonality.Page;
 import com.eoulu.entity.MachineDetails;
-import com.eoulu.entity.Shipment;
 import com.eoulu.util.DBUtil;
 
 public class MachineDetailsDao {
@@ -29,12 +26,12 @@ public class MachineDetailsDao {
 				+ "from t_machine_details left join t_customer on t_customer.ID =t_machine_details.CustomerID left join "
 				+ "(select t_visiting_record.MachineDetailsID MachineDetailsID,MAX(t_visiting_record.VisitTime) VisitTime " + 
 				"from t_visiting_record GROUP BY t_visiting_record.MachineDetailsID) a on a.MachineDetailsID=t_machine_details.ID" + 
-				" order BY case " + 
+				" order BY InstalledTime DESC,case " + 
 				"when CustomerLevel='A' then 1 " + 
 				"when CustomerLevel='B' then 2 " + 
 				"when CustomerLevel='C' then 3 " + 
 				"when CustomerLevel='--' then 4 " + 
-				"WHEN  CustomerLevel IS NULL then 5 end ,if(VisitTime is null,InstalledTime,VisitTime) desc limit ?,?";
+				"WHEN  CustomerLevel IS NULL then 5 end  limit ?,?";
 			
 		Object[] parameter = new Object[]{(page.getCurrentPage()-1)*page.getRows(),page.getRows()};
 

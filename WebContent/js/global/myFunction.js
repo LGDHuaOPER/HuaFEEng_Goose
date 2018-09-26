@@ -22,8 +22,8 @@
     var _global;
     // 定义一些默认参数
     var _DefaultParam = {
-        environment: "development",
-        // environment: "product",
+        // environment: "development",
+        environment: "product",
         projectName: "cfChicken8",
         versionNO: "1536897675562",
         versionExceptArr: ["eoulu.ico","bootstrap","swiper-3.4.1.min.css","eouluCustom.css","reset.css","css/libs","css/extends","echarts","jquery","msgbox","ajaxfileupload.js","html2canvas.js","fullcalendar.min.js","jsPdf.debug.js","underscore-min.js","ProvinceandCity.js","dispatchScript-a9a7544bda.min.js","js/libs","plugins/"],
@@ -794,7 +794,7 @@
                         },
                         "reimburse.js": {
                             "referenceOrder": 1,
-                            "filePath": "js/modules/personnel/reimburse.js",
+                            "filePath": "src/js/modules/personnel/reimburse.js",
                             "mergeToParentFile": "reimburse.js"
                         }
                     }
@@ -881,7 +881,7 @@
                         },
                         "schedule.js": {
                             "referenceOrder": 8,
-                            "filePath": "js/modules/serviced/schedule.js",
+                            "filePath": "src/js/modules/serviced/schedule.js",
                             "mergeToParentFile": "schedule.js"
                         }
                     }
@@ -966,7 +966,7 @@
                         },
                         "schedule.js": {
                             "referenceOrder": 8,
-                            "filePath": "js/modules/serviced/schedule.js",
+                            "filePath": "src/js/modules/serviced/schedule.js",
                             "mergeToParentFile": "schedule.js"
                         }
                     }
@@ -1162,10 +1162,10 @@
                     "srcPath": "src/js/modules/laboratory/Lab.js"
                 },
                 "reimburse.js": {
-                    "originPath": ["./cfChicken8/WebContent/js/modules/personnel/reimburse.js"],
-                    "outBasePath": "./cfChicken8/WebContent/js/modules/personnel/",
-                    "gulp-rev": "reimburse-d7048b79a9.min.js",
-                    "referencePath": "js/modules/personnel/reimburse-d7048b79a9.min.js",
+                    "originPath": ["./cfChicken8/WebContent/src/js/modules/personnel/reimburse.js"],
+                    "outBasePath": "./cfChicken8/WebContent/src/js/modules/personnel/",
+                    "gulp-rev": "reimburse-7e7b7cc5ff.min.js",
+                    "referencePath": "js/modules/personnel/reimburse-7e7b7cc5ff.min.js",
                     "srcPath": "src/js/modules/personnel/reimburse.js"
                 },
                 "PaymentRequest.js": {
@@ -1176,10 +1176,10 @@
                     "srcPath": "src/js/modules/personnel/PaymentRequest.js"
                 },
                 "schedule.js": {
-                    "originPath": ["./cfChicken8/WebContent/js/modules/serviced/schedule.js"],
-                    "outBasePath": "./cfChicken8/WebContent/js/modules/serviced/",
-                    "gulp-rev": "schedule-3b1a6a60f0.min.js",
-                    "referencePath": "js/modules/serviced/schedule-3b1a6a60f0.min.js",
+                    "originPath": ["./cfChicken8/WebContent/src/js/modules/serviced/schedule.js"],
+                    "outBasePath": "./cfChicken8/WebContent/src/js/modules/serviced/",
+                    "gulp-rev": "schedule-659fa5eb39.min.js",
+                    "referencePath": "js/modules/serviced/schedule-659fa5eb39.min.js",
                     "srcPath": "src/js/modules/serviced/schedule.js"
                 }
             }

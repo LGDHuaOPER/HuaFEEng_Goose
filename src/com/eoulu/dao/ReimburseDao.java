@@ -112,13 +112,14 @@ public class ReimburseDao {
 	}
 	
 	public int insertRequest(Reimburse reimburse, DBUtil db) throws NumberFormatException, Exception{
-		String sql = "insert into t_reimburse(Name,Department,TotalAmount,FilingDate,Pass) values(?,?,?,?,?)";
-		Object[] param = new Object[5];
+		String sql = "insert into t_reimburse(Name,Department,TotalAmount,FilingDate,Pass,TravelDay) values(?,?,?,?,?,?)";
+		Object[] param = new Object[6];
 		param[0] = reimburse.getName();
 		param[1] = reimburse.getDepartment();
 		param[2] = reimburse.getTotalAmount();
 		param[3] = reimburse.getFilingDate();
 		param[4] = "未审核";
+		param[5] = reimburse.getTravelDay();
 
 		int result = Integer.parseInt(db.insertGetIdNotClose(sql, param).toString());
 		return result;
@@ -126,13 +127,14 @@ public class ReimburseDao {
 	}
 	
 	public boolean updateRequest(Reimburse reimburse, DBUtil db) throws SQLException{
-		String sql = "update t_reimburse set Name=?,Department=?,TotalAmount=?,Pass=? where ID=?";
-		Object[] param = new Object[5];
+		String sql = "update t_reimburse set Name=?,Department=?,TotalAmount=?,Pass=?,TravelDay=? where ID=?";
+		Object[] param = new Object[6];
 		param[0] = reimburse.getName();
 		param[1] = reimburse.getDepartment();
 		param[2] = reimburse.getTotalAmount();
 		param[3] = reimburse.getPass();
-		param[4] = reimburse.getID();
+		param[4] = reimburse.getTravelDay();
+		param[5] = reimburse.getID();
 		int result = db.executeUpdateNotClose(sql, param);
 		if (result > 0){
 			return true;
@@ -232,7 +234,7 @@ public class ReimburseDao {
 	}
 	
 	public List<Map<String, Object>> getInfo(int ID){
-		String sql = "select Name,FilingDate from t_reimburse where ID=?";
+		String sql = "select Name,FilingDate,TotalAmount,TravelDay from t_reimburse where ID=?";
 		DBUtil dbUtil = new DBUtil();
 		return dbUtil.QueryToList(sql, new Object[]{ID});
 	}

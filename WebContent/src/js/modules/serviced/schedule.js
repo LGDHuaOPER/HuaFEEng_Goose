@@ -4881,10 +4881,16 @@ $(document).on("click", "#mb_btn_ok", function () {
 //点击关闭
 $('#add_cancel').click(function() {
     $('.MailBar_cover_color, .contract_add').slideUp(200);
+    for(var k in ScheduleState.addSubmitObj){
+		ScheduleState.addSubmitObj[k] = null;
+	}
 });
 
 $('#update_cancel').click(function () {
     $('.MailBar_cover_color, .contract_update').slideUp(200);
+    for(var k in ScheduleState.updateSubmitObj){
+		ScheduleState.updateSubmitObj[k] = null;
+	}
 });
 
 //

@@ -6,15 +6,11 @@ import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
 
-import com.eoulu.commonality.AuthorityResource;
 import com.eoulu.commonality.Page;
 import com.eoulu.dao.ScheduleDao;
 import com.eoulu.entity.Schedule;
 import com.eoulu.service.LogInfoService;
 import com.eoulu.service.ScheduleService;
-
-
-import net.sf.json.JSONObject;
 
 public class ScheduleServiceImpl implements ScheduleService {
 
@@ -67,12 +63,7 @@ public class ScheduleServiceImpl implements ScheduleService {
 		int HotelExpense = request.getParameter("HotelExpense") == null?0:Integer.parseInt(request.getParameter("HotelExpense"));
 		int TrafficExpense = request.getParameter("TrafficExpense") == null?0:Integer.parseInt(request.getParameter("TrafficExpense"));
 
-		if (!destination.equals("")&&!destination.contains("市")&&!destination.equals("香港")&&!destination.equals("澳门")) {
-			destination += "市";
-		}
-		if (!departure.equals("")&&!departure.contains("市")&&!departure.equals("香港")&&!departure.equals("澳门")) {
-			departure += "市";
-		}
+	
 		Schedule s = new Schedule();
 		s.setName(name);
 		s.setCustomerUnit(unit);
@@ -119,12 +110,7 @@ public class ScheduleServiceImpl implements ScheduleService {
 		int HotelExpense = request.getParameter("HotelExpense") == null?0:Integer.parseInt(request.getParameter("HotelExpense"));
 		int TrafficExpense = request.getParameter("TrafficExpense") == null?0:Integer.parseInt(request.getParameter("TrafficExpense"));
 
-		if (!destination.equals("")&&!destination.contains("市")&&!destination.equals("香港")&&!destination.equals("澳门")) {
-			destination += "市";
-		}
-		if (!departure.equals("")&&!departure.contains("市")&&!departure.equals("香港")&&!departure.equals("澳门")) {
-			departure += "市";
-		}
+	
 		Schedule s = new Schedule();
 		s.setID(id);
 		s.setName(name);

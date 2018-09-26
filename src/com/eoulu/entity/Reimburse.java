@@ -13,6 +13,7 @@ public class Reimburse {
 	private String TravelPaper;
 	private String Others;
 	private String AttachmentJson;
+	private float TravelDay;
 	
 	public int getID() {
 		return ID;
@@ -81,5 +82,12 @@ public class Reimburse {
 	public void setAttachmentJson(String attachmentJson) {
 		AttachmentJson = attachmentJson;
 	}
+	public float getTravelDay() {
+		return TravelDay;
+	}
+	public void setTravelDay(float travelDay) {
+		TravelDay = travelDay;
+	}
+	
 	
 }

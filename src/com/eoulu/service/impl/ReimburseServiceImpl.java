@@ -462,9 +462,12 @@ public class ReimburseServiceImpl implements ReimburseService{
 		}
 		for(int i = 0;i < idArr.length;i ++){
 			int ID = Integer.parseInt(idArr[i]);
-			String name = dao.getInfo(ID).get(1).get("Name").toString();
-			String filingDate = dao.getInfo(ID).get(1).get("FilingDate").toString();
+			List<Map<String, Object>> info = dao.getInfo(ID);
+			String name = info.get(1).get("Name").toString();
+			String filingDate = info.get(1).get("FilingDate").toString();
 			String Month = filingDate.split("-")[0]+filingDate.split("-")[1];
+			String totalAmount = info.get(1).get("TotalAmount").toString();
+			String travelDay = info.get(1).get("TravelDay").toString();
 
 			List<Map<String, Object>> detail = dao.getDetails(ID);
 			List<Map<String, Object>> travel = dao.getTravel(ID);
@@ -474,7 +477,7 @@ public class ReimburseServiceImpl implements ReimburseService{
 				sourceDir.mkdirs();
 			}
 			String path = savePath+"\\报销申请表-"+name+".xlsx";
-			makeExcel(detail, travel, path);
+			makeExcel(totalAmount,travelDay,detail, travel, path);
 			try {
 				FileUtils.copyDirectoryToDirectory(sourceDir,targetDir);
 			} catch (IOException e) {
@@ -500,7 +503,7 @@ public class ReimburseServiceImpl implements ReimburseService{
 		
 	}
 	
-	public void makeExcel(List<Map<String, Object>> detail,List<Map<String, Object>> travel,String path){
+	public void makeExcel(String totalAmount,String TravelDay,List<Map<String, Object>> detail,List<Map<String, Object>> travel,String path){
 		
 		String[] detailHead = new String[]{"报销类型","金额","事由","客户名","往返城市","往返时间"};
 		String[] travelHead = new String[]{"出差地点","往返时间","事由","天数"};
@@ -575,7 +578,16 @@ public class ReimburseServiceImpl implements ReimburseService{
 			
 			}
 		}
-		XSSFRow travelTitle = sheet.createRow(detail.size()+2);
+		
+		XSSFRow row1 = sheet.createRow(detail.size());
+		XSSFCell cell1 = row1.createCell(0);
+		cell1.setCellValue("总金额");
+		cell1.setCellStyle(title);
+		cell1 = row1.createCell(1);
+		cell1.setCellValue(Double.parseDouble(totalAmount.equals("--")?"0":totalAmount));
+		cell1.setCellStyle(center);
+		
+		XSSFRow travelTitle = sheet.createRow(detail.size()+3);
 		travelTitle.setHeightInPoints(30);
 		for(int i = 0;i < travelHead.length;i ++){
 			XSSFCell head = travelTitle.createCell(i);
@@ -583,7 +595,7 @@ public class ReimburseServiceImpl implements ReimburseService{
 			head.setCellStyle(title);
 		}
 		for(int i = 1;i < travel.size();i ++){
-			XSSFRow row = sheet.createRow(i+detail.size()+2);
+			XSSFRow row = sheet.createRow(i+detail.size()+3);
 			for(int j = 0;j < travelHead.length;j++){
 				XSSFCell cell = row.createCell(j);
 				if(travelHead[j].equals("天数")){
@@ -596,6 +608,14 @@ public class ReimburseServiceImpl implements ReimburseService{
 				
 			}
 		}
+		XSSFRow row2 = sheet.createRow(travel.size()+detail.size()+3);
+		XSSFCell cell2 = row2.createCell(0);
+		cell2.setCellValue("总天数");
+		cell2.setCellStyle(title);
+		cell2 = row2.createCell(1);
+		cell2.setCellValue(Float.parseFloat(TravelDay.equals("--")?"0":TravelDay));
+		cell2.setCellStyle(center);
+		
 		
 		FileOutputStream fos = null;
 		try {

@@ -51,6 +51,7 @@ public class WorkReportServlet extends HttpServlet {
 			map.put("currentPage",currentPage);
 			map.put("datas", service.getDataByPage(page));
 			map.put("pageCount", page.getPageCounts());
+		
 			response.getWriter().write(new Gson().toJson(map));
 		}else{
 			new AccessStatistics().operateAccess(request, "工作汇报");

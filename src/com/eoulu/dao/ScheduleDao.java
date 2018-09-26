@@ -195,50 +195,7 @@ public class ScheduleDao {
 //		System.out.println(map);
 		return map;
 	}
-/*
-	public static String[] getProvince(String startTime, String endTime,String name) {
-		List<Map<String, Object>> ls = null;
-		Set<String> set = new HashSet<>();
-		DBUtil db = new DBUtil();
-		if (startTime.equals("0000-00-00") && endTime.equals("0000-00-00")) {
-			String sql = "SELECT a.province FROM "
-					+ "(select t_provinces.province from t_provinces LEFT JOIN t_cities ON "
-					+ " t_cities.provinceid=t_provinces.provinceid where t_cities.city IN "
-					+ "(select DISTINCT(Destination) city from t_schedule ) UNION "
-					+ " select t_provinces.province from t_provinces  where t_provinces.province IN "
-					+ "(select DISTINCT(Destination) city from t_schedule ) )a";
-			Object[] param = null;
-			ls = db.QueryToList(sql, param);
-		} else if(name.equals("")){
-			String sql = "SELECT a.province FROM "
-					+ "(select t_provinces.province from t_provinces LEFT JOIN t_cities ON "
-					+ " t_cities.provinceid=t_provinces.provinceid where t_cities.city IN "
-					+ "(select DISTINCT(Destination) city from t_schedule where Date" + " BETWEEN ? AND ? ) UNION "
-					+ " select t_provinces.province from t_provinces  where t_provinces.province IN "
-					+ "(select DISTINCT(Destination) city from t_schedule where Date" + " BETWEEN ? AND ? ) )a";
-			Object[] param = new Object[] { startTime, endTime,startTime, endTime };
-			ls = db.QueryToList(sql, param);
-		}else{
-			String sql = "SELECT a.province FROM "
-					+ "(select t_provinces.province from t_provinces LEFT JOIN t_cities ON "
-					+ " t_cities.provinceid=t_provinces.provinceid where t_cities.city IN "
-					+ "(select DISTINCT(Destination) city from t_schedule where replace(Name,' ','') = replace(?,' ','') and Date" + " BETWEEN ? AND ? ) UNION "
-					+ " select t_provinces.province from t_provinces  where t_provinces.province IN "
-					+ "(select DISTINCT(Destination) city from t_schedule where replace(Name,' ','') = replace(?,' ','') and Date" + " BETWEEN ? AND ? ) )a";
-			Object[] param = new Object[] { name, startTime, endTime, name, startTime, endTime };
-			ls = db.QueryToList(sql, param);
-		}
-		if (ls.size() > 1) {
-			for (int i = 1; i < ls.size(); i++) {
-				String province = ls.get(i).get("province").toString();
-				set.add(province);
-			}
 
-		}
-		String[] att = new String[set.size()];
-		set.toArray(att);
-		return att;
-	}*/
 	public List<Map<String,Object>> getProvinceOrder (String startTime, String endTime,String name) {
 		List<Map<String, Object>> ls = null;
 		DBUtil db = new DBUtil();
