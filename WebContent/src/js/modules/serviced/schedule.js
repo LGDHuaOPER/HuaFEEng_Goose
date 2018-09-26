@@ -4973,7 +4973,7 @@ function SelectContent(){
 				'<option value="所有人">所有人</option>';
 	var str2 = '';
 	var str3 = '';
-	var str4 = '</select>'
+	var str4 = '</select>';
 	for(var i = 1;i<len-1;i++){
 			str2 += '<option value="'+engineerOb[i].substring(12,engineerOb[i].length-1)+'">'+engineerOb[i].substring(12,engineerOb[i].length-1)+'</option>';
 	}
@@ -5091,7 +5091,7 @@ $(function(){
         }
         var iVal = $(this).val();
         var iStr = "";
-        if(iVal == "请选择"){
+        if(iVal == "请选择" || iVal === null || iVal === undefined){
             iStr = "<option value='请选择交通方式'>请选择交通方式</option>";
         }else{
             TrafficExpenseObj[iVal].map(function(v, i, arr){
@@ -5111,7 +5111,7 @@ $(function(){
     // var originDistanceDataOper7;
     // var originDistanceDataOper8;
     // var originDistanceDataOper9;
-    var errorID = [];
+    /*var errorID = [];
     function CalculateDistanceAjax(item,currentArr,index){
       var cityURI1 = encodeURIComponent(item.Departure);
       var cityURI2 = encodeURIComponent(item.Destination);
@@ -5170,7 +5170,7 @@ $(function(){
             console.log(currentArr+"操作索引值为"+index+"的失败了");
           }
         });
-    }
+    }*/
 
 
     // $("#newDistanceCalc").on("click",function(){
@@ -5689,7 +5689,7 @@ function showMap(start_time,end_time){
             
         },
         error:function(){
-            alert("网络错误")
+            alert("网络错误");
         }
     });
     
@@ -6405,7 +6405,7 @@ function barGraphAjax(start_time,end_time,Name) {
                     
                     //获取省份以后，和用户点击的省份做比较，省份一样的保留city到新的数组中，保留对应的result[k]
                         allcityArr.push(city);
-                        allnumberArr.push(result[number])
+                        allnumberArr.push(result[number]);
                     }
                     console.log("@员工按姓名出差城市分布，处理后的数据");
                     console.log(allcityArr);
@@ -6832,7 +6832,7 @@ function ExpenseStatisticsAjax(start_time,end_time){
             console.log(typeof data);
             var ExpenseStatistics_Destination = [];
             var ExpenseStatistics_Expense = [];
-            var ExpenseStatistics_Expensenull = ["苏州市"];
+            var ExpenseStatistics_Destinationnull = ["苏州市"];
             var ExpenseStatistics_Expensenull = ["0"];
             if(data.length > 1){
                 for(i=1;i<data.length;i++){
@@ -7451,3 +7451,5 @@ $(function(){
     $(".cover-all-img").fadeOut(30);
     $("input[name='date_sel'][value='dateRange']").prop("checked","checked");
 }); 
+
+/*原来script标签内 end*/

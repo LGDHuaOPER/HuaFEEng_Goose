@@ -1783,10 +1783,13 @@
                     "citysName": "玉溪市"
                 },
                 {
-                    "citysName": "丽江市"
+                    "citysName": "昭通市"
                 },
                 {
-                    "citysName": "昭通市"
+                    "citysName": "保山市"
+                },
+                {
+                    "citysName": "丽江市"
                 },
                 {
                     "citysName": "普洱市"
@@ -1795,49 +1798,28 @@
                     "citysName": "临沧市"
                 },
                 {
-                    "citysName": "保山市"
+                    "citysName": "德宏傣族景颇族自治州"
                 },
                 {
-                    "citysName": "安宁市"
+                    "citysName": "怒江傈僳族自治州"
                 },
                 {
-                    "citysName": "宣威市"
+                    "citysName": "迪庆藏族自治州"
                 },
                 {
-                    "citysName": "芒市"
+                    "citysName": "大理白族自治州"
                 },
                 {
-                    "citysName": "瑞丽市"
+                    "citysName": "楚雄彝族自治州"
                 },
                 {
-                    "citysName": "大理市"
+                    "citysName": "红河哈尼族彝族自治州"
                 },
                 {
-                    "citysName": "楚雄市"
+                    "citysName": "文山壮族苗族自治州"
                 },
                 {
-                    "citysName": "个旧市"
-                },
-                {
-                    "citysName": "开远市"
-                },
-                {
-                    "citysName": "蒙自市"
-                },
-                {
-                    "citysName": "弥勒市"
-                },
-                {
-                    "citysName": "景洪市"
-                },
-                {
-                    "citysName": "文山市"
-                },
-                {
-                    "citysName": "香格里拉市"
-                },
-                {
-                    "citysName": "腾冲市"
+                    "citysName": "西双版纳傣族自治州"
                 }
             ],
             "provinceName": "云南省"

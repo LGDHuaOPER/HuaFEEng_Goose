@@ -408,16 +408,10 @@
 		<c:if test="${authoritiy=='SendComments'}"><span id="SendComments_has_span" style="display: none;">是</span></c:if>
 	</c:forEach>
 </body>
-<%--
-	<!-- <script src="js/libs/jquery-3.3.1.min.js" type="text/javascript" charset="utf-8"></script> -->
-	<!-- <script src="plugins/ecdo/ec-do-1.1.4.min.js"></script> -->
-	<!-- <script src="plugins/cookie/jquery.cookie.js"></script> -->
-	<!-- <script src="plugins/imageResizeTool/imageResizeTool.min.js"></script> -->
-	<!-- <script src="js/msgbox_unload.js"></script> -->
---%>
+
 <script src="js/libs/lodash.min.js"></script>
 <script src="js/modules/sharing/top-dbec435863.min.js"></script>
-<script src="js/global/myFunction.js?iv=201809251731" type="text/javascript" charset="utf-8"></script>
+<script src="js/global/myFunction.js?iv=201809261315" type="text/javascript" charset="utf-8"></script>
 <script>
 var ServiceUpdate =<%=request.getSession().getAttribute("startTime") %>
 
@@ -478,7 +472,7 @@ function checkHref2Cookie(){
 	var href_ = eouluGlobal.S_getCurPageHref();
 	var statisDepart;
 	var statisPage;
-	$.each(globalDepart2PageObj, function(name,value){
+	$.each(eouluGlobal.S_getDepart2PageObj(), function(name,value){
 		$.each(value, function(name1,value1){
 			if(value1 == href_){
 				statisDepart = name;
@@ -705,6 +699,6 @@ $(function(){
     // $.getScript("js/global/version-control.js");
 });
 </script>
-<script src="js/global/dispatchScript-2b3aa5cac9.min.js" type="text/javascript" charset="utf-8"></script>
+<script src="js/global/dispatchScript-a9a7544bda.min.js" type="text/javascript" charset="utf-8"></script>
 <!-- <script src="js/global/dispatchScript.js" type="text/javascript" charset="utf-8"></script> -->
 </html>

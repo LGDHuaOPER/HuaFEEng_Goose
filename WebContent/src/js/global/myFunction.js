@@ -22,16 +22,23 @@
     var _global;
     // 定义一些默认参数
     var _DefaultParam = {
+        environment: "development",
+        // environment: "product",
         projectName: "cfChicken8",
         versionNO: "1536897675562",
-        versionExceptArr: ["eoulu.ico","bootstrap","swiper-3.4.1.min.css","eouluCustom.css","reset.css","css/libs","css/extends","echarts","jquery","msgbox","ajaxfileupload.js","html2canvas.js","fullcalendar.min.js","jsPdf.debug.js","underscore-min.js","ProvinceandCity.js","dispatchScript-079ece4932.min.js","js/libs","plugins/"],
+        versionExceptArr: ["eoulu.ico","bootstrap","swiper-3.4.1.min.css","eouluCustom.css","reset.css","css/libs","css/extends","echarts","jquery","msgbox","ajaxfileupload.js","html2canvas.js","fullcalendar.min.js","jsPdf.debug.js","underscore-min.js","ProvinceandCity.js","dispatchScript-a9a7544bda.min.js","js/libs","plugins/"],
         chartColorArr: [
               '#DE3656','#D6395B','#C93F64','#C0436C','#B64873','#A35283','#9D5588','#885F98','#7468A6','#6C6BA6','#5F72B6','#5A74B9','#5077BE','#4B7BC5','#467DC9','#4081CE','#3A83D3','#3183DA','#2A8BDF','#248EE3','#1E91E8','#1993EC','#1396F0','#0F98F4','#0B9AF7','#069CFA','#019FFF'
             ],
         allDepartArr: ["软件部","财务部","人事部","商务部","销售部","市场部","服务部","物流部","硬件部","应用部","标准服务部","研发部","厦门办事处"],
-        canDispatchPageArr_href: ["ApplicationGallery", "SoftwareDocument", "Transport", "GetOrderRoute", "GetOrderByPageOne", "GetOrderByPageTwo", "PaymentRequest", "ServiceReport", "AssessmentStatistics", "Hardware", "GetHardwareRoute", "StandardProduct", "Customer", "GetCustomerInfo2", "AllLab", "Lab", "Reimburse"],
+        canDispatchPageArr_href: ["ApplicationGallery", "SoftwareDocument", "Transport", "GetOrderRoute", "GetOrderByPageOne", "GetOrderByPageTwo", "PaymentRequest", "ServiceReport", "AssessmentStatistics", "Hardware", "GetHardwareRoute", "StandardProduct", "Customer", "GetCustomerInfo2", "AllLab", "Lab", "Reimburse", "Schedule", "ScheduleRoute"],
         notEouluCopy_href: ["OriginFactory","OriginFactorySearch","SoftwareImplementation","Tasking","Keysight","Price","PriceRoute","Transport","GetOrderRoute","GetOrderByPageOne", "GetOrderByPageTwo", "NonStandard","Inventory","OriginalQuotation","Supplier","AssessmentStatistics","StaffInfo","TrainingRecords","Admin","ServiceReport","SoftwareDocument","StandardProduct","Lab","Reimburse","WorkReport","SoftwareProject","BiddingDocument","PackingList","PaymentRequest","ApplicationGallery","Hardware","GetHardwareRoute","Customer","GetCustomerInfo2","AllLab"],
         showNavArr_href: ["Schedule","SoftwareProduct","QuotationSystem","Transport", "GetOrderRoute", "GetOrderByPageOne", "GetOrderByPageTwo", "PackingList","Invoice","Equipment","OriginFactory","Inventory","Price","Requirement","Inventory","MachineDetails","SalesStatistics","LeaveApplication","DocumentUpload","QuotationSystem","StockPurchasing","Insurance","Proposal","PackingList","HotProduct","Commodity","Quality","QuantityWeight","TestReport","Fumigation","Origin","Shipment","Receiving","Acceptance","Customer","MachineDetails","Hardware","AfterSale","Schedule","RoutineVisit","SoftwareDocument","SoftwareProject","SoftwareProduct","CustomerInquiry","SoftwareImplementation","StaffInfo","LeaveApplication","SoftwareImplementation","Keysight","NonStandard","OriginalQuotation","Supplier","AssessmentStatistics","ServiceReport","StandardProduct","SalesQuotationSystem","Lab","Reimburse","WorkReport","BiddingDocument","PaymentRequest","ApplicationGallery","AllLab"],
+        pageAllConfig: {
+            "Schedule": {
+                provinceANDcityRefreshFlag: false
+            }
+        },
         depart2PageObj: {
                 "物流部": {
                     // "物流统计": "Transport?ActualDelivery=no&column=DateOfSign&condition=All",
@@ -85,6 +92,7 @@
                     "标准产品": "StandardProduct",
                     "服务任务分配": "NonStandard",
                     "员工行程": "Schedule",
+                    "员工行程#": "ScheduleRoute",
                     "服务完成报告": "ServiceReport",
                     "文档管理": "DocumentUpload",
                     "研发图库": "ApplicationGallery"
@@ -790,8 +798,180 @@
                             "mergeToParentFile": "reimburse.js"
                         }
                     }
-                }
+                },
                 // 报销申请页面结束
+                // 员工行程页面
+                "Schedule": {
+                    "lastModify": "Tue Sep 18 2018 17:29:07 GMT+0800 (中国标准时间)",
+                    "lastModifyTime": "1537262947000",
+                    // css
+                    "cssPrimary": {
+                        "bootstrap.min.css": {
+                            "referenceOrder": 0,
+                            "filePath": "css/libs/bootstrap.min.css",
+                            "mergeToParentFile": null
+                        },
+                        "daterangepicker.css": {
+                            "referenceOrder": 1,
+                            "filePath": "css/libs/daterangepicker.css",
+                            "mergeToParentFile": null
+                        },
+                        "awesomplete_all-a2ac84f236.min.css": {
+                            "referenceOrder": 2,
+                            "filePath": "plugins/awesomplete/awesomplete_all-a2ac84f236.min.css",
+                            "mergeToParentFile": null
+                        },
+                        "kalendae_pc.css": {
+                            "referenceOrder": 3,
+                            "filePath": "css/libs/kalendae_pc.css",
+                            "mergeToParentFile": "schedule.css"
+                        },
+                        "schedule.css": {
+                            "referenceOrder": 4,
+                            "filePath": "css/modules/serviced/schedule.css",
+                            "mergeToParentFile": "schedule.css"
+                        },
+                        "fullcalendar.css": {
+                            "referenceOrder": 5,
+                            "filePath": "css/fullcalendar.css",
+                            "mergeToParentFile": null
+                        }
+                    },
+                    // js
+                    "jsPrimary": {
+                        "http://api.map.baidu.com/api?v=2.0&ak=ZHnpqUp55qaTvkE27KGjUBYLcUfsaRTV": {
+                            "referenceOrder": 0,
+                            "filePath": "http://api.map.baidu.com/api?v=2.0&ak=ZHnpqUp55qaTvkE27KGjUBYLcUfsaRTV",
+                            "mergeToParentFile": null
+                        },
+                        "echarts-all-min.js": {
+                            "referenceOrder": 1,
+                            "filePath": "plugins/echarts/map_can/echarts-all-min.js",
+                            "mergeToParentFile": null
+                        },
+                        "bootstrap-moment-daterangepicker-abd2349e95.min.js": {
+                            "referenceOrder": 2,
+                            "filePath": "js/libs/integrationLibs/bootstrap-moment-daterangepicker-abd2349e95.min.js",
+                            "mergeToParentFile": null
+                        },
+                        "scrolltopcontrol.js": {
+                            "referenceOrder": 3,
+                            "filePath": "js/libs/scrolltopcontrol.js",
+                            "mergeToParentFile": null
+                        },
+                        "fullcalendar.min.js": {
+                            "referenceOrder": 4,
+                            "filePath": "js/fullcalendar.min.js",
+                            "mergeToParentFile": "schedule.js"
+                        },
+                        "kalendae.standalone_zh.js": {
+                            "referenceOrder": 5,
+                            "filePath": "js/libs/kalendae.standalone_zh.js",
+                            "mergeToParentFile": "schedule.js"
+                        },
+                        "awesomplete.min.js": {
+                            "referenceOrder": 6,
+                            "filePath": "plugins/awesomplete/awesomplete.min.js",
+                            "mergeToParentFile": "schedule.js"
+                        },
+                        "msgbox.js": {
+                            "referenceOrder": 7,
+                            "filePath": "js/msgbox.js",
+                            "mergeToParentFile": "schedule.js"
+                        },
+                        "schedule.js": {
+                            "referenceOrder": 8,
+                            "filePath": "js/modules/serviced/schedule.js",
+                            "mergeToParentFile": "schedule.js"
+                        }
+                    }
+                },
+                "ScheduleRoute": {
+                    "lastModify": "Tue Sep 18 2018 17:29:07 GMT+0800 (中国标准时间)",
+                    "lastModifyTime": "1537262947000",
+                    // css
+                    "cssPrimary": {
+                        "bootstrap.min.css": {
+                            "referenceOrder": 0,
+                            "filePath": "css/libs/bootstrap.min.css",
+                            "mergeToParentFile": null
+                        },
+                        "daterangepicker.css": {
+                            "referenceOrder": 1,
+                            "filePath": "css/libs/daterangepicker.css",
+                            "mergeToParentFile": null
+                        },
+                        "awesomplete_all-a2ac84f236.min.css": {
+                            "referenceOrder": 2,
+                            "filePath": "plugins/awesomplete/awesomplete_all-a2ac84f236.min.css",
+                            "mergeToParentFile": null
+                        },
+                        "kalendae_pc.css": {
+                            "referenceOrder": 3,
+                            "filePath": "css/libs/kalendae_pc.css",
+                            "mergeToParentFile": "schedule.css"
+                        },
+                        "schedule.css": {
+                            "referenceOrder": 4,
+                            "filePath": "css/modules/serviced/schedule.css",
+                            "mergeToParentFile": "schedule.css"
+                        },
+                        "fullcalendar.css": {
+                            "referenceOrder": 5,
+                            "filePath": "css/fullcalendar.css",
+                            "mergeToParentFile": null
+                        }
+                    },
+                    // js
+                    "jsPrimary": {
+                        "http://api.map.baidu.com/api?v=2.0&ak=ZHnpqUp55qaTvkE27KGjUBYLcUfsaRTV": {
+                            "referenceOrder": 0,
+                            "filePath": "http://api.map.baidu.com/api?v=2.0&ak=ZHnpqUp55qaTvkE27KGjUBYLcUfsaRTV",
+                            "mergeToParentFile": null
+                        },
+                        "echarts-all-min.js": {
+                            "referenceOrder": 1,
+                            "filePath": "plugins/echarts/map_can/echarts-all-min.js",
+                            "mergeToParentFile": null
+                        },
+                        "bootstrap-moment-daterangepicker-abd2349e95.min.js": {
+                            "referenceOrder": 2,
+                            "filePath": "js/libs/integrationLibs/bootstrap-moment-daterangepicker-abd2349e95.min.js",
+                            "mergeToParentFile": null
+                        },
+                        "scrolltopcontrol.js": {
+                            "referenceOrder": 3,
+                            "filePath": "js/libs/scrolltopcontrol.js",
+                            "mergeToParentFile": null
+                        },
+                        "fullcalendar.min.js": {
+                            "referenceOrder": 4,
+                            "filePath": "js/fullcalendar.min.js",
+                            "mergeToParentFile": "schedule.js"
+                        },
+                        "kalendae.standalone_zh.js": {
+                            "referenceOrder": 5,
+                            "filePath": "js/libs/kalendae.standalone_zh.js",
+                            "mergeToParentFile": "schedule.js"
+                        },
+                        "awesomplete.min.js": {
+                            "referenceOrder": 6,
+                            "filePath": "plugins/awesomplete/awesomplete.min.js",
+                            "mergeToParentFile": "schedule.js"
+                        },
+                        "msgbox.js": {
+                            "referenceOrder": 7,
+                            "filePath": "js/msgbox.js",
+                            "mergeToParentFile": "schedule.js"
+                        },
+                        "schedule.js": {
+                            "referenceOrder": 8,
+                            "filePath": "js/modules/serviced/schedule.js",
+                            "mergeToParentFile": "schedule.js"
+                        }
+                    }
+                },
+                // 员工行程页面结束
             },
         // pageHrefImportFileMap 结束
         // compressFilePathMap 开始
@@ -801,159 +981,206 @@
                     "originPath": ["./cfChicken8/WebContent/plugins/awesomplete/awesomplete.css", "./cfChicken8/WebContent/plugins/awesomplete/awesomplete.theme.css", "./cfChicken8/WebContent/css/modules/software/mailSetting.css"],
                     "outBasePath": "./cfChicken8/WebContent/css/extends/integrationLibs/",
                     "gulp-rev": "awesomplete-mailSetting-a439ec29a7.min.css",
-                    "referencePath": "css/extends/integrationLibs/awesomplete-mailSetting-a439ec29a7.min.css"
+                    "referencePath": "css/extends/integrationLibs/awesomplete-mailSetting-a439ec29a7.min.css",
+                    "srcPath": "src/css/extends/integrationLibs/awesomplete-mailSetting.css"
                 },
                 "ApplicationGallery.css": {
                     "originPath": ["./cfChicken8/WebContent/css/global/global_table_style.css", "./cfChicken8/WebContent/css/modules/serviced/ApplicationGallery.css", "./cfChicken8/WebContent/css/global/add_update_section.css", "./cfChicken8/WebContent/css/global/eoulu_ul_reset.css"],
                     "outBasePath": "./cfChicken8/WebContent/css/modules/serviced/",
                     "gulp-rev": "ApplicationGallery-48a2d648b2.min.css",
-                    "referencePath": "css/modules/serviced/ApplicationGallery-48a2d648b2.min.css"
+                    "referencePath": "css/modules/serviced/ApplicationGallery-48a2d648b2.min.css",
+                    "srcPath": "src/css/modules/serviced/ApplicationGallery.css"
                 },
                 "SoftwareDocument.css": {
                     "originPath": ["./cfChicken8/WebContent/css/global/global_table_style.css", "./cfChicken8/WebContent/css/SoftwareDocument.css", "./cfChicken8/WebContent/css/global/eoulu_ul_reset.css", "./cfChicken8/WebContent/css/modules/software/time_line.css"],
                     "outBasePath": "./cfChicken8/WebContent/css/modules/software/",
                     "gulp-rev": "SoftwareDocument-0dd1cea1d7.min.css",
-                    "referencePath": "css/modules/software/SoftwareDocument-0dd1cea1d7.min.css"
+                    "referencePath": "css/modules/software/SoftwareDocument-0dd1cea1d7.min.css",
+                    "srcPath": "src/css/modules/software/SoftwareDocument.css"
                 },
                 "ServiceReport.css": {
                     "originPath": ["./cfChicken8/WebContent/css/global/eouluCustom.css", "./cfChicken8/WebContent/css/ServiceReport.css", "./cfChicken8/WebContent/css/global/dispatchLoading.css"],
                     "outBasePath": "./cfChicken8/WebContent/css/modules/serviced/",
                     "gulp-rev": "ServiceReport-30eec74d24.min.css",
-                    "referencePath": "css/modules/serviced/ServiceReport-30eec74d24.min.css"
+                    "referencePath": "css/modules/serviced/ServiceReport-30eec74d24.min.css",
+                    "srcPath": "src/css/modules/serviced/ServiceReport.css"
                 },
                 "examination.css": {
                     "originPath": ["./cfChicken8/WebContent/css/global/dispatchLoading.css", "./cfChicken8/WebContent/css/libs/bootstrap-multiselect.css", "./cfChicken8/WebContent/css/global/eouluCustom.css", "./cfChicken8/WebContent/css/examination.css"],
                     "outBasePath": "./cfChicken8/WebContent/css/modules/personnel/",
                     "gulp-rev": "examination-3a846d3f0d.min.css",
-                    "referencePath": "css/modules/personnel/examination-3a846d3f0d.min.css"
+                    "referencePath": "css/modules/personnel/examination-3a846d3f0d.min.css",
+                    "srcPath": "src/css/modules/personnel/examination.css"
                 },
                 "hardware.css": {
                     "originPath": ["./cfChicken8/WebContent/css/global/global_table_style.css", "./cfChicken8/WebContent/css/hardware.css"],
                     "outBasePath": "./cfChicken8/WebContent/css/modules/serviced/",
                     "gulp-rev": "hardware-b64078737b.min.css",
-                    "referencePath": "css/modules/serviced/hardware-b64078737b.min.css"
+                    "referencePath": "css/modules/serviced/hardware-b64078737b.min.css",
+                    "srcPath": "src/css/modules/serviced/hardware.css"
                 },
                 "StandardProduct.css": {
                     "originPath": ["./cfChicken8/WebContent/css/global/eouluCustom.css", "./cfChicken8/WebContent/css/StandardProduct.css"],
                     "outBasePath": "./cfChicken8/WebContent/css/modules/serviced/",
                     "gulp-rev": "StandardProduct-855edafc10.min.css",
-                    "referencePath": "css/modules/serviced/StandardProduct-855edafc10.min.css"
+                    "referencePath": "css/modules/serviced/StandardProduct-855edafc10.min.css",
+                    "srcPath": "src/css/modules/serviced/StandardProduct.css"
                 },
                 "customer.css": {
                     "originPath": ["./cfChicken8/WebContent/css/modules/commerce/customer.css"],
                     "outBasePath": "./cfChicken8/WebContent/css/modules/commerce/",
                     "gulp-rev": "customer-2d46b78604.min.css",
-                    "referencePath": "css/modules/commerce/customer-2d46b78604.min.css"
+                    "referencePath": "css/modules/commerce/customer-2d46b78604.min.css",
+                    "srcPath": "src/css/modules/commerce/customer.css"
                 },
                 "Lab.css": {
                     "originPath": ["./cfChicken8/WebContent/css/modules/laboratory/Lab.css"],
                     "outBasePath": "./cfChicken8/WebContent/css/modules/laboratory/",
                     "gulp-rev": "Lab-ecd0227fc6.min.css",
-                    "referencePath": "css/modules/laboratory/Lab-ecd0227fc6.min.css"
+                    "referencePath": "css/modules/laboratory/Lab-ecd0227fc6.min.css",
+                    "srcPath": "src/css/modules/laboratory/Lab.css"
                 },
                 "reimburse.css": {
                     "originPath": ["./cfChicken8/WebContent/css/modules/personnel/reimburse.css"],
                     "outBasePath": "./cfChicken8/WebContent/css/modules/personnel/",
                     "gulp-rev": "reimburse-c0f068a8f6.min.css",
-                    "referencePath": "css/modules/personnel/reimburse-c0f068a8f6.min.css"
+                    "referencePath": "css/modules/personnel/reimburse-c0f068a8f6.min.css",
+                    "srcPath": "src/css/modules/personnel/reimburse.css"
                 },
                 "PaymentRequest.css": {
                     "originPath": ["./cfChicken8/WebContent/css/modules/personnel/PaymentRequest.css"],
                     "outBasePath": "./cfChicken8/WebContent/css/modules/personnel/",
                     "gulp-rev": "PaymentRequest-6bc602eb88.min.css",
-                    "referencePath": "css/modules/personnel/PaymentRequest-6bc602eb88.min.css"
+                    "referencePath": "css/modules/personnel/PaymentRequest-6bc602eb88.min.css",
+                    "srcPath": "src/css/modules/personnel/PaymentRequest.css"
+                },
+                "schedule.css": {
+                    "originPath": ["./cfChicken8/WebContent/css/modules/serviced/schedule.css"],
+                    "outBasePath": "./cfChicken8/WebContent/css/modules/serviced/",
+                    "gulp-rev": "schedule-0f26355e98.min.css",
+                    "referencePath": "css/modules/serviced/schedule-0f26355e98.min.css",
+                    "srcPath": "src/css/modules/serviced/schedule.css"
                 }
             },
             "jsMerge": {
+                "top-dbec435863.min.js": {
+                    "originPath": ["./cfChicken8/WebContent/js/libs/jquery-3.3.1.min.js", "./cfChicken8/WebContent/plugins/ecdo/ec-do-1.1.4.min.js", "./cfChicken8/WebContent/plugins/cookie/jquery.cookie.js", "./cfChicken8/WebContent/plugins/imageResizeTool/imageResizeTool.min.js", "./cfChicken8/WebContent/js/msgbox_unload.js"],
+                    "outBasePath": "./cfChicken8/WebContent/js/modules/sharing/",
+                    "gulp-rev": "top-dbec435863.min.js",
+                    "referencePath": "js/modules/sharing/top-dbec435863.min.js",
+                    "srcPath": "src/js/modules/sharing/top-dbec435863.min.js"
+                },
                 "jquery-cookie-ajaxfile.js": {
                     "originPath": ["./cfChicken8/WebContent/js/jquery-1.12.3.min.js", "./cfChicken8/WebContent/plugins/cookie/jquery.cookie.js", "./cfChicken8/WebContent/js/ajaxfileupload.js"],
                     "outBasePath": "./cfChicken8/WebContent/js/libs/integrationLibs/",
                     "gulp-rev": "jquery-cookie-ajaxfile-77692a8173.min.js",
-                    "referencePath": "js/libs/integrationLibs/jquery-cookie-ajaxfile-77692a8173.min.js"
+                    "referencePath": "js/libs/integrationLibs/jquery-cookie-ajaxfile-77692a8173.min.js",
+                    "srcPath": "src/js/libs/integrationLibs/jquery-cookie-ajaxfile-77692a8173.min.js"
                 },
                 "msgbox_all.js": {
                     "originPath": ["./cfChicken8/WebContent/js/msgbox.js", "./cfChicken8/WebContent/js/msgbox_unload.js"],
                     "outBasePath": "./cfChicken8/WebContent/js/libs/integrationLibs/",
                     "gulp-rev": "msgbox_all-56b86b3095.min.js",
-                    "referencePath": "js/libs/integrationLibs/msgbox_all-56b86b3095.min.js"
+                    "referencePath": "js/libs/integrationLibs/msgbox_all-56b86b3095.min.js",
+                    "srcPath": "src/js/libs/integrationLibs/msgbox_all-56b86b3095.min.js"
                 },
                 "awesomplete-mailSetting.js": {
                     "originPath": ["./cfChicken8/WebContent/plugins/awesomplete/awesomplete.min.js", "./cfChicken8/WebContent/js/modules/software/mailSetting.js"],
                     "outBasePath": "./cfChicken8/WebContent/js/libs/integrationLibs/",
                     "gulp-rev": "awesomplete-mailSetting-ddfa04e4f1.min.js",
-                    "referencePath": "js/libs/integrationLibs/awesomplete-mailSetting-ddfa04e4f1.min.js"
+                    "referencePath": "js/libs/integrationLibs/awesomplete-mailSetting-ddfa04e4f1.min.js",
+                    "srcPath": "src/js/libs/integrationLibs/awesomplete-mailSetting-ddfa04e4f1.min.js"
                 },
                 "ApplicationGallery.js": {
                     "originPath": ["./cfChicken8/WebContent/js/modules/serviced/ApplicationGallery.js"],
                     "outBasePath": "./cfChicken8/WebContent/js/modules/serviced/",
                     "gulp-rev": "ApplicationGallery-bb5a55da9e.min.js",
-                    "referencePath": "js/modules/serviced/ApplicationGallery-bb5a55da9e.min.js"
+                    "referencePath": "js/modules/serviced/ApplicationGallery-bb5a55da9e.min.js",
+                    "srcPath": "src/js/modules/serviced/ApplicationGallery-bb5a55da9e.min.js"
                 },
                 "dispatchScript.js": {
                     "originPath": ["./cfChicken8/WebContent/js/global/dispatchScript.js"],
                     "outBasePath": "./cfChicken8/WebContent/js/global/",
-                    "gulp-rev": "dispatchScript-079ece4932.min.js",
-                    "referencePath": "js/global/dispatchScript-2b3aa5cac9.min.js"
+                    "gulp-rev": "dispatchScript-a9a7544bda.min.js",
+                    "referencePath": "js/global/dispatchScript-a9a7544bda.min.js",
+                    "srcPath": "src/js/global/dispatchScript-a9a7544bda.min.js"
                 },
                 "SoftwareDocument.js": {
                     "originPath": ["./cfChicken8/WebContent/js/global/responseLoading.js", "./cfChicken8/WebContent/js/SoftwareDocument.js"],
                     "outBasePath": "./cfChicken8/WebContent/js/modules/software/",
                     "gulp-rev": "SoftwareDocument-698d116bb8.min.js",
-                    "referencePath": "js/modules/software/SoftwareDocument-698d116bb8.min.js"
+                    "referencePath": "js/modules/software/SoftwareDocument-698d116bb8.min.js",
+                    "srcPath": "src/js/modules/software/SoftwareDocument-698d116bb8.min.js"
                 },
                 "transport.js": {
                     "originPath": ["./cfChicken8/WebContent/js/msgbox.js", "./cfChicken8/WebContent/js/global/responseLoading.js", "./cfChicken8/WebContent/js/transport.js"],
                     "outBasePath": "./cfChicken8/WebContent/js/modules/transport/",
                     "gulp-rev": "transport-0082f74523.min.js",
-                    "referencePath": "js/modules/transport/transport-0082f74523.min.js"
+                    "referencePath": "js/modules/transport/transport-0082f74523.min.js",
+                    "srcPath": "src/js/modules/transport/transport-0082f74523.min.js"
                 },
                 "ServiceReport.js": {
                     "originPath": ["./cfChicken8/WebContent/js/libs/jSignature.min.js", "./cfChicken8/WebContent/plugins/colResizable/colResizable-1.6.min.js", "./cfChicken8/WebContent/js/ServiceReport.js"],
                     "outBasePath": "./cfChicken8/WebContent/js/modules/serviced/",
                     "gulp-rev": "ServiceReport-2951b6ba44.min.js",
-                    "referencePath": "js/modules/serviced/ServiceReport-2951b6ba44.min.js"
+                    "referencePath": "js/modules/serviced/ServiceReport-2951b6ba44.min.js",
+                    "srcPath": "src/js/modules/serviced/ServiceReport-2951b6ba44.min.js"
                 },
                 "examination.js": {
                     "originPath": ["./cfChicken8/WebContent/js/libs/bootstrap-multiselect.js", "./cfChicken8/WebContent/plugins/echarts/theme/eoulu_chart_1.js", "./cfChicken8/WebContent/js/examination.js"],
                     "outBasePath": "./cfChicken8/WebContent/js/modules/personnel/",
                     "gulp-rev": "examination-179cada3b8.min.js",
-                    "referencePath": "js/modules/personnel/examination-179cada3b8.min.js"
+                    "referencePath": "js/modules/personnel/examination-179cada3b8.min.js",
+                    "srcPath": "src/js/modules/personnel/examination-179cada3b8.min.js"
                 },
                 "hardware.js": {
                     "originPath": ["./cfChicken8/WebContent/js/msgbox.js", "./cfChicken8/WebContent/js/hardware.js"],
                     "outBasePath": "./cfChicken8/WebContent/js/modules/serviced/",
                     "gulp-rev": "hardware-f19ddd9986.min.js",
-                    "referencePath": "js/modules/serviced/hardware-f19ddd9986.min.js"
+                    "referencePath": "js/modules/serviced/hardware-f19ddd9986.min.js",
+                    "srcPath": "src/js/modules/serviced/hardware-f19ddd9986.min.js"
                 },
                 "StandardProduct.js": {
                     "originPath": ["./cfChicken8/WebContent/js/global/responseLoading.js", "./cfChicken8/WebContent/js/StandardProduct.js"],
                     "outBasePath": "./cfChicken8/WebContent/js/modules/serviced/",
                     "gulp-rev": "StandardProduct-acbe9a200f.min.js",
-                    "referencePath": "js/modules/serviced/StandardProduct-acbe9a200f.min.js"
+                    "referencePath": "js/modules/serviced/StandardProduct-acbe9a200f.min.js",
+                    "srcPath": "src/js/modules/serviced/StandardProduct-acbe9a200f.min.js"
                 },
                 "customer.js": {
                     "originPath": ["./cfChicken8/WebContent/js/modules/commerce/customer.js"],
                     "outBasePath": "./cfChicken8/WebContent/js/modules/commerce/",
                     "gulp-rev": "customer-a03b5a60b3.min.js",
-                    "referencePath": "js/modules/commerce/customer-a03b5a60b3.min.js"
+                    "referencePath": "js/modules/commerce/customer-a03b5a60b3.min.js",
+                    "srcPath": "src/js/modules/commerce/customer-a03b5a60b3.min.js"
                 },
                 "Lab.js": {
                     "originPath": ["./cfChicken8/WebContent/js/modules/laboratory/Lab.js"],
                     "outBasePath": "./cfChicken8/WebContent/js/modules/laboratory/",
                     "gulp-rev": "Lab-4be8c6a8d3.min.js",
-                    "referencePath": "js/modules/laboratory/Lab-4be8c6a8d3.min.js"
+                    "referencePath": "js/modules/laboratory/Lab-4be8c6a8d3.min.js",
+                    "srcPath": "src/js/modules/laboratory/Lab-4be8c6a8d3.min.js"
                 },
                 "reimburse.js": {
                     "originPath": ["./cfChicken8/WebContent/js/modules/personnel/reimburse.js"],
                     "outBasePath": "./cfChicken8/WebContent/js/modules/personnel/",
                     "gulp-rev": "reimburse-d7048b79a9.min.js",
-                    "referencePath": "js/modules/personnel/reimburse-d7048b79a9.min.js"
+                    "referencePath": "js/modules/personnel/reimburse-d7048b79a9.min.js",
+                    "srcPath": "src/js/modules/personnel/reimburse-d7048b79a9.min.js"
                 },
                 "PaymentRequest.js": {
                     "originPath": ["./cfChicken8/WebContent/js/modules/personnel/PaymentRequest.js"],
                     "outBasePath": "./cfChicken8/WebContent/js/modules/personnel/",
                     "gulp-rev": "PaymentRequest-4b3d5152bd.min.js",
-                    "referencePath": "js/modules/personnel/PaymentRequest-4b3d5152bd.min.js"
+                    "referencePath": "js/modules/personnel/PaymentRequest-4b3d5152bd.min.js",
+                    "srcPath": "src/js/modules/personnel/PaymentRequest-4b3d5152bd.min.js"
+                },
+                "schedule.js": {
+                    "originPath": ["./cfChicken8/WebContent/js/modules/serviced/schedule.js"],
+                    "outBasePath": "./cfChicken8/WebContent/js/modules/serviced/",
+                    "gulp-rev": "schedule-4d6a516990.min.js",
+                    "referencePath": "js/modules/serviced/schedule-4d6a516990.min.js",
+                    "srcPath": "src/js/modules/serviced/schedule.js"
                 }
             }
         }
@@ -1139,6 +1366,9 @@
         S_getDefaultParam: function(){
             return _DefaultParam;
         },
+        S_getEnvironment: function(){
+            return _DefaultParam.environment;
+        },
         S_getProjectName: function(){
             return _DefaultParam.projectName;
         },
@@ -1166,6 +1396,12 @@
         },
         S_getShowNavArr: function(){
             return _DefaultParam.showNavArr_href;
+        },
+        S_getPageAllConfig: function(){
+            return _DefaultParam.pageAllConfig;
+        },
+        S_getDepart2PageObj: function(){
+            return _DefaultParam.depart2PageObj;
         },
         // 获取pageHrefImportFileMap数据开始
         S_getPageHrefImportFileMap: function(){
@@ -1292,7 +1528,7 @@
     var globalHostName = window.location.href.split(globalProjectName)[0].substring(0,window.location.href.split(globalProjectName)[0].length-1);
 
     // 版本号排除关键词、文件名或路径名，全文匹配
-    var globalVersionExceptFileName = ["eoulu.ico","bootstrap","swiper-3.4.1.min.css","eouluCustom.css","reset.css","css/libs","css/extends","echarts","jquery","msgbox","ajaxfileupload.js","html2canvas.js","fullcalendar.min.js","jsPdf.debug.js","underscore-min.js","ProvinceandCity.js","dispatchScript-079ece4932.min.js","js/libs","plugins/"];
+    var globalVersionExceptFileName = ["eoulu.ico","bootstrap","swiper-3.4.1.min.css","eouluCustom.css","reset.css","css/libs","css/extends","echarts","jquery","msgbox","ajaxfileupload.js","html2canvas.js","fullcalendar.min.js","jsPdf.debug.js","underscore-min.js","ProvinceandCity.js","dispatchScript-a9a7544bda.min.js","js/libs","plugins/"];
     // 版本号
     var globalVersionNo = "1536897675563";
 
@@ -1387,6 +1623,7 @@
             "标准产品": "StandardProduct",
             "服务任务分配": "NonStandard",
             "员工行程": "Schedule",
+            "员工行程#": "ScheduleRoute",
             "服务完成报告": "ServiceReport",
             "文档管理": "DocumentUpload",
             "研发图库": "ApplicationGallery"
