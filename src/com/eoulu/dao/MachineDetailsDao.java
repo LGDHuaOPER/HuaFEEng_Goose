@@ -1,5 +1,8 @@
 package com.eoulu.dao;
 
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.SQLException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.List;
@@ -22,16 +25,9 @@ public class MachineDetailsDao {
 		DBUtil db = new DBUtil();
 		String sql= "select t_machine_details.ID,t_customer.CustomerName CustomerUnit,t_customer.Contact CustomerName,t_machine_details.Model,"
 				+ "t_machine_details.SN,t_machine_details.ContractNO,t_machine_details.InstalledTime,t_machine_details.CustomerID,"
-				+ "t_customer.CustomerLevel,VisitTime "
-				+ "from t_machine_details left join t_customer on t_customer.ID =t_machine_details.CustomerID left join "
-				+ "(select t_visiting_record.MachineDetailsID MachineDetailsID,MAX(t_visiting_record.VisitTime) VisitTime " + 
-				"from t_visiting_record GROUP BY t_visiting_record.MachineDetailsID) a on a.MachineDetailsID=t_machine_details.ID" + 
-				" order BY InstalledTime DESC,case " + 
-				"when CustomerLevel='A' then 1 " + 
-				"when CustomerLevel='B' then 2 " + 
-				"when CustomerLevel='C' then 3 " + 
-				"when CustomerLevel='--' then 4 " + 
-				"WHEN  CustomerLevel IS NULL then 5 end  limit ?,?";
+				+ "t_machine_details.Status,t_machine_details.LatestProgress,t_machine_details.Responsible "
+				+ "from t_machine_details left join t_customer on t_customer.ID =t_machine_details.CustomerID "
+				+ "order by Status,InstalledTime DESC limit ?,?";
 			
 		Object[] parameter = new Object[]{(page.getCurrentPage()-1)*page.getRows(),page.getRows()};
 
@@ -55,20 +51,35 @@ public class MachineDetailsDao {
 		
 		return counts;
 	}
+	
+	public List<Map<String,Object>> getCurrentProgress(int MachineID){
+	    
+		List<Map<String, Object>> ls = null;
+		
+		DBUtil db = new DBUtil();
+
+
+		String sql= "select ID,CurrentProgress,Date from t_machine_progress where MachineID=? ORDER BY ID";
+		Object[] parameter = new Object[]{MachineID};
+
+		ls = db.QueryToList(sql, parameter);
+		return ls;
+	}
 
 	/**
 	 * 添加
 	 * @param invoice
 	 * @param db
 	 * @return
+	 * @throws Exception 
+	 * @throws NumberFormatException 
 	 */
-	public boolean insert(MachineDetails machine){
+	public int insert(MachineDetails machine) throws NumberFormatException, Exception{
 		SimpleDateFormat df = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
 		DBUtil db = new DBUtil();
-		boolean flag = false;
-		Object[] parameter = new Object[6];
-		String sql = "insert into t_machine_details (Model,SN,ContractNO,"
-				+ "InstalledTime,OperatingTime,CustomerID) values (?,?,?,?,?,?)";
+		Object[] parameter = new Object[9];
+		String sql = "insert into t_machine_details (Model,SN,ContractNO,InstalledTime,"
+				+ "OperatingTime,CustomerID,Status,LatestProgress,Responsible) values (?,?,?,?,?,?,?,?,?)";
 	
 		parameter[0] = machine.getModel();
 		parameter[1] = machine.getSN();
@@ -76,26 +87,28 @@ public class MachineDetailsDao {
 		parameter[3] = machine.getInstalledTime();
 		parameter[4] = df.format(new Date());
 		parameter[5] = machine.getCustomerID();
+		parameter[6] = machine.getStatus();
+		parameter[7] = machine.getCurrentProgress();
+		parameter[8] = machine.getResponsible();
 		
 		int i = 0;
-		i = db.executeUpdate(sql, parameter);
-		if(i>=1){
-			flag = true;
-		}
-		return flag;
+		i = Integer.parseInt(db.insertGetIdNotClose(sql, parameter).toString());
+
+		return i;
 	}
 	/**
 	 * 修改
 	 * @param packing
 	 * @return
+	 * @throws SQLException 
 	 */
-	public boolean update(MachineDetails machine){
+	public boolean update(MachineDetails machine) throws SQLException{
 		SimpleDateFormat df = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
 		DBUtil db = new DBUtil();
 		boolean flag = false;
-		Object[] parameter = new Object[7];
-		String sql = "update  t_machine_details set Model=?,SN=?,ContractNO=?,"
-				+ "InstalledTime=?,OperatingTime=?,CustomerID=? where ID=?";
+		Object[] parameter = new Object[10];
+		String sql = "update  t_machine_details set Model=?,SN=?,ContractNO=?,InstalledTime=?,"
+				+ "OperatingTime=?,CustomerID=?,Status=?,LatestProgress=?,Responsible=? where ID=?";
 
 		
 		parameter[0] = machine.getModel();
@@ -104,13 +117,51 @@ public class MachineDetailsDao {
 		parameter[3] = machine.getInstalledTime();
 		parameter[4] = df.format(new Date());
 		parameter[5] = machine.getCustomerID();
-		parameter[6] = machine.getID();
+		parameter[6] = machine.getStatus();
+		parameter[7] = machine.getCurrentProgress();
+		parameter[8] = machine.getResponsible();
+		parameter[9] = machine.getID();
 		int i = 0;
-		i = db.executeUpdate(sql, parameter);
+		i = db.executeUpdateNotClose(sql, parameter);
 		if(i>=1){
 			flag = true;
 		}
 		return flag;
+	}
+	
+	public boolean insertProgress(List<Map<String, String>> list,int MachineID){
+
+		DBUtil util = new DBUtil();
+		String sql1 = "DELETE FROM t_machine_progress WHERE MachineID=?";
+	
+		
+		Connection conn = util.getConnection();
+		try {
+			conn.setAutoCommit(false);
+			util.executeUpdateNotClose(sql1, new Object[]{MachineID});
+			String sql = "INSERT INTO t_machine_progress(MachineID,CurrentProgress,Date) values(?,?,?)";
+			PreparedStatement statement = conn.prepareStatement(sql);
+			for(int i = 0;i < list.size();i ++){
+				statement.setInt(1, MachineID);
+				statement.setString(2, list.get(i).get("CurrentProgress"));
+				statement.setString(3, list.get(i).get("Date"));
+				statement.addBatch();
+			}
+			statement.executeBatch();
+			conn.commit();
+			return true;
+		} catch (SQLException e) {
+			e.printStackTrace();
+			try {
+				conn.rollback();
+			} catch (SQLException e1) {
+				e1.printStackTrace();
+			}
+			return false;
+		}finally {
+			util.closed();
+		}
+		
 	}
 	
 	public boolean delete(int id){

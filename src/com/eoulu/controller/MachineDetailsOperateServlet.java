@@ -8,9 +8,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import com.eoulu.service.LogInfoService;
 import com.eoulu.service.MachineDetailsService;
-import com.eoulu.service.impl.LogInfoServiceImpl;
 import com.eoulu.service.impl.MachineDetailsServiceImpl;
 import com.google.gson.Gson;
 
@@ -25,6 +23,11 @@ public class MachineDetailsOperateServlet extends HttpServlet {
 
 	@Override
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+		
+	}
+
+	@Override
+	protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		String classify = req.getParameter("classify");
 		boolean flag = false;
 		MachineDetailsService service = new MachineDetailsServiceImpl();
@@ -41,11 +44,6 @@ public class MachineDetailsOperateServlet extends HttpServlet {
 		}
 		
 		resp.getWriter().write(new Gson().toJson("{message:" + flag + "}"));
-	}
-
-	@Override
-	protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-		doPost(req, resp);
 	}
 
 }

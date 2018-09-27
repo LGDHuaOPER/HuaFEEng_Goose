@@ -519,9 +519,7 @@ $(function(){
 	}else{
 		$(".eou-container-r .u-admin").css("height","67px");
 	}
-});
 
-$(function(){
 	var href1 = eouluGlobal.S_getCurPageHref();
 	if(href1 != "Index" && href1 != "Login"){
 		$("div.eou-container-m").css("opacity",1);
@@ -533,7 +531,7 @@ $(function(){
 	else if(href1 == "QuotationSystem" || href1 == "Price" ||  href1 == "Requirement" ||  href1 == "SalesStatistics" ||  href1 == "HotProduct" || href1 == "Quality" || href1 == "QuantityWeight" || href1 == "TestReport" || href1 == "Fumigation" || href1 == "Origin" || href1 == "Shipment" || href1 == "Receiving" || href1 == "Acceptance" || href1 == "Customer" || href1 == "Invoice" || href1 == "Keysight" || href1 == "OriginalQuotation" || href1 == "WorkReport" || href1 == "BiddingDocument"){
 	    href1 = "QuotationSystem0";
 	}
-	else if(href1 == "MachineDetails" || href1 == "Hardware" || href1 == "AfterSale" || href1 == "Schedule" || href1 == "ServiceReport" || href1 == "StandardProduct" || href1 == "DocumentUpload" || href1 == "ApplicationGallery"){
+	else if(href1 == "MachineDetails" || href1 == "GetMachineDetailsRoute" || href1 == "Hardware" || href1 == "AfterSale" || href1 == "Schedule" || href1 == "ServiceReport" || href1 == "StandardProduct" || href1 == "DocumentUpload" || href1 == "ApplicationGallery"){
 	    href1 = "MachineDetails0";
 	}
 	else if(href1 == "SoftwareDocument" || href1 == "SoftwareProject" || href1 == "SoftwareProduct" || href1 == "CustomerInquiry"|| href1 == "SoftwareImplementation"){

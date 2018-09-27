@@ -329,6 +329,8 @@ a:hover{
                 newNavProHref = 'Price?ActualDelivery=no&column=DateOfSign&condition=All';
             }else if(newNavProHref=='DocumentUpload'){
                 newNavProHref = $("li.MachineDetails0 h5.DocumentUpload").children("a").attr("href");
+            }else if(newNavProHref=='GetMachineDetailsRoute'){
+                newNavProHref = 'MachineDetails';
             }
             console.log("nav页面的再次处理后的href:"+newNavProHref);
             var firstTit = $(".eou-container .m-li.current").children("a").text();

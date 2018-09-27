@@ -32,8 +32,8 @@
             ],
         allDepartArr: ["软件部","财务部","人事部","商务部","销售部","市场部","服务部","物流部","硬件部","应用部","标准服务部","研发部","厦门办事处"],
         canDispatchPageArr_href: ["ApplicationGallery", "SoftwareDocument", "Transport", "GetOrderRoute", "GetOrderByPageOne", "GetOrderByPageTwo", "PaymentRequest", "ServiceReport", "AssessmentStatistics", "Hardware", "GetHardwareRoute", "StandardProduct", "Customer", "GetCustomerInfo2", "AllLab", "Lab", "Reimburse", "Schedule", "ScheduleRoute"],
-        notEouluCopy_href: ["OriginFactory","OriginFactorySearch","SoftwareImplementation","Tasking","Keysight","Price","PriceRoute","Transport","GetOrderRoute","GetOrderByPageOne", "GetOrderByPageTwo", "NonStandard","Inventory","OriginalQuotation","Supplier","AssessmentStatistics","StaffInfo","TrainingRecords","Admin","ServiceReport","SoftwareDocument","StandardProduct","Lab","Reimburse","WorkReport","SoftwareProject","BiddingDocument","PackingList","PaymentRequest","ApplicationGallery","Hardware","GetHardwareRoute","Customer","GetCustomerInfo2","AllLab"],
-        showNavArr_href: ["Schedule","SoftwareProduct","QuotationSystem","Transport", "GetOrderRoute", "GetOrderByPageOne", "GetOrderByPageTwo", "PackingList","Invoice","Equipment","OriginFactory","Inventory","Price","Requirement","Inventory","MachineDetails","SalesStatistics","LeaveApplication","DocumentUpload","QuotationSystem","StockPurchasing","Insurance","Proposal","PackingList","HotProduct","Commodity","Quality","QuantityWeight","TestReport","Fumigation","Origin","Shipment","Receiving","Acceptance","Customer","MachineDetails","Hardware","AfterSale","Schedule","RoutineVisit","SoftwareDocument","SoftwareProject","SoftwareProduct","CustomerInquiry","SoftwareImplementation","StaffInfo","LeaveApplication","SoftwareImplementation","Keysight","NonStandard","OriginalQuotation","Supplier","AssessmentStatistics","ServiceReport","StandardProduct","SalesQuotationSystem","Lab","Reimburse","WorkReport","BiddingDocument","PaymentRequest","ApplicationGallery","AllLab"],
+        notEouluCopy_href: ["OriginFactory","OriginFactorySearch","SoftwareImplementation","Tasking","Keysight","Price","PriceRoute","Transport","GetOrderRoute","GetOrderByPageOne", "GetOrderByPageTwo", "NonStandard","Inventory","OriginalQuotation","Supplier","AssessmentStatistics","StaffInfo","TrainingRecords","Admin","ServiceReport","SoftwareDocument","StandardProduct","Lab","Reimburse","WorkReport","SoftwareProject","BiddingDocument","PackingList","PaymentRequest","ApplicationGallery","Hardware","GetHardwareRoute","Customer","GetCustomerInfo2","AllLab", "MachineDetails", "GetMachineDetailsRoute"],
+        showNavArr_href: ["Schedule","SoftwareProduct","QuotationSystem","Transport", "GetOrderRoute", "GetOrderByPageOne", "GetOrderByPageTwo", "PackingList","Invoice","Equipment","OriginFactory","Inventory","Price","Requirement","Inventory","MachineDetails","SalesStatistics","LeaveApplication","DocumentUpload","QuotationSystem","StockPurchasing","Insurance","Proposal","PackingList","HotProduct","Commodity","Quality","QuantityWeight","TestReport","Fumigation","Origin","Shipment","Receiving","Acceptance","Customer","MachineDetails", "GetMachineDetailsRoute", "Hardware","AfterSale","Schedule","RoutineVisit","SoftwareDocument","SoftwareProject","SoftwareProduct","CustomerInquiry","SoftwareImplementation","StaffInfo","LeaveApplication","SoftwareImplementation","Keysight","NonStandard","OriginalQuotation","Supplier","AssessmentStatistics","ServiceReport","StandardProduct","SalesQuotationSystem","Lab","Reimburse","WorkReport","BiddingDocument","PaymentRequest","ApplicationGallery","AllLab"],
         pageAllConfig: {
             "Schedule": {
                 provinceANDcityRefreshFlag: false
@@ -1235,6 +1235,33 @@
                     JQObj.text(newText);
                 }
             }
+            return this;
+        },
+        // 全局根据搜索值获取客户单位信息
+        C_getCustomerUnitInfo: function(CustomerName, doneFn, failFn, alwaysFn){
+            var eouluGlobalThis = this;
+            $.ajax({
+                type: "GET",
+                url: "GetCustomer",
+                data: {
+                    CustomerName: CustomerName
+                },
+                dataType: "json"
+            }).then(function(data, textStatus, jqXHR){
+                if(eouluGlobalThis.S_isFunction(doneFn)){
+                    var options = this;   //调用本次ajax请求时传递的options参数
+                    doneFn(data, textStatus, jqXHR, options);
+                }
+            },function(jqXHR, textStatus, errorThrown){
+                if(eouluGlobalThis.S_isFunction(failFn)){
+                    failFn(jqXHR, textStatus, errorThrown, this);
+                }
+            }).always(function(param1, textStatus, param2){
+                /* data|jqXHR, textStatus, jqXHR|errorThrown */
+                if(eouluGlobalThis.S_isFunction(alwaysFn)){
+                    alwaysFn(param1, textStatus, param2, this);
+                }
+            });
             return this;
         },
 
@@ -3023,7 +3050,6 @@ var globalGetStaffAllInfoByDepart = function(Department,fn,fn2){
             fn2 && fn2();
         });
     }
-
 
     //  获取所搜索型号的所有信息
     //  @param  classify ["型号","商品名称"]

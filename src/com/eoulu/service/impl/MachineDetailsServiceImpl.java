@@ -1,5 +1,7 @@
 package com.eoulu.service.impl;
 
+import java.sql.SQLException;
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -12,6 +14,9 @@ import com.eoulu.entity.MachineDetails;
 import com.eoulu.service.LogInfoService;
 import com.eoulu.service.MachineDetailsService;
 import com.eoulu.util.DBUtil;
+
+import net.sf.json.JSONArray;
+import net.sf.json.JSONObject;
 
 public class MachineDetailsServiceImpl implements MachineDetailsService{
 	public static final Map<String, Object> classify_MAP; 
@@ -31,8 +36,15 @@ public class MachineDetailsServiceImpl implements MachineDetailsService{
 	}
 	@Override
 	public List<Map<String, Object>> getMachineDetails(Page page) {
+		MachineDetailsDao dao = new MachineDetailsDao();
+		List<Map<String, Object>> list = dao.getMachineDetails(page);
+		for(int i = 1;i < list.size();i ++){
+			List<Map<String, Object>> progress = dao.getCurrentProgress(Integer.parseInt(list.get(i).get("ID").toString()));
+			JSONArray progressJson = JSONArray.fromObject(progress);
+			list.get(i).put("CurrentProgress", progressJson.toString());
+		}
+		return list;
 		
-		return new MachineDetailsDao().getMachineDetails(page);
 	}
 
 	@Override
@@ -52,10 +64,17 @@ public class MachineDetailsServiceImpl implements MachineDetailsService{
 		String contractNO = request.getParameter("ContractNO");
 		String installedTime = request.getParameter("InstalledTime");
 		int CustomerID = Integer.parseInt(request.getParameter("CustomerID"));
-	
+		int status = Integer.parseInt(request.getParameter("Status"));
+		String responsible = request.getParameter("Responsible");
+		String progress = request.getParameter("CurrentProgress")==null?"":request.getParameter("CurrentProgress");
+		String latestProgress = request.getParameter("LatestProgress")==null?"":request.getParameter("LatestProgress");
+
 		machine.setModel(model);
 		machine.setSN(sn);
 		machine.setCustomerID(CustomerID);
+		machine.setStatus(status);
+		machine.setResponsible(responsible);
+		machine.setCurrentProgress(latestProgress);
 		if(installedTime.equals("")){
 			machine.setInstalledTime("0000-00-00");
 		}else{
@@ -63,15 +82,38 @@ public class MachineDetailsServiceImpl implements MachineDetailsService{
 		}
 		
 		machine.setContractNO(contractNO);
-		boolean flag = dao.insert(machine);
+		int ID = 0;
+		try {
+			ID =  dao.insert(machine);
+		} catch (Exception e) {
+	
+			e.printStackTrace();
+			return false;
+		}
+		boolean flag = false;
+		if(!progress.equals("")){
+			JSONArray array = JSONArray.fromObject(progress);
+			JSONObject object = null;
+			Map<String,String> updateMap = null;
+			List<Map<String, String>> list = new ArrayList<>();
+			for(int i = 0;i < array.size();i ++){
+				object = array.getJSONObject(i);
+				updateMap = new HashMap<>();
+				updateMap.put("CurrentProgress",(String)object.get("CurrentProgress"));
+				updateMap.put("Date", ((String)object.get("Date")).equals("")?"0000-00-00":(String)object.get("Date"));
+				list.add(updateMap);
+			}
+			flag = dao.insertProgress(list,ID);
+			
+		}
 		if(flag){
 			LogInfoService log = new LogInfoServiceImpl();
 			String JspInfo = "服务部-机台统计";
 			String description = "新增-"+unit;
 			log.insert(request, JspInfo, description);
 		}
-		
 		return flag;
+	
 	}
 
 	@Override
@@ -86,11 +128,18 @@ public class MachineDetailsServiceImpl implements MachineDetailsService{
 		String contractNO = request.getParameter("ContractNO");
 		String installedTime = request.getParameter("InstalledTime");
 		int CustomerID = Integer.parseInt(request.getParameter("CustomerID"));
-	
+		int status = Integer.parseInt(request.getParameter("Status"));
+		String responsible = request.getParameter("Responsible");
+		String progress = request.getParameter("CurrentProgress")==null?"":request.getParameter("CurrentProgress");
+		String latestProgress = request.getParameter("LatestProgress")==null?"":request.getParameter("LatestProgress");
 	
 		machine.setModel(model);
 		machine.setSN(sn);
 		machine.setCustomerID(CustomerID);
+		machine.setStatus(status);
+		machine.setResponsible(responsible);
+		machine.setCurrentProgress(latestProgress);
+		
 		if(installedTime.equals("")){
 			machine.setInstalledTime("0000-00-00");
 		}else{
@@ -98,7 +147,30 @@ public class MachineDetailsServiceImpl implements MachineDetailsService{
 		}
 		machine.setContractNO(contractNO);
 		machine.setID(id);
-		boolean flag = dao.update(machine);
+		
+		try {
+			dao.update(machine);
+		} catch (SQLException e) {
+			e.printStackTrace();
+			return false;
+		}
+		
+		boolean flag = false;
+		if(!progress.equals("")){
+			JSONArray array = JSONArray.fromObject(progress);
+			JSONObject object = null;
+			Map<String,String> updateMap = null;
+			List<Map<String, String>> list = new ArrayList<>();
+			for(int i = 0;i < array.size();i ++){
+				object = array.getJSONObject(i);
+				updateMap = new HashMap<>();
+				updateMap.put("CurrentProgress",(String)object.get("CurrentProgress"));
+				updateMap.put("Date", ((String)object.get("Date")).equals("")?"0000-00-00":(String)object.get("Date"));
+				list.add(updateMap);
+			}
+			flag = dao.insertProgress(list,id);
+			
+		}
 		if(flag){
 			LogInfoService log = new LogInfoServiceImpl();
 			String JspInfo = "服务部-机台统计";

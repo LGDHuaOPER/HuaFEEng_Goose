@@ -1,0 +1,50 @@
+/*bsCompatible_cssSticker开始*/
+.lava_with_border li a {
+    vertical-align: top !important;
+}
+
+h5, h6 {
+    margin-top: 0px;
+    margin-bottom: 0px;
+}
+
+hr {
+    margin-top: 2px;
+    margin-bottom: 0px;
+    border: 0;
+    border-top: 1px solid #999;
+}
+
+.g-nav-ul li {
+    box-sizing: content-box;
+}
+
+/*布局*/
+html,body{
+    width: 100%;
+    height: 100%;
+}
+
+#bsCompatible_cssSticker_wrapper {
+    position: fixed;
+    overflow: auto;
+    width: 100%;
+    height: 100%;
+    box-sizing: border-box;
+}
+
+#bsCompatible_cssSticker_sticker {
+    width: 100%;
+    min-height: 100%;
+    box-sizing: border-box;
+}
+
+#bsCompatible_cssSticker_sticker-con {
+    padding-bottom: 40px;
+    box-sizing: border-box;
+}
+
+#bsCompatible_cssSticker_footer {
+    margin-top: -40px;
+}
+/*bsCompatible_cssSticker结束*/

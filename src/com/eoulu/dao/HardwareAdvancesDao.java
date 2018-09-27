@@ -32,39 +32,7 @@ public class HardwareAdvancesDao {
 		ls = db.QueryToList(sql, parameter);
 		return ls;
 	}
-	/*----------------------------------------------------------------------
-	public List<Map<String,Object>> getAllHardwareAdvances(){
-	    
-		List<Map<String, Object>> ls = null;
-		
-		DBUtil db = new DBUtil();
 
-
-		String sql= "select ID, Customer,`Status`,InstalledTime,ResponsibleAndProcess,LatestProgress,OperatingTime"
-				+ " from t_hardware_advances order by Status,InstalledTime  desc";
-		Object[] parameter = null;
-
-		ls = db.QueryToList(sql, parameter);
-		return ls;
-	}
-	
-	public boolean updateProgress(int ID,String progress,String man){
-		
-		DBUtil db = new DBUtil();
-		String sql = "update t_hardware_advances set LatestProgress = ?,ResponsibleAndProcess = ? where ID = ?";
-		Object[] param = new Object[]{progress,man,ID};
-		int result = db.executeUpdate(sql, param);
-		return result>0?true:false;
-		
-	}
-	public boolean insertProgress(int ID,String progress){
-		DBUtil dbUtil = new DBUtil();
-		String sql = "insert into t_hardware_progress(MachineID,CurrentProgress,Date) values(?,?,?)";
-		Object[] param = new Object[]{ID,progress,""};
-		int result = dbUtil.executeUpdate(sql, param);
-		return result>0?true:false;
-	}
-	*/
 	
 	
 	public List<Map<String,Object>> getCurrentProgress(int MachineID){

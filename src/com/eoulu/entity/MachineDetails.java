@@ -10,6 +10,9 @@ public class MachineDetails {
 	private String InstalledTime;
 	private String OperatingTime;
 	private int CustomerID;
+	private int Status;
+	private String Responsible;
+	private String CurrentProgress;
 	public int getCustomerID() {
 		return CustomerID;
 	}
@@ -54,6 +57,25 @@ public class MachineDetails {
 	public void setOperatingTime(String operatingTime) {
 		OperatingTime = operatingTime;
 	}
+	public int getStatus() {
+		return Status;
+	}
+	public void setStatus(int status) {
+		Status = status;
+	}
+	public String getResponsible() {
+		return Responsible;
+	}
+	public void setResponsible(String responsible) {
+		Responsible = responsible;
+	}
+	public String getCurrentProgress() {
+		return CurrentProgress;
+	}
+	public void setCurrentProgress(String currentProgress) {
+		CurrentProgress = currentProgress;
+	}
+	
 
 	
 	
