@@ -13,10 +13,12 @@
 <link rel="bookmark" href="image/eoulu.ico"/>
 <link rel="stylesheet" href="css/libs/bootstrap.min.css" type="text/css">
 <link rel="stylesheet" href="plugins/awesomplete/awesomplete_all-a2ac84f236.min.css" type="text/css">
-<link rel="stylesheet" href="src/css/global/global_add_update_module.css" type="text/css">
+<!-- delete -->
+<!-- <link rel="stylesheet" href="src/css/global/global_add_update_module.css" type="text/css">
 <link rel="stylesheet" href="src/css/global/global_table_style.css" type="text/css">
 <link rel="stylesheet" href="src/css/global/bsCompatible_cssSticker.css" type="text/css">
-<link rel="stylesheet" href="src/css/machine.css" type="text/css">
+<link rel="stylesheet" href="src/css/machine.css" type="text/css"> -->
+<link rel="stylesheet" href="css/modules/serviced/machine-61ccd63d64.min.css" type="text/css">
 <style>
 	.content {
 		padding-bottom: 5px !important;
@@ -34,9 +36,43 @@
 		z-index: 101;
 		pointer-events: auto;
 	}
+
+	.cell_yellow {
+		color: red;
+	}
+
+	div.contain {
+		min-width: 1100px !important;
+	}
+
+	#global_table_style th, #global_table_style td {
+		max-width: 180px;
+		min-width: 60px;
+	}
+
+	.content .select-button input[type="button"], .content .choose input[type="button"] {
+		width: auto !important;
+		height: auto !important;
+		border: 1px solid transparent !important;
+	}
+
+	.content .choose input[type="button"] {
+		margin-top: 30px !important;
+	}
+
+	.content .select-content {
+		padding-top: 1px !important;
+	}
+
+	.content .choose {
+		margin-bottom: 5px !important;
+	}
 </style>
 </head>
 <body>
+<div class="loading_div_g_div" style="position: fixed;top: 0;bottom: 0;left: 0;right: 0;z-index: 100;width: 100vw;height: 100vh;background-color: #5bc0de;filter:alpha(opacity=90);-moz-opacity:0.9;-khtml-opacity:0.9;opacity: 0.9;display: -webkit-flex;display: flex;justify-content: center;align-items: center;">
+    <img src="image/loading/Spinner-1s-200px.gif" alt="loading。。。">
+</div>
 <div id="bsCompatible_cssSticker_wrapper">
     <div id="bsCompatible_cssSticker_sticker">
         <div id="bsCompatible_cssSticker_sticker-con">
@@ -134,11 +170,11 @@
 										<td title="${orderInfo['SN']}" class="td_SN">${orderInfo['SN']}</td>
 										<td title="${orderInfo['ContractNO']}" class="td_ContractNO">${orderInfo['ContractNO']}</td>
 										<td title="${orderInfo['InstalledTime']}" class="td_InstalledTime">${orderInfo['InstalledTime']}</td>
-										<td title="${orderInfo['Status']}" class="td_Status">项目状态</td>
-										<td title="${orderInfo['Responsible']}" class="td_Responsible">负责人</td>
-										<td title="${orderInfo['LatestProgress']}" class="td_LatestProgress">最新进展</td>
+										<td data-ivalue="${orderInfo['Status']}" class="td_Status"></td>
+										<td title="${orderInfo['Responsible']}" class="td_Responsible"></td>
+										<td data-ivalue='${orderInfo["LatestProgress"]}' class="td_LatestProgress"></td>
 										<td class="td_CustomerID" title="${orderInfo['CustomerID']}" style="display:none;">${orderInfo['CustomerID']}</td>
-										<td class="td_CurrentProgress" title='${orderInfo["CurrentProgress"]}' style="display:none;">${orderInfo['CurrentProgress']}</td>
+										<td class="td_CurrentProgress" data-ivalue='${orderInfo["CurrentProgress"]}' style="display:none;">${orderInfo['CurrentProgress']}</td>
 									</tr>
 								</c:if>
 							</c:forEach> 
@@ -340,99 +376,6 @@
 					</div>
 				</div>
 				<!-- 添加修改模块 end -->
-					
-					<!-- 添加合同 -->
-					<div class="contract_add" style="display: none;">
-						<div class="contract_title">添加机台统计</div>
-						<div class="contractAdd_close">关闭</div>
-						<div class="basic_info">
-							<div class="table_title">机台统计</div>
-							<table border="1" cellspacing="0" cellpadding="0"
-								class="contract_basic">
-								<tbody>
-									<tr>
-										<td class="addInsertId"><i class="relevance"></i>客户单位</td>
-										<td>
-										<!-- <input type="text" name="CustomerUnit" value=""> -->
-										<div class="out_search">
-												<input type="search" name="CustomerUnit" class="CustomerUnit">
-													 <select name="CustomerUnit" multiple style="width: 248px;height: 100px;"></select>
-											</div>
-										</td>
-										<td><i class="relevance"></i>用户姓名</td>
-										<td>
-										<div class="out_search">
-												<input type="search" name="CustomerName" class="CustomerName" readonly="readonly">
-											</div>
-										</td>
-									</tr>
-									<tr>
-										<td>Model</td>
-										<td><input type="text" name="Model" value=""></td>
-										<td>SN</td>
-										<td><input type="text" name="SN" value=""></td>
-									</tr>
-									<tr>
-										<td>合同号</td>
-										<td><input type="text" name="ContractNO" value=""></td>
-										<td>装机服务时间</td>
-										<td><input type="date" name="InstalledTime" value=""></td>
-									</tr>
-									<tr>
-									</tr>
-								</tbody>
-							</table>
-						</div>
-						<div class="edit_btn">
-							<input type="button" value="提交" class="bToggle" id="add_submit">
-							<input type="button" value="取消" class="bToggle" id="add_cancel">
-						</div>
-					</div>
-					<div class="contract_update" style="display: none;">
-						<div class="contract_title">修改机台统计</div>
-						<div class="contractUpdate_close">关闭</div>
-						<div class="basic_info">
-							<div class="table_title">机台统计</div>
-							<table border="1" cellspacing="0" cellpadding="0"
-								class="contract_basic">
-								<tbody>
-									<tr>
-										<td class="updateInsertId"><i class="relevance"></i>客户单位</td>
-										<td>
-										<div class="out_search">
-												<input type="search" name="CustomerUnit" class="CustomerUnit">
-													 <select name="CustomerUnit" multiple style="width: 248px;height: 100px;"></select>
-											</div>
-										</td>
-										<td><i class="relevance"></i>用户姓名</td>
-										<td>
-										<div class="out_search">
-												<input type="search" name="CustomerName" class="CustomerName" readonly="readonly">
-											</div>
-										</td>
-									</tr>
-									<tr>
-										<td>Model</td>
-										<td><input type="text" name="Model" value=""></td>
-										<td>SN</td>
-										<td><input type="text" name="SN" value=""></td>
-									</tr>
-									<tr>
-										<td>合同号</td>
-										<td><input type="text" name="ContractNO" value=""></td>
-										<td>装机服务时间</td>
-										<td><input type="date" name="InstalledTime" value=""></td>
-									</tr>
-									<tr>
-									</tr>
-								</tbody>
-							</table>
-						</div>
-						<div class="edit_btn">
-							<input type="button" value="提交" class="bToggle" id="update_submit">
-							<input type="button" value="取消" class="bToggle" id="update_cancel">
-						</div>
-					</div>
 
 					 	 <c:choose>
 							<c:when test="${queryType == 'common'}">
@@ -477,6 +420,4 @@
 	<script src="js/libs/bootstrap.min.js"></script>
 	<script src="plugins/awesomplete/awesomplete.min.js"></script>
 </body>
-<script src="src/js/msgbox.js"></script>
-<script src="src/js/machine.js"></script>
 </html>

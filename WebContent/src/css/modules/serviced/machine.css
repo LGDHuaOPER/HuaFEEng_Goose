@@ -1,3 +1,286 @@
+/* global_add_update_module */
+#global_add_update_module_cover, .global_add_update_module_cover {
+	min-width: 1080px;
+	width: calc(100vw - 20px);
+	height: 100vh;
+	background-color: rgba(10%,20%,30%,0.7);
+	position: absolute;
+	top: 0;
+	right: 0;
+	bottom: 0;
+	left: 0;
+	display: none;
+	overflow: hidden;
+	z-index: 99;
+}
+
+#global_add_update_module_add, #global_add_update_module_update, .global_add_update_module {
+	background: #fff;
+	position: absolute;
+	top: 80px;
+	left: calc(50% - 450px);
+	width: 900px;
+	display: none; 
+	font-size: 15px;
+	z-index: 100;
+}
+
+.global_add_update_module_title {
+	position: relative;
+	height: 35px;
+	line-height: 35px;
+	background-color: #707070;
+	color: #fff;
+	text-indent: 20px;
+	font-size: 17px;
+}
+
+.global_add_update_module_title>span.glyphicon {
+	position: absolute;
+	top: 6px;
+	right: 20px;
+	font-size: 22px;
+}
+
+.global_add_update_module_news {
+	height: 30px;
+	line-height: 30px;
+	color: #00aeef;
+	font-size: 16px;
+	font-weight: 500;
+	text-indent: 20px;
+}
+
+.global_add_update_module_bodyin {
+	margin: 20px;
+}
+
+.global_add_update_module_bodyin legend {
+	margin-bottom: 6px;
+	color: #00aeef;
+	font-size: 18px;
+	font-weight: 500;
+}
+
+.global_add_update_module_foot {
+	padding-bottom: 8px;
+	text-align: center;
+}
+
+.global_add_update_module_footin {
+	display: inline-block;
+}
+
+.global_add_update_module_footin>input+input {
+	margin-left: 40px;
+}
+/* global_add_update_module end */
+#global_table_style_wrapper, #glbal_table_page_wrapper {
+	min-width: 1000px;
+	width: 90%;
+	margin: 2px auto;
+}
+
+#global_table_style {
+	min-width: 1000px;
+    width: 100%;
+    box-sizing: border-box;
+    border-collapse: collapse;
+    /*如果定义两个 length 参数，那么第一个设置水平间距，而第二个设置垂直间距。*/
+    border-spacing: 0;
+    text-align: center;
+    font-size: 14px;
+    box-shadow: -3px 3px 10px 2px rgba(195,206,220,0.7), 3px 3px 10px 2px rgba(195,206,220,0.7);
+}
+
+/*超出隐藏*/
+#global_table_style .global_overflow_hide {
+	overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+#global_table_style td, #global_table_style th {
+	overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    padding: 1px 2px;
+}
+
+#global_table_style th {
+	text-align: center;
+	font-size: 15px;
+	font-weight: 600;
+}
+
+#global_table_style td:not(:first-child) {
+	border-left: 1px solid #999;
+}
+
+#global_table_style tbody tr:nth-child(odd) {
+	height: 40px;
+	background: #fff;
+}
+
+#global_table_style tbody tr:nth-child(even) {
+	height: 40px;
+	background: rgba(195,206,220,0.9);
+}
+
+#global_table_style thead tr {
+	height: 35px;
+	background: #b5b5b5;
+}
+
+/*翻页*/
+#glbal_table_page, #global_table_page {
+	margin-top: 8px;
+	/*display: table-cell;*/
+	width: 100%;
+	height: 32px;
+	line-height: 32px;
+	text-align: right;
+	padding-top: 1px;
+	padding-right: 10px;
+	font-size: 15px;
+}
+
+#glbal_table_page>.pageInfo, #glbal_table_page>.changePage, #global_table_page>.pageInfo, #global_table_page>.changePage {
+	display: inline-block;
+}
+
+
+
+/*
+*备份的样式 class命名*
+ */
+.gl_table_style_wrapper, .gl_table_page_wrapper {
+	min-width: 1000px;
+	width: 90%;
+	margin: 2px auto;
+}
+	/*可修改*/
+.gl_table_style_wrapper {
+	min-height: 446px;
+}
+
+.gl_table_style {
+	min-width: 1000px;
+    width: 100%;
+    box-sizing: border-box;
+    border-collapse: collapse;
+    /*如果定义两个 length 参数，那么第一个设置水平间距，而第二个设置垂直间距。*/
+    border-spacing: 0;
+    text-align: center;
+    font-size: 14px;
+    box-shadow: -3px 3px 10px 2px rgba(195,206,220,0.7), 3px 3px 10px 2px rgba(195,206,220,0.7);
+}
+
+/*超出隐藏*/
+.gl_table_style .gl_overflow_hide {
+	overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+.gl_table_style td, .gl_table_style th {
+	overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    padding: 1px 2px;
+}
+
+.gl_table_style th {
+	text-align: center;
+	font-size: 15px;
+	font-weight: 600;
+}
+
+.gl_table_style td:not(:first-child) {
+	border-left: 1px solid #999;
+}
+
+.gl_table_style tbody tr:nth-child(odd) {
+	height: 40px;
+	background: #fff;
+}
+
+.gl_table_style tbody tr:nth-child(even) {
+	height: 40px;
+	background: rgba(195,206,220,0.9);
+}
+
+.gl_table_style thead tr {
+	height: 35px;
+	background: #b5b5b5;
+}
+
+/*翻页*/
+.gl_table_page {
+	margin-top: 8px;
+	/*display: table-cell;*/
+	width: 100%;
+	height: 32px;
+	line-height: 32px;
+	text-align: right;
+	padding-top: 1px;
+	padding-right: 10px;
+	font-size: 15px;
+}
+
+.gl_table_page>.pageInfo, .gl_table_page>.changePage {
+	display: inline-block;
+}
+/*bsCompatible_cssSticker开始*/
+.lava_with_border li a {
+    vertical-align: top !important;
+}
+
+h5, h6 {
+    margin-top: 0px;
+    margin-bottom: 0px;
+}
+
+hr {
+    margin-top: 2px;
+    margin-bottom: 0px;
+    border: 0;
+    border-top: 1px solid #999;
+}
+
+.g-nav-ul li {
+    box-sizing: content-box;
+}
+
+/*布局*/
+html,body{
+    width: 100%;
+    height: 100%;
+}
+
+#bsCompatible_cssSticker_wrapper {
+    position: fixed;
+    overflow: auto;
+    width: 100%;
+    height: 100%;
+    box-sizing: border-box;
+}
+
+#bsCompatible_cssSticker_sticker {
+    width: 100%;
+    min-height: 100%;
+    box-sizing: border-box;
+}
+
+#bsCompatible_cssSticker_sticker-con {
+    padding-bottom: 40px;
+    box-sizing: border-box;
+}
+
+#bsCompatible_cssSticker_footer {
+    margin-top: -40px;
+}
+/*bsCompatible_cssSticker结束*/
 *{
     margin:0;
 }
@@ -375,10 +658,7 @@ ul,li{
     z-index:1;
 }
 
-.basic_info{
-    width: 94%;
-    margin: 10px auto;
-}
+
 .table_title{
     margin: 5px 0;color: #00aeef;
 }
@@ -740,27 +1020,6 @@ ul,li{
     left: 0;
 }
 
-.cover-color{
-    width: 100%;
-    height:100%;
-    background-color: rgba(10%,20%,30%,0.7);
-    position: absolute;
-    top: -10px;
-    left: 0;
-    display: none;
-    overflow: hidden;
-}
-.cover-color2{
-    width: 100%;
-    height:100%;
-    background-color: rgba(10%,20%,30%,0.7);
-    position: absolute;
-    top: -10px;
-    left: 0;
-    display: none;
-    z-index:2;
-    overflow: hidden;
-}
 .contain .content .bToggle {
     background: #00aeef;
     border: solid 1px #00aeef;
@@ -788,10 +1047,7 @@ ul,li{
 	height:40px;
 	text-align:center;
 }
-.basic_info {
-    width: 86% !important;
-    margin: 10px auto;
-}
+
 
 /*2018-09-27更新*/
 /* 进展详情 */
@@ -852,13 +1108,13 @@ select[name='CustomerUnit_select']>option {
 
 .awesomplete_btn {
     padding-top: 8px;
-    padding-bottom: 10px;
+    padding-bottom: 9px;
     position: relative;
-    top: -1px;
+    top: -2px;
 }
 
 .line_font_yellow {
-    color: yellow;
+    color: red;
 }
 
 .cell_yellow {

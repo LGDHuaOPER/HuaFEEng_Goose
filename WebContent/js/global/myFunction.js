@@ -31,7 +31,7 @@
               '#DE3656','#D6395B','#C93F64','#C0436C','#B64873','#A35283','#9D5588','#885F98','#7468A6','#6C6BA6','#5F72B6','#5A74B9','#5077BE','#4B7BC5','#467DC9','#4081CE','#3A83D3','#3183DA','#2A8BDF','#248EE3','#1E91E8','#1993EC','#1396F0','#0F98F4','#0B9AF7','#069CFA','#019FFF'
             ],
         allDepartArr: ["软件部","财务部","人事部","商务部","销售部","市场部","服务部","物流部","硬件部","应用部","标准服务部","研发部","厦门办事处"],
-        canDispatchPageArr_href: ["ApplicationGallery", "SoftwareDocument", "Transport", "GetOrderRoute", "GetOrderByPageOne", "GetOrderByPageTwo", "PaymentRequest", "ServiceReport", "AssessmentStatistics", "Hardware", "GetHardwareRoute", "StandardProduct", "Customer", "GetCustomerInfo2", "AllLab", "Lab", "Reimburse", "Schedule", "ScheduleRoute"],
+        canDispatchPageArr_href: ["ApplicationGallery", "SoftwareDocument", "Transport", "GetOrderRoute", "GetOrderByPageOne", "GetOrderByPageTwo", "PaymentRequest", "ServiceReport", "AssessmentStatistics", "Hardware", "GetHardwareRoute", "StandardProduct", "Customer", "GetCustomerInfo2", "AllLab", "Lab", "Reimburse", "Schedule", "ScheduleRoute", "MachineDetails", "GetMachineDetailsRoute"],
         notEouluCopy_href: ["OriginFactory","OriginFactorySearch","SoftwareImplementation","Tasking","Keysight","Price","PriceRoute","Transport","GetOrderRoute","GetOrderByPageOne", "GetOrderByPageTwo", "NonStandard","Inventory","OriginalQuotation","Supplier","AssessmentStatistics","StaffInfo","TrainingRecords","Admin","ServiceReport","SoftwareDocument","StandardProduct","Lab","Reimburse","WorkReport","SoftwareProject","BiddingDocument","PackingList","PaymentRequest","ApplicationGallery","Hardware","GetHardwareRoute","Customer","GetCustomerInfo2","AllLab", "MachineDetails", "GetMachineDetailsRoute"],
         showNavArr_href: ["Schedule","SoftwareProduct","QuotationSystem","Transport", "GetOrderRoute", "GetOrderByPageOne", "GetOrderByPageTwo", "PackingList","Invoice","Equipment","OriginFactory","Inventory","Price","Requirement","Inventory","MachineDetails","SalesStatistics","LeaveApplication","DocumentUpload","QuotationSystem","StockPurchasing","Insurance","Proposal","PackingList","HotProduct","Commodity","Quality","QuantityWeight","TestReport","Fumigation","Origin","Shipment","Receiving","Acceptance","Customer","MachineDetails", "GetMachineDetailsRoute", "Hardware","AfterSale","Schedule","RoutineVisit","SoftwareDocument","SoftwareProject","SoftwareProduct","CustomerInquiry","SoftwareImplementation","StaffInfo","LeaveApplication","SoftwareImplementation","Keysight","NonStandard","OriginalQuotation","Supplier","AssessmentStatistics","ServiceReport","StandardProduct","SalesQuotationSystem","Lab","Reimburse","WorkReport","BiddingDocument","PaymentRequest","ApplicationGallery","AllLab"],
         pageAllConfig: {
@@ -85,6 +85,7 @@
                 },
                 "服务部": {
                     "机台统计": "MachineDetails",
+                    "机台统计#": "GetMachineDetailsRoute",
                     "装机进展": "Hardware",
                     "装机进展#": "GetHardwareRoute",
                     "售后维修": "AfterSale",
@@ -972,6 +973,88 @@
                     }
                 },
                 // 员工行程页面结束
+                // 机台统计页面
+                "MachineDetails": {
+                    "lastModify": "Tue Sep 18 2018 17:29:07 GMT+0800 (中国标准时间)",
+                    "lastModifyTime": "1537262947000",
+                    // css
+                    "cssPrimary": {
+                        "bootstrap.min.css": {
+                            "referenceOrder": 0,
+                            "filePath": "css/libs/bootstrap.min.css",
+                            "mergeToParentFile": null
+                        },
+                        "awesomplete_all-a2ac84f236.min.css": {
+                            "referenceOrder": 1,
+                            "filePath": "plugins/awesomplete/awesomplete_all-a2ac84f236.min.css",
+                            "mergeToParentFile": null
+                        },
+                        "machine.css": {
+                            "referenceOrder": 3,
+                            "filePath": "src/css/modules/serviced/machine.css",
+                            "mergeToParentFile": "machine.css"
+                        }
+                    },
+                    // js
+                    "jsPrimary": {
+                        "bootstrap.min.js": {
+                            "referenceOrder": 0,
+                            "filePath": "js/libs/bootstrap.min.js",
+                            "mergeToParentFile": null
+                        },
+                        "awesomplete.min.js": {
+                            "referenceOrder": 1,
+                            "filePath": "plugins/awesomplete/awesomplete.min.js",
+                            "mergeToParentFile": null
+                        },
+                        "machine.js": {
+                            "referenceOrder": 2,
+                            "filePath": "src/js/modules/serviced/machine.js",
+                            "mergeToParentFile": "machine.js"
+                        }
+                    }
+                },
+                "GetMachineDetailsRoute": {
+                    "lastModify": "Tue Sep 18 2018 17:29:07 GMT+0800 (中国标准时间)",
+                    "lastModifyTime": "1537262947000",
+                    // css
+                    "cssPrimary": {
+                        "bootstrap.min.css": {
+                            "referenceOrder": 0,
+                            "filePath": "css/libs/bootstrap.min.css",
+                            "mergeToParentFile": null
+                        },
+                        "awesomplete_all-a2ac84f236.min.css": {
+                            "referenceOrder": 1,
+                            "filePath": "plugins/awesomplete/awesomplete_all-a2ac84f236.min.css",
+                            "mergeToParentFile": null
+                        },
+                        "machine.css": {
+                            "referenceOrder": 3,
+                            "filePath": "src/css/modules/serviced/machine.css",
+                            "mergeToParentFile": "machine.css"
+                        }
+                    },
+                    // js
+                    "jsPrimary": {
+                        "bootstrap.min.js": {
+                            "referenceOrder": 0,
+                            "filePath": "js/libs/bootstrap.min.js",
+                            "mergeToParentFile": null
+                        },
+                        "awesomplete.min.js": {
+                            "referenceOrder": 1,
+                            "filePath": "plugins/awesomplete/awesomplete.min.js",
+                            "mergeToParentFile": null
+                        },
+                        "machine.js": {
+                            "referenceOrder": 2,
+                            "filePath": "src/js/modules/serviced/machine.js",
+                            "mergeToParentFile": "machine.js"
+                        }
+                    }
+                },
+                // 机台统计页面结束
             },
         // pageHrefImportFileMap 结束
         // compressFilePathMap 开始
@@ -1060,6 +1143,13 @@
                     "gulp-rev": "schedule-0f26355e98.min.css",
                     "referencePath": "css/modules/serviced/schedule-0f26355e98.min.css",
                     "srcPath": "src/css/modules/serviced/schedule.css"
+                },
+                "machine.css": {
+                    "originPath": ["./cfChicken8/WebContent/src/css/modules/serviced/machine.css"],
+                    "outBasePath": "./cfChicken8/WebContent/src/css/modules/serviced/",
+                    "gulp-rev": "machine-61ccd63d64.min.css",
+                    "referencePath": "css/modules/serviced/machine-61ccd63d64.min.css",
+                    "srcPath": "src/css/modules/serviced/machine.css"
                 }
             },
             "jsMerge": {
@@ -1181,6 +1271,13 @@
                     "gulp-rev": "schedule-659fa5eb39.min.js",
                     "referencePath": "js/modules/serviced/schedule-659fa5eb39.min.js",
                     "srcPath": "src/js/modules/serviced/schedule.js"
+                },
+                "machine.js": {
+                    "originPath": ["./cfChicken8/WebContent/src/js/modules/serviced/machine.js"],
+                    "outBasePath": "./cfChicken8/WebContent/src/js/modules/serviced/",
+                    "gulp-rev": "machine-fcd24653fd.min.js",
+                    "referencePath": "js/modules/serviced/machine-fcd24653fd.min.js",
+                    "srcPath": "src/js/modules/serviced/machine.js"
                 }
             }
         }

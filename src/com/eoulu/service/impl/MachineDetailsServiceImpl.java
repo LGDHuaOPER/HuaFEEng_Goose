@@ -38,13 +38,17 @@ public class MachineDetailsServiceImpl implements MachineDetailsService{
 	public List<Map<String, Object>> getMachineDetails(Page page) {
 		MachineDetailsDao dao = new MachineDetailsDao();
 		List<Map<String, Object>> list = dao.getMachineDetails(page);
+		return getCurrentProgress(list);
+		
+	}
+	public List<Map<String, Object>> getCurrentProgress(List<Map<String, Object>> list){
+		MachineDetailsDao dao = new MachineDetailsDao();
 		for(int i = 1;i < list.size();i ++){
 			List<Map<String, Object>> progress = dao.getCurrentProgress(Integer.parseInt(list.get(i).get("ID").toString()));
 			JSONArray progressJson = JSONArray.fromObject(progress);
 			list.get(i).put("CurrentProgress", progressJson.toString());
 		}
 		return list;
-		
 	}
 
 	@Override
@@ -197,7 +201,8 @@ public class MachineDetailsServiceImpl implements MachineDetailsService{
 		
 
 		String sql = "select t_machine_details.ID,t_machine_details.Model,t_machine_details.SN,t_machine_details.ContractNO,"
-				+ "t_machine_details.InstalledTime,t_customer.CustomerName CustomerUnit,t_customer.Contact CustomerName,t_customer.CustomerLevel,t_machine_details.CustomerID "
+				+ "t_machine_details.InstalledTime,t_customer.CustomerName CustomerUnit,t_customer.Contact CustomerName,t_customer.CustomerLevel,t_machine_details.CustomerID, "
+				+ "t_machine_details.Status,t_machine_details.LatestProgress,t_machine_details.Responsible "
 				+ "from t_machine_details left join t_customer on t_customer.ID =t_machine_details.CustomerID ";
 	
 		sql += "where "+classify_MAP.get(classify)+" like ? order by InstalledTime desc limit ?,?";
@@ -205,8 +210,9 @@ public class MachineDetailsServiceImpl implements MachineDetailsService{
 		param[0] = "%"+parameter+"%";
 		param[1] = (page.getCurrentPage()-1)*page.getRows();
 		param[2] = page.getRows();
-	
-		return new MachineDetailsDao().getQueryList(sql, param);
+		MachineDetailsDao dao = new MachineDetailsDao();
+		List<Map<String, Object>> list = dao.getQueryList(sql, param);
+		return getCurrentProgress(list);
 	}
 
 	@Override
@@ -230,7 +236,8 @@ public class MachineDetailsServiceImpl implements MachineDetailsService{
 
 		int length = obj.length;
 		sql = "select ID,Model,SN,ContractNO,InstalledTime,t_customer.CustomerName CustomerUnit,"
-				+ "t_customer.Contact CustomerName,t_machine_details.CustomerID,t_customer.CustomerLevel "
+				+ "t_customer.Contact CustomerName,t_machine_details.CustomerID,t_customer.CustomerLevel, "
+				+ "t_machine_details.Status,t_machine_details.LatestProgress,t_machine_details.Responsible "
 				+ "from t_machine_details left join t_customer on t_customer.ID =t_machine_details.CustomerID ";	
 		Object[] param;
 		if(!"".equals(start_time1) && !"".equals(end_time1)){
@@ -253,7 +260,9 @@ public class MachineDetailsServiceImpl implements MachineDetailsService{
 			param = new Object[]{(page.getCurrentPage()-1)*page.getRows(),page.getRows()};
 			
 		}
-		return new MachineDetailsDao().getQueryList(sql, param);
+		MachineDetailsDao dao = new MachineDetailsDao();
+		List<Map<String, Object>> list = dao.getQueryList(sql, param);
+		return getCurrentProgress(list);
 	}
 
 	@Override
@@ -391,7 +400,8 @@ public class MachineDetailsServiceImpl implements MachineDetailsService{
 	
 		String sql1 = "select t_machine_details.ID,t_machine_details.Model,t_machine_details.SN,t_machine_details.ContractNO,"
 				+ "t_machine_details.InstalledTime,t_customer.CustomerName CustomerUnit,t_customer.Contact CustomerName,"
-				+ "t_machine_details.CustomerID,t_customer.CustomerLevel "
+				+ "t_machine_details.CustomerID,t_customer.CustomerLevel,"
+				+ "t_machine_details.Status,t_machine_details.LatestProgress,t_machine_details.Responsible "
 				+ "from t_machine_details left join t_customer on t_customer.ID =t_machine_details.CustomerID ";
 
 				sql1 += "where "+classify_MAP.get(classify1)+" like ?";
@@ -405,7 +415,10 @@ public class MachineDetailsServiceImpl implements MachineDetailsService{
 			
 		param[2] = (page.getCurrentPage()-1)*page.getRows();
 		param[3] = page.getRows();
-		return new MachineDetailsDao().getQueryList(sql, param);
+		
+		MachineDetailsDao dao = new MachineDetailsDao();
+		List<Map<String, Object>> list = dao.getQueryList(sql, param);
+		return getCurrentProgress(list);
 	}
 
 	

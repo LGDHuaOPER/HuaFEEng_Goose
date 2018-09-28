@@ -1,3 +1,143 @@
+(function () {
+  $.MsgBox = {
+  Alert: function (title, msg, callback) {
+    GenerateHtml("alert", title, msg);
+    btnOk(callback); //alert只是弹出消息，因此没必要用到回调函数callback
+    btnNo();
+  },
+  Judge: function (title, msg, callback) {
+	    GenerateHtml("judge", title, msg);
+	    btnJug(callback); //alert只是弹出消息，因此没必要用到回调函数callback
+	    btnNo();
+	  },
+    Confirm: function (title, msg, callback) {
+      GenerateHtml("confirm", title, msg);
+      btnOk(callback);
+      btnNo();
+    },
+    Prompt: function (title, msg, callback) {
+        GenerateHtml("prompt", title, msg);
+        btnOk(callback);
+        btnNo();
+      },
+     Remind : function (title, msg, callback) {
+         GenerateHtml("remind", title, msg);
+         btnOk(callback);
+         btnNo();
+       }
+  };
+ 
+  //生成Html
+  var GenerateHtml = function (type, title, msg) {
+ 
+    var _html = "";
+ 
+    _html += '<div id="mb_box"></div><div id="mb_con"><span id="mb_tit">' + title + '</span>';
+    _html += '<a id="mb_ico"></a><div id="mb_msg">' + msg + '</div><div id="mb_btnbox">';
+ 
+    if (type == "alert") {
+      _html += '<input id="mb_btn_ok" type="button" value="确定" />';
+    }
+    if (type == "judge") {
+        _html += '<input id="mb_jug_ok" type="button" value="确定" />';
+      }
+    if (type == "confirm") {
+      _html += '<input id="mb_btn_ok" type="button" value="是" />';
+      _html += '<input id="mb_btn_no" type="button" value="否" />';
+    }
+    if (type == "prompt") {
+      _html += '<span style="display:inline-block;width:100%;height:27px;background:#00aeef"></span>';
+    }
+
+    if (type == "remind") {
+      _html += '<span style="display:inline-block;width:100%;height:27px;background:#fff;margin-top: -1px;"></span>';
+    }
+    _html += '</div></div>';
+ 
+    //必须先将_html添加到body，再设置Css样式
+    $("body").append(_html); GenerateCss();
+  };
+ 
+  //生成Css
+  var GenerateCss = function () {
+ 
+    $("#mb_box").css({ width: '100%', height: '100%', zIndex: '99999', position: 'fixed',
+      filter: 'Alpha(opacity=60)', backgroundColor: 'rgba(10%,20%,30%,0.6)', top: '0', left: '0', opacity: '0.6'
+    });
+ 
+    $("#mb_con").css({ zIndex: '999999', width: '355px',height:'189px', position: 'fixed',
+      backgroundColor: 'White', borderRadius: '',border:'1px solid #fff'
+    });
+ 
+    $("#mb_tit").css({ display: 'block', fontSize: '16px', color: '#444', padding: '2px 15px',
+      backgroundColor: '#00aeef', borderRadius: '',
+      borderBottom: '', fontWeight: 'normal',
+      fontFamily:'microsoft yahei'
+    });
+ 
+    $("#mb_msg").css({ height: '60px', lineHeight: '125px',
+      fontSize: '13px',textAlign:'center',fontSize:'16px', fontFamily:'microsoft yahei'
+    });
+    $("#mb_msg p").css({ height: '30px', lineHeight: '30px',width:'350px',textOverflow:'ellipsis',whiteSpace:'nowrap',overflow:'hidden'
+      });
+
+ 
+//  $("#mb_ico").css({ display: 'block', position: 'absolute', right: '10px', top: '9px',
+//    border: '1px solid Gray', width: '18px', height: '18px', textAlign: 'center',
+//    lineHeight: '16px', cursor: 'pointer', borderRadius: '12px', fontFamily: '微软雅黑'
+//  });
+ 
+    $("#mb_btnbox").css({ margin: '75px 0 0', textAlign: 'center' ,background:'#00aeef',paddingTop:'1px'});
+    $("#mb_btn_ok,#mb_jug_ok,#mb_btn_no").css({ width: '60px', height: '28px', color: '#000', border: '1px solid #fff',borderRadius:'3px',background:'#00aeef',fontSize:'14px', fontFamily:'microsoft yahei' });
+    $("#mb_btn_ok,#mb_jug_ok").css({ backgroundColor: '#00aeef' });
+    $("#mb_btn_no").css({ backgroundColor: '#00aeef', marginLeft: '20px' });
+ 
+ 
+    //右上角关闭按钮hover样式
+    $("#mb_ico").hover(function () {
+      $(this).css({ backgroundColor: 'Red', color: 'White' });
+    }, function () {
+      $(this).css({ backgroundColor: '#DDD', color: 'black' });
+    });
+ 
+    var _widht = document.documentElement.clientWidth; //屏幕宽
+    var _height = document.documentElement.clientHeight; //屏幕高
+ 
+    var boxWidth = $("#mb_con").width();
+    var boxHeight = $("#mb_con").height();
+ 
+    //让提示框居中
+    $("#mb_con").css({ top: (_height - boxHeight) / 2 + "px", left: (_widht - boxWidth) / 2 + "px" });
+  };
+ 
+ 
+  //确定按钮事件
+  var btnOk = function (callback) {
+    $("#mb_btn_ok").click(function () {
+      $("#mb_box,#mb_con").remove();
+      if (typeof (callback) == 'function') {
+        callback();
+      }
+    });
+  };
+ 
+  //判断按钮事件
+  var btnJug = function (callback) {
+    $("#mb_jug_ok").click(function () {
+      $("#mb_box,#mb_con").remove();
+      if (typeof (callback) == 'function') {
+        callback();
+      }
+    });
+  };
+  //取消按钮事件
+  var btnNo = function () {
+    $("#mb_btn_no,#mb_ico").click(function () {
+      $("#mb_box,#mb_con").remove();
+    });
+  }
+})();
+
 /**
  * Created by eoulu on 2017/3/29.
  */
@@ -151,9 +291,9 @@ MachineDetailsState.updateSubmitObj.CurrentProgress = null;
 MachineDetailsState.updateSubmitObj.LatestProgress = null;
 
 MachineDetailsState.modelExpiredObj = {
-    "4": ["CM300"],
+    "2": ["EPS150", "MPS150"],
     "3": ["SUMMIT", "T200", "PA200"],
-    "2": ["EPS150",]
+    "4": ["CM300"]
 };
 
 $(function(){
@@ -203,26 +343,54 @@ $(function(){
 
     // 判断装机时间
     $("td.td_Status").each(function(){
-        var iVal = $(this).attr("title");
+        var iVal = $(this).data("ivalue");
         if(iVal == null || iVal == "" || iVal == "--"){
             iVal = "未选择状态";
         }else if(iVal == "1"){
             iVal = _.findKey(MachineDetailsState.statusNumMap, function(v, k, col) { return v == iVal; });
             var iInstalledTime = $(this).siblings(".td_InstalledTime").text();
             var iModel = $(this).siblings(".td_Model").text();
+            // var days = _.findKey(MachineDetailsState.modelExpiredObj, function(v, k, col) {
+            //     return _.find(v, function(vv, kk, coll) { return iModel.indexOf(vv) > -1; });
+            // });
             var days = _.findKey(MachineDetailsState.modelExpiredObj, function(v, k, col) {
-                return _.find(v, function(vv, kk, coll) { return iModel.indexof("vv") > -1; });
+                return !_.isNil(_.find(v, function(vv, kk, coll) { return iModel.indexOf(vv) > -1; }));
             });
-            console.warn(days);
-            console.warn("days2");
-            var days2 = _.findKey(MachineDetailsState.modelExpiredObj, function(v, k, col) {
-                return _.isNil(_.find(v, function(vv, kk, coll) { return iModel.indexof("vv") > -1; }));
-            });
-            console.warn(days2);
+            if(globalDateDataHandle(iInstalledTime, "") === ""){
+                $(this).addClass("cell_yellow").siblings(".td_InstalledTime").addClass("cell_yellow").parent().addClass("line_font_yellow");
+            }else{
+                if(globalCalcTimeDiff(globalGetToday(false), iInstalledTime, true).replace("天", "") > (days - 1)){
+                    $(this).addClass("cell_yellow").siblings(".td_InstalledTime").addClass("cell_yellow").parent().addClass("line_font_yellow");
+                }
+            }
         }else{
             iVal = _.findKey(MachineDetailsState.statusNumMap, function(v, k, col) { return v == iVal; });
         }
+        $(this).text(iVal).attr("title", iVal);
+    });
+
+    // 负责人、最新进展
+    $("td.td_Responsible").each(function(){
+        var iVal = $(this).attr("title");
+        if(iVal == null || iVal == "" || iVal == "--"){
+            iVal = "未填写";
+        }
         $(this).text(iVal);
+    });
+    $("td.td_LatestProgress").each(function(){
+        var iVal = $(this).data("ivalue");
+        var iText, iDate;
+        if(iVal == null || iVal == "" || iVal == "--"){
+            iText = "未填写";
+            iDate = "未填写";
+        }else if(typeof iVal == "object"){
+            iText = iVal[0].CurrentProgress;
+            iDate = iVal[0].Date;      
+        }else if(typeof iVal == "string"){
+            iText = JSON.parse(iVal)[0].CurrentProgress;
+            iDate = JSON.parse(iVal)[0].Date;
+        }
+        $(this).text(iText).attr("title", "详情："+iText+"  时间："+iDate);
     });
 
     /*//根据装机时间和拜访时间标红
@@ -290,10 +458,31 @@ $(document).on("click", "[data-targetmodule]", function(){
         MachineDetailsState.updateSubmitObj.CustomerID = tr.find(".td_CustomerID").text();
         $("[id^='update_infomation_']").each(function(){
             var subClassName = $(this).attr("id").replace("update_infomation_", "td_");
+            if($(this).is("#update_infomation_Status")){
+                var newVal = globalDateDataHandle(tr.find("."+subClassName).data("ivalue"), "");
+                var iiStatus = _.findKey(MachineDetailsState.statusNumMap, function(v, k, collection) { return v == newVal.toString(); });
+                if(_.isNil(iiStatus)){
+                    iiStatus = "";
+                }
+                $(this).val(iiStatus);
+                return true;
+            }
             $(this).val(globalDateDataHandle(tr.find("."+subClassName).attr("title"), ""));
         });
         var iCurrentProgress = tr.find(".td_CurrentProgress").text();
-        console.warn(iCurrentProgress);
+        if(_.isNil(iCurrentProgress) || iCurrentProgress == ""){
+            str = "";
+        }else{
+            JSON.parse(tr.find(".td_CurrentProgress").text()).map(function(v, i, arr){
+                if(i > 0){
+                  str+='<tr>'+
+                    '<td class="xuhao" value="'+v.ID+'"><span class="glyphicon glyphicon-remove-circle" aria-hidden="true"></span><span class="span_num">'+i+'</span></td>'+
+                    '<td class="progress_detail" contenteditable="true">'+v.CurrentProgress+'</td>'+
+                    '<td class="progress_detail_time"><input type="date" class="form-control" value="'+v.Date+'"></td>'+
+                  '</tr>';
+                }
+            });
+        }
         $("#global_add_update_module_update div.append_line_div tbody").empty().append(str);
     }
 });
@@ -335,7 +524,7 @@ $(document).on("click", ".global_add_update_module_submit", function(){
         }
         // 表单验证
         for(var kkk in MachineDetailsState.addSubmitObj){
-            MachineDetailsState.addSubmitObj[kkk] = globalDataHandle(MachineDetailsState.addSubmitObj[kkk],"").trim();
+            MachineDetailsState.addSubmitObj[kkk] = globalDataHandle(MachineDetailsState.addSubmitObj[kkk], "").toString().trim();
             if(kkk=="CustomerID"&&MachineDetailsState.addSubmitObj[kkk]==""){
                 $.MsgBox_Unload.Alert("提示","未选择客户单位！");
                 return false;
@@ -387,7 +576,7 @@ $(document).on("click", ".global_add_update_module_submit", function(){
         }
         // 表单验证
         for(var jjj in MachineDetailsState.updateSubmitObj){
-            MachineDetailsState.updateSubmitObj[jjj] = globalDataHandle(MachineDetailsState.updateSubmitObj[jjj],"").trim();
+            MachineDetailsState.updateSubmitObj[jjj] = globalDataHandle(MachineDetailsState.updateSubmitObj[jjj], "").toString().trim();
             if(jjj=="CustomerID"&&MachineDetailsState.updateSubmitObj[jjj]==""){
                 $.MsgBox_Unload.Alert("提示","未选择客户单位！");
                 return false;
