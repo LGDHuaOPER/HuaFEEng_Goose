@@ -35,19 +35,19 @@ public class SoftwareProjectServlet extends HttpServlet {
 		Page page = new Page();
 		String currentPage = req.getParameter("currentPage");
 		String column = req.getParameter("Column")==null?"":req.getParameter("Column");
-		String content = req.getParameter("Content")==null?"":req.getParameter("Content");
 		String order = req.getParameter("Order")==null?"":req.getParameter("Order");
+		String queryJson = req.getParameter("QueryJson")==null?"":req.getParameter("QueryJson");
 		page.setCurrentPage(currentPage==null?1:Integer.parseInt(currentPage));
 		page.setRows(10);
 		boolean authority = AuthorityResource.isExist(req, "SoftwareProject");
 	
-		page.setRecordCounts(service.getAllCounts(column,content));
+		page.setRecordCounts(service.getAllCounts(queryJson));
 		req.setAttribute("currentPage", page.getCurrentPage());
 		req.setAttribute("pageCounts", page.getPageCounts());
-		req.setAttribute("datas",service.getAllData(page,column,content,order));
+		req.setAttribute("datas",service.getAllData(page,queryJson,column,order));
 		req.setAttribute("authority", authority);
 		req.setAttribute("column", column);
-		req.setAttribute("content", content);
+		req.setAttribute("queryJson", queryJson);
 		req.setAttribute("order", order);
 		
 		new AccessStatistics().operateAccess(req, "开发项目管理");

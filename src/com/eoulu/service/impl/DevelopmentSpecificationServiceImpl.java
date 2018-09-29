@@ -203,4 +203,11 @@ public class DevelopmentSpecificationServiceImpl implements DevelopmentSpecifica
 		return new DevelopmentSpecificationDao().getDevelopmentSpecificationByID(id);
 	}
 
+	@Override
+	public boolean delete(int id) {
+		return new DevelopmentSpecificationDao().delete(id);
+	}
+	
+	
+
 }

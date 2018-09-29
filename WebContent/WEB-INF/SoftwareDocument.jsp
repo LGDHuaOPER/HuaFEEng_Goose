@@ -213,8 +213,9 @@
 								            				<th>序号</th>
 								            				<th>文件类型</th>
 								            				<th class="TitleName">文件名称&nbsp;<span class="glyphicon glyphicon-sort-by-attributes" aria-hidden="true"></span></th>
+								            				<th>上次更新</th>
 								            				<th>下载</th>
-								            				<th style="display:none;">删除数据</th>
+								            				<th>删除</th>
 								            			</tr>
 								            		</thead>
 								            		<tbody>
@@ -224,7 +225,9 @@
 								            						<td class="Serial" value="${orderInfo['ID']}">${status.index+(currentPage-1)*10}</td>
 								            					    <td><span class="glyphicon glyphicon-file" aria-hidden="true" value="${orderInfo['ID']}"></span></td>
 								            						<td  class="ManualWest" title="${orderInfo['FileName']}">${orderInfo['FileName']}</td>
+								            						<td>${orderInfo['OperatingTime']}</td>
 								            						<td><span class="glyphicon glyphicon-save export" aria-hidden="true"></span></td>
+								            						<td><span class="glyphicon glyphicon-trash delete_span" aria-hidden="true" value="${orderInfo['ID']}"></span></td>
 								            					</tr>
 								            				</c:if>
 								            			</c:forEach> 
@@ -250,6 +253,7 @@
 								            				<th>序号</th>
 								            				<th>文件类型</th>
 								            				<th class="TitleName">文件名称&nbsp;<span class="glyphicon glyphicon-sort-by-attributes" aria-hidden="true"></span></th>
+								            				<th>上次更新</th>
 								            				<th>下载</th>
 								            				<th style="display:none;">删除数据</th>
 								            			</tr>
@@ -260,7 +264,8 @@
 								            					<tr>
 								            						<td class="Serial" value="${orderInfo['ID']}">${status.index+(currentPage-1)*10}</td>
 								            					    <td><span class="glyphicon glyphicon-file" aria-hidden="true" value="${orderInfo['ID']}"></span></td>
-								            						<td  class="ManualWest" title="${orderInfo['FileName']}">${orderInfo['FileName']}</td>
+								            						<td class="ManualWest" title="${orderInfo['FileName']}">${orderInfo['FileName']}</td>
+								            						<td>${orderInfo['OperatingTime']}</td>
 								            						<td><span class="glyphicon glyphicon-save export" aria-hidden="true"></span></td>
 								            					</tr>
 								            				</c:if>
@@ -522,17 +527,6 @@
 	<!-- Transport_wrapper结束 -->
 	</div>
 </body>
-<!-- <script src="js/jquery-1.11.3.js" type="text/javascript" charset="utf-8"></script> -->
-<!-- <script
-  src="https://code.jquery.com/jquery-1.12.4.min.js"
-  integrity="sha256-ZosEbRLbNQzLpnKIkEdrPv7lOy9C27hHQ+Xp8a4MxAQ="
-  crossorigin="anonymous"></script> -->
 <script src="js/libs/integrationLibs/jquery-cookie-ajaxfile-77692a8173.min.js"></script>
 <script src="js/libs/bootstrap.min.js"></script>
-
-<!-- delete -->
-<!-- <script src="js/libs/integrationLibs/msgbox_all-56b86b3095.min.js"></script> -->
-<!-- <script src="js/libs/integrationLibs/awesomplete-mailSetting-ddfa04e4f1.min.js"></script> -->
-<!-- <script src="js/global/responseLoading.js"></script> -->
-<!-- <script src="js/SoftwareDocument.js"></script> -->
 </html>

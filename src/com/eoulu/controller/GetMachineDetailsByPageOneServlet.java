@@ -9,7 +9,6 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import com.eoulu.commonality.Page;
-import com.eoulu.dao.CustomerDao;
 import com.eoulu.service.MachineDetailsService;
 import com.eoulu.service.impl.MachineDetailsServiceImpl;
 @WebServlet("/GetMachineDetailsByPageOne")
@@ -29,8 +28,24 @@ public class GetMachineDetailsByPageOneServlet extends HttpServlet{
 		Page page = new Page();
 		String currentPage = req.getParameter("currentPage");
 		String classify = req.getParameter("type1");
-		
 		String parameter = req.getParameter("searchContent1").trim();
+		if(classify.equals("项目状态")){
+			switch (parameter) {
+			case "交付":
+				parameter = "1"; 
+				
+				break;
+			case "尾款":
+				parameter = "2";
+				break;
+			case "完结":
+				parameter = "3";
+				break;
+
+			default:
+				break;
+			}
+		}
 		System.out.println(parameter+"---"+classify);
 		page.setCurrentPage(currentPage==null?1:Integer.parseInt(currentPage));
 		page.setRows(10);
@@ -42,7 +57,7 @@ public class GetMachineDetailsByPageOneServlet extends HttpServlet{
 		req.setAttribute("classify1", classify);
 		req.setAttribute("parameter1", parameter);
 		req.setAttribute("queryType", "singleSelect");
-		req.setAttribute("customers", new CustomerDao().getAllCustomer());
+		//req.setAttribute("customers", new CustomerDao().getAllCustomer());
 		req.getRequestDispatcher("WEB-INF//machine.jsp").forward(req, resp);
 		
 		

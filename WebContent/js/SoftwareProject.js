@@ -610,8 +610,43 @@ $(document).on("change",".update_agreement2",function(){
 $(".export").click(function(){
 	window.location.href="ExportProject";
 });
+	
+// 密码框显隐
+$(".basic_info_in .form-control-feedback").click(function(){
+	$(this).toggleClass("glyphicon-eye-open glyphicon-eye-close");
+	if($(this).is(".glyphicon-eye-close")){
+		$(this).siblings("input").attr("type","text");
+	}else if($(this).is(".glyphicon-eye-open")){
+		$(this).siblings("input").attr("type","password");
+	}
+});
+
+// 取消搜索
+$("input.cancel_search").click(function(){
+	window.location.href = 'SoftwareProject';
+});
+
+/*原script标签*/
+/****************** 跳页 **********************/
+var allParam = ecDo.getUrlPrmt(window.location.href);
 
 $(function(){
+	_.forIn(JSON.parse(allParam.QueryJson), function(value, key) {
+		$("#search_con_"+key).parent().prev().children().trigger("click");
+		$("#search_con_"+key).val(value);
+		$("#global_table_style th>span[data-isearch='"+key+"']").removeClass("hide_span").addClass("glyphicon-ok");
+	});
+	
+	if(allParam.Order != ""){
+		$("input.isOrderd").trigger("click");
+		$("input[name='Order_radio'][data-order='"+allParam.Order+"']").trigger("click").parent().next().children().val(allParam.Column);
+		if(allParam.Order == "DESC"){
+			$("#global_table_style th>span[data-isearch='"+allParam.Column+"']").removeClass("hide_span glyphicon-ok").addClass("glyphicon-sort-by-attributes-alt");
+		}else if(allParam.Order == "ASC"){
+			$("#global_table_style th>span[data-isearch='"+allParam.Column+"']").removeClass("hide_span glyphicon-ok").addClass("glyphicon-sort-by-attributes");
+		}
+	}
+
 	var ProductArr = ["IT系统","EUCP","futureC","futureD"];
 	var PriorityArr = ["最高","高","普通","低","最低"];
 	var StateArr = ["完成","进行中","未完成"];
@@ -644,7 +679,7 @@ $(function(){
 						str11+='<option value="'+currentValue.StaffName+'">'+currentValue.StaffName+'</option>';
 					}
 				});
-				$("div.insert_staff>select").empty().append(str11);
+				$("div.insert_staff>select, select.insert_staff_sel").empty().append(str11);
 			}else{
 				$.MsgBox.Judge('提示', "获取软件部员工数据为空!");
 			}
@@ -653,105 +688,126 @@ $(function(){
 			$.MsgBox.Judge('提示', "网络错误请稍后重试!"); 
 		}
 	});
-	// 表格列宽调整
-	setTimeout(function(){
-		$("#global_table_style").colResizable({
-		    gripInnerHtml: '<span class="glyphicon glyphicon-resize-horizontal" aria-hidden="true"></span>',
-		    partialRefresh: true,
-		    postbackSafe: true,
-		    minWidth: 33
-		});
-	},100);
-	// popover
-	$('#global_table_style [data-toggle="popover"]').popover({
-		title: "请选择或搜索",
-		content: '<div class="container-fluid" style="margin-bottom:5px;"><button type="button" class="btn btn-info btn-lg" style="margin-right:5px;" id="search_order_asc"><span class="glyphicon glyphicon-sort-by-attributes" aria-hidden="true"></span>升序</button><button type="button" class="btn btn-info btn-lg" id="search_order_desc"><span class="glyphicon glyphicon-sort-by-attributes-alt" aria-hidden="true"></span>降序</button></div><div class="form-group"><label for="new_search_content">搜索内容</label><input type="text" class="form-control" id="new_search_content" placeholder="搜索内容"></div><div style="text-align:right"><input type="button" class="btn btn-success" id="ReimburseApplication_y" value="搜索" style="margin-right:5px;"><input type="button" class="btn btn-warning" id="ReimburseApplication_n" value="取消"></div>',
-		html: true
+
+	$("#global_table_style tr.tbody_tr").each(function(){
+		var iState = $(this).find(".State").text();
+		if(iState == "未完成"){
+			$(this).addClass("line_red");
+		}else if(iState == "进行中"){
+			$(this).addClass("line_orange");
+		}else if(iState == "完成"){
+			$(this).addClass("line_green");
+		}
 	});
-	var iColumn = $("#search_i_column").val();
-	var iOrder = $("#search_i_order").val();
-	var iDOM = $("#global_table_style th>a[data-original-title='对"+iColumn+"操作']");
-	console.log(iDOM);
-	if(iOrder == "ASC"){
-		iDOM.children("span").removeClass("glyphicon-search").addClass("glyphicon-sort-by-attributes");
-	}else if(iOrder == "DESC"){
-		iDOM.children("span").removeClass("glyphicon-search").addClass("glyphicon-sort-by-attributes-alt");
+});
+
+function FistPage() {
+	var newallParam = _.cloneDeep(allParam);
+	newallParam.currentPage = "1";
+	eouluGlobal.S_settingURLParam(newallParam, false, false, false);
+}
+function UpPage(arg) {
+	var newallParam = _.cloneDeep(allParam);
+	newallParam.currentPage = $('#currentPage').text() - 1;
+	eouluGlobal.S_settingURLParam(newallParam, false, false, false);
+}
+function NextPage(arg) {
+	var newallParam = _.cloneDeep(allParam);
+	newallParam.currentPage = $('#currentPage').text() + 1;
+	eouluGlobal.S_settingURLParam(newallParam, false, false, false);
+}
+function PageJump(arg) {
+	var jumpNumber = document.getElementById("jumpNumber").value;
+	if (jumpNumber == null || jumpNumber == 0) {
+		jumpNumber = $('#currentPage').html();
+	} else if (jumpNumber > parseInt($('#allPage').html())) {
+		jumpNumber = $('#allPage').html();
+	}
+	var newallParam = _.cloneDeep(allParam);
+	newallParam.currentPage = jumpNumber;
+	eouluGlobal.S_settingURLParam(newallParam, false, false, false);
+}
+function LastPage(arg) {
+	var newallParam = _.cloneDeep(allParam);
+	newallParam.currentPage = $("#search_i_pageCounts").val();
+	eouluGlobal.S_settingURLParam(newallParam, false, false, false);
+}
+/*原script标签 end*/
+
+/*2018-09-29更新*/
+$("input.search_all_box").click(function(){
+	$(".cover-color, .search_all").slideDown(200);
+});
+
+$("input[name='search_checkbox']").change(function(){
+	var $formitem = $(this).parent().next().children();
+	$formitem.prop("disabled", !$(this).prop("checked"));
+	if($(this).prop("checked")){
+		$("select[name='Order_select']").append("<option value='"+$formitem.attr("id").replace("search_con_", "")+"'>"+$(this).parent().text().trim()+"</option>");
+	}else{
+		$("select[name='Order_select']>option[value='"+$formitem.attr("id").replace("search_con_", "")+"']").remove();
 	}
 });
-	
-// 密码框显隐
-$(".basic_info_in .form-control-feedback").click(function(){
-	$(this).toggleClass("glyphicon-eye-open glyphicon-eye-close");
-	if($(this).is(".glyphicon-eye-close")){
-		$(this).siblings("input").attr("type","text");
-	}else if($(this).is(".glyphicon-eye-open")){
-		$(this).siblings("input").attr("type","password");
+
+$("input[name='Order_radio']").click(function(){
+	if($("input.isOrderd").prop("checked")) return false;
+});
+
+$("input[name='Order_radio']").change(function(){
+	$("input[name='Order_radio']:checked").parent().next().children().prop("disabled", false);
+	$("input[name='Order_radio']:not(:checked)").parent().next().children().prop("disabled", true);
+});
+
+$("input.isOrderd").change(function(){
+	if($(this).prop("checked")){
+		$("input[name='Order_radio']").prop("checked", false).parent().next().children().prop("disabled", true);
+	}else{
+		$("input[name='Order_radio']:first").trigger("click");
 	}
 });
 
-var curThIndex = 0;
-// 字段搜索
-$(document).on("click","#global_table_style th>a",function(e){
-	e.stopPropagation();
-	curThIndex = $(this).parent("th").index() + 1;
-	$('#global_table_style th:not(:nth-child('+curThIndex+')) [data-toggle="popover"]').popover('hide');
-	$('#global_table_style th:nth-child('+curThIndex+') [data-toggle="popover"]').popover('show');
-	// $("div.popover:not(:last)").remove();
+$("#search_all_submit").click(function(){
+	var searchObj = {};
+	var queryJson = {};
+	$(".search_all_bodyin input[name='search_checkbox']").each(function(){
+		var iDOM = $(this).parent().next().children();
+		var iKey = iDOM.attr("id").replace("search_con_", "");
+		if($(this).prop("checked")){
+			queryJson[iKey] = iDOM.val().trim();
+		}
+	});
+	searchObj.QueryJson = JSON.stringify(queryJson);
+	if($("input.isOrderd").prop("checked")){
+		searchObj.Column = "";
+		searchObj.Order = "";
+	}else{
+		searchObj.Order = $("input[name='Order_radio']:checked").data("order");
+		searchObj.Column = $("input[name='Order_radio']:checked").parent().next().children().val();
+	}
+	searchObj.currentPage = "1";
+	eouluGlobal.S_settingURLParam(searchObj, false, false, false);
 });
 
-$(document).on("click","div.popover",function(e){
-	e.stopPropagation();
+$(".search_all_tit>span, #search_all_cancel").click(function(){
+	$(".cover-color, .search_all").slideUp(200);
 });
 
-$(document).on("click",function(e){
-	// $("div.popover").remove();
-	$('#global_table_style [data-toggle="popover"]').popover('hide');
+$(document).on("click", ".delete_span", function(){
+	var ID = $(this).attr("value");
+	$.ajax({
+		type: "POST",
+		url: "SoftwareProjectOperate",
+		data: {
+			ID: ID,
+			type: "delete"
+		},
+		dataType: "text",
+		success: function(data){
+			$.MsgBox.Alert("删除提示", data);
+		},
+		error: function(){
+			$.MsgBox.Judge('提示', "网络繁忙！");
+		}
+	});
 });
-
-// 排序 搜索
-var iiicurrentPage = 1;
-// var iiicurrentPage = $("#search_i_currentPage").val();
-var curorder = $("#search_i_order").val();
-// 升序
-$(document).on("click","#search_order_asc",function(){
-	var iiicolumn = $(this).parents("div.popover").find("h3.popover-title").text().replace("对","").replace("操作","");
-	var iiicontent = $("input#new_search_content").val().trim();
-	var iiiorder = 'ASC';
-	window.location.href = 'SoftwareProject?currentPage='+iiicurrentPage+'&Column='+iiicolumn+'&Content='+iiicontent+'&Order='+iiiorder;
-});
-// 降序
-$(document).on("click","#search_order_desc",function(){
-	var iiicolumn = $(this).parents("div.popover").find("h3.popover-title").text().replace("对","").replace("操作","");
-	var iiicontent = $("input#new_search_content").val().trim();
-	var iiiorder = 'DESC';
-	window.location.href = 'SoftwareProject?currentPage='+iiicurrentPage+'&Column='+iiicolumn+'&Content='+iiicontent+'&Order='+iiiorder;
-});
-// 搜索
-$(document).on("click","#ReimburseApplication_y",function(){
-	var iiicolumn = $(this).parents("div.popover").find("h3.popover-title").text().replace("对","").replace("操作","");
-	var iiicontent = $("input#new_search_content").val().trim();
-	window.location.href = 'SoftwareProject?currentPage='+iiicurrentPage+'&Column='+iiicolumn+'&Content='+iiicontent+'&Order='+curorder;
-});
-// 取消
-$(document).on("click","#ReimburseApplication_n",function(){
-	// $("div.popover").remove();
-	$('#global_table_style [data-toggle="popover"]').popover('hide');
-});
-// 取消搜索
-$("input.cancel_search").click(function(){
-	window.location.href = 'SoftwareProject';
-});
-
-var iiicolumn = $("#search_i_column").val();
-var iiicontent = $("#search_i_content").val();
-// 填充内容
-$(document).on("shown.bs.popover", "#global_table_style [data-toggle='popover'][data-original-title='对"+iiicolumn+"操作']", function(){
-	console.log($("input#new_search_content").length);
-	$("input#new_search_content").val(iiicontent);
-});
-// $('#global_table_style [data-toggle="popover"]').on('shown.bs.popover', function () {
-// 	if($(this).data("original-title").replace("对","").replace("操作","") == iiicolumn){
-// 		console.log($("input#new_search_content").length);
-// 		$("input#new_search_content").val(iiicontent);
-// 	}
-// });
+/*2018-09-29更新 end*/

@@ -14,11 +14,9 @@ import javax.servlet.http.HttpServletResponse;
 import com.eoulu.commonality.Page;
 import com.eoulu.service.CommonProblemService;
 import com.eoulu.service.DevelopmentSpecificationService;
-import com.eoulu.service.InstallationManualService;
 import com.eoulu.service.SoftwareDepartmentService;
 import com.eoulu.service.impl.CommonProblemServiceImpl;
 import com.eoulu.service.impl.DevelopmentSpecificationServiceImpl;
-import com.eoulu.service.impl.InstallationManualServiceImpl;
 import com.eoulu.service.impl.SoftwareDepartmentServiceImpl;
 import com.google.gson.Gson;
 
@@ -45,7 +43,7 @@ public class SoftwareServlet extends HttpServlet {
 		String content = request.getParameter("content");
 		String  currentPage = request.getParameter("currentPage");
 		String queryType = request.getParameter("queryType");
-		String column = request.getParameter("column")==null?"FileName":request.getParameter("column");
+		String column = request.getParameter("column")==null?"OperatingTime":request.getParameter("column");
 		String order = request.getParameter("Reorder")==null?"desc":"asc";
 		Page page = new Page();
 		page.setCurrentPage(currentPage==null? 1: Integer.parseInt(currentPage));
@@ -113,7 +111,11 @@ public class SoftwareServlet extends HttpServlet {
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		doGet(request, response);
+		int id = Integer.parseInt(request.getParameter("ID"));
+		DevelopmentSpecificationService service = new DevelopmentSpecificationServiceImpl();
+
+		response.getWriter().write(new Gson().toJson(service.delete(id)));
+		
 	}
 
 }

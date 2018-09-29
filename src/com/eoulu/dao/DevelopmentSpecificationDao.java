@@ -17,7 +17,7 @@ public class DevelopmentSpecificationDao {
 
 	public List<Map<String,Object>> getAllData(Page page,String column,String order){
 		DBUtil db = new DBUtil();
-		String sql = "SELECT ID,FileName,Remarks from t_document_upload WHERE Type='Specification' ORDER BY "+column+" "+order +" LIMIT ?,?";
+		String sql = "SELECT ID,FileName,Remarks,OperatingTime from t_document_upload WHERE Type='Specification' ORDER BY "+column+" "+order +" LIMIT ?,?";
 		Object[] param = new Object[]{(page.getCurrentPage()-1)*page.getRows(),page.getRows()};
 		List<Map<String,Object>> ls = db.QueryToList(sql, param);
 		return ls;
@@ -36,7 +36,7 @@ public class DevelopmentSpecificationDao {
 	
 	public List<Map<String,Object>> queryAllData(Page page,String content,String column,String order){
 		DBUtil db = new DBUtil();
-		String sql = "SELECT ID,FileName,Remarks from t_document_upload WHERE Type='Specification' and FileName like ? ORDER BY "+column+" "+order +" LIMIT ?,?";
+		String sql = "SELECT ID,FileName,Remarks,OperatingTime from t_document_upload WHERE Type='Specification' and FileName like ? ORDER BY "+column+" "+order +" LIMIT ?,?";
 		Object[] param = new Object[]{content,(page.getCurrentPage()-1)*page.getRows(),page.getRows()};
 		List<Map<String,Object>> ls = db.QueryToList(sql, param);
 		return ls;
@@ -84,6 +84,14 @@ public class DevelopmentSpecificationDao {
 			flag = true;
 		}
 		return flag;
+	}
+	
+	public boolean delete(int id){
+		
+		DBUtil dbUtil = new DBUtil();
+		String sql = "delete from t_document_upload where ID = ? and Type='Specification'";
+		int result = dbUtil.executeUpdate(sql, new Object[]{id});
+		return result >=1?true:false;
 	}
 	public String getDevelopmentSpecificationByID(int id) {
 		DBUtil db = new DBUtil();

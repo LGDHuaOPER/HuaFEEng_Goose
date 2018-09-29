@@ -411,7 +411,7 @@
 
 <script src="js/libs/lodash.min.js"></script>
 <script src="js/modules/sharing/top-dbec435863.min.js"></script>
-<script src="js/global/myFunction.js?iv=201809281526" type="text/javascript" charset="utf-8"></script>
+<script src="js/global/myFunction.js?iv=201809291731" type="text/javascript" charset="utf-8"></script>
 <script>
 var ServiceUpdate =<%=request.getSession().getAttribute("startTime") %>
 

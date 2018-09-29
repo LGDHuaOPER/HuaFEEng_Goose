@@ -2,7 +2,6 @@
 
 import java.io.IOException;
 
-import javax.print.DocFlavor.SERVICE_FORMATTED;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -11,7 +10,6 @@ import javax.servlet.http.HttpServletResponse;
 
 import com.eoulu.service.SoftwareProjectService;
 import com.eoulu.service.impl.SoftwareProjectServiceImpl;
-import com.google.gson.Gson;
 
 @WebServlet("/SoftwareProjectOperate")
 public class SoftwareProjectOperateServlet extends HttpServlet {
@@ -32,7 +30,10 @@ public class SoftwareProjectOperateServlet extends HttpServlet {
 			resp.getWriter().write(service.insert(req));
 		}else if(type.equals("update")){
 			resp.getWriter().write(service.update(req));
-		}	
+		}else if(type.equals("delete")){
+			int id = Integer.parseInt(req.getParameter("ID"));
+			resp.getWriter().write(service.delete(id));
+		}
 	}
 
 }

@@ -23,4 +23,6 @@ public interface DevelopmentSpecificationService {
 	
 	public String getDevelopmentSpecificationByID(int id);
 	
+	public boolean delete(int id);
+	
 }

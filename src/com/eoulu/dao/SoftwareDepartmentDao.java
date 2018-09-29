@@ -1,13 +1,11 @@
 package com.eoulu.dao;
 
-import java.sql.SQLException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.List;
 import java.util.Map;
 
 import com.eoulu.commonality.Page;
-import com.eoulu.entity.RequestAchieve;
 import com.eoulu.entity.SoftwareDepartment;
 import com.eoulu.util.DBUtil;
 
@@ -24,7 +22,7 @@ public class SoftwareDepartmentDao {
 		List<Map<String, Object>> ls = null;
 		DBUtil db = new DBUtil();
 
-		String sql = "select ID,FileName,FilePath,Type from t_document_upload where Type=? order by FileName "+order+" limit ?,?";
+		String sql = "select ID,FileName,FilePath,Type,OperatingTime from t_document_upload where Type=? order by FileName "+order+" limit ?,?";
 		Object[] parameter = new Object[] { type, (page.getCurrentPage() - 1) * page.getRows(), page.getRows() };
 
 		ls = db.QueryToList(sql, parameter);
@@ -54,7 +52,7 @@ public class SoftwareDepartmentDao {
 		List<Map<String, Object>> ls = null;
 		DBUtil db = new DBUtil();
 
-		String sql = "select ID,FileName,FilePath,Type from t_document_upload where Type=? and FileName like ? order by FileName "+order+" limit ?,?";
+		String sql = "select ID,FileName,FilePath,Type,OperatingTime from t_document_upload where Type=? and FileName like ? order by FileName "+order+" limit ?,?";
 		Object[] parameter = new Object[] { type,content, (page.getCurrentPage() - 1) * page.getRows(), page.getRows() };
 
 		ls = db.QueryToList(sql, parameter);
@@ -104,7 +102,7 @@ public class SoftwareDepartmentDao {
 		List<Map<String, Object>> ls = null;
 		DBUtil db = new DBUtil();
 
-		String sql = "select ID,FileName,FilePath,Type from t_document_upload where ID=?";
+		String sql = "select ID,FileName,FilePath,Type,OperatingTime from t_document_upload where ID=?";
 		Object[] parameter = new Object[] { id };
 
 		ls = db.QueryToList(sql, parameter);

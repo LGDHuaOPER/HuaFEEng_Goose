@@ -1196,10 +1196,10 @@
                     "srcPath": "src/js/global/dispatchScript.js"
                 },
                 "SoftwareDocument.js": {
-                    "originPath": ["./cfChicken8/WebContent/js/global/responseLoading.js", "./cfChicken8/WebContent/js/SoftwareDocument.js"],
-                    "outBasePath": "./cfChicken8/WebContent/js/modules/software/",
-                    "gulp-rev": "SoftwareDocument-698d116bb8.min.js",
-                    "referencePath": "js/modules/software/SoftwareDocument-698d116bb8.min.js",
+                    "originPath": ["./cfChicken8/WebContent/src/js/modules/software/SoftwareDocument.js"],
+                    "outBasePath": "./cfChicken8/WebContent/src/js/modules/software/",
+                    "gulp-rev": "SoftwareDocument-27d06eb912.min.js",
+                    "referencePath": "js/modules/software/SoftwareDocument-27d06eb912.min.js",
                     "srcPath": "src/js/modules/software/SoftwareDocument.js"
                 },
                 "transport.js": {

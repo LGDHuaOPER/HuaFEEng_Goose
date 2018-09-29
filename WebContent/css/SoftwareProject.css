@@ -747,8 +747,77 @@ span.span_text {
     top: -10px;
 }
 
+.line_red, .line_red a {
+    color: red;
+}
+
+.line_orange, .line_orange a {
+    color: rgb(250, 128, 10);
+}
+
+.line_green, .line_green a {
+    color: green;
+}
+
+/* 搜索all */
+.search_all {
+    position: absolute;
+    top: 80px;
+    left: calc(50% - 400px);
+    width: 800px;
+    background-color: #fff;
+    z-index: 3;
+    display: none;
+    font-size: 14px;
+}
+
+.search_all_tit {
+    position: relative;
+    height: 35px;
+    line-height: 35px;
+    background-color: #707070;
+    text-indent: 20px;
+    color: white;
+    font-size: 16px;
+}
+
+.search_all_tit>span {
+    position: absolute;
+    top: 8px;
+    right: 20px;
+    font-size: 20px;
+}
+
+.search_all_bodyin {
+    margin: 20px;
+}
+
+.search_all_foot {
+    margin-bottom: 5px;
+    text-align: center;
+}
+
+.search_all_footin {
+    display: inline-block;
+}
+
+.search_all_footin>input+input {
+    margin-left: 40px;
+}
+
+fieldset>legend {
+    margin-bottom: 5px;
+    color: #00aeef;
+    font-size: 16px;
+    font-weight: 500;
+}
+
+fieldset>legend>label {
+    color: #000;
+}
+
 @media screen and (max-width: 800px) {
-    .contract_add,.contract_update {
+    .contract_add, .contract_update, .search_all {
         left: 0;
         margin-left: 0;
     }

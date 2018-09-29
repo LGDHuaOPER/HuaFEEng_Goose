@@ -38,39 +38,54 @@ public class SoftwareProjectDao {
 	}
 	
 	
-	public List<Map<String, Object>> getAllData(Page page,String column,String content,String order) {
+	public List<Map<String, Object>> getAllData(Page page,Map<String, String> map,String column,String order) {
 		String sql = "SELECT * FROM t_software_project ";
 		Object[] param = new Object[] { (page.getCurrentPage() - 1) * page.getRows(), page.getRows() };
-
-		if(!column.equals("")){
-			switch (column) {
-			case "延期时间":
-				if(!content.equals("")){
-					sql += "where "+Classify_Map.get(column)+ " = ?";
-					param = new Object[] { content,(page.getCurrentPage() - 1) * page.getRows(), page.getRows() };
-				}
-				break;
-			case "序号":
-				if(!content.equals("")){
-					sql += "where "+Classify_Map.get(column)+ " = ?";
-					param = new Object[] { content,(page.getCurrentPage() - 1) * page.getRows(), page.getRows() };
-				}
-	
-				break;
-
-			default:
-				sql += "where "+Classify_Map.get(column)+ " like ?";
-				param = new Object[] { "%"+content+"%",(page.getCurrentPage() - 1) * page.getRows(), page.getRows() };
-
-				break;
-			}
-			
-			sql += " ORDER BY "+Classify_Map.get(column)+" "+order+" LIMIT ?,?";
+		int i = 0;
+		if(!map.isEmpty()){
+			param = new Object[map.size()+2];
 		
+			for(String key:map.keySet()){
+				String value = map.get(key);
+				if(i == 0){
+					sql += "where ";
+				}else{
+					sql += " and ";
+				}
 			
+				switch (key) {
+				case "DelayTime":	
+					sql += key + " = ?";
+					param [i] = value;
+					break;
+				case "IndexID":
+					sql += key + " = ?";
+					param [i] = value;
+					break;
+	
+				default:
+					sql += key + " like ?";
+					param [i] = "%" + value +"%";
+	
+					break;
+				}
+				
+				i ++;
+			}
+		
+			if(column.equals("")){
+				sql += " ORDER BY PlanningTime DESC LIMIT ?,?";
+			}else{
+				sql += "ORDER BY "+column +" " + order + " LIMIT ?,?";
+			}
+			param[param.length-2] = (page.getCurrentPage() - 1) * page.getRows();
+			param[param.length-1] =  page.getRows() ;
 		}else{
+	
 			sql += "ORDER BY ID DESC LIMIT ?,?";
 		}
+		System.out.println("mysql"+sql);
+		
 		DBUtil db = new DBUtil();
 		List<Map<String, Object>> ls = db.QueryToList(sql, param);
 
@@ -168,34 +183,46 @@ public class SoftwareProjectDao {
 		
 	}
 	
-	public int getAllCounts(String column,String content) {
+	public int getAllCounts(Map<String, String> map) {
 		DBUtil db = new DBUtil();
 		String sql = "select count(ID) ? from t_software_project ";
 		Object[] param = new Object[] { "AllCounts"};
+		int i = 0;
+		if(!map.isEmpty()){
+			param = new Object[map.size()+1];
+			param[0] = "AllCounts";
 		
-		if(!column.equals("")){
-			switch (column) {
-			case "延期时间":
-				if(!content.equals("")){
-					sql += "where "+Classify_Map.get(column)+ " = ?";
-					param = new Object[] {"AllCounts", content };	
+			for(String key:map.keySet()){
+				String value = map.get(key);
+				if(i == 0){
+					sql += "where ";
+				}else{
+					sql += " and ";
 				}
-				break;
-			case "序号":
-				if(!content.equals("")){
-					sql += "where "+Classify_Map.get(column)+ " = ?";
-					param = new Object[] {"AllCounts", content };	
-				}
-				break;
-
-			default:
-				sql += "where "+Classify_Map.get(column)+ " like ?";
-				param = new Object[] {"AllCounts", "%"+content+"%" };
-
-				break;
-			}
-		}
 			
+				switch (key) {
+				case "DelayTime":	
+					sql += key + " = ?";
+					param [i+1] = value;
+					break;
+				case "IndexID":
+					sql += key + " = ?";
+					param [i+1] = value;
+					break;
+	
+				default:
+					sql += key + " like ?";
+					param [i+1] = "%" + value +"%";
+	
+					break;
+				}
+				
+				i ++;
+			}
+		
+		
+		}
+		System.out.println("mysql"+sql);
 		List<Map<String, Object>> ls = db.QueryToList(sql, param);
 		int counts = 0;
 		if (ls.size() > 1) {
@@ -290,6 +317,13 @@ public class SoftwareProjectDao {
     	}else{
     		return 1;
     	}
+    }
+    
+    public boolean delete(int id){
+    	DBUtil dbUtil = new DBUtil();
+    	String sql = "delete from t_software_project where ID = ?";
+    	int result = dbUtil.executeUpdate(sql, new Object[]{id});
+    	return result >= 1?true:false;
     }
    
 

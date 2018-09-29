@@ -14,7 +14,7 @@ public class SoftwareProductDao {
 	public List<Map<String,Object>> getAllData(Page page){
 		String sql = "select  FORMAT((Count*HourlyWage*Cycle*PremiumIndex*MaintenanceIndex+TransportAllowance+AccommodationAllowance+MissionAllowance),2) Price,"
 				+ "ID,PackageName,Model,Count,HourlyWage,PackageClassify,Cycle,Brand,PremiumIndex,MaintenanceIndex,"
-				+ "TransportAllowance,AccommodationAllowance,MissionAllowance,Remarks from t_software_product order by"
+				+ "TransportAllowance,AccommodationAllowance,MissionAllowance,Remarks,OperatingTime from t_software_product order by"
 				+ " ID desc limit ?,?";
 		Object[] param = new Object[]{(page.getCurrentPage()-1)*page.getRows(),page.getRows()};
 		List<Map<String,Object>> ls = new DBUtil().QueryToList(sql, param);
@@ -77,7 +77,7 @@ public class SoftwareProductDao {
 	public List<Map<String,Object>> getQueryResult(String content,Page page){
 		String sql = "select (Count*HourlyWage*Cycle*PremiumIndex*MaintenanceIndex+TransportAllowance+AccommodationAllowance+MissionAllowance) Price,"
 				+ "ID,PackageName,Model,Count,HourlyWage,PackageClassify,Cycle,Brand,PremiumIndex,MaintenanceIndex,"
-				+ "TransportAllowance,AccommodationAllowance,MissionAllowance,Remarks from t_software_product WHERE PackageName LIKE ? OR Model LIKE ? OR Brand LIKE ? OR PackageClassify LIKE ? order by ID desc limit ?,?";
+				+ "TransportAllowance,AccommodationAllowance,MissionAllowance,Remarks,OperatingTime from t_software_product WHERE PackageName LIKE ? OR Model LIKE ? OR Brand LIKE ? OR PackageClassify LIKE ? order by ID desc limit ?,?";
 		Object[] param = new Object[]{"%"+content+"%","%"+content+"%","%"+content+"%","%"+content+"%",(page.getCurrentPage()-1)*page.getRows(),page.getRows()};
 		
 		return new DBUtil().QueryToList(sql, param);

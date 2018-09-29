@@ -31,6 +31,8 @@ public class MachineDetailsServiceImpl implements MachineDetailsService{
 		map.put("SN", "SN");
 		map.put("Model", "Model");
 		map.put("装机服务时间", "InstalledTime");
+		map.put("项目状态", "t_machine_details.Status");
+		map.put("负责人", "t_machine_details.Responsible");
 		
 		classify_MAP = map;
 	}
@@ -205,7 +207,7 @@ public class MachineDetailsServiceImpl implements MachineDetailsService{
 				+ "t_machine_details.Status,t_machine_details.LatestProgress,t_machine_details.Responsible "
 				+ "from t_machine_details left join t_customer on t_customer.ID =t_machine_details.CustomerID ";
 	
-		sql += "where "+classify_MAP.get(classify)+" like ? order by InstalledTime desc limit ?,?";
+		sql += "where "+classify_MAP.get(classify)+" like ? order by InstalledTime desc,CASE WHEN Status IS NULL THEN 4 END limit ?,?";
 		Object[] param = new Object[3];
 		param[0] = "%"+parameter+"%";
 		param[1] = (page.getCurrentPage()-1)*page.getRows();
@@ -243,7 +245,7 @@ public class MachineDetailsServiceImpl implements MachineDetailsService{
 		if(!"".equals(start_time1) && !"".equals(end_time1)){
 			sql+=" where "+classify_MAP.get(classify)+" between ? and ?";
 
-				sql+=" order by t_machine_details.InstalledTime desc limit ?,?";
+				sql+=" order by t_machine_details.InstalledTime desc,CASE WHEN Status IS NULL THEN 4 END limit ?,?";
 
 			
 			//构建带有分页信息的参数数组
@@ -408,7 +410,7 @@ public class MachineDetailsServiceImpl implements MachineDetailsService{
 
 	
 		String sql2 = classify_MAP.get(classify2)+" like ?";
-		String sql = sql1 +" and "+sql2+" order by t_machine_details.InstalledTime desc limit ?,?";
+		String sql = sql1 +" and "+sql2+" order by t_machine_details.InstalledTime desc,CASE WHEN Status IS NULL THEN 4 END limit ?,?";
 		Object[] param = new Object[4];
 		param[0] = "%"+parameter1+"%";	
 		param[1] = "%"+parameter2+"%";

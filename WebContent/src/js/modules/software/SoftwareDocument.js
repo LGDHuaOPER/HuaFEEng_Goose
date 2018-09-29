@@ -112,7 +112,9 @@ function autoRefrush(){
  								'<td class="Serial" value="'+data.datas[i].ID+'">'+i+'</td>'+
  								'<td><span class="glyphicon glyphicon-file" aria-hidden="true" value="'+data.datas[i].ID+'"></span></td>'+
  								'<td class="ManualWest">'+data.datas[i].FileName+'</td>'+       
+ 								'<td>'+data.datas[i].OperatingTime+'</td>'+
  								'<td><span class="glyphicon glyphicon-save export" aria-hidden="true"></span></td>'+
+ 								'<td><span class="glyphicon glyphicon-trash delete_span" aria-hidden="true" value="'+data.datas[i].ID+'"></span></td>'+
  							'</tr>';
 	 	        	}
  	        	}
@@ -146,7 +148,7 @@ function autoRefrush(){
  	        			str += 
  	        			'<tr style="width:97%;padding:0 1.5%;">'+
 							'<td >'+
-								'<p  style="cursor:pointer;" title="排序" class="ProblemNum Serial" value="'+data.datas[i].ID+'">'+i+'</p>'+
+								'<p style="cursor:pointer;" title="排序" class="ProblemNum Serial" value="'+data.datas[i].ID+'">'+i+'</p>'+
 								'<ol  class="ProblemCont">'+
 									'<li class="ProblemCont_name" >'+ProblemCont_name+'</li>'+
 									'<li class="ProblemCont_cont" >'+data.datas[i].Content+'</li>'+
@@ -189,8 +191,8 @@ function autoRefrush(){
 							'<td class="Serial" value="'+data.datas[i].ID+'">'+i+'</td>'+
 							'<td><span class="glyphicon glyphicon-file" aria-hidden="true" value="'+data.datas[i].ID+'"></span></td>'+
 							'<td class="ManualWest">'+data.datas[i].FileName+'</td>'+       
+							'<td>'+data.datas[i].OperatingTime+'</td>'+
 							'<td><span class="glyphicon glyphicon-save export" aria-hidden="true"></span></td>'+
-							/*'<td><a href="'+data.datas[i].FilePath+'" class="export"></a></td>'+*/
 						'</tr>';
 	 	        	}
  	        	$(".pageInfo #currentPage").text(data.currentPage);
@@ -805,8 +807,9 @@ $('.tab_wrapper>ul>li>a').on('shown.bs.tab', function (e) {
  								'<td class="Serial" value="'+data.datas[i].ID+'">'+i+'</td>'+
  								'<td><span class="glyphicon glyphicon-file" aria-hidden="true" value="'+data.datas[i].ID+'"></span></td>'+
  								'<td class="ManualWest">'+data.datas[i].FileName+'</td>'+       
+ 								'<td>'+data.datas[i].OperatingTime+'</td>'+
  								'<td><span class="glyphicon glyphicon-save export" aria-hidden="true"></span></td>'+
- 								/* '<td><a href="'+data.datas[i].FilePath+'" class="export"></a></td>'+ */
+ 								'<td><span class="glyphicon glyphicon-trash delete_span" aria-hidden="true" value="'+data.datas[i].ID+'"></span></td>'+
  							'</tr>';
 	 	        	}
  	        	}
@@ -882,8 +885,8 @@ $('.tab_wrapper>ul>li>a').on('shown.bs.tab', function (e) {
 							'<td class="Serial" value="'+data.datas[i].ID+'">'+i+'</td>'+
 							'<td><span class="glyphicon glyphicon-file" aria-hidden="true" value="'+data.datas[i].ID+'"></span></td>'+
 							'<td class="ManualWest">'+data.datas[i].FileName+'</td>'+       
+							'<td>'+data.datas[i].OperatingTime+'</td>'+
 							'<td><span class="glyphicon glyphicon-save export" aria-hidden="true"></span></td>'+
-							/*'<td><a href="'+data.datas[i].FilePath+'" class="export"></a></td>'+*/
 						'</tr>';
 	 	        	}
  	        	$(".pageInfo #currentPage").text(data.currentPage);
@@ -1225,9 +1228,10 @@ function searchOrjump(currentPage,content,flag){
 	 	 	        			'<tr>'+
 	 								'<td class="Serial" value="'+data.datas[i].ID+'">'+((currentPage-1)*10+i)+'</td>'+
 	 								'<td><span class="glyphicon glyphicon-file" aria-hidden="true" value="'+data.datas[i].ID+'"></span></td>'+
-	 								'<td  class="ManualWest">'+data.datas[i].FileName+'</td>'+       
+	 								'<td class="ManualWest">'+data.datas[i].FileName+'</td>'+       
+	 								'<td>'+data.datas[i].OperatingTime+'</td>'+
 	 								'<td><span class="glyphicon glyphicon-save export" aria-hidden="true"></span></td>'+
-	 								/* '<td><a href="'+data.datas[i].FilePath+'" class="export"></a></td>'+ */
+	 								'<td><span class="glyphicon glyphicon-trash delete_span" aria-hidden="true" value="'+data.datas[i].ID+'"></span></td>'+
 	 							'</tr>';
 		 	        	}
 	 	        	}
@@ -1272,9 +1276,9 @@ function searchOrjump(currentPage,content,flag){
 	 	        			'<tr>'+
 								'<td class="Serial" value="'+data.datas[i].ID+'">'+((currentPage-1)*10+i)+'</td>'+
 								'<td><span class="glyphicon glyphicon-file" aria-hidden="true" value="'+data.datas[i].ID+'"></span></td>'+
-								'<td  class="ManualWest">'+data.datas[i].FileName+'</td>'+       
+								'<td class="ManualWest">'+data.datas[i].FileName+'</td>'+       
+								'<td>'+data.datas[i].OperatingTime+'</td>'+
 								'<td><span class="glyphicon glyphicon-save export" aria-hidden="true"></span></td>'+
-								/* '<td><a href="'+data.datas[i].FilePath+'" class="export"></a></td>'+ */
 							'</tr>';
 		 	        	}
 	 	        	$(".pageInfo #currentPage").text(data.currentPage);
@@ -1310,4 +1314,63 @@ $('div.gotoPageTop').click(function(e) {
     $('#Transport_wrapper').animate({
         scrollTop: 0
     }, 500);
+});
+
+$(document).on("click", ".delete_span", function(){
+	var ID = $(this).attr("value");
+	$.ajax({
+		type: "POST",
+		url: "Software",
+		data: {
+			ID: ID
+		},
+		dataType: "json",
+		success: function(data){
+			var imessage;
+			if(data == true){
+				imessage = "删除成功！";
+		 	    $.ajax({
+		 	        type: 'GET',
+		 	        url: 'Software',
+		 	        data: {
+		 	        	Type :"Specification",
+		 	        	currentPage : 1,
+		 	        	queryType :"common"
+		 	        },
+		 	        dataType: "json",
+		 	        success: function (data) {
+		 	        	var str = '';
+		 	        	if( data.datas.length> 1){
+		 	        		for(var i = 1; i < data.datas.length;i++){
+		 	        			str += 
+		 	 	        			'<tr>'+
+		 								'<td class="Serial" value="'+data.datas[i].ID+'">'+i+'</td>'+
+		 								'<td><span class="glyphicon glyphicon-file" aria-hidden="true" value="'+data.datas[i].ID+'"></span></td>'+
+		 								'<td class="ManualWest">'+data.datas[i].FileName+'</td>'+       
+		 								'<td>'+data.datas[i].OperatingTime+'</td>'+
+		 								'<td><span class="glyphicon glyphicon-save export" aria-hidden="true"></span></td>'+
+		 								'<td><span class="glyphicon glyphicon-trash delete_span" aria-hidden="true" value="'+data.datas[i].ID+'"></span></td>'+
+		 							'</tr>';
+			 	        	}
+		 	        	}
+		 	        	$(".pageInfo #currentPage").text(data.currentPage);
+		 	        	$(".pageInfo #allPage").text(data.pageCounts);
+		 	        	$("#table1 tbody").empty().append(str);
+		 	        	jumpDisable();
+		 	        },
+		 	        error : function () {
+		 	        	$.MsgBox_Unload.Alert("提示", "服务器繁忙！");
+		 	        }
+		 	    });
+			}else if(data == false){
+				imessage = "删除失败！";
+			}else{
+				imessage = data;
+			}
+			$.MsgBox_Unload.Alert("提示", imessage);
+		},
+		error: function(){
+			$.MsgBox_Unload.Alert("提示", "服务器繁忙！");
+		}
+	});
 });

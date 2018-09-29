@@ -26,18 +26,37 @@ import com.eoulu.util.ExportExcel;
 import com.eoulu.util.JavaMailToolsUtil;
 import com.eoulu.util.MethodUtil;
 
+import net.sf.json.JSONObject;
+
 public class SoftwareProjectServiceImpl implements SoftwareProjectService {
 
 	@Override
-	public List<Map<String, Object>> getAllData(Page page,String column,String content,String order) {
+	public List<Map<String, Object>> getAllData(Page page,String queryJson,String column,String order) {
 		// TODO Auto-generated method stub
-		
-		return new SoftwareProjectDao().getAllData(page,column,content,order);
+		Map<String, String> map = new HashMap<>();
+		if(!queryJson.equals("")){
+			JSONObject object = JSONObject.fromObject(queryJson);
+			for(Object key:object.keySet()){
+				String value = object.getString(key.toString());
+				map.put(key.toString(), value);
+			}
+	
+		}
+		return new SoftwareProjectDao().getAllData(page,map,column,order);
 	}
 
 	@Override
-	public int getAllCounts(String column,String content) {
-		return new SoftwareProjectDao().getAllCounts(column,content);
+	public int getAllCounts(String queryJson) {
+		Map<String, String> map = new HashMap<>();
+		if(!queryJson.equals("")){
+			JSONObject object = JSONObject.fromObject(queryJson);
+			for(Object key:object.keySet()){
+				String value = object.getString(key.toString());
+				map.put(key.toString(), value);
+			}
+	
+		}
+		return new SoftwareProjectDao().getAllCounts(map);
 	}
 
 	@Override
@@ -446,8 +465,12 @@ public class SoftwareProjectServiceImpl implements SoftwareProjectService {
 		return path;
 	}
 
-
-	    
+	@Override
+	public String delete(int id) {
+		boolean result = new SoftwareProjectDao().delete(id);
+		return result?"删除成功":"删除失败";
+	}
 	
+		
 
 }
