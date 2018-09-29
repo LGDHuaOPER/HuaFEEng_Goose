@@ -631,22 +631,6 @@ $("input.cancel_search").click(function(){
 var allParam = ecDo.getUrlPrmt(window.location.href);
 
 $(function(){
-	_.forIn(JSON.parse(allParam.QueryJson), function(value, key) {
-		$("#search_con_"+key).parent().prev().children().trigger("click");
-		$("#search_con_"+key).val(value);
-		$("#global_table_style th>span[data-isearch='"+key+"']").removeClass("hide_span").addClass("glyphicon-ok");
-	});
-	
-	if(allParam.Order != ""){
-		$("input.isOrderd").trigger("click");
-		$("input[name='Order_radio'][data-order='"+allParam.Order+"']").trigger("click").parent().next().children().val(allParam.Column);
-		if(allParam.Order == "DESC"){
-			$("#global_table_style th>span[data-isearch='"+allParam.Column+"']").removeClass("hide_span glyphicon-ok").addClass("glyphicon-sort-by-attributes-alt");
-		}else if(allParam.Order == "ASC"){
-			$("#global_table_style th>span[data-isearch='"+allParam.Column+"']").removeClass("hide_span glyphicon-ok").addClass("glyphicon-sort-by-attributes");
-		}
-	}
-
 	var ProductArr = ["IT系统","EUCP","futureC","futureD"];
 	var PriorityArr = ["最高","高","普通","低","最低"];
 	var StateArr = ["完成","进行中","未完成"];
@@ -684,8 +668,27 @@ $(function(){
 				$.MsgBox.Judge('提示', "获取软件部员工数据为空!");
 			}
 		},
-		error:function(){
+		error: function(){
 			$.MsgBox.Judge('提示', "网络错误请稍后重试!"); 
+		},
+		complete: function(){
+			if(!_.isNil(allParam.QueryJson)){
+				_.forIn(JSON.parse(allParam.QueryJson), function(value, key) {
+					$("#search_con_"+key).parent().prev().children().trigger("click");
+					$("#search_con_"+key).val(value);
+					$("#global_table_style th>span[data-isearch='"+key+"']").removeClass("hide_span").addClass("glyphicon-ok");
+				});
+			}
+			
+			if(!_.isNil(allParam.Order) && allParam.Order != ""){
+				$("input.isOrderd").trigger("click");
+				$("input[name='Order_radio'][data-order='"+allParam.Order+"']").trigger("click").parent().next().children().val(allParam.Column);
+				if(allParam.Order == "DESC"){
+					$("#global_table_style th>span[data-isearch='"+allParam.Column+"']").removeClass("hide_span glyphicon-ok").addClass("glyphicon-sort-by-attributes-alt");
+				}else if(allParam.Order == "ASC"){
+					$("#global_table_style th>span[data-isearch='"+allParam.Column+"']").removeClass("hide_span glyphicon-ok").addClass("glyphicon-sort-by-attributes");
+				}
+			}
 		}
 	});
 
@@ -708,12 +711,12 @@ function FistPage() {
 }
 function UpPage(arg) {
 	var newallParam = _.cloneDeep(allParam);
-	newallParam.currentPage = $('#currentPage').text() - 1;
+	newallParam.currentPage = Number($('#currentPage').text()) - 1;
 	eouluGlobal.S_settingURLParam(newallParam, false, false, false);
 }
 function NextPage(arg) {
 	var newallParam = _.cloneDeep(allParam);
-	newallParam.currentPage = $('#currentPage').text() + 1;
+	newallParam.currentPage = Number($('#currentPage').text()) + 1;
 	eouluGlobal.S_settingURLParam(newallParam, false, false, false);
 }
 function PageJump(arg) {
